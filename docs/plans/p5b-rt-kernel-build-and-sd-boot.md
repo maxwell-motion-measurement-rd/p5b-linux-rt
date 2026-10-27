@@ -1,6 +1,6 @@
 # P5B Linux 5.4.0 PREEMPT_RT 编译与首轮 SD 启动包计划
 
-日期：2026-10-27。状态：第 1–7 步主机构建与打包已完成；baseline 已从 SD 启动并通过基本检查，部分外设存在报错；RT 启动、三核运行、驱动功能与实时性仍待验证。详见 [baseline 首次上板记录](../board/baseline-first-boot-20261027.md)。
+日期：2026-10-27。状态：第 1–7 步主机构建与打包完成；baseline 基本启动和 RT Core0／1／2 三核首次启动已验证。完整 RT 状态、基本读写及已加载模块检查通过；外设功能、实时延迟和 AMP 共存仍待验证。实测见 [baseline 记录](../board/baseline-first-boot-20261027.md)与 [RT 记录](../board/rt-first-boot-20261027.md)。下文保留构建时的操作顺序，当前结果以板端记录为准。
 
 ## 执行进度
 
@@ -26,7 +26,7 @@ ZIP SHA-256：a1a684b678e5eb82a4d04cdbbbdf7e5279792cd257f32674c71b33f285f840a7�
 
 在 Ubuntu 虚拟机中准备一个供 P5B 首次部署验证的 RT Linux 启动包：一个 Linux SMP 实例使用 Core0／1／2，Core3 先预留。首轮不加载 Core3 裸机程序；裸机共存、通信和定量实时性验收另设阶段。
 
-用户确认采用独立 Git worktree 与独立编译输出；SD 卡启动；FIT image.ub 内包含 initramfs；复用现有 BOOT.BIN 和 boot.scr，并保留原版回退包。
+工程采用独立 Git worktree 与独立编译输出；SD 卡启动；FIT image.ub 内包含 initramfs；复用现有 BOOT.BIN 和 boot.scr，并保留原版回退包。
 
 本阶段无板验收覆盖编译、文件包结构和版本一致性。实际启动成功、核心分配、驱动可用性及实时延迟均须上板验证，不提前标为完成。
 
@@ -70,7 +70,7 @@ worktree 共享原仓库的 Git 对象，源文件和编译输出独立。原工
 ### 1. 固化输入与检查环境
 
 - 重新记录 HEAD、完整工作树状态、配置来源和旧启动文件的 SHA-256；区分未跟踪文件与已跟踪变更，不清理原工程。
-- 复制现有 BOOT.BIN、boot.scr、image.ub 及必要来源说明到 baseline，逐文件比对哈希。其状态标记为“原版、尚未经本次板端验证”。
+- 复制现有 BOOT.BIN、boot.scr、image.ub 及必要来源说明到 baseline，逐文件比对哈希。快照生成时状态为“原版、尚未经本次板端验证”；后续实板基本启动已通过，见板端记录。
 - Windows 获取固定补丁并核对大小与 SHA-256，再经 SSH 传入独立 inputs；不依赖虚拟机直连外部站点。
 - 核对磁盘预算和工具链。当前 VM 为 4 CPU、约 7.8 GiB 内存，根分区约 27 GiB 可用；初始编译并行度取 4，执行时按实际资源调整。
 - 已确认 make、宿主 GCC、bc、bison、flex、cpio、gzip、depmod、mkimage、dumpimage、dtc、fdtget 可找到。是否需要补齐 libelf 等开发依赖，由最终配置和宿主工具预检决定。
@@ -155,7 +155,7 @@ deploy/rt/
 
 DEPLOY.md 说明 SD 启动文件布局、板卡匹配检查、串口连接、首次检查命令及预期证据。启动拨码、实际串口和 MMC 编号须依据到手板卡资料核对，不照搬其他开发板设置。不在本轮远程格式化任何 SD 卡或写入板载 Flash。
 
-ROLLBACK.md 说明如何恢复原版三件套，并注明回退候选本身尚未经本次板端验证。发现问题时先确定失败发生在固件、U-Boot、内核还是用户空间阶段。
+ROLLBACK.md 说明如何恢复原版三件套，并区分快照生成时状态与后续 baseline 基本启动结果。发现问题时先确定失败发生在固件、U-Boot、内核还是用户空间阶段。
 
 ## 无板阶段完成标准
 
