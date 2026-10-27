@@ -1,0 +1,98 @@
+{
+  "prepared_at": "2026-10-27T11:34:48.882397+08:00",
+  "hardware_boot_verified": false,
+  "target_xsa_part": "xczu4ev-sfvc784-2-i",
+  "target_board": "Alientek MpSoc-P5B Development Board",
+  "source_commit": "62ea514294a0c9a80455e51f1f4de36e66e8c546",
+  "kernelrelease": "5.4.0-rt1-xilinx-v2020.2-p5b",
+  "architecture": "AArch64",
+  "linux_core_reg_values": [
+    0,
+    1,
+    2
+  ],
+  "embedded_kernel_config_matches_delivered_config": true,
+  "core3": "Excluded from this Linux DTB; no bare-metal payload included",
+  "patch": {
+    "repository": "fred-framework/meta-retis",
+    "commit": "02995952c2df1819657f2998e6e3a63c0e2aaa63",
+    "path": "recipes-kernel/linux/files/patch-5.4.3-rt1.patch",
+    "sha256": "684ad81ec7d25bd4b268ae5ced3c24bc53b3595aea5c528518cdeeb2e8bee26a"
+  },
+  "external_module_source": {
+    "repository": "xilinx/vcu-modules",
+    "commit": "844d4c4292e08ad8c3f22ac78e9a937395c1db4b",
+    "modules": [
+      "allegro",
+      "al5e",
+      "al5d",
+      "dmaproxy"
+    ],
+    "archive_sha256": "62b292f3397d2a88147ce6b18511ccb9a99e7403fb2f16625e8cc2355e5328fd"
+  },
+  "compiler": "aarch64-xilinx-linux-gcc 9.2.0",
+  "binutils": "2.32.0.20190204",
+  "build_warnings": [
+    "drivers/of/configfs.c:46: unused overlay_lock (vendor source unchanged)",
+    "vcu-modules/common/al_mailbox.c:146: variable-length array header",
+    "vcu-modules/common/al_mailbox.c:172: variable-length array header"
+  ],
+  "boot_chain": "Original BOOT.BIN and boot.scr preserved byte for byte",
+  "fit": {
+    "default_configuration": "conf@system-top.dtb",
+    "components": {
+      "kernel": {
+        "path": "/images/kernel@1",
+        "bytes": 8369434,
+        "sha256": "ef40de3bb4a906c605b2dfc83c3e5183b14c72736437bff44b0febc685343b58"
+      },
+      "fdt": {
+        "path": "/images/fdt@system-top.dtb",
+        "bytes": 54064,
+        "sha256": "1d0528ef851e6efc3e43f031a7bac132ebf130d6c9df6a753f1bb393c58396a4"
+      },
+      "ramdisk": {
+        "path": "/images/ramdisk@1",
+        "bytes": 11075497,
+        "sha256": "f07764dbbea5733556bc0e336a0fafdda7ebc3eb605ee96449ac852b6bc7f574"
+      }
+    },
+    "cpus": {
+      "/cpus/cpu@0": 0,
+      "/cpus/cpu@1": 1,
+      "/cpus/cpu@2": 2
+    },
+    "bootargs": "earlycon console=ttyPS0,115200 rdinit=/init rw",
+    "kernel_load": "0x80000",
+    "kernel_entry": "0x80000",
+    "kernel_image_memory_span": 18173952,
+    "fit_load": "0x10000000",
+    "uboot_decompression_limit_bytes": 62914560,
+    "fit_bytes": 19501100,
+    "fit_sha256": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484",
+    "hardware_boot_verified": false
+  },
+  "rootfs": {
+    "release": "5.4.0-rt1-xilinx-v2020.2-p5b",
+    "original_entries": 1372,
+    "output_entries": 1372,
+    "preserved_entries": 1250,
+    "replaced_boot_dtbs": [
+      "boot/devicetree/system-top.dtb",
+      "boot/device-tree-AUTOINC+f725aaecff.dtb"
+    ],
+    "removed_old_module_entries": 120,
+    "new_module_entries": 120,
+    "kernel_modules": 62,
+    "archive_uncompressed_bytes": 27302912,
+    "archive_compressed_bytes": 11075497,
+    "sha256": "f07764dbbea5733556bc0e336a0fafdda7ebc3eb605ee96449ac852b6bc7f574",
+    "verification": "Original user-space payloads and Unix metadata preserved; modules match new release; init chain resolves."
+  },
+  "boot_file_sha256": {
+    "BOOT.BIN": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+    "boot.scr": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229",
+    "image.ub": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484"
+  },
+  "final_config_sha256": "a1f4db68bbbc5c27e3da8819ad02b7741eeebe13f28545c4b77308871f0438d0"
+}

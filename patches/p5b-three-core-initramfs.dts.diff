@@ -1,0 +1,46 @@
+--- /home/wang/p5b-rt-5.4.0/build/dtb/original.dts	2026-10-27 11:14:39.966055434 +0800
++++ /home/wang/p5b-rt-5.4.0/build/dtb/p5b-rt.roundtrip.dts	2026-10-27 11:15:51.457381313 +0800
+@@ -41,16 +41,6 @@
+ 			phandle = <0x30>;
+ 		};
+ 
+-		cpu@3 {
+-			compatible = "arm,cortex-a53";
+-			device_type = "cpu";
+-			enable-method = "psci";
+-			reg = <0x3>;
+-			operating-points-v2 = <0x1>;
+-			cpu-idle-states = <0x2>;
+-			phandle = <0x31>;
+-		};
+-
+ 		idle-states {
+ 			entry-method = "psci";
+ 
+@@ -126,7 +116,8 @@
+ 	pmu {
+ 		compatible = "arm,armv8-pmuv3";
+ 		interrupt-parent = <0x4>;
+-		interrupts = <0x0 0x8f 0x4 0x0 0x90 0x4 0x0 0x91 0x4 0x0 0x92 0x4>;
++		interrupts = <0x0 0x8f 0x4 0x0 0x90 0x4 0x0 0x91 0x4>;
++		interrupt-affinity = <0x2e 0x2f 0x30>;
+ 	};
+ 
+ 	psci {
+@@ -2168,7 +2159,7 @@
+ 	};
+ 
+ 	chosen {
+-		bootargs = "earlycon console=ttyPS0,115200 root=/dev/mmcblk1p2 rw rootwait";
++		bootargs = "earlycon console=ttyPS0,115200 rdinit=/init rw";
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+@@ -2257,7 +2248,6 @@
+ 		cpu0 = "/cpus/cpu@0";
+ 		cpu1 = "/cpus/cpu@1";
+ 		cpu2 = "/cpus/cpu@2";
+-		cpu3 = "/cpus/cpu@3";
+ 		CPU_SLEEP_0 = "/cpus/idle-states/cpu-sleep-0";
+ 		cpu_opp_table = "/cpu-opp-table";
+ 		ipi_mailbox_pmu1 = "/zynqmp_ipi/mailbox@ff990400";

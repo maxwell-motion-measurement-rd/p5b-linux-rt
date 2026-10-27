@@ -1,0 +1,17 @@
+{
+  "release": "5.4.0-rt1-xilinx-v2020.2-p5b",
+  "original_entries": 1372,
+  "output_entries": 1372,
+  "preserved_entries": 1250,
+  "replaced_boot_dtbs": [
+    "boot/devicetree/system-top.dtb",
+    "boot/device-tree-AUTOINC+f725aaecff.dtb"
+  ],
+  "removed_old_module_entries": 120,
+  "new_module_entries": 120,
+  "kernel_modules": 62,
+  "archive_uncompressed_bytes": 27302912,
+  "archive_compressed_bytes": 11075497,
+  "sha256": "f07764dbbea5733556bc0e336a0fafdda7ebc3eb605ee96449ac852b6bc7f574",
+  "verification": "Original user-space payloads and Unix metadata preserved; modules match new release; init chain resolves."
+}
