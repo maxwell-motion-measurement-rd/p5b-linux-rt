@@ -6,7 +6,7 @@
 
 ## 板型与记录范围
 
-仓库此前已将目标实板更正为 P5（XCZU4EV）；本次沿用 P5B 工程的 baseline。U-Boot 和 Linux 的设备树模型仍为 `Alientek MpSoc-P5B Development Board`。日志中的名称来自软件配置，不能代替实板型号识别，也不能证明 P5／P5B 的全部板级配置兼容。仓库与启动包中的 `p5b` 名称继续保留，便于追溯。
+本次 baseline 部署与验证在 P5（XCZU4EV）实板上完成，使用沿用 P5B 工程名称的启动包。U-Boot 和 Linux 的设备树模型仍为 `Alientek MpSoc-P5B Development Board`，该名称来自软件配置。现有资料检索未发现与本次部署相关的明显差异，官方资料中心也将 P5／P5B 合并列为一个资料入口；未逐项证明全部硬件相同，详见[板型说明](p5-and-p5b-scope.md)。仓库与启动包中的 `p5b` 名称继续保留，便于追溯。
 
 日志从 U-Boot 开始，包含 FIT 加载、Linux 和用户空间启动、终端操作、检查命令，以及再次输出的完整 dmesg。开头有少量乱码；未包含完整 FSBL／PMUFW 早期输出，也不是连续的长时间稳定性测试。
 

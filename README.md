@@ -1,8 +1,8 @@
 # P5 Linux 5.4.0 PREEMPT_RT 构建与上板验证
 
-截至 2026-10-27，baseline 和 PREEMPT_RT 内核均已从 SD 卡启动。baseline 四核在线；RT 使用 A53 Core0／1／2，完整 RT 状态、基本命令、临时文件读写和已加载模块检查通过。实时延迟、长时间稳定性、完整外设功能及 Core3 裸机共存尚未验收。
+截至 2026-10-27，baseline 和 PREEMPT_RT 内核均已在正点原子 **P5（XCZU4EV）实板**上从 SD 卡启动。baseline 四核在线；RT 使用 A53 Core0／1／2，完整 RT 状态、基本命令、临时文件读写和已加载模块检查通过。实时延迟、长时间稳定性、完整外设功能及 Core3 裸机共存尚未验收。
 
-目标实板此前已更正为 P5（XCZU4EV），现有 BSP／XSA 和设备树沿用 P5B 工程。日志中的 P5B 是软件模型名称，不是实板识别结果；两版启动成功不代表全部板级配置兼容。仓库、路径和内核版本中的 p5b 保留原名，便于追溯。
+本次部署使用的板卡是 P5，未使用另一块 P5B 实板做对照。BSP／XSA、设备树及启动包沿用 P5B 工程名称，日志中的 P5B 来自软件配置。资料检索中未发现 P5 与 P5B 在本次 Linux 部署所涉及配置上的明显差异；正点原子[官方资料中心](https://www.openedv.com/docs/build/html/index.html)也将两者合并列为“MPSoC - P5 / P5B开发板”。这属于现有资料范围内的结论，未逐项比对两版原理图和 BOM，不能据此认定所有硬件版本完全一致。检索依据及范围见[板型说明](docs/board/p5-and-p5b-scope.md)。仓库、路径和内核版本中的 p5b 保留原名，便于追溯。
 
 ## 当前状态
 
@@ -22,7 +22,7 @@
 
 ## 复现入口与所需文件
 
-直接复现本轮上板检查，下载 [board-boot-20261027 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027) 的启动包，无需先重新编译内核。仓库为私有仓库，下载者需要读取权限。
+直接复现本轮上板检查，下载 [board-boot-20261027 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027) 的启动包，无需先重新编译内核。仓库和 Release 附件公开提供，可直接查看和下载。
 
 - [p5b-rt-sd-20261027.zip](https://github.com/nozomiiiii/p5b-linux-rt/releases/download/board-boot-20261027/p5b-rt-sd-20261027.zip)
 - [ZIP SHA-256](https://github.com/nozomiiiii/p5b-linux-rt/releases/download/board-boot-20261027/p5b-rt-sd-20261027.zip.sha256)
