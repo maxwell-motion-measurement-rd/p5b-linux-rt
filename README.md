@@ -6,7 +6,9 @@
 
 ## 当前状态
 
-2026-10-27 已完成 Ubuntu 上的补丁集成、AArch64 内核及 62 个模块构建，并生成首轮 SD 启动包。尚未进行板端启动、驱动功能、三核实际运行或实时延迟验证。
+2026-10-27 已完成 Ubuntu 上的补丁集成、AArch64 内核及 62 个模块构建，并生成首轮 SD 启动包。原版 baseline 已从 SD 启动并通过基本检查：进入 root 命令行，四核在线，内存可见，临时文件读写正常。部分视频驱动初始化失败，另有时钟、VCU、无线数据库及 eMMC 文件系统警告；RT 启动、三核实际运行、驱动功能和实时延迟仍待验证。
+
+本次结果与边界见 [baseline 首次上板记录](docs/board/baseline-first-boot-20261027.md)，[原始串口日志](logs/board/2026-10-27/baseline-first-boot.txt) 已按原字节归档，并附 SHA-256。日志从 U-Boot 开始，包含 Linux 启动、检查命令和再次输出的 dmesg；未包含完整 FSBL／PMUFW 早期输出。
 
 - 厂商基线：Xilinx 2020.2 / Linux 5.4.0。
 - 基线提交：`62ea514294a0c9a80455e51f1f4de36e66e8c546`。
@@ -22,6 +24,8 @@
 - `docs/plans/`：执行计划及完成进度。
 - `docs/adr/`：厂商基线和核心分工的决策记录。
 - `docs/build/`：交付清单、静态验证结果及 Git 追溯记录。
+- `docs/board/`：实际板端检查结果、问题和验收边界。
+- `logs/board/`：原始串口日志和校验值。
 - `configs/`：原配置、最终配置、Linux DTS 和 FIT ITS。
 - `patches/`：RT 源码提交导出的 Git 补丁及三核设备树差异。
 - `patches/p5b-rt-commit.bundle`：RT 内核新增提交的 Git 对象备份；恢复时需要先取得上述厂商基线提交。
@@ -42,7 +46,7 @@
 
 ## 首轮部署
 
-部署前需核对 P5 实板对应的 XSA、DDR 初始化、BOOT.BIN、设备树和 PL 位流。现有启动包基于此前使用的 P5B 工程生成，尚未确认可直接用于 P5。RT 补丁的选择取决于内核源码基线；板型更正后，仍需分别验证内核和启动文件是否适用于实板。
+现有启动包基于此前使用的 P5B 工程生成。baseline 已在本次实板上启动；日志报告 XCZU4EV、4 GiB，设备树和 U-Boot 仍显示 P5B 工程名称。这个结果确认了本轮基本启动路径，尚不能证明 P5／P5B 的全部板级配置兼容，仍需核对 XSA、DDR 初始化、BOOT.BIN、设备树和 PL 位流。RT 包尚未形成板端验证结果。
 
 部署说明见 `work/artifacts/P5B-DEPLOY.md`，回退说明见 `work/artifacts/P5B-ROLLBACK.md`。启动包为 `p5b-rt-sd-20261027.zip`，45,463,094 字节；SHA-256 为：
 
