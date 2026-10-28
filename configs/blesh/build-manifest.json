@@ -1,0 +1,20 @@
+{
+  "ble_sh_commit": "cb9c2c37678becc70f38adca57d0b872a7259448",
+  "contrib_commit": "d2109203480a7dfe1dead5f5f8f9f15a9146c90d",
+  "source": "https://github.com/akinomyoga/ble.sh",
+  "kernelrelease": "5.4.0-rt1-xilinx-v2020.2-p5b",
+  "autostart": "Interactive /dev/ttyPS0 login only",
+  "disable_marker": "/etc/p5-blesh.disabled",
+  "kernel_cmdline_opt_out": "p5_blesh=off",
+  "prepared_at": "2026-10-28T03:52:12Z",
+  "original_fit_sha256": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484",
+  "fit_sha256": "7163089a1793cc3f5b0fb1d174e8371567fd493ff7e7ece01cd0be622f928df0",
+  "fit_bytes": 20141540,
+  "kernel_payload_unchanged": true,
+  "dtb_payload_unchanged": true,
+  "all_original_cpio_entries_unchanged": true,
+  "modules_unchanged": 62,
+  "hardware_boot_verified": false,
+  "runtime_trial_highlighting_verified": true,
+  "note": "New automatic-login image requires first boot verification; original trial visual confirmation does not verify this new FIT."
+}

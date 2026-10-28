@@ -1,0 +1,6 @@
+{
+  "noninteractive_shell_not_intercepted": true,
+  "simulated_serial_interactive_hook_started_child_bash": true,
+  "exit_returned_to_parent_shell": true,
+  "host_test_scope": "Ubuntu Bash with simulated tty name; not actual new FIT board boot"
+}
