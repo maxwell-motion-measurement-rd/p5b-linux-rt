@@ -155,6 +155,10 @@ MemTotal：4025676 kB
 
 本轮保留厂商 5.4.0，固定使用 RETIS 的 patch-5.4.3-rt1.patch 作为移植输入。在指定厂商提交上零失败、零 fuzz 应用后，完成编译、打包及本次 RT 三核启动。文件名中的 5.4.3 不代表任意 5.4.0 都适用，也不表示本内核已升级为 5.4.3。固定版本、选择依据和来源见 [ADR 0001](docs/adr/0001-preserve-vendor-kernel-baseline.md)。
 
+## 串口 Bash 语法高亮
+
+2026-10-28 已在 P5 的 Bash 5.0.7 串口会话启用 ble.sh，命令输入高亮经人工确认正常。试用使用 TERM=xterm，并将外部命令和内置命令设置为蓝色加粗；只作用于独立交互式 Bash，没有改动 RT 内核、image.ub 或默认登录配置。[配置、验证与复现记录](docs/board/bash-blesh-20261028.md)包含固定源码版本、启动命令、终端配色及退出方法；[启动器和 Bash 配置](tools/blesh/)供后续复用。它们未纳入原 RT Release。
+
 ## 源码重建与目录
 
 [源码重建说明](docs/build/REPRODUCE.md)给出固定版本、原 BSP／工具链前提、命令与打包顺序；[Git 备份说明](docs/build/kernel-git-backup.md)说明如何恢复内核提交。直接上板使用 Release 包；源码重建还需原工程输入，本仓库不含完整 BSP。

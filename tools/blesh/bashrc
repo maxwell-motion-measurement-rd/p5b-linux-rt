@@ -1,0 +1,21 @@
+# Optional child Bash configuration. Does not change the login shell.
+[[ $- == *i* ]] || return
+set +o posix
+export LC_ALL=C
+case ${TERM:-} in ''|dumb|vt100|vt102) export TERM=xterm;; esac
+export XDG_CACHE_HOME="${TMPDIR:-/tmp}/p5-blesh-cache-${UID}"
+export XDG_RUNTIME_DIR="${TMPDIR:-/tmp}/p5-blesh-runtime-${UID}"
+mkdir -p "$XDG_CACHE_HOME" "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_CACHE_HOME" "$XDG_RUNTIME_DIR"
+HISTFILE=/dev/null
+PS1='\u@\h:\w\$ '
+if source "$P5_BLESH_DIR/blesh/ble.sh" --noattach; then
+    bleopt complete_auto_complete=off
+    bleopt complete_auto_history=off
+    bleopt term_bracketed_paste_mode=on
+    ble-face command_file=fg=blue,bold command_builtin=fg=blue,bold
+    ble-attach
+    printf '\nP5 Bash + ble.sh trial loaded. Type exit to return.\n'
+else
+    printf '\nble.sh failed to load; plain Bash remains available. Type exit to return.\n' >&2
+fi
