@@ -6,7 +6,18 @@
 
 ## 阅读顺序
 
-首次上板按“[启动文件说明](#启动三件套作用生成方式与教程的对应关系) → [新手操作顺序](#新手操作顺序instructions) → [下载与校验](#复现入口与所需文件) → [串口设置](#串口与-sd-启动设置) → [baseline](#baseline-部署与验证) → [RT](#rt-部署与验证)”阅读。需要自行编译时，再按[源码重建说明](docs/build/REPRODUCE.md)操作。
+- 启动原理：[启动文件说明](#启动三件套作用生成方式与教程的对应关系)。
+- 首次上板：[新手操作顺序](#新手操作顺序instructions)、[下载与校验](#复现入口与所需文件)、[串口设置](#串口与-sd-启动设置)。
+- 验收记录：[baseline](#baseline-部署与验证)、[RT](#rt-部署与验证)。
+- 自行编译：[源码重建说明](docs/build/REPRODUCE.md)。
+
+```mermaid
+flowchart LR
+    A["了解启动文件"] --> B["准备启动包与串口"]
+    B --> C["验证 baseline"]
+    C --> D["切换并验证 RT"]
+    D --> E["归档日志与配置"]
+```
 
 ## 当前状态
 
@@ -15,18 +26,18 @@
 | 内核 | `5.4.0-xilinx-v2020.2` | `5.4.0-rt1-xilinx-v2020.2-p5b` |
 | SD 启动 | 通过，U-Boot 加载 FIT | 通过，内核／DTB／initramfs 哈希通过 |
 | CPU | online 为 0-3 | possible／present／online 均为 0-2，硬件核心标识 0、1、2 |
-| 完整 RT | 本轮未按 RT 验收 | CONFIG_PREEMPT_RT=y、realtime=1 |
+| 完整 RT | 未按 RT 验收 | CONFIG_PREEMPT_RT=y、realtime=1 |
 | 根目录 | 内存 rootfs，参数带旧 root= | 内存 rootfs，使用 rdinit=/init |
 | 临时文件读写 | 通过 | 通过 |
 | 模块 | 未逐个功能验收 | 构建 62 个；实测加载 dmaproxy、xlnx_vcu_core，未见版本／符号错误 |
 | 外设 | 视频、时钟、VCU、无线数据库、SPI NOR 等问题；eMMC FAT 警告 | 相同问题仍在，新增 /dev/root 提示 |
 | 实时延迟、AMP | 未测试 | 未测试 |
 
-详细结果见 [baseline 记录](docs/board/baseline-first-boot-20261027.md)和 [RT 记录及问题对照](docs/board/rt-first-boot-20261027.md)。[原始串口日志及 SHA-256](logs/board/2026-10-27/)保留终端命令和输出，不含协作对话。
+详细结果见 [baseline 记录](docs/board/baseline-first-boot-20261027.md)和 [RT 记录及问题对照](docs/board/rt-first-boot-20261027.md)。[原始串口日志及 SHA-256](logs/board/2026-10-27/)保留终端命令和输出。
 
 ## 启动三件套：作用、生成方式与教程的对应关系
 
-本工程使用 `BOOT.BIN + boot.scr + image.ub`。脚本文件名是 `boot.scr`，不是 `boot.src`。三者位于 SD 卡 FAT32 启动分区根目录：
+本工程使用 `BOOT.BIN + boot.scr + image.ub`，三个文件位于 SD 卡 FAT32 启动分区根目录：
 
 ```text
 SD 启动分区
@@ -35,14 +46,16 @@ SD 启动分区
 └── image.ub
 ```
 
-启动过程如下；它是执行顺序，三个文件并不是同时运行：
-
-```text
-上电 → 芯片内部 BootROM 读取 BOOT.BIN
-     → 早期固件初始化硬件并启动 U-Boot
-     → U-Boot 执行 boot.scr
-     → 脚本读取 image.ub，U-Boot 校验并加载载荷
-     → Linux 启动、展开 initramfs，进入用户空间
+```mermaid
+flowchart TD
+    A["板卡上电"] --> B["BootROM 从 SD 卡读取 BOOT.BIN"]
+    B --> C["早期固件初始化硬件"]
+    C --> D["启动 U-Boot"]
+    D --> E["执行 boot.scr"]
+    E --> F["读取 image.ub"]
+    F --> G["校验并加载内核、设备树和 initramfs"]
+    G --> H["Linux 启动并展开 initramfs"]
+    H --> I["启动用户空间，进入控制台"]
 ```
 
 ### BOOT.BIN：早期初始化与引导
@@ -54,26 +67,47 @@ BOOT.BIN 是启动镜像。本工程沿用原工程的启动固件和 PL 位流�
 - U-Boot 读取启动介质、运行脚本并引导 Linux。
 - FPGA 位流配置 PL 中的硬件逻辑；它与 Linux 软件驱动的作用不同。
 
-通常先由 Vivado 导出匹配硬件的 XSA，再由配套工具构建固件和 U-Boot，最后使用 Bootgen 按 BIF 打包描述生成 BOOT.BIN。PetaLinux 的 `petalinux-package --boot ...` 可组织这一过程。[AMD 2020.2 打包说明](https://docs.amd.com/r/2020.2-English/ug1144-petalinux-tools-reference-guide/Generate-Boot-Image)
+BOOT.BIN 的生成依赖匹配的硬件描述、启动固件、U-Boot 和打包配置：
 
-本次 RT 构建没有重新生成 BOOT.BIN，而是从原 ALIENTEK-MP 工程的 `images/linux/BOOT.BIN` 原样复制。仅修改 RT 内核时不需要重做这些早期组件；更换 XSA、DDR 配置、PL 设计或启动固件时，需要重新核对它们的匹配关系。仓库不含完整 BSP，不能只凭仓库从零生成同一 BOOT.BIN。
+```mermaid
+flowchart LR
+    A["Vivado 硬件设计"] --> B["导出 XSA"]
+    B --> C["配套工具构建启动组件"]
+    C --> D["FSBL、PMUFW、BL31、U-Boot"]
+    A --> E["FPGA 位流（按需）"]
+    D --> F["Bootgen 按 BIF 打包"]
+    E --> F
+    F --> G["BOOT.BIN"]
+```
+
+PetaLinux 的 `petalinux-package --boot ...` 可组织打包。[AMD 2020.2 打包说明](https://docs.amd.com/r/2020.2-English/ug1144-petalinux-tools-reference-guide/Generate-Boot-Image)
+
+本工程 RT 构建没有重新生成 BOOT.BIN，而是从原 ALIENTEK-MP 工程的 `images/linux/BOOT.BIN` 原样复制。仅修改 RT 内核时不需要重做这些早期组件；更换 XSA、DDR 配置、PL 设计或启动固件时，需要重新核对它们的匹配关系。仓库不含完整 BSP，不能只凭仓库从零生成同一 BOOT.BIN。
 
 ### boot.scr：交给 U-Boot 执行的启动脚本
 
 脚本规定从哪个介质和分区加载文件、读到哪个内存地址、执行什么启动命令。执行它时 Linux 尚未启动，不能用 Linux Bash 去运行它。
 
-通常先编写文本文件 `boot.cmd` 或 `boot.cmd.default`，再用 U-Boot 的 mkimage 工具加上镜像头。例如，可在装有 mkimage 的 Ubuntu 中按下面的形式生成脚本。这是通用示例，本轮没有重新执行此步骤：
+boot.scr 由 U-Boot 脚本文本经 mkimage 封装生成：
+
+```mermaid
+flowchart LR
+    A["boot.cmd / boot.cmd.default"] --> B["mkimage 添加镜像头"]
+    B --> C["boot.scr"]
+```
+
+以下为通用命令示例。已发布 RT 包复用原工程的 boot.scr，无需为本流程重新生成：
 
 ```sh
 # 说明命令：需要匹配的原脚本文本，不用于直接替换当前启动文件
 mkimage -C none -A arm64 -T script -d boot.cmd.default boot.scr
 ```
 
-本次 RT 包同样原样复用了原工程的 boot.scr。其 SD 启动分支优先寻找 image.ub，读取到 `0x10000000` 后执行 `bootm`；找不到时才尝试散放的 Image 和 system.dtb。原脚本文本保存在 Release ZIP 的 `evidence/boot-script.txt`。不要把单独修改 Image 当成已经更新了 FIT 内核。
+已发布 RT 包同样原样复用了原工程的 boot.scr。其 SD 启动分支优先寻找 image.ub，读取到 `0x10000000` 后执行 `bootm`；找不到时才尝试散放的 Image 和 system.dtb。原脚本文本保存在 Release ZIP 的 `evidence/boot-script.txt`。采用 FIT 启动时，更新内核需要重新打包 image.ub；单独替换 SD 上的 Image 不会更新 FIT 内的载荷。
 
 ### image.ub：内核、设备树和根文件系统的组合镜像
 
-本次 image.ub 使用 FIT（Flattened Image Tree）格式，实际包含：
+本工程 image.ub 使用 FIT（Flattened Image Tree）格式，实际包含：
 
 ```text
 image.ub
@@ -86,13 +120,27 @@ image.ub
 
 image.ub 还包含载荷选择、加载地址和 SHA-256 摘要。摘要用于发现数据不一致，不等同于对镜像来源做签名认证。[U-Boot FIT 说明](https://github.com/u-boot/u-boot/blob/main/doc/usage/fit/howto.rst)
 
-本次 RT 生成过程为：
+RT image.ub 的构建流程：
 
-1. 在厂商 Linux 5.4.0 的固定提交上集成 RT 补丁，以 AArch64 交叉工具链编译 Image 和模块。
-2. 将 Image 压缩为 Image.gz。
-3. 将三核 DTS 用 dtc 编译成 system.dtb。
-4. 在原 rootfs.cpio.gz 中替换匹配的内核模块及相关 DTB，保留其余用户空间文件和 Unix 元数据。
-5. 用 ITS 文本描述三个载荷和加载配置，调用 mkimage 生成 image.ub。
+```mermaid
+flowchart TD
+    A["固定版本的厂商 Linux 5.4.0"] --> B["集成 RT 补丁与三核配置"]
+    B --> C["AArch64 交叉编译"]
+    C --> D["Image"]
+    D --> E["gzip 压缩：Image.gz"]
+    C --> F["匹配的内核模块"]
+    G["三核 DTS"] --> H["dtc 编译：system.dtb"]
+    I["原 rootfs.cpio.gz"] --> J["更新模块及相关 DTB，保留其余条目和元数据"]
+    F --> J
+    H --> J
+    J --> K["新 rootfs.cpio.gz"]
+    E --> L["mkimage 按 ITS 打包"]
+    H --> L
+    K --> L
+    M["ITS：载荷、地址、配置和摘要算法"] --> L
+    L --> N["image.ub"]
+    N --> O["检查 FIT、摘要、CPU 节点和模块"]
+```
 
 在[源码重建说明](docs/build/REPRODUCE.md)中，全部前置步骤完成后，最终打包命令为：
 
@@ -117,7 +165,7 @@ PetaLinux 2020.2 的官方 SD 文件准备说明也使用 image.ub 和 boot.scr�
 | Linux 设备树 | 独立 system.dtb | 位于 image.ub 内 |
 | 根文件系统 | 独立 ramdisk，或已部署的 EXT4 分区 | 位于 image.ub 内，启动后在内存运行 |
 
-image.ub 并非固定必须包含根文件系统；上表只描述本次 FIT 配置。文件名相同也不保证版本、板型和模块匹配。首次复现使用 Release 中同一套三件套，不与另一张卡上的同名文件混用。
+image.ub 并非固定必须包含根文件系统；上表只描述本工程 FIT 配置。部署所用内核、设备树、模块与启动固件需要匹配。首次复现使用 Release 中同一套三件套。
 
 ## 新手操作顺序（Instructions）
 
@@ -133,14 +181,41 @@ GitHub 的“Code → Download ZIP”或“Source code”下载的是仓库资�
 
 ### 执行环境与检查点
 
-1. **Windows 主机：**下载并校验 ZIP，在不存在的新目录中解压。准备已有 FAT32 启动分区的测试卡，核对盘符，备份卡内文件。本文不提供格式化、重分区或烧写 Flash 的命令。
-2. **Windows 串口工具：**连接板上的 PS UART，按下方“串口与 SD 启动设置”配置 115200、8N1、无流控并打开日志。USB 串口保留给运行 MobaXterm 的 Windows；连接 Ubuntu 的 SSH 标签页不能代替开发板串口。
-3. **首次部署 baseline：**板子断电后，把解压目录 `baseline/` 内三个启动文件直接复制到 SD 启动分区根目录。文件名不能变成 boot.scr.txt，也不能只复制外层 baseline 文件夹。
-4. **实板验证 baseline：**安全弹卡、断电插卡，按匹配手册设 SD 启动，再上电。进入 Linux root 命令行后执行“baseline 部署与验证”的命令，保存日志；预期版本为 5.4.0-xilinx-v2020.2、online 为 0-3。登录账号和密码沿用原 rootfs 设置，本文不另设通用密码。
-5. **切换 RT：**在板端执行 sync、poweroff，等待关机后断电取卡。用 `rt/` 中的同名三件套替换 SD 根目录文件，保留 baseline 副本。重新启动并执行“RT 部署与验证”，核对版本、realtime=1、CPU 集合 0-2 和模块目录。
-6. **保存结果并回退：**分别保存 baseline-first-boot.txt 和 rt-first-boot.txt。若启动失败，按下表定位阶段；需要回退时，正常关机、断电后恢复 baseline 三件套。
+```mermaid
+flowchart TD
+    A{"选择输入方式"} -->|现成启动包| B["Windows 下载 Release ZIP"]
+    A -->|源码重建| C["Ubuntu 准备 BSP、源码、工具链和 rootfs"]
+    C --> D["按重建说明构建并校验 RT 三件套"]
+    B --> E["校验 ZIP，在新目录解压"]
+    E --> F["备份 SD 文件，配置串口与日志"]
+    F --> G["断电后复制 baseline 三件套，设置 SD 启动"]
+    G --> H["上电验证 baseline，保存日志"]
+    H --> I{"baseline 基本检查通过？"}
+    I -->|否| J["按启动阶段排障"]
+    J --> H
+    I -->|是| K["sync、poweroff，关机后断电取卡"]
+    D --> F
+    K --> L["复制 RT 三件套，安全弹卡并插回"]
+    L --> M["启动 RT，核对版本、realtime、CPU 与模块"]
+    M --> N{"RT 基本检查通过？"}
+    N -->|是| O["归档串口日志、配置和校验值"]
+    N -->|否| P["保存故障日志，关机断电后恢复 baseline"]
+```
 
-如果要从源码重建，先在 Ubuntu 按[重建说明](docs/build/REPRODUCE.md)准备原始输入和独立工作目录，再依次完成补丁／配置、内核和模块、设备树、rootfs、FIT 校验。得到 `deploy/rt/` 后，再回到上述第 5 步。工具链和环境变量只在构建主机使用，不在开发板串口或 Windows PowerShell 中执行 make。
+源码重建分支同样要求目标板已有通过基本检查的 baseline。各阶段的操作位置和验收条件如下：
+
+| 阶段 | 执行位置 | 操作与检查点 |
+| --- | --- | --- |
+| 下载与解压 | Windows PowerShell | 下载 Release 部署 ZIP，核对 SHA-256，在不存在的新目录解压 |
+| SD 准备 | Windows 主机；板卡断电 | 使用已有 FAT32 启动分区，核对盘符并备份原文件；将对应目录内三个文件直接放到启动分区根目录 |
+| 串口设置 | Windows MobaXterm | PS UART，115200、8N1、无流控；开启日志。串口设备保留给 Windows，Ubuntu SSH 会话用于主机构建 |
+| baseline 验证 | 开发板 Linux 串口 | 执行“baseline 部署与验证”的命令；预期版本 5.4.0-xilinx-v2020.2、CPU online 0-3 |
+| RT 切换 | 开发板关机后，在 Windows 读卡器中操作 | 板端先执行 sync、poweroff；关机后断电取卡，用 rt/ 三件套替换同名文件，安全弹卡并插回 |
+| RT 验证 | 开发板 Linux 串口 | 执行“RT 部署与验证”的命令；核对版本、realtime=1、CPU 集合 0-2 和模块目录 |
+| 日志归档 | Windows 串口工具 | 分别保存 baseline-first-boot.txt 和 rt-first-boot.txt |
+| 源码重建 | Ubuntu Bash | 按[重建说明](docs/build/REPRODUCE.md)准备独立目录，完成构建与校验，输出位于 deploy/rt/ |
+
+登录账号和密码由原 rootfs 配置决定。工具链、make 和构建环境变量在 Ubuntu 中使用；板端验证命令在开发板 Linux 提示符下执行。
 
 ### 启动失败时先看哪一步
 
@@ -155,7 +230,7 @@ GitHub 的“Code → Download ZIP”或“Source code”下载的是仓库资�
 
 ## 复现入口与所需文件
 
-直接复现本轮上板检查，下载 [board-boot-20261027 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027) 的启动包，无需先重新编译内核。仓库和 Release 附件公开提供，可直接查看和下载。
+复现已归档的上板检查，下载 [board-boot-20261027 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027) 的启动包，无需先重新编译内核。仓库和 Release 附件公开提供，可直接查看和下载。
 
 - [p5b-rt-sd-20261027.zip](https://github.com/nozomiiiii/p5b-linux-rt/releases/download/board-boot-20261027/p5b-rt-sd-20261027.zip)
 - [ZIP SHA-256](https://github.com/nozomiiiii/p5b-linux-rt/releases/download/board-boot-20261027/p5b-rt-sd-20261027.zip.sha256)
@@ -164,9 +239,9 @@ GitHub 的“Code → Download ZIP”或“Source code”下载的是仓库资�
 
 压缩包保持构建时原始字节；其中旧文档的“待上板”为构建时状态，当前结果以本 README 和 docs/board 为准。
 
-准备匹配的实板、配套电源、PS UART 数据线、SD 卡、读卡器，以及已有 FAT32 启动分区。备份卡内原文件；本轮不需要额外根文件系统分区，不烧写 eMMC／Flash。系统仍会自动挂载板载存储，取卡、断电前应正常关机。
+准备匹配的实板、配套电源、PS UART 数据线、SD 卡、读卡器，以及已有 FAT32 启动分区。备份卡内原文件；此部署方式不需要额外根文件系统分区，不烧写 eMMC／Flash。系统仍会自动挂载板载存储，取卡、断电前应正常关机。
 
-Windows PowerShell 中先进入自己准备的下载目录。也可在浏览器下载上述两个附件后，从校验步骤开始；以下命令不访问 SD 卡：
+在 Windows PowerShell 中进入下载目录后执行以下命令；若已通过浏览器下载附件，可从校验步骤开始：
 
 ```powershell
 $ErrorActionPreference = 'Stop'
@@ -198,7 +273,7 @@ p5b-boot-package/
 
 ## 串口与 SD 启动设置
 
-1. 将板上 PS UART／USB_UART 调试口连接电脑。本轮为 USB-SERIAL CH340 (COM3)，其他电脑以设备管理器识别的端口为准。
+1. 将板上 PS UART／USB_UART 调试口连接电脑。已归档验证使用 USB-SERIAL CH340 (COM3)，其他电脑以设备管理器识别的端口为准。
 2. MobaXterm 选择 Serial，115200、8 数据位、1 停止位、无校验、无流控，Serial engine 使用 PuTTY。
 3. 会话 Terminal settings 启用 Log terminal output to，设置日志目录并重新打开会话。已有文字通过 Terminal → Save terminal text 或 Ctrl + Shift + S 保存。
 4. 断电插卡，设置 SD 启动。已核对的 P5B V1.1 手册中 SW6／BOOT_MODE 按 1～4 为 ON、OFF、ON、OFF，SD1 编码 0101。不同板型／底板先核对对应手册，不按图片方向照拨。
@@ -226,9 +301,9 @@ rm /tmp/p5b-baseline-check.txt
 dmesg
 ```
 
-关键结果：原版 5.4.0-xilinx-v2020.2、CPU online 0-3、约 4 GB 内存，读回 p5b-baseline-ok。本次 MemTotal=4029560 kB，采样时运行约 11 分钟。时间、地址、可用内存和部分启动顺序可能变化，不要求逐行相同。
+关键结果：原版 5.4.0-xilinx-v2020.2、CPU online 0-3、约 4 GB 内存，读回 p5b-baseline-ok。归档采样的 MemTotal=4029560 kB，采样时运行约 11 分钟。时间、地址、可用内存和部分启动顺序可能变化，不要求逐行相同。
 
-本次 / 实际为 rootfs，不能仅凭启动参数中的 root=/dev/mmcblk1p2 判断根文件系统位置。保存为 baseline-first-boot.txt，与[原始日志](logs/board/2026-10-27/baseline-first-boot.txt)对照。
+baseline 日志中的 / 实际为 rootfs，不能仅凭启动参数中的 root=/dev/mmcblk1p2 判断根文件系统位置。保存为 baseline-first-boot.txt，与[原始日志](logs/board/2026-10-27/baseline-first-boot.txt)对照。
 
 ## RT 部署与验证
 
@@ -290,12 +365,12 @@ MemTotal：4025676 kB
 
 启动日志确认 CPU0 物理标识 0x0、CPU1 为 0x1、CPU2 为 0x2，共三个 CPU。保存为 rt-first-boot.txt，与[原始日志](logs/board/2026-10-27/rt-first-boot.txt)对照。
 
-本次 PATH 中未找到上述五个测试／调度命令，没有运行 cyclictest 或负载测试。realtime=1 不代表实时延迟达标；模块加载不代表 DMA、VCU 数据通路通过。正常关机后再断电。
+RT 验证时 PATH 中未找到上述五个测试／调度命令，没有运行 cyclictest 或负载测试。realtime=1 不代表实时延迟达标；模块加载不代表 DMA、VCU 数据通路通过。正常关机后再断电。
 
 ## 已知问题与回退
 
 - 两版均有视频缩放桥 Invalid height in dt／-22、MIPI 解析失败，以及 VCU、时钟、无线数据库、SPI NOR JEDEC ID 等问题。帧缓存和 CSC 的部分早期 -517 后续重试成功，不能一概算作最终失败。
-- RT 新增 /dev/root: Can't open blockdev。实际根为内存 rootfs，而 fstab 仍保留 /dev/root，启动脚本也重新挂载根目录；具体触发路径未完全定位，本轮未修改。
+- RT 新增 /dev/root: Can't open blockdev。实际根为内存 rootfs，而 fstab 仍保留 /dev/root，启动脚本也重新挂载根目录；具体触发路径未完全定位，尚未修改。
 - eMMC FAT 分区未正常卸载警告尚未离线检查或修复。两版能启动不证明存储无损坏。
 - 保存日志中未见 panic、Oops、Call trace、BUG；RT 未见模块版本或未知符号错误。结论仅覆盖保存的阶段。
 
@@ -303,9 +378,9 @@ MemTotal：4025676 kB
 
 ## 为什么不用 Linux 4.9 的 RT 补丁
 
-本工程为 Xilinx 2020.2 / Linux 5.4.0。PREEMPT_RT 补丁对应特定源码基线，涉及锁、中断、调度、定时器和架构代码；4.9 补丁不能直接作为 5.4.0 的通用补丁。改用 4.9 还需选择、适配对应内核、BSP、驱动、设备树与固件。本轮没有做 4.9 降级／移植，也没有证据认定其性能更差。
+本工程为 Xilinx 2020.2 / Linux 5.4.0。PREEMPT_RT 补丁对应特定源码基线，涉及锁、中断、调度、定时器和架构代码；4.9 补丁不能直接作为 5.4.0 的通用补丁。改用 4.9 还需选择、适配对应内核、BSP、驱动、设备树与固件。该工程未进行 4.9 降级／移植，也没有证据认定其性能更差。
 
-本轮保留厂商 5.4.0，固定使用 RETIS 的 patch-5.4.3-rt1.patch 作为移植输入。在指定厂商提交上零失败、零 fuzz 应用后，完成编译、打包及本次 RT 三核启动。文件名中的 5.4.3 不代表任意 5.4.0 都适用，也不表示本内核已升级为 5.4.3。固定版本、选择依据和来源见 [ADR 0001](docs/adr/0001-preserve-vendor-kernel-baseline.md)。
+本工程保留厂商 5.4.0，固定使用 RETIS 的 patch-5.4.3-rt1.patch 作为移植输入。在指定厂商提交上零失败、零 fuzz 应用后，完成编译、打包及本次 RT 三核启动。文件名中的 5.4.3 不代表任意 5.4.0 都适用，也不表示本内核已升级为 5.4.3。固定版本、选择依据和来源见 [ADR 0001](docs/adr/0001-preserve-vendor-kernel-baseline.md)。
 
 ## 串口 Bash 语法高亮
 
@@ -330,4 +405,4 @@ MemTotal：4025676 kB
 | work/scripts/ | 原环境构建、打包、检查脚本 |
 | work/artifacts/ | 部署／回退说明、ZIP 校验值 |
 
-构建清单中 hardware_boot_verified=false 保留构建时状态；当前实测以 docs/board 为准。脚本的本机路径属于环境参数，不是共享服务地址。仓库不保存 SSH 私钥、连接配置或协作对话；源码和脚本保留各自许可。
+构建清单中 hardware_boot_verified=false 保留构建时状态；当前实测以 docs/board 为准。脚本的本机路径属于环境参数，不是共享服务地址。仓库不保存 SSH 私钥或连接配置；源码和脚本保留各自许可。
