@@ -225,7 +225,7 @@ MemTotal：4025676 kB
 
 启动日志确认 CPU0 物理标识 0x0、CPU1 为 0x1、CPU2 为 0x2，共三个 CPU。保存为 rt-first-boot.txt，与[原始日志](logs/board/2026-10-27/rt-first-boot.txt)对照。
 
-RT 验证时 PATH 中未找到上述五个测试／调度命令，没有运行 cyclictest 或负载测试。realtime=1 不代表实时延迟达标；模块加载不代表 DMA、VCU 数据通路通过。正常关机后再断电。
+2026-10-27首次RT启动验证时，PATH中未找到上述五个测试／调度命令，当时未运行cyclictest或负载测试。2026-10-29已临时构建工具并完成页首所列冒烟及短负载验证。realtime=1 不代表实时延迟达标；模块加载不代表 DMA、VCU 数据通路通过。正常关机后再断电。
 
 ### 启动失败时先看哪一步
 
