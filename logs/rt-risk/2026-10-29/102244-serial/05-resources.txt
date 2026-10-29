@@ -1,0 +1,36 @@
+ls -l /sys/bus/i2c/devices; for p in /sys/class/i2c-dev/i2c-*; do echo "$p"; cat "$p/name"; readlink -f "$p/device"; done; ls -l /sys/bus/pllatform/devices/a0040000.i2c/driver /sys/bus/platform/devices/a00f0000.serial/driver; ls /sys/firmware/devicetree/base/amba_pl@0/i2c@a0040000; ls /sys/bus/iio/devices /sys/cllass/hwmon 2>/dev/null; for p in /sys/bus/iio/devices/iio:device*; do echo "$p"; cat "$p/name"; ls "$p"/*temp* 2>/dev/null; done; ls /sys/class/thermal 2>/dev/null; busybox ---list | grep -E 'base64|timeout|taskset|chrt|uuencode|uudecode'; cat /sys/class/net/eth0/carrier; dmesg | grep -iE 'at24|eeprom|i2c|thermal|temperature'; printf '\n__RT_STEPP_DONE__\n'
+total 0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 0-0050 -> ../../../devices/platform/amba_pl@0/a0040000.i2c/i2c-0/0-0050
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 i2c-0 -> ../../../devices/platform/amba_pl@0/a0040000.i2c/i2c-0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 i2c-1 -> ../../../devices/platform/amba/ff030000.i2c/i2c-1
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 i2c-2 -> ../../../devices/platform/amba/fd4a0000.zynqmp-display/i2c-2
+/sys/class/i2c-dev/i2c-0
+xiic-i2c
+/sys/devices/platform/amba_pl@0/a0040000.i2c/i2c-0
+/sys/class/i2c-dev/i2c-1
+Cadence I2C at ff030000
+/sys/devices/platform/amba/ff030000.i2c/i2c-1
+/sys/class/i2c-dev/i2c-2
+ZynqMP DP AUX
+/sys/devices/platform/amba/fd4a0000.zynqmp-display/i2c-2
+lrwxrwxrwx    1 root     root             0 Oct 23 19:44 /sys/bus/platform/devices/a0040000.i2c/driver -> ../../../../bus/platform/drivers/xiic-i2c
+lrwxrwxrwx    1 root     root             0 Oct 23 19:44 /sys/bus/platform/devices/a00f0000.serial/driver -> ../../../../bus/platform/drivers/uartlite
+#address-cells    clock-names       compatible        interrupt-names   interrupts        phandle
+#size-cells       clocks            eeprom@50         interrupt-parent  name              reg
+/sys/bus/iio/devices:
+iio:device0
+
+/sys/class/hwmon:
+/sys/bus/iio/devices/iio:device0
+ams
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_offset      /sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_scale
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw         /sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_offset
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_scale       /sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_raw
+/sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_offset  /sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_scale
+/sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_raw
+0
+[    3.849120] 001: i2c /dev entries driver
+[   12.552136] 002: cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 33
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

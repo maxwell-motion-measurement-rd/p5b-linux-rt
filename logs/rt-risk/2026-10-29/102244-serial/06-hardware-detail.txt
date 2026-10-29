@@ -1,0 +1,41 @@
+ls -l /sys/bus/i2c/drivers; cat /sys/bus/i2c/devices/0-0050/name /sys/bus/i2c/devices/0-0050/modalias; tr '\000' '\n' < /sys/bus/i2c/devicess/0-0050/of_node/compatible; ls -l /sys/bus/i2c/devices/0-0050; cat /sys/class/rtc/rtc0/date /sys/class/rtc/rtc0/time; sleep 2; cat /sys/class/rtc/rtc0/time; for f in /sys/buus/iio/devices/iio:device0/in_temp*; do echo "$f"; cat "$f"; done; command -v od; command -v xxd; command -v perl; ls /usr/bin /usr/sbin | grep -E 'cyclic|stress|sched|taskseet|chrt|timeout|busybox'; printf '\n__RT_STEP_DONE__\n'
+total 0
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 at24
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 dummy
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 ina2xx_adc
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 pca953x
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 pca9541
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 pca954x
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 pmbus
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 si5324
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 si570
+drwxr-xr-x    2 root     root             0 Oct 23 19:45 tps65086
+24c64
+of:NeepromT(null)Catmel,24c64
+atmel,24c64
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 /sys/bus/i2c/devices/0-0050 -> ../../../devices/platform/amba_pl@0/a0040000.i2c/i2c-0/0-0050
+2026-10-23
+19:45:28
+19:45:30
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_offset
+-36058
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw
+43722
+/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_scale
+7.771514892
+/sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_offset
+-36058
+/sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_raw
+43440
+/sys/bus/iio/devices/iio:device0/in_temp1_remote_temp_scale
+7.771514892
+/sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_offset
+-36058
+/sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_raw
+0
+/sys/bus/iio/devices/iio:device0/in_temp2_pl_temp_scale
+7.771514892
+/usr/bin/od
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

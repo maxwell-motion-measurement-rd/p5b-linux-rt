@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "status": "short_validation_completed_with_findings",
+  "runbook": "docs/plans/rt-risk-assessment-execution-plan.md",
+  "discussion": "docs/plans/rt-risk-and-amp-next-steps-20261029.md",
+  "baseline_adr": "docs/adr/0003-original-rt-measurement-baseline.md",
+  "board_connected": true,
+  "board_tests_executed_in_this_assessment": true,
+  "automatic_monitor_or_schedule_created": false,
+  "constraints": {
+    "preempt_rt_required": true,
+    "non_rt_comparison": false,
+    "board": "P5 XCZU4EV learning board",
+    "linux_cpus": [
+      0,
+      1,
+      2
+    ],
+    "start_core3_bare_metal": false,
+    "connect_or_drive_motors": false,
+    "load_blesh_or_custom_shell_environment": false,
+    "keep_original_image_shell_including_bash": true,
+    "modify_kernel_dtb_bitstream_during_baseline_measurement": false,
+    "formal_product_realtime_acceptance": false,
+    "missing_colleague_4_9_material_blocks_current_assessment": false
+  },
+  "baseline": {
+    "archive": "work/artifacts/p5b-rt-sd-20261027.zip",
+    "archive_sha256": "a1a684b678e5eb82a4d04cdbbbdf7e5279792cd257f32674c71b33f285f840a7",
+    "image_entry": "rt/image.ub",
+    "image_bytes": 19501100,
+    "image_sha256": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484",
+    "boot_bin_sha256": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+    "boot_scr_sha256": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229",
+    "kernelrelease": "5.4.0-rt1-xilinx-v2020.2-p5b",
+    "expected_realtime_flag": "1",
+    "expected_online_cpus": "0-2",
+    "bootargs": "earlycon console=ttyPS0,115200 rdinit=/init rw",
+    "rootfs": "in-memory initramfs",
+    "original_login_shell": "/bin/sh",
+    "original_shell_symlink_target": "/bin/bash.bash",
+    "host_archive_identity_verified": true,
+    "current_sd_and_running_image_verified": true,
+    "verification_scope": "SD boot-file hashes, running embedded config, kernel version, CPU flags and Bash hash match; no fresh full boot capture or exhaustive rootfs hash"
+  },
+  "confirmations": {
+    "q1": "accepted: engineering risk assessment, not product realtime certification",
+    "q2": "4.9 does not block; non-RT comparison part superseded by q5",
+    "q3": "accepted: P5 standalone Linux, no Core3 payload or motors",
+    "q4": "accepted: blockers stop progression, latency peaks require investigation",
+    "q5": "corrected by user: PREEMPT_RT mandatory, no non-RT comparison",
+    "q6": "accepted: measure current RT configuration and available load scenarios",
+    "q7": "user requested saving the plan and later execution after connecting the board; exact durations retained as proposed defaults",
+    "shell_baseline": "user chose original RT Linux without ble.sh or added shell environment",
+    "selected_test_window": "先完成冒烟和短负载验证（推荐）"
+  },
+  "proposed_test_defaults": {
+    "status": "planning_values_not_product_requirements",
+    "initial_probe_period_us": 1000,
+    "optional_short_probe_periods_us": [
+      250,
+      100
+    ],
+    "smoke_duration_seconds": 600,
+    "individual_scenario_duration_seconds": 1800,
+    "combined_load_duration_seconds": 14400,
+    "combined_load_automatically_started": false,
+    "business_deadline_us": null,
+    "business_jitter_limit_us": null,
+    "measurement_cpu_proposal": 1,
+    "rt_priority": null,
+    "load_memory_limit_bytes": null,
+    "storage_test_mount": null,
+    "network_peer": null,
+    "temperature_stop_limit_celsius": null
+  },
+  "stages": [
+    {
+      "id": "S00",
+      "name": "save_plan",
+      "status": "completed"
+    },
+    {
+      "id": "S01",
+      "name": "source_and_artifact_audit",
+      "status": "partial",
+      "note": "Source differences identified; futex exit series and JBD2 semantic/dependency review pending."
+    },
+    {
+      "id": "S02",
+      "name": "connect_and_verify_original_rt",
+      "status": "completed"
+    },
+    {
+      "id": "S03",
+      "name": "hardware_driver_tool_inventory",
+      "status": "completed"
+    },
+    {
+      "id": "S04",
+      "name": "prepare_temporary_tools_and_run_manifest",
+      "status": "completed",
+      "note": "SSH restored. rt-tests1.0 NUMA=0 and bounded custom SCHED_OTHER load tool built with original GCC/sysroot, transferred to /tmp and hashes matched. rt-tests1.10 NUMA initialization failed before measurement; retained separately."
+    },
+    {
+      "id": "S05",
+      "name": "smoke_and_short_idle_measurement",
+      "status": "completed",
+      "note": "5s sanity and 600s smoke completed; 600000 smoke samples, max364us, exit0."
+    },
+    {
+      "id": "S06",
+      "name": "individual_load_cases",
+      "status": "partial",
+      "note": "60s CPU and memory cases completed; >1000us counts1 and2. Longer cases not executed."
+    },
+    {
+      "id": "S07",
+      "name": "combined_or_extended_load",
+      "status": "planned",
+      "note": "Deferred beyond user-selected smoke and short-load window."
+    },
+    {
+      "id": "S08",
+      "name": "diagnose_and_retest_if_needed",
+      "status": "partial",
+      "note": "60s CPU repeat max641us; earlier spikes unresolved. No tracing; FTRACE disabled."
+    },
+    {
+      "id": "S09",
+      "name": "assessment_report",
+      "status": "partial",
+      "note": "Short-window report and evidence saved; overall compatibility and product qualification incomplete."
+    }
+  ],
+  "test_cases": [
+    {
+      "id": "T00",
+      "name": "smoke",
+      "status": "completed",
+      "reason": "600s smoke completed, exit0, max364us"
+    },
+    {
+      "id": "T01",
+      "name": "idle",
+      "status": "planned"
+    },
+    {
+      "id": "T02",
+      "name": "cpu_load",
+      "status": "partial",
+      "reason": "60s short case completed; proposed 1800s scenario not executed"
+    },
+    {
+      "id": "T03",
+      "name": "memory_load",
+      "status": "partial",
+      "reason": "60s short case completed; proposed 1800s scenario not executed"
+    },
+    {
+      "id": "T04",
+      "name": "network_load_if_available",
+      "status": "blocked",
+      "reason": "No confirmed network link/peer; network load not executed."
+    },
+    {
+      "id": "T05",
+      "name": "healthy_test_storage_if_available",
+      "status": "blocked",
+      "reason": "No healthy dedicated test storage; eMMC FAT warning"
+    },
+    {
+      "id": "T06",
+      "name": "combined_load",
+      "status": "planned"
+    }
+  ],
+  "explicitly_not_covered_yet": [
+    "AMP coexistence",
+    "Core3 communication",
+    "motors",
+    "DMA data path",
+    "EtherCAT timing",
+    "product core board",
+    "product business deadlines"
+  ],
+  "source_audit": {
+    "vendor_base_commit": "62ea514294a0c9a80455e51f1f4de36e66e8c546",
+    "rt_commit": "e4cc2d02d270570055fe2b46ca2eb17c21938504",
+    "local_patch_sha256": "684ad81ec7d25bd4b268ae5ced3c24bc53b3595aea5c528518cdeeb2e8bee26a",
+    "official_uncompressed_patch_sha256": "339a0c55550b88315236527f9869dd6895b80003bdc323f3982d91f5d645272a",
+    "difference": "local input equals official patch minus one 392-byte arch/arm/kernel/smp.c section",
+    "difference_is_arm64_compatibility_verdict": false,
+    "vendor_full_source_dependency_review": "partial; priority futex and jbd2 differences identified; semantic review pending",
+    "bundle_requires_vendor_parent_commit": true,
+    "current_audit_report": "logs/rt-risk/2026-10-29/103809-tools/source-audit.md"
+  },
+  "resume": {
+    "last_completed_step": "S05",
+    "next_step": "Review futex/JBD2 differences and investigate observed latency tails before longer or diagnostic-image tests",
+    "active_run_id": "103809-tools",
+    "host_evidence_directory": "logs/rt-risk/2026-10-29/103809-tools",
+    "board_process_ids": [],
+    "test_results": [
+      {
+        "type": "baseline_identity",
+        "result": "matched"
+      },
+      {
+        "type": "hardware_inventory",
+        "result": "completed"
+      },
+      {
+        "type": "cyclictest_short_validation",
+        "result": "completed_with_findings",
+        "cases": [
+          {
+            "case": "T00",
+            "duration_s": 600,
+            "samples": 600000,
+            "min_us": 43,
+            "reported_avg_us": 46,
+            "max_us": 364,
+            "p99_histogram_bin_us": 48,
+            "p999_histogram_bin_us": 49,
+            "observations_strictly_above_1000us": 0,
+            "histogram_overflows": 0,
+            "sha256": "c307081e429628569e3d17c2f45bf497d4bb52c90dfd7a9b83f6e117ff2c0268"
+          },
+          {
+            "case": "CPU",
+            "duration_s": 60,
+            "samples": 59999,
+            "min_us": 41,
+            "reported_avg_us": 46,
+            "max_us": 1255,
+            "p99_histogram_bin_us": 48,
+            "p999_histogram_bin_us": 53,
+            "observations_strictly_above_1000us": 1,
+            "histogram_overflows": 0,
+            "sha256": "c5a9f5ac887dffa5a411035e6f2d6149a8bdd328d8750034ea89fbe92ef79f28"
+          },
+          {
+            "case": "MEM",
+            "duration_s": 60,
+            "samples": 59998,
+            "min_us": 44,
+            "reported_avg_us": 58,
+            "max_us": 1293,
+            "p99_histogram_bin_us": 70,
+            "p999_histogram_bin_us": 73,
+            "observations_strictly_above_1000us": 2,
+            "histogram_overflows": 0,
+            "sha256": "6dbc7250d3873df51a32a6fba3df54448429cbbeee4cc29c227bb431bc1260c9"
+          },
+          {
+            "case": "CPU-repeat",
+            "duration_s": 60,
+            "samples": 60000,
+            "min_us": 43,
+            "reported_avg_us": 46,
+            "max_us": 641,
+            "p99_histogram_bin_us": 47,
+            "p999_histogram_bin_us": 50,
+            "observations_strictly_above_1000us": 0,
+            "histogram_overflows": 0,
+            "sha256": "a5824e99678d42ede9d43b519430907d1003abd4d015aba6d22dbeaef8626c25"
+          }
+        ]
+      },
+      {
+        "type": "postcheck",
+        "result": "no new dmesg messages; no residual measurement/load processes"
+      }
+    ],
+    "instruction": "Read runbook and state first, verify real board image and absence of ble.sh, then inventory resources before load; do not assume historical COM3 or SD mount paths remain valid."
+  },
+  "latency_or_load_tests_executed": true,
+  "last_execution_report": "logs/rt-risk/2026-10-29/103809-tools/report.md",
+  "last_execution_time": "2026-10-29T11:06:54.878354+08:00",
+  "active_measurement": null
+}

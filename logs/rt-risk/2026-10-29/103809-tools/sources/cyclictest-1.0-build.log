@@ -1,0 +1,31 @@
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -D VERSION=1.0 -c src/cyclictest/cyclictest.c -O2 -Wall -Wno-nonnull -D_GNU_SOURCE -Isrc/include -o bld/cyclictest.o
+src/cyclictest/cyclictest.c: In function 'timerthread':
+src/cyclictest/cyclictest.c:427:30: warning: '*((void *)&stop+8)' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  427 |  diff += ((int) t1.tv_nsec - (int) t2.tv_nsec) / 1000;
+      |                              ^~~~~~~~~~~~~~~~
+src/cyclictest/cyclictest.c:976:39: note: '*((void *)&stop+8)' was declared here
+  976 |  struct timespec now, next, interval, stop;
+      |                                       ^~~~
+src/cyclictest/cyclictest.c:426:54: warning: 'stop.tv_sec' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  426 |  diff = USEC_PER_SEC * (long long)((int) t1.tv_sec - (int) t2.tv_sec);
+      |                                                      ^~~~~~~~~~~~~~~
+src/cyclictest/cyclictest.c:976:39: note: 'stop.tv_sec' was declared here
+  976 |  struct timespec now, next, interval, stop;
+      |                                       ^~~~
+In function 'process_options',
+    inlined from 'main' at src/cyclictest/cyclictest.c:2192:2:
+src/cyclictest/cyclictest.c:1731:4: warning: 'strncpy' specified bound 256 equals destination size [-Wstringop-truncation]
+ 1731 |    strncpy(tracer, optarg, sizeof(tracer));
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/cyclictest/cyclictest.c:1626:4: warning: 'strncpy' output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]
+ 1626 |    strncpy(histfile, optarg, strlen(optarg));
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/cyclictest/cyclictest.c:1615:4: warning: 'strncpy' output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]
+ 1615 |    strncpy(fifopath, optarg, strlen(optarg));
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -D VERSION=1.0 -c src/lib/error.c -O2 -Wall -Wno-nonnull -D_GNU_SOURCE -Isrc/include -o bld/error.o
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -D VERSION=1.0 -c src/lib/rt-get_cpu.c -O2 -Wall -Wno-nonnull -D_GNU_SOURCE -Isrc/include -o bld/rt-get_cpu.o
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -D VERSION=1.0 -c src/lib/rt-sched.c -O2 -Wall -Wno-nonnull -D_GNU_SOURCE -Isrc/include -o bld/rt-sched.o
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -D VERSION=1.0 -c src/lib/rt-utils.c -O2 -Wall -Wno-nonnull -D_GNU_SOURCE -Isrc/include -o bld/rt-utils.o
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-ar rcs bld/librttest.a bld/error.o bld/rt-get_cpu.o bld/rt-sched.o bld/rt-utils.o
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gcc --sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot -O2 -Wall -Wno-nonnull  -o cyclictest bld/cyclictest.o -lrt -lpthread -lrttest -Lbld 

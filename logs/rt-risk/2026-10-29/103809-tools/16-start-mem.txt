@@ -1,0 +1,10 @@
+grep '^cpu[0-2] ' /proc/stat; ( /tmp/rt-audit-tools/rtload mem 2 60 > /tmp/rt-audit-run/MEM-load.txt 2>&1 & lm=$!; echo "$lm" > /tmp/rt-audiit-run/MEM-load.pid; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D60 -q -h2000 > /tmp/rt-audit-run/MEM.txt 2>&1; c=$?; wait "$lm"; a=$?; priintf '%s %s\n' "$c" "$a" > /tmp/rt-audit-run/MEM.rc ) & echo "MEM_WRAPPER_PID=$!"; cat /proc/uptime; printf '\n__RT_STEP_DONE__\n'
+cpu0 6551 0 654 342582 43 0 31 0 0 0
+cpu1 160 0 471 345544 3 0 0 0 0 0
+cpu2 6426 0 730 342920 1 0 15 0 0 0
+[1] 1375
+MEM_WRAPPER_PID=1375
+3503.28 10358.38
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

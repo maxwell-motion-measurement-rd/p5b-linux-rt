@@ -1,0 +1,8 @@
+( /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D10m -q -h2000 > /tmp/rt-audit-run/T00.txt 2>&1; printf '%s\\n' "$?" > /tmp/rt-audit-run/T00.rc ) & rt_audit_pid=$!; echo "$rt_audit_pid" > /tmp/rt-audit-run/T00.pid; echo "T00_WRAPPER_PID=$rt_audit_pid"; cat /proc/uptime; cat /sys/buus/iio/devices/iio:device0/in_temp0_ps_temp_raw; printf '\n__RT_STEP_DONE__\n'
+[1] 1222
+T00_WRAPPER_PID=1222
+2769.68 8279.71
+43592
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

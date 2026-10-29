@@ -1,0 +1,1 @@
+( /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D10m -q -h2000 > /tmp/rt-audit-run/T00.txt 2>&1; printf '%s\n' "$?" > /tmp/rt-audit-run/T00.rc ) & rt_audit_pid=$!; echo "$rt_audit_pid" > /tmp/rt-audit-run/T00.pid; echo "T00_WRAPPER_PID=$rt_audit_pid"; cat /proc/uptime; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw

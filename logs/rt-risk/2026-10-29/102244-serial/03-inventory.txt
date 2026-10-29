@@ -1,0 +1,99 @@
+for t in cyclictest stress-ng stress taskset chrt timeout sha256sum ip ping gcc python3 base64 tar wget nc; do command -v "$t" || echo "misssing:$t"; done; ls -l /sys/class/leds /sys/class/rtc /sys/class/pwm /sys/class/thermal /dev/input /dev/i2c-* /dev/gpiochip* /dev/ttyPS* /dev/ttyUL* 2>/dev/null; cat /proc/buss/input/devices; ip addr; cat /proc/partitions; ls /sys/bus/usb/devices; for p in /sys/class/thermal/thermal_zone*; do [ -d "$p" ] || continue; echo "$p"; cat "$p/type" "$p/ttemp" "$p"/trip_point* 2>/dev/null; done; zcat /proc/config.gz | grep -E 'CONFIG_(INPUT_KEYBOARD|KEYBOARD_GPIO|SPI_SPIDEV|PWM|FTRACE|HIGH_RES_TIMERS|I2C_XILINX|EEPROM_AT24)';; for p in /sys/firmware/devicetree/base/amba/spi@ff040000/status /sys/firmware/devicetree/base/amba/spi@ff050000/status /sys/firmware/devicetree/base/keys/compatible; do echho "$p"; [ ! -f "$p" ] || tr '\000' '\n' < "$p"; done; ls -l /sys/bus/i2c/devices/*-0050/driver /sys/bus/i2c/devices/*-0050/eeprom; ls /media; printf '\n__RT_STEP_DONE__\n'
+missing:cyclictest
+missing:stress-ng
+missing:stress
+missing:taskset
+missing:chrt
+missing:timeout
+/usr/bin/sha256sum
+/sbin/ip
+/bin/ping
+missing:gcc
+missing:python3
+missing:base64
+/bin/tar
+/usr/bin/wget
+/usr/bin/nc
+crw-------    1 root     root      254,   0 Oct 23 19:19 /dev/gpiochip0
+crw-------    1 root     root      254,   1 Oct 23 19:19 /dev/gpiochip1
+crw-------    1 root     root      254,   2 Oct 23 19:19 /dev/gpiochip2
+crw-------    1 root     root      254,   3 Oct 23 19:19 /dev/gpiochip3
+crw-------    1 root     root      254,   4 Oct 23 19:19 /dev/gpiochip4
+crw-------    1 root     root      254,   5 Oct 23 19:19 /dev/gpiochip5
+crw-------    1 root     root      254,   6 Oct 23 19:19 /dev/gpiochip6
+crw-------    1 root     root       89,   0 Oct 23 19:19 /dev/i2c-0
+crw-------    1 root     root       89,   1 Oct 23 19:19 /dev/i2c-1
+crw-------    1 root     root       89,   2 Oct 23 19:19 /dev/i2c-2
+crw-------    1 root     tty       243,   0 Oct 23 19:43 /dev/ttyPS0
+crw-rw----    1 root     dialout   243,   2 Oct 23 19:19 /dev/ttyPS2
+crw-rw----    1 root     dialout   204,   1 Oct 23 19:19 /dev/ttyUL1
+
+/sys/class/leds:
+total 0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 mmc0:: -> ../../devices/platform/amba/ff160000.mmc/leds/mmc0::
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 mmc1:: -> ../../devices/platform/amba/ff170000.mmc/leds/mmc1::
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 pl_led0 -> ../../devices/platform/leds/leds/pl_led0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 pl_led1 -> ../../devices/platform/leds/leds/pl_led1
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 ps_led0 -> ../../devices/platform/leds/leds/ps_led0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 ps_led1 -> ../../devices/platform/leds/leds/ps_led1
+
+/sys/class/rtc:
+total 0
+lrwxrwxrwx    1 root     root             0 Oct 23 19:19 rtc0 -> ../../devices/platform/amba/ffa60000.rtc/rtc/rtc0
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+3: can0: <NOARP,ECHO> mtu 16 qdisc noop state DOWN group default qlen 10
+    link/can 
+4: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:0a:35:00:c0:13 brd ff:ff:ff:ff:ff:ff
+5: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0a:35:00:8b:87 brd ff:ff:ff:ff:ff:ff
+major minor  #blocks  name
+
+   1        0      65536 ram0
+   1        1      65536 ram1
+   1        2      65536 ram2
+   1        3      65536 ram3
+   1        4      65536 ram4
+   1        5      65536 ram5
+   1        6      65536 ram6
+   1        7      65536 ram7
+   1        8      65536 ram8
+   1        9      65536 ram9
+   1       10      65536 ram10
+   1       11      65536 ram11
+   1       12      65536 ram12
+   1       13      65536 ram13
+   1       14      65536 ram14
+   1       15      65536 ram15
+ 179        0   31205376 mmcblk1
+ 179        1   31201280 mmcblk1p1
+ 179        8    7634944 mmcblk0
+ 179        9     512000 mmcblk0p1
+ 179       10    7121920 mmcblk0p2
+1-0:1.0  1-1      1-1:1.0  2-0:1.0  2-1      2-1:1.0  usb1     usb2
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_EEPROM_AT24=y
+# CONFIG_INPUT_KEYBOARD is not set
+CONFIG_I2C_XILINX=y
+# CONFIG_SPI_SPIDEV is not set
+# CONFIG_PWM is not set
+# CONFIG_FTRACE is not set
+/sys/firmware/devicetree/base/amba/spi@ff040000/status
+disabled
+/sys/firmware/devicetree/base/amba/spi@ff050000/status
+disabled
+/sys/firmware/devicetree/base/keys/compatible
+gpio-keys
+ls: /sys/bus/i2c/devices/*-0050/driver: No such file or directory
+ls: /sys/bus/i2c/devices/*-0050/eeprom: No such file or directory
+sd-mmcblk0p1  sd-mmcblk0p2  sd-mmcblk1p1
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

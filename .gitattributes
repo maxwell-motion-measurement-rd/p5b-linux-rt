@@ -12,3 +12,6 @@
 *.bundle -text
 # Keep original serial captures byte-for-byte, including line endings.
 logs/board/**/*.txt -text
+
+# Preserve all risk-assessment evidence bytes for SHA-256 verification.
+logs/rt-risk/** -text

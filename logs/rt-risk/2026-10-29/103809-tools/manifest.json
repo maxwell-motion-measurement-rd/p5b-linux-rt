@@ -1,0 +1,151 @@
+{
+  "run_id": "103809-tools",
+  "recorded_at": "2026-10-29T11:06:54.878354+08:00",
+  "host_timezone": "Asia/Shanghai",
+  "status": "short_validation_completed_with_findings",
+  "user_selected_window": "先完成冒烟和短负载验证（推荐）",
+  "prior_baseline_manifest": "../102244-serial/manifest.json",
+  "port": "COM3",
+  "baud": 115200,
+  "format": "8N1, no flow control",
+  "serial_released": true,
+  "vm_ssh_status": "restored; original toolchain used",
+  "vm_shutdown_by_this_run": false,
+  "board_shutdown_by_this_run": false,
+  "board_clock_changed": false,
+  "ble_sh_loaded": false,
+  "kernel_dtb_bitstream_bootargs_modified": false,
+  "irq_affinity_frequency_policy_rt_budget_changed": false,
+  "non_rt_comparison": false,
+  "cyclictest": {
+    "version": "rt-tests 1.0",
+    "numa": false,
+    "source_modified": false,
+    "binary_sha256": "131c6a2d9fff8950a48939e970a82ec819d5bca06e98371f5dd1d0333b9ace6c",
+    "command": "cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D<DURATION> -q -h2000",
+    "cpu": 1,
+    "policy": "SCHED_FIFO",
+    "priority": 80,
+    "interval_us": 1000,
+    "histogram_limit_us": 2000,
+    "clock": "CLOCK_MONOTONIC",
+    "sleep": "absolute",
+    "mlockall": true,
+    "cpu_dma_latency_write": false
+  },
+  "rtload": {
+    "binary_sha256": "441fcb946f6a9e4b5ce53055d9c055abb7902db802244b616fa5416e7e61ac3d",
+    "policy": "SCHED_OTHER",
+    "cpu_case_cpus": [
+      0,
+      2
+    ],
+    "mem_case_cpu": 2,
+    "mem_allocation_bytes": 134217728
+  },
+  "measurement_results": [
+    {
+      "case": "T00",
+      "duration_s": 600,
+      "samples": 600000,
+      "min_us": 43,
+      "reported_avg_us": 46,
+      "max_us": 364,
+      "p99_histogram_bin_us": 48,
+      "p999_histogram_bin_us": 49,
+      "observations_strictly_above_1000us": 0,
+      "histogram_overflows": 0,
+      "sha256": "c307081e429628569e3d17c2f45bf497d4bb52c90dfd7a9b83f6e117ff2c0268"
+    },
+    {
+      "case": "CPU",
+      "duration_s": 60,
+      "samples": 59999,
+      "min_us": 41,
+      "reported_avg_us": 46,
+      "max_us": 1255,
+      "p99_histogram_bin_us": 48,
+      "p999_histogram_bin_us": 53,
+      "observations_strictly_above_1000us": 1,
+      "histogram_overflows": 0,
+      "sha256": "c5a9f5ac887dffa5a411035e6f2d6149a8bdd328d8750034ea89fbe92ef79f28"
+    },
+    {
+      "case": "MEM",
+      "duration_s": 60,
+      "samples": 59998,
+      "min_us": 44,
+      "reported_avg_us": 58,
+      "max_us": 1293,
+      "p99_histogram_bin_us": 70,
+      "p999_histogram_bin_us": 73,
+      "observations_strictly_above_1000us": 2,
+      "histogram_overflows": 0,
+      "sha256": "6dbc7250d3873df51a32a6fba3df54448429cbbeee4cc29c227bb431bc1260c9"
+    },
+    {
+      "case": "CPU-repeat",
+      "duration_s": 60,
+      "samples": 60000,
+      "min_us": 43,
+      "reported_avg_us": 46,
+      "max_us": 641,
+      "p99_histogram_bin_us": 47,
+      "p999_histogram_bin_us": 50,
+      "observations_strictly_above_1000us": 0,
+      "histogram_overflows": 0,
+      "sha256": "a5824e99678d42ede9d43b519430907d1003abd4d015aba6d22dbeaef8626c25"
+    }
+  ],
+  "case_exit_codes": {
+    "T00": [
+      0
+    ],
+    "CPU": [
+      0,
+      0,
+      0
+    ],
+    "MEM": [
+      0,
+      0
+    ],
+    "CPU-repeat": [
+      0,
+      0,
+      0
+    ]
+  },
+  "case_exit_code_order": "cyclictest first, then load processes in launch order",
+  "active_board_process_ids": [],
+  "postcheck": {
+    "recorded_at": "2026-10-29T11:06:54.878354+08:00",
+    "kernel_log_before_lines": 418,
+    "kernel_log_after_lines": 418,
+    "kernel_log_identical": true,
+    "new_kernel_messages": [],
+    "critical_kernel_messages": [],
+    "measurement_and_load_processes_remaining": false,
+    "all_case_exit_codes_zero": true,
+    "image_sha256_matches_original": true,
+    "ble_version": "unset",
+    "governor": "userspace",
+    "observed_frequency_khz": 1199999,
+    "sched_rt_period_us": 1000000,
+    "sched_rt_runtime_us": 950000,
+    "mem_available_kb": 3905252,
+    "ps_temperature_raw": 43586,
+    "ps_temperature_c": 58.503964106976,
+    "serial_released": true,
+    "raw_evidence": "24-postcheck.txt",
+    "critical_filter_note": "mtdoops initialization line is not an Oops report"
+  },
+  "retained_board_paths": [
+    "/tmp/rt-audit-tools",
+    "/tmp/rt-audit-run"
+  ],
+  "formal_realtime_acceptance": false,
+  "latency_spike_root_cause": "unresolved",
+  "source_review": "partial; futex and jbd2 semantic/dependency review pending",
+  "longer_and_combined_tests": "not started in this selected short window"
+}

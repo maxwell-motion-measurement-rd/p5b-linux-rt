@@ -1,0 +1,1 @@
+printf '\n__DATA_BEGIN__\n'; cat /tmp/rt-audit-run/CPU-repeat.txt; printf '__DATA_END__\n'; sha256sum /tmp/rt-audit-run/CPU-repeat.txt; cat /tmp/rt-audit-run/CPU-repeat-load0.txt /tmp/rt-audit-run/CPU-repeat-load2.txt

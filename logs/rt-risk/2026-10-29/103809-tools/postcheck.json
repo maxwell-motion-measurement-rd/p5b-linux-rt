@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-29T11:06:54.878354+08:00",
+  "kernel_log_before_lines": 418,
+  "kernel_log_after_lines": 418,
+  "kernel_log_identical": true,
+  "new_kernel_messages": [],
+  "critical_kernel_messages": [],
+  "measurement_and_load_processes_remaining": false,
+  "all_case_exit_codes_zero": true,
+  "image_sha256_matches_original": true,
+  "ble_version": "unset",
+  "governor": "userspace",
+  "observed_frequency_khz": 1199999,
+  "sched_rt_period_us": 1000000,
+  "sched_rt_runtime_us": 950000,
+  "mem_available_kb": 3905252,
+  "ps_temperature_raw": 43586,
+  "ps_temperature_c": 58.503964106976,
+  "serial_released": true,
+  "raw_evidence": "24-postcheck.txt",
+  "critical_filter_note": "mtdoops initialization line is not an Oops report"
+}

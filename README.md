@@ -4,6 +4,8 @@
 
 本次部署使用的板卡是 P5，未使用另一块 P5B 实板做对照。BSP／XSA、设备树及启动包沿用 P5B 工程名称，日志中的 P5B 来自软件配置。资料检索中未发现 P5 与 P5B 在本次 Linux 部署所涉及配置上的明显差异；正点原子[官方资料中心](https://www.openedv.com/docs/build/html/index.html)也将两者合并列为“MPSoC - P5 / P5B开发板”。这属于现有资料范围内的结论，未逐项比对两版原理图和 BOM，不能据此认定所有硬件版本完全一致。检索依据及范围见[板型说明](docs/board/p5-and-p5b-scope.md)。仓库、路径和内核版本中的 p5b 保留原名，便于追溯。
 
+**2026-10-29 当前工作入口：** [执行计划](docs/plans/rt-risk-assessment-execution-plan.md)及[状态文件](docs/plans/rt-risk-assessment-state.json)。已恢复Ubuntu构建入口，在原始RT环境完成10分钟冒烟、CPU／内存各60秒短测及CPU60秒复测。空载最大延迟364 μs，CPU／内存首测最大1255／1293 μs，CPU复测641 μs；尾部延迟原因待定位，futex／JBD2源码差异待继续审查。[最新执行报告、原始数据及校验值](logs/rt-risk/2026-10-29/103809-tools/report.md)已保存。长测、AMP与产品实时指标尚未验收。[ADR0003](docs/adr/0003-original-rt-measurement-baseline.md)记录无ble.sh的原始RT基准。 Notion成果见[P5原始RT风险评估](https://app.notion.com/p/4089c4372a95818c8d19d6b1b037445c)。
+
 ## 阅读顺序
 
 | 阅读目的 | 章节 |
@@ -33,7 +35,7 @@ flowchart LR
 | 临时文件读写 | 通过 | 通过 |
 | 模块 | 未逐个功能验收 | 构建 62 个；实测加载 dmaproxy、xlnx_vcu_core，未见版本／符号错误 |
 | 外设 | 视频、时钟、VCU、无线数据库、SPI NOR 等问题；eMMC FAT 警告 | 相同问题仍在，新增 /dev/root 提示 |
-| 实时延迟、AMP | 未测试 | 未测试 |
+| 实时延迟、AMP | 未测试 | 已完成冒烟及短负载，尖峰待定位；长测、AMP未验收 |
 
 详细结果见 [baseline 记录](docs/board/baseline-first-boot-20261027.md)和 [RT 记录及问题对照](docs/board/rt-first-boot-20261027.md)。[原始串口日志及 SHA-256](logs/board/2026-10-27/)保留终端命令和输出。
 

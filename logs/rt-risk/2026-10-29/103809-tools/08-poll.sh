@@ -1,0 +1,1 @@
+cat /proc/uptime; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; if [ -f /tmp/rt-audit-run/T00.rc ]; then echo T00_FINISHED; cat /tmp/rt-audit-run/T00.rc; tail -n 9 /tmp/rt-audit-run/T00.txt; else echo T00_RUNNING; fi; ps | grep '[c]yclictest'; cat /proc/meminfo | head -n 3; dmesg | tail -n 2

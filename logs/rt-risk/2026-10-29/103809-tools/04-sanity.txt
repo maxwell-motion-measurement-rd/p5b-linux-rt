@@ -1,0 +1,6 @@
+mkdir -p /tmp/rt-audit-run; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D5 -q -h2000 > /tmp/rt-audit-run/ssanity.txt 2>&1; rt_rc=$?; echo "CYCLICTEST_RC=$rt_rc"; head -n 5 /tmp/rt-audit-run/sanity.txt; tail -n 12 /tmp/rt-audit-run/sanity.txt; cat /sys/bus/iio/devices/iio:device0//in_temp0_ps_temp_raw; printf '\n__RT_STEP_DONE__\n'
+CYCLICTEST_RC=1
+FATAL: Couldn't initialize libnumaFATAL: Couldn't initialize libnuma43558
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

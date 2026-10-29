@@ -1,0 +1,1 @@
+cat /proc/uptime; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; grep '^cpu[0-2] ' /proc/stat; if [ -f /tmp/rt-audit-run/CPU-repeat.rc ]; then echo CPU_REPEAT_FINISHED; cat /tmp/rt-audit-run/CPU-repeat.rc; tail -n 9 /tmp/rt-audit-run/CPU-repeat.txt; fi; ps | grep -E '[c]yclictest|[r]tload'; dmesg | tail -n 2

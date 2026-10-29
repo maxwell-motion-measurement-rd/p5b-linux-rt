@@ -1,0 +1,37 @@
+cat /sys/kernel/debug/devices_deferred 2>/dev/null; ls -l /sys/bus/i2c/devices/0-0050/; cat /sys/class/net/eth1/operstate; ls -l /sys/bus/i22c/drivers/at24/; dmesg | tail -n 20; printf '\n__RT_STEP_DONE__\n'
+a0240000.vcu
+total 0
+-r--r--r--    1 root     root          4096 Oct 23 19:45 modalias
+-r--r--r--    1 root     root          4096 Oct 23 19:45 name
+lrwxrwxrwx    1 root     root             0 Oct 23 19:45 of_node -> ../../../../../../firmware/devicetree/base/amba_pl@0/i2c@a0040000/eeprom@50
+drwxr-xr-x    2 root     root             0 Oct 23 19:46 power
+lrwxrwxrwx    1 root     root             0 Oct 23 19:46 subsystem -> ../../../../../../bus/i2c
+-rw-r--r--    1 root     root          4096 Oct 23 19:19 uevent
+down
+total 0
+--w-------    1 root     root          4096 Oct 23 19:46 bind
+--w-------    1 root     root          4096 Oct 23 19:46 uevent
+--w-------    1 root     root          4096 Oct 23 19:46 unbind
+[   13.686764] 000: EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[   14.004958] 000: dmaproxy: loading out-of-tree module taints kernel.
+[   14.438068] 000: pps pps0: new PPS source ptp0
+[   14.438084] 000: macb ff0b0000.ethernet: gem-ptp-timer ptp clock registered.
+[   15.893053] 000: usb 1-1: new high-speed USB device number 2 using xhci-hcd
+[   16.046862] 000: usb 1-1: New USB device found, idVendor=05e3, idProduct=0610, bcdDevice= 5.20
+[   16.046869] 000: usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   16.046874] 000: usb 1-1: Product: USB2.0 Hub
+[   16.046878] 000: usb 1-1: Manufacturer: GenesysLogic
+[   16.103162] 000: hub 1-1:1.0: USB hub found
+[   16.103717] 000: hub 1-1:1.0: 4 ports detected
+[   16.169146] 000: usb 2-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
+[   16.170937] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   16.191925] 000: usb 2-1: New USB device found, idVendor=05e3, idProduct=0620, bcdDevice= 5.20
+[   16.191933] 000: usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   16.191938] 000: usb 2-1: Product: USB3.0 Hub
+[   16.191943] 000: usb 2-1: Manufacturer: GenesysLogic
+[   16.247236] 000: hub 2-1:1.0: USB hub found
+[   16.247576] 000: hub 2-1:1.0: 4 ports detected
+[   16.249766] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

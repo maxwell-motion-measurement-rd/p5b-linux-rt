@@ -1,0 +1,1 @@
+cat /proc/uptime; grep '^cpu[0-2] ' /proc/stat; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; cat /proc/meminfo | head -n 3; ps | grep -E '[c]yclictest|[r]tload'; for k in CPU MEM; do [ ! -f /tmp/rt-audit-run/$k.rc ] || { echo "$k FINISHED"; cat /tmp/rt-audit-run/$k.rc; tail -n 9 /tmp/rt-audit-run/$k.txt; }; done; dmesg | tail -n 2

@@ -1,0 +1,23 @@
+mkdir -p /tmp/rt-audit-run; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D5 -q -h2000 > /tmp/rt-audit-run/ssanity.txt 2>&1; rt_rc=$?; echo "CYCLICTEST_RC=$rt_rc"; head -n 5 /tmp/rt-audit-run/sanity.txt; tail -n 12 /tmp/rt-audit-run/sanity.txt; cat /sys/bus/iio/devices/iio:device0//in_temp0_ps_temp_raw; printf '\n__RT_STEP_DONE__\n'
+CYCLICTEST_RC=0
+WARN: not setting cpu_dma_latency to save battery power
+# Histogram
+000000 000000
+000001 000000
+000002 000000
+001996 000000
+001997 000000
+001998 000000
+001999 000000
+# Total: 000005000
+# Min Latencies: 00043
+# Avg Latencies: 00046
+# Max Latencies: 00052
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+43338
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

@@ -1,0 +1,26 @@
+cat /proc/uptime; grep '^cpu[0-2] ' /proc/stat; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; cat /proc/meminfo | head -n 3; pss | grep -E '[c]yclictest|[r]tload'; for k in CPU MEM; do [ ! -f /tmp/rt-audit-run/$k.rc ] || { echo "$k FINISHED"; cat /tmp/rt-audit-run/$k.rc; tail -n 9 /tmp/rt-audit-run/$$k.txt; }; done; dmesg | tail -n 2; printf '\n__RT_STEP_DONE__\n'
+3480.80 10291.00
+[1]+  Done                    ( /tmp/rt-audit-tools/rtload cpu 0 60 > /tmp/rt-audit-run/CPU-load0.txt 2>&1 & l0=$!; /tmp/rt-audit-tools/rtload cpu 2 60 > /tmp/rt-audit-run/CPU-load2.txt 2>&1 & l2=$!; echo "$l0 $l2" > /tmp/rt-audit-run/CPU-load.pids; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D60 -q -h2000 > /tmp/rt-audit-run/CPU.txt 2>&1; c=$?; wait "$l0"; a=$?; wait "$l2"; b=$?; printf '%s %s %s\n' "$c" "$a" "$b" > /tmp/rt-audit-run/CPU.rc )
+cpu0 6550 0 652 340339 43 0 31 0 0 0
+cpu1 160 0 469 343300 3 0 0 0 0 0
+cpu2 6426 0 729 340674 1 0 15 0 0 0
+43690
+MemTotal:        4025676 kB
+MemFree:         3901680 kB
+MemAvailable:    3905292 kB
+CPU FINISHED
+0 0 0
+001999 000000
+# Total: 000059999
+# Min Latencies: 00041
+# Avg Latencies: 00046
+# Max Latencies: 01255
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+[   16.247576] 000: hub 2-1:1.0: 4 ports detected
+[   16.249766] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

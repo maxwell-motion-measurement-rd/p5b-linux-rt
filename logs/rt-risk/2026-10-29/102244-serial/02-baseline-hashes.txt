@@ -1,0 +1,243 @@
+sha256sum /media/sd-mmcblk1p1/BOOT.BIN /media/sd-mmcblk1p1/boot.scr /media/sd-mmcblk1p1/image.ub /bin/bash.bash; zcat /proc/config.gz | sha2256sum; cat /proc/meminfo; ps; lsmod; cat /proc/sys/kernel/sched_rt_period_us /proc/sys/kernel/sched_rt_runtime_us; for p in /sys/devices/system/cpu/cpufreq/policy*; do [ -d  "$p" ] || continue; echo "$p"; cat "$p/scaling_governor" "$p/scaling_cur_freq" "$p/scaling_available_governors" 2>/dev/null; done; cat /proc/interrupts; printf '\n__RT_STEP__DONE__\n'
+1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b  /media/sd-mmcblk1p1/BOOT.BIN
+96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229  /media/sd-mmcblk1p1/boot.scr
+f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484  /media/sd-mmcblk1p1/image.ub
+f15da987dfa4026cde4c83df9437b1b5d994747cd6266bb6976b6c3c886a946a  /bin/bash.bash
+a1f4db68bbbc5c27e3da8819ad02b7741eeebe13f28545c4b77308871f0438d0  -
+MemTotal:        4025676 kB
+MemFree:         3904288 kB
+MemAvailable:    3907804 kB
+Buffers:            4508 kB
+Cached:            57156 kB
+SwapCached:            0 kB
+Active:            21100 kB
+Inactive:          47172 kB
+Active(anon):      16592 kB
+Inactive(anon):    19140 kB
+Active(file):       4508 kB
+Inactive(file):    28032 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:          6672 kB
+Mapped:             6056 kB
+Shmem:             29064 kB
+KReclaimable:      11132 kB
+Slab:              37324 kB
+SReclaimable:      11132 kB
+SUnreclaim:        26192 kB
+KernelStack:        2224 kB
+PageTables:          284 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2012836 kB
+Committed_AS:      65188 kB
+VmallocTotal:   135290159040 kB
+VmallocUsed:        4528 kB
+VmallocChunk:          0 kB
+Percpu:              324 kB
+CmaTotal:         262144 kB
+CmaFree:          261696 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+PID   USER     TIME  COMMAND
+    1 root      0:02 init 
+    2 root      0:00 [kthreadd]
+    3 root      0:00 [rcu_gp]
+    4 root      0:00 [rcu_par_gp]
+    7 root      0:00 [kworker/u6:0-ev]
+    8 root      0:00 [mm_percpu_wq]
+    9 root      0:00 [ksoftirqd/0]
+   10 root      0:00 [rcuc/0]
+   11 root      0:00 [rcu_preempt]
+   12 root      0:00 [rcub/0]
+   13 root      0:00 [posixcputmr/0]
+   14 root      0:00 [migration/0]
+   15 root      0:00 [cpuhp/0]
+   16 root      0:00 [cpuhp/1]
+   17 root      0:00 [migration/1]
+   18 root      0:00 [posixcputmr/1]
+   19 root      0:00 [rcuc/1]
+   20 root      0:00 [ksoftirqd/1]
+   21 root      0:00 [kworker/1:0-mm_]
+   22 root      0:00 [kworker/1:0H-kb]
+   23 root      0:00 [cpuhp/2]
+   24 root      0:00 [migration/2]
+   25 root      0:00 [posixcputmr/2]
+   26 root      0:00 [rcuc/2]
+   27 root      0:00 [ksoftirqd/2]
+   28 root      0:00 [kworker/2:0-rcu]
+   29 root      0:00 [kworker/2:0H-kb]
+   30 root      0:00 [kdevtmpfs]
+   31 root      0:00 [netns]
+   32 root      0:00 [rcu_tasks_kthre]
+   33 root      0:00 [kauditd]
+   35 root      0:00 [oom_reaper]
+   36 root      0:00 [writeback]
+   37 root      0:00 [kcompactd0]
+   40 root      0:00 [kworker/1:1-eve]
+   41 root      0:00 [kworker/u6:1-ev]
+   69 root      0:00 [cryptd]
+  129 root      0:00 [kblockd]
+  130 root      0:00 [blkcg_punt_bio]
+  131 root      0:00 [edac-poller]
+  132 root      0:00 [irq/6-zynqmp_ip]
+  133 root      0:00 [watchdogd]
+  134 root      0:00 [rpciod]
+  135 root      0:00 [kworker/u7:0]
+  136 root      0:00 [xprtiod]
+  137 root      0:00 [cfg80211]
+  230 root      0:00 [kswapd0]
+  231 root      0:00 [ecryptfs-kthrea]
+  232 root      0:00 [nfsiod]
+  235 root      0:00 [irq/42-ffa60000]
+  236 root      0:00 [irq/43-ffa60000]
+  238 root      0:00 [irq/34-ff960000]
+  245 root      0:00 [ion_system_heap]
+  246 root      0:00 [irq/50-ams-irq]
+  247 root      0:00 [kpktgend_0]
+  248 root      0:00 [kpktgend_1]
+  249 root      0:00 [kpktgend_2]
+  250 root      0:00 [ipv6_addrconf]
+  251 root      0:00 [krfcommd]
+  252 root      0:01 [printk]
+  253 root      0:00 [irq/36-nwl_pcie]
+  254 root      0:00 [kworker/2:2-mm_]
+  255 root      0:00 [irq/51-fd4c0000]
+  256 root      0:00 [irq/12-zynqmp-d]
+  257 root      0:00 [irq/13-zynqmp-d]
+  258 root      0:00 [irq/14-zynqmp-d]
+  259 root      0:00 [irq/15-zynqmp-d]
+  260 root      0:00 [irq/16-zynqmp-d]
+  261 root      0:00 [irq/17-zynqmp-d]
+  262 root      0:00 [irq/18-zynqmp-d]
+  263 root      0:00 [irq/19-zynqmp-d]
+  264 root      0:00 [irq/21-zynqmp-d]
+  265 root      0:00 [irq/22-zynqmp-d]
+  266 root      0:00 [irq/23-zynqmp-d]
+  267 root      0:00 [irq/24-zynqmp-d]
+  268 root      0:00 [irq/25-zynqmp-d]
+  269 root      0:00 [irq/26-zynqmp-d]
+  270 root      0:00 [irq/27-zynqmp-d]
+  271 root      0:00 [irq/28-zynqmp-d]
+  272 root      0:00 [irq/58-xilinx_f]
+  273 root      0:00 [irq/60-xilinx_f]
+  274 root      0:00 [irq/61-xilinx_f]
+  275 root      0:00 [irq/52-fd4a0000]
+  277 root      0:00 [irq/41-ff0f0000]
+  278 root      0:00 [spi0]
+  279 root      0:00 [irq/30-eth%d]
+  280 root      0:00 [irq/30-eth%d]
+  282 root      0:00 [irq/31-eth%d]
+  283 root      0:00 [irq/31-eth%d]
+  285 root      0:00 [irq/35-axi-pmon]
+  286 root      0:00 [irq/11-axi-pmon]
+  287 root      0:00 [irq/11-axi-pmon]
+  288 root      0:00 [irq/35-axi-pmon]
+  289 root      0:00 [irq/100-xhci-hc]
+  290 root      0:00 [irq/33-cdns-i2c]
+  291 root      0:00 [irq/55-a0040000]
+  292 root      0:00 [irq/49-ff150000]
+  293 root      0:00 [sdhci]
+  294 root      0:00 [irq/44-mmc0]
+  295 root      0:00 [irq/44-s-mmc0]
+  296 root      0:00 [sdhci]
+  298 root      0:00 [irq/45-mmc1]
+  299 root      0:00 [irq/45-s-mmc1]
+  304 root      0:00 [mmc_complete]
+  305 root      0:00 [kworker/2:1H-kb]
+  306 root      0:00 [mmc_complete]
+  307 root      0:00 [kworker/0:1H-kb]
+  309 root      0:00 [irq/46-xuartps]
+  349 root      0:00 /sbin/udevd -d
+  381 root      0:00 [kworker/0:2H-mm]
+  382 root      0:00 [kworker/1:2H-kb]
+  563 root      0:00 [jbd2/mmcblk0p2-]
+  565 root      0:00 [ext4-rsv-conver]
+  829 root      0:00 [kworker/0:3-eve]
+  834 root      0:00 udhcpc -R -b -p /var/run/udhcpc.eth0.pid -i eth0
+  838 root      0:00 /usr/sbin/haveged -w 1024 -v 1
+  844 root      0:00 /usr/sbin/dropbear -r /etc/dropbear/dropbear_rsa_host_key -p 22 -B
+  851 root      0:00 /usr/sbin/inetd
+  855 root      0:00 /sbin/syslogd -n -O /var/log/messages
+  858 root      0:00 /sbin/klogd -n
+  869 root      0:00 /usr/sbin/tcf-agent -d -L- -l0
+  874 root      0:00 {start_getty} /bin/sh /bin/start_getty 115200 ttyPS0 vt102
+  875 root      0:00 /sbin/getty 38400 tty1
+  890 root      0:00 /bin/login -f
+  891 root      0:00 -sh
+  969 root      0:00 [kworker/0:0-eve]
+  998 root      0:00 [kworker/0:1-eve]
+ 1014 root      0:00 [kworker/0:0H]
+ 1015 root      0:00 [kworker/1:1H]
+ 1016 root      0:00 [kworker/2:2H]
+ 1024 root      0:00 ps
+    Tainted: G  
+dmaproxy 16384 0 - Live 0xffff800008c25000 (O)
+xlnx_vcu_core 16384 0 - Live 0xffff800008c20000
+1000000
+950000
+/sys/devices/system/cpu/cpufreq/policy0
+userspace
+1199999
+userspace 
+           CPU0       CPU1       CPU2       
+  3:      63417      16941      31644     GICv2  30 Level     arch_timer
+  6:          0          0          0     GICv2  67 Level     zynqmp_ipi
+ 11:          0          0          0     GICv2 155 Level     axi-pmon, axi-pmon
+ 12:          0          0          0     GICv2 156 Level     zynqmp-dma
+ 13:          0          0          0     GICv2 157 Level     zynqmp-dma
+ 14:          0          0          0     GICv2 158 Level     zynqmp-dma
+ 15:          0          0          0     GICv2 159 Level     zynqmp-dma
+ 16:          0          0          0     GICv2 160 Level     zynqmp-dma
+ 17:          0          0          0     GICv2 161 Level     zynqmp-dma
+ 18:          0          0          0     GICv2 162 Level     zynqmp-dma
+ 19:          0          0          0     GICv2 163 Level     zynqmp-dma
+ 21:          0          0          0     GICv2 109 Level     zynqmp-dma
+ 22:          0          0          0     GICv2 110 Level     zynqmp-dma
+ 23:          0          0          0     GICv2 111 Level     zynqmp-dma
+ 24:          0          0          0     GICv2 112 Level     zynqmp-dma
+ 25:          0          0          0     GICv2 113 Level     zynqmp-dma
+ 26:          0          0          0     GICv2 114 Level     zynqmp-dma
+ 27:          0          0          0     GICv2 115 Level     zynqmp-dma
+ 28:          0          0          0     GICv2 116 Level     zynqmp-dma
+ 30:          0          0          0     GICv2  89 Level     eth0, eth0
+ 31:          0          0          0     GICv2  95 Level     eth1, eth1
+ 33:          0          0          0     GICv2  50 Level     cdns-i2c
+ 34:          0          0          0     GICv2  42 Level     ff960000.memory-controller
+ 35:          0          0          0     GICv2  57 Level     axi-pmon, axi-pmon
+ 36:          0          0          0     GICv2 150 Level     nwl_pcie:misc
+ 41:          3          0          0     GICv2  47 Level     ff0f0000.spi
+ 42:          0          0          0     GICv2  58 Level     ffa60000.rtc
+ 43:          0          0          0     GICv2  59 Level     ffa60000.rtc
+ 44:        794          0          0     GICv2  80 Level     mmc0
+ 45:       1087          0          0     GICv2  81 Level     mmc1
+ 46:        329          0          0     GICv2  53 Level     xuartps
+ 49:          0          0          0     GICv2  84 Edge      ff150000.watchdog
+ 50:          0          0          0     GICv2  88 Level     ams-irq
+ 51:          0          0          0     GICv2 154 Level     fd4c0000.dma
+ 52:      15988          0          0     GICv2 151 Level     fd4a0000.zynqmp-display
+ 55:         16          0          0     GICv2 126 Level     a0040000.i2c
+ 58:          0          0          0     GICv2 121 Level     xilinx_framebuffer
+ 60:          0          0          0     GICv2 124 Level     xilinx_framebuffer
+ 61:          0          0          0     GICv2 123 Level     xilinx_framebuffer
+100:         91          0          0     GICv2  97 Level     xhci-hcd:usb1
+IPI0:      4314       4823       4099       Rescheduling interrupts
+IPI1:        31        150         43       Function call interrupts
+IPI2:         0          0          0       CPU stop interrupts
+IPI3:         0          0          0       CPU stop (for crash dump) interrupts
+IPI4:         0          0          0       Timer broadcast interrupts
+IPI5:         5          3          0       IRQ work interrupts
+IPI6:         0          0          0       CPU wake-up interrupts
+Err:          0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

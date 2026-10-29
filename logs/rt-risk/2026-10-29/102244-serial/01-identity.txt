@@ -1,0 +1,35 @@
+uname -a; cat /sys/kernel/realtime; cat /sys/devices/system/cpu/possible /sys/devices/system/cpu/present /sys/devices/system/cpu/online; catt /proc/cmdline; readlink -f /bin/sh; readlink -f /proc/$$/exe; printf 'BLE_VERSION=%s\n' "${BLE_VERSION-unset}"; ls -ld /opt/p5-blesh /etc/profile.d/90-p5-blesh.sh 2>/dev/nuull; mount; df -h; cat /proc/uptime; command -v sha256sum; ls /lib/modules; printf '\n__RT_STEP_DONE__\n'
+Linux ALIENTEK-MP 5.4.0-rt1-xilinx-v2020.2-p5b #1 SMP PREEMPT_RT Tue Oct 27 11:16:47 CST 2026 aarch64 GNU/Linux
+1
+0-2
+0-2
+0-2
+earlycon console=ttyPS0,115200 rdinit=/init rw
+/bin/bash.bash
+/bin/bash.bash
+BLE_VERSION=unset
+rootfs on / type rootfs (rw,size=1876072k,nr_inodes=469018)
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+configfs on /sys/kernel/config type configfs (rw,relatime)
+devtmpfs on /dev type devtmpfs (rw,relatime,size=1876072k,nr_inodes=469018,mode=755)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /var/volatile type tmpfs (rw,relatime)
+/dev/mmcblk0p1 on /media/sd-mmcblk0p1 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+/dev/mmcblk0p2 on /media/sd-mmcblk0p2 type ext4 (rw,relatime)
+/dev/mmcblk1p1 on /media/sd-mmcblk1p1 type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+devpts on /dev/pts type devpts (rw,relatime,gid=5,mode=620,ptmxmode=000)
+Filesystem                Size      Used Available Use% Mounted on
+devtmpfs                  1.8G      4.0K      1.8G   0% /dev
+tmpfs                     1.9G    136.0K      1.9G   0% /run
+tmpfs                     1.9G    100.0K      1.9G   0% /var/volatile
+/dev/mmcblk0p1          499.0M     38.1M    460.9M   8% /media/sd-mmcblk0p1
+/dev/mmcblk0p2            6.6G      2.2G      4.1G  35% /media/sd-mmcblk0p2
+/dev/mmcblk1p1           29.7G     27.6M     29.7G   0% /media/sd-mmcblk1p1
+1426.73 4266.99
+/usr/bin/sha256sum
+5.4.0-rt1-xilinx-v2020.2-p5b
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

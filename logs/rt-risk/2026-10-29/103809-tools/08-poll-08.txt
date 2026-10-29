@@ -1,0 +1,23 @@
+cat /proc/uptime; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; if [ -f /tmp/rt-audit-run/T00.rc ]; then echo T00_FINISHED; catt /tmp/rt-audit-run/T00.rc; tail -n 9 /tmp/rt-audit-run/T00.txt; else echo T00_RUNNING; fi; ps | grep '[c]yclictest'; cat /proc/meminfo | head -n 3; dmesg | tail -n 2; printff '\n__RT_STEP_DONE__\n'
+3386.63 10128.66
+[1]+  Done                    ( /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D10m -q -h2000 > /tmp/rt-audit-run/T00.txt 2>&1; printf '%s\n' "$?" > /tmp/rt-audit-run/T00.rc )
+43450
+T00_FINISHED
+0
+001999 000000
+# Total: 000600000
+# Min Latencies: 00043
+# Avg Latencies: 00046
+# Max Latencies: 00364
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+MemTotal:        4025676 kB
+MemFree:         3902184 kB
+MemAvailable:    3905796 kB
+[   16.247576] 000: hub 2-1:1.0: 4 ports detected
+[   16.249766] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

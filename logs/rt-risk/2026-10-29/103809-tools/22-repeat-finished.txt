@@ -1,0 +1,23 @@
+cat /proc/uptime; cat /sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw; grep '^cpu[0-2] ' /proc/stat; if [ -f /tmp/rt-audit-run/CPU-reppeat.rc ]; then echo CPU_REPEAT_FINISHED; cat /tmp/rt-audit-run/CPU-repeat.rc; tail -n 9 /tmp/rt-audit-run/CPU-repeat.txt; fi; ps | grep -E '[c]yclictest|[r]tload'; dmesg | ttail -n 2; printf '\n__RT_STEP_DONE__\n'
+3702.86 10776.23
+[1]+  Done                    ( /tmp/rt-audit-tools/rtload cpu 0 60 > /tmp/rt-audit-run/CPU-repeat-load0.txt 2>&1 & l0=$!; /tmp/rt-audit-tools/rtload cpu 2 60 > /tmp/rt-audit-run/CPU-repeat-load2.txt 2>&1 & l2=$!; echo "$l0 $l2" > /tmp/rt-audit-run/CPU-repeat-load.pids; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=fifo -m -i1000 -D60 -q -h2000 > /tmp/rt-audit-run/CPU-repeat.txt 2>&1; c=$?; wait "$l0"; a=$?; wait "$l2"; b=$?; printf '%s %s %s\n' "$c" "$a" "$b" > /tmp/rt-audit-run/CPU-repeat.rc )
+43736
+cpu0 12554 0 683 356486 43 0 37 0 0 0
+cpu1 164 0 484 364645 3 0 0 0 0 0
+cpu2 18429 0 761 350841 1 0 15 0 0 0
+CPU_REPEAT_FINISHED
+0 0 0
+001999 000000
+# Total: 000060000
+# Min Latencies: 00043
+# Avg Latencies: 00046
+# Max Latencies: 00641
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+[   16.247576] 000: hub 2-1:1.0: 4 ports detected
+[   16.249766] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

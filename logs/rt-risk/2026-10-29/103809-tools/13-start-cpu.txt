@@ -1,0 +1,10 @@
+grep '^cpu[0-2] ' /proc/stat; ( /tmp/rt-audit-tools/rtload cpu 0 60 > /tmp/rt-audit-run/CPU-load0.txt 2>&1 & l0=$!; /tmp/rt-audit-tools/rtlooad cpu 2 60 > /tmp/rt-audit-run/CPU-load2.txt 2>&1 & l2=$!; echo "$l0 $l2" > /tmp/rt-audit-run/CPU-load.pids; /tmp/rt-audit-tools/cyclictest --laptop -a1 -t1 -p80 --policy=ffifo -m -i1000 -D60 -q -h2000 > /tmp/rt-audit-run/CPU.txt 2>&1; c=$?; wait "$l0"; a=$?; wait "$l2"; b=$?; printf '%s %s %s\n' "$c" "$a" "$b" > /tmp/rt-audit-run/CPU.rc ) & eccho "CPU_WRAPPER_PID=$!"; cat /proc/uptime; printf '\n__RT_STEP_DONE__\n'
+cpu0 551 0 651 338583 43 0 31 0 0 0
+cpu1 158 0 458 335930 3 0 0 0 0 0
+cpu2 427 0 728 338917 1 0 15 0 0 0
+[1] 1341
+CPU_WRAPPER_PID=1341
+3403.22 10178.38
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 
