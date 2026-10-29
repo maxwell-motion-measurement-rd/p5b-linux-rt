@@ -9,12 +9,15 @@
   "ftrace_executed": false,
   "diagnostic_kernel_build": "completed_and_statically_verified",
   "diagnostic_kernel_release": "5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace",
-  "diagnostic_kernel_deployed": false,
+  "diagnostic_kernel_deployed": true,
   "board_test_processes": [],
   "serial_released": true,
   "report": "logs/rt-diagnostics/2026-10-29/report.md",
-  "next_step": "User-assisted normal shutdown and SD-card connection to host, then back up/replace image.ub and boot diagnostic kernel; verify before ftrace.",
+  "next_step": "User to reinsert safely ejected SD into powered-off board, reconnect serial and power on; verify diagnostic boot before ftrace.",
   "diagnostic_image_sha256": "c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943",
   "diagnostic_package": "work\\artifacts\\p5-ftrace-diagnostic-20261029.zip",
-  "diagnostic_package_sha256": "b70357452556328797f05b3b47215c0cf13220ee3509688918e812f830aa620a"
+  "diagnostic_package_sha256": "b70357452556328797f05b3b47215c0cf13220ee3509688918e812f830aa620a",
+  "diagnostic_sd_written": true,
+  "diagnostic_kernel_boot_verified": false,
+  "safe_removal_completed": true
 }

@@ -1,6 +1,6 @@
 # P5 perf初测与ftrace诊断准备
 
-日期：2026-10-29。原始RT镜像上的perf软件事件统计与采样已完成；ftrace尚未执行；独立诊断镜像已构建并通过主机静态校验，等待上板。状态见state.json。
+日期：2026-10-29。原始RT镜像上的perf软件事件统计与采样已完成；ftrace尚未执行；独立诊断镜像已构建并通过主机静态校验，已写入SD并安全弹出，等待启动。状态见state.json。
 
 ## 本轮做了什么
 
@@ -67,4 +67,10 @@
 
 本地交付包：`work/artifacts/p5-ftrace-diagnostic-20261029.zip`，SHA-256：`b70357452556328797f05b3b47215c0cf13220ee3509688918e812f830aa620a`。ZIP包含诊断及原始回退image.ub、说明、源码与校验证据；已检查ZIP CRC、读回字节及所有成员摘要。包内SHA256SUMS可逐项核对。
 
-当前板子仍运行原始RT镜像；诊断镜像未部署、未启动，ftrace与A53 PMU实测均待执行。下一步需要正常关机并将SD卡接到电脑，备份和替换image.ub后再接回板子启动。测试工具和脚本已放入诊断镜像，重启后无需再次通过串口传输。
+perf测试结束时使用的是原始RT镜像。随后已完成下述SD部署；诊断内核尚未启动，ftrace与A53 PMU实测均待执行。测试工具和脚本已放入诊断镜像，重启后无需再次通过串口传输。
+
+## SD部署结果
+
+2026-10-29 12:17，核对用户指定F:为USB接入的FAT32卷，磁盘大小31,954,305,024字节。原三件套摘要与已知RT基准一致；先备份并校验，再只替换image.ub。最终读回21,510,740字节，摘要与诊断镜像一致，BOOT.BIN和boot.scr保持原摘要。Windows安全弹出后F:不再就绪，文件不可访问。部署记录见[sd-deployment.json](sd-deployment.json)。
+
+备份路径：`C:\Users\13931\Documents\ChatGPT\maxwell_implementation_dual axis drive and control\work\artifacts\rt-diagnostics\sd-backup-20261029-121708`。用户需将SD卡插回断电板子，接好串口并上电；之后核对诊断版本、RT标志、三核、模块及tracefs／PMU，再运行ftrace。SD写入校验不代表启动验证通过。

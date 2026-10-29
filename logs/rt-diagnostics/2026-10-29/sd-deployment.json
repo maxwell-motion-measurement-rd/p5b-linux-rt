@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-29T12:17:10.2119847+08:00",
+  "target": "F:\\image.ub",
+  "disk_number": 2,
+  "disk_bytes": 31954305024,
+  "filesystem": "FAT32",
+  "backup_directory": "C:\\Users\\13931\\Documents\\ChatGPT\\maxwell_implementation_dual axis drive and control\\work\\artifacts\\rt-diagnostics\\sd-backup-20261029-121708",
+  "backup_files_sha256": {
+    "image.ub": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484",
+    "BOOT.BIN": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+    "boot.scr": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229"
+  },
+  "deployed_image_sha256": "c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943",
+  "deployed_image_bytes": 21510740,
+  "boot_bin_and_boot_scr_unchanged": true,
+  "host_file_flush_completed": true,
+  "safe_removal_completed": true,
+  "hardware_boot_verified": false,
+  "ftrace_executed": false,
+  "windows_drive_ready_after_eject": false,
+  "windows_image_accessible_after_eject": false
+}
