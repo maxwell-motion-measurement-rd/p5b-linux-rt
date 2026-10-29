@@ -1,0 +1,38 @@
+/tmp/rt-audit-tools/perf record -e cpu-clock:u -F 99 -g --call-graph fp -o /tmp/rt-perf-diag/perf.data -- /tmp/rt-audit-tools/rtload cpu 2 110 > /tmp/rt-perf-diag/record.txt 2>&1; echo RECORD_RC=$?; cat /tmp/rt-perf-diag/record.txt; /tmp/rt-audit-tools/perf report --stdio --no-children --percent-limit 1 -i /tmp/rrt-perf-diag/perf.data > /tmp/rt-perf-diag/report.txt 2>&1; echo REPORT_RC=$?; head -n 65 /tmp/rt-perf-diag/report.txt; sha256sum /tmp/rt-perf-diag/perf.data; printf '\n__RT__STEP_DONE__\n'
+RECORD_RC=0
+mode=cpu cpu=2 policy=SCHED_OTHER seconds=10.000 iterations=19875 sink=6573411518940038689 stopped=0 bytes_allocated=0
+[ perf record: Woken up 3 times to write data ]
+[ perf record: Captured and wrote 0.076 MB /tmp/rt-perf-diag/perf.data (986 samples) ]
+REPORT_RC=0
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 986  of event 'cpu-clock:u'
+# Event count (approx.): 9959595860
+#
+# Overhead  Command  Shared Object     Symbol                
+# ........  .......  ................  ......................
+#
+    68.26%  rtload   rtload            [.] 0x0000000000000cb8
+            |
+            ---0xaaaab3fdbcb8
+               0xffffa5e953b4
+               0xaaaab3fdbe68
+
+    31.74%  rtload   rtload            [.] 0x0000000000000cc0
+            |
+            ---0xaaaab3fdbcc0
+               0xffffa5e953b4
+               0xaaaab3fdbe68
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
+d801a574fa3263d761a8155b92883b883f3dc8eb9c9888eaa34e94baab72d302  /tmp/rt-perf-diag/perf.data
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

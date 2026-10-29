@@ -1,0 +1,7 @@
+make[1]: Entering directory '/home/wang/p5-rt-diagnostics-20261029/kernel-image/build'
+  GEN     Makefile
+scripts/kconfig/conf  --olddefconfig Kconfig
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/wang/p5-rt-diagnostics-20261029/kernel-image/build'

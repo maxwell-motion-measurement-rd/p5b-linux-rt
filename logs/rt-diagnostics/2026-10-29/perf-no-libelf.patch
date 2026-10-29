@@ -1,0 +1,13 @@
+--- /home/wang/p5b-rt-5.4.0/src/tools/perf/arch/arm64/util/sym-handling.c	2026-10-27 11:12:09.527456017 +0800
++++ /home/wang/p5-rt-diagnostics-20261029/perf-source/tools/perf/arch/arm64/util/sym-handling.c	2026-10-29 11:32:12.286762190 +0800
+@@ -6,9 +6,8 @@
+ 
+ #include "symbol.h" // for the elf__needs_adjust_symbols() prototype
+ #include <stdbool.h>
+-#include <gelf.h>
+-
+ #ifdef HAVE_LIBELF_SUPPORT
++#include <gelf.h>
+ bool elf__needs_adjust_symbols(GElf_Ehdr ehdr)
+ {
+ 	return ehdr.e_type == ET_EXEC ||

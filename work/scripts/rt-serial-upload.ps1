@@ -1,6 +1,6 @@
 param([Parameter(Mandatory=$true)][string]$LocalFile,[Parameter(Mandatory=$true)][string]$RemoteName,[Parameter(Mandatory=$true)][string]$LogPath)
 $ErrorActionPreference='Stop'
-if ($RemoteName -notmatch '^(cyclictest|rtload)$') { throw 'Unexpected tool name' }
+if ($RemoteName -notmatch '^(cyclictest|rtload|perf\.gz)$') { throw 'Unexpected tool name' }
 $bytes=[IO.File]::ReadAllBytes([IO.Path]::GetFullPath($LocalFile))
 $s=[IO.Ports.SerialPort]::new('COM3',115200,[IO.Ports.Parity]::None,8,[IO.Ports.StopBits]::One)
 $s.DtrEnable=$false; $s.RtsEnable=$false
@@ -24,6 +24,7 @@ try {
         $escaped=[Text.StringBuilder]::new()
         for ($i=0; $i -lt $count; $i++) { [void]$escaped.Append('\'+[Convert]::ToString($bytes[$offset+$i],8).PadLeft(3,'0')) }
         Exchange ("printf '"+$escaped.ToString()+"' >> /tmp/rt-audit-tools/$RemoteName.part") "__UPLOAD_$offset`__"
+        if ($offset -gt 0 -and ($offset % 19200) -eq 0) { Write-Output "Transferred $offset / $($bytes.Length) bytes" }
     }
     Exchange "chmod 755 /tmp/rt-audit-tools/$RemoteName.part; mv /tmp/rt-audit-tools/$RemoteName.part /tmp/rt-audit-tools/$RemoteName; sha256sum /tmp/rt-audit-tools/$RemoteName" '__UPLOAD_FINISH__'
 } finally {

@@ -280,5 +280,11 @@
   "latency_or_load_tests_executed": true,
   "last_execution_report": "logs/rt-risk/2026-10-29/103809-tools/report.md",
   "last_execution_time": "2026-10-29T11:06:54.878354+08:00",
-  "active_measurement": null
+  "active_measurement": null,
+  "diagnostics": {
+    "report": "logs/rt-diagnostics/2026-10-29/report.md",
+    "state": "logs/rt-diagnostics/2026-10-29/state.json",
+    "perf": "software statistics and sampling completed",
+    "ftrace": "diagnostic image built and validated, awaiting SD deployment and boot; not executed"
+  }
 }

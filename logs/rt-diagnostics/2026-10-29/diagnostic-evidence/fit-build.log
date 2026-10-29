@@ -1,0 +1,48 @@
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/kernel@1 has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/kernel@1/hash@1 has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/fdt@system-top.dtb has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/fdt@system-top.dtb/hash@1 has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/ramdisk@1 has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /images/ramdisk@1/hash@1 has a unit name, but no reg property
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/deploy/rt/image.ub.tmp: Warning (unit_address_vs_reg): Node /configurations/conf@system-top.dtb has a unit name, but no reg property
+FIT description: P5 RT DIAGNOSTIC ftrace and PMU, not original baseline
+Created:         Tue Oct 27 13:34:40 2026
+ Image 0 (kernel@1)
+  Description:  P5B RT Linux kernel
+  Created:      Tue Oct 27 13:34:40 2026
+  Type:         Kernel Image
+  Compression:  gzip compressed
+  Data Size:    9416514 Bytes = 9195.81 KiB = 8.98 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: 0x00080000
+  Entry Point:  0x00080000
+  Hash algo:    sha256
+  Hash value:   7a8f719073275dafd61f3d2af5a1529f9a2199b72d0d5d95827e9e86bf7da5d4
+ Image 1 (fdt@system-top.dtb)
+  Description:  P5B Linux Core0-2 device tree
+  Created:      Tue Oct 27 13:34:40 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    54064 Bytes = 52.80 KiB = 0.05 MiB
+  Architecture: AArch64
+  Hash algo:    sha256
+  Hash value:   1d0528ef851e6efc3e43f031a7bac132ebf130d6c9df6a753f1bb393c58396a4
+ Image 2 (ramdisk@1)
+  Description:  P5B initramfs with matching RT modules
+  Created:      Tue Oct 27 13:34:40 2026
+  Type:         RAMDisk Image
+  Compression:  uncompressed
+  Data Size:    12038053 Bytes = 11755.91 KiB = 11.48 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: unavailable
+  Entry Point:  unavailable
+  Hash algo:    sha256
+  Hash value:   d654b37d80349db75a8cb112ede881b69faa7b8b93f17a6f723d1954e5b1999f
+ Default Configuration: 'conf@system-top.dtb'
+ Configuration 0 (conf@system-top.dtb)
+  Description:  RT kernel, three-core FDT, initramfs
+  Kernel:       kernel@1
+  Init Ramdisk: ramdisk@1
+  FDT:          fdt@system-top.dtb

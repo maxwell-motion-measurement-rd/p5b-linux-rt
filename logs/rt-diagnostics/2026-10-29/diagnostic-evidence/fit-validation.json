@@ -1,0 +1,34 @@
+{
+  "default_configuration": "conf@system-top.dtb",
+  "components": {
+    "kernel": {
+      "path": "/images/kernel@1",
+      "bytes": 9416514,
+      "sha256": "7a8f719073275dafd61f3d2af5a1529f9a2199b72d0d5d95827e9e86bf7da5d4"
+    },
+    "fdt": {
+      "path": "/images/fdt@system-top.dtb",
+      "bytes": 54064,
+      "sha256": "1d0528ef851e6efc3e43f031a7bac132ebf130d6c9df6a753f1bb393c58396a4"
+    },
+    "ramdisk": {
+      "path": "/images/ramdisk@1",
+      "bytes": 12038053,
+      "sha256": "d654b37d80349db75a8cb112ede881b69faa7b8b93f17a6f723d1954e5b1999f"
+    }
+  },
+  "cpus": {
+    "/cpus/cpu@0": 0,
+    "/cpus/cpu@1": 1,
+    "/cpus/cpu@2": 2
+  },
+  "bootargs": "earlycon console=ttyPS0,115200 rdinit=/init rw",
+  "kernel_load": "0x80000",
+  "kernel_entry": "0x80000",
+  "kernel_image_memory_span": 22233088,
+  "fit_load": "0x10000000",
+  "uboot_decompression_limit_bytes": 62914560,
+  "fit_bytes": 21510740,
+  "fit_sha256": "c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943",
+  "hardware_boot_verified": false
+}

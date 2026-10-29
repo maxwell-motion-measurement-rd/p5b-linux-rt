@@ -1,0 +1,22 @@
+uname -r; cat /sys/kernel/realtime /sys/devices/system/cpu/online; printf "BLE=%s\n" "${BLE_VERSION-unset}"; command -v perf; zcat /proc/connfig.gz | grep -E "CONFIG_(PERF_EVENTS|FTRACE|FTRACE_SYSCALLS|FUNCTION_TRACER|TRACING|EVENT_TRACING|KPROBE_EVENTS|UPROBE_EVENTS|ARM_PMU|HW_PERF_EVENTS|KALLSYMS|FRAME_POINTER))"; ls -ld /sys/kernel/tracing /sys/kernel/debug/tracing; cat /proc/sys/kernel/perf_event_paranoid; ls /sys/bus/event_source/devices; ps | grep -E "[c]yclictest|[r]tload|[p]eerf"; ls /tmp/rt-audit-tools; cat /proc/uptime; printf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b
+1
+0-2
+BLE=unset
+CONFIG_KALLSYMS=y
+# CONFIG_KALLSYMS_ALL is not set
+CONFIG_KALLSYMS_BASE_RELATIVE=y
+CONFIG_PERF_EVENTS=y
+# CONFIG_ARM_PMU is not set
+CONFIG_FRAME_POINTER=y
+CONFIG_TRACING_SUPPORT=y
+# CONFIG_FTRACE is not set
+ls: /sys/kernel/tracing: No such file or directory
+ls: /sys/kernel/debug/tracing: No such file or directory
+2
+CCI_400_r1  breakpoint  software
+cyclictest  rtload
+5329.65 15654.71
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

@@ -1,0 +1,83 @@
+{
+  "perf_statistics": [
+    {
+      "case": "cpu",
+      "requested_load_seconds": 10,
+      "cpu": 2,
+      "policy": "SCHED_OTHER",
+      "events": {
+        "task-clock": {
+          "value": 9978.98,
+          "unit": "msec"
+        },
+        "context-switches": {
+          "value": 2508.0,
+          "unit": ""
+        },
+        "cpu-migrations": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "page-faults": {
+          "value": 44.0,
+          "unit": ""
+        }
+      },
+      "exit_code": 0
+    },
+    {
+      "case": "mem",
+      "requested_load_seconds": 10,
+      "cpu": 2,
+      "policy": "SCHED_OTHER",
+      "events": {
+        "task-clock": {
+          "value": 10225.37,
+          "unit": "msec"
+        },
+        "context-switches": {
+          "value": 2577.0,
+          "unit": ""
+        },
+        "cpu-migrations": {
+          "value": 0.0,
+          "unit": ""
+        },
+        "page-faults": {
+          "value": 32815.0,
+          "unit": ""
+        }
+      },
+      "exit_code": 0
+    }
+  ],
+  "sampling": {
+    "event": "cpu-clock:u",
+    "requested_hz": 99,
+    "duration_s": 10,
+    "samples": 986,
+    "lost_samples_reported": 0,
+    "record_exit_code": 0,
+    "report_exit_code": 0,
+    "hotspot_offsets": [
+      "0xcb8",
+      "0xcc0"
+    ],
+    "hotspot_percentages": [
+      68.26,
+      31.74
+    ],
+    "offline_mapping": "main integer mul/add loop of rtload"
+  },
+  "original_kernel_cycles": {
+    "display": "not supported",
+    "command_exit_code": 0
+  },
+  "postcheck": {
+    "kernel_log_lines": 418,
+    "kernel_log_unchanged": true,
+    "active_test_processes": false,
+    "original_image_unchanged": true
+  },
+  "ftrace_executed": false
+}

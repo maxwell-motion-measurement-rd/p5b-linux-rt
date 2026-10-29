@@ -1,0 +1,19 @@
+{
+  "existing_entries_preserved": 1372,
+  "added_paths": [
+    "opt",
+    "opt/rt-diagnostics",
+    "opt/rt-diagnostics/cyclictest",
+    "opt/rt-diagnostics/rtload",
+    "opt/rt-diagnostics/perf",
+    "opt/rt-diagnostics/ftrace-short-capture.sh"
+  ],
+  "added_file_sha256": {
+    "opt/rt-diagnostics/cyclictest": "131c6a2d9fff8950a48939e970a82ec819d5bca06e98371f5dd1d0333b9ace6c",
+    "opt/rt-diagnostics/rtload": "441fcb946f6a9e4b5ce53055d9c055abb7902db802244b616fa5416e7e61ac3d",
+    "opt/rt-diagnostics/perf": "30a2751779699d825fff83fe5ad443aefcbb67a6f425108b994300c604fec571",
+    "opt/rt-diagnostics/ftrace-short-capture.sh": "5322b00e0898b6ca1156c5d1971f0e7b642f8bfda6c2bbe70a2e9b1b6a9b5bcf"
+  },
+  "rootfs_sha256": "d654b37d80349db75a8cb112ede881b69faa7b8b93f17a6f723d1954e5b1999f",
+  "automatic_startup_added": false
+}

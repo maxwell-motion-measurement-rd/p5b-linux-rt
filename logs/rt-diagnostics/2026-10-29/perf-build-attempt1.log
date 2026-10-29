@@ -1,0 +1,397 @@
+make: Entering directory '/home/wang/p5b-rt-5.4.0/src/tools/perf'
+  BUILD:   Doing 'make [33m-j4[m' parallel build
+  HOSTCC   /home/wang/p5-rt-diagnostics-20261029/perf/fixdep.o
+  HOSTLD   /home/wang/p5-rt-diagnostics-20261029/perf/fixdep-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/fixdep
+Warning: Kernel ABI header at 'tools/include/uapi/linux/sched.h' differs from latest version at 'include/uapi/linux/sched.h'
+diff -u tools/include/uapi/linux/sched.h include/uapi/linux/sched.h
+Warning: Kernel ABI header at 'tools/arch/x86/include/asm/cpufeatures.h' differs from latest version at 'arch/x86/include/asm/cpufeatures.h'
+diff -u tools/arch/x86/include/asm/cpufeatures.h arch/x86/include/asm/cpufeatures.h
+
+Auto-detecting system features:
+...                         dwarf: [ [31mOFF[m ]
+...            dwarf_getlocations: [ [31mOFF[m ]
+...                         glibc: [ [32mon[m  ]
+...                          gtk2: [ [31mOFF[m ]
+...                      libaudit: [ [31mOFF[m ]
+...                        libbfd: [ [31mOFF[m ]
+...                        libcap: [ [31mOFF[m ]
+...                        libelf: [ [31mOFF[m ]
+...                       libnuma: [ [31mOFF[m ]
+...        numa_num_possible_cpus: [ [31mOFF[m ]
+...                       libperl: [ [31mOFF[m ]
+...                     libpython: [ [31mOFF[m ]
+...                     libcrypto: [ [31mOFF[m ]
+...                     libunwind: [ [31mOFF[m ]
+...            libdw-dwarf-unwind: [ [31mOFF[m ]
+...                          zlib: [ [31mOFF[m ]
+...                          lzma: [ [31mOFF[m ]
+...                     get_cpuid: [ [31mOFF[m ]
+...                           bpf: [ [32mon[m  ]
+...                        libaio: [ [32mon[m  ]
+...                       libzstd: [ [31mOFF[m ]
+...        disassembler-four-args: [ [31mOFF[m ]
+
+Makefile.config:497: No sys/sdt.h found, no SDT events are defined, please install systemtap-sdt-devel or systemtap-sdt-dev
+Makefile.config:572: Disabling post unwind, no support found.
+Makefile.config:720: Python support disabled by user
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/exec-cmd.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/fd/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/fd/array.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/event-parse.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/core.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/fd/libapi-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/cpumap.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/fs/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/fs/fs.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/help.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/threadmap.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/fs/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/fs/tracing_path.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/evsel.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/fs/libapi-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/cpu.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/pager.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/debug.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/evlist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/event-plugin.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/str_error_r.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/parse-options.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/libapi-in.o
+  AR       /home/wang/p5-rt-diagnostics-20261029/perf/libapi.a
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/zalloc.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/trace-seq.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/xyarray.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/parse-filter.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/lib.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/libperf-in.o
+  AR       /home/wang/p5-rt-diagnostics-20261029/perf/libperf.a
+  GEN      /home/wang/p5-rt-diagnostics-20261029/perf/common-cmds.h
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/parse-utils.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/kbuffer-parse.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/run-command.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tep_strerror.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/event-parse-api.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/sigchain.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/libtraceevent-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/libtraceevent.a
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/subcmd-config.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/libsubcmd-in.o
+  AR       /home/wang/p5-rt-diagnostics-20261029/perf/libsubcmd.a
+find: unknown predicate `--sysroot=/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0/recipe-sysroot/arch'
+aarch64-xilinx-linux-gcc: warning: '-x c' after last input file has no effect
+aarch64-xilinx-linux-gcc: fatal error: no input files
+compilation terminated.
+aarch64-xilinx-linux-gcc: warning: '-x c' after last input file has no effect
+aarch64-xilinx-linux-gcc: fatal error: no input files
+compilation terminated.
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/
+  HOSTCC   /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/json.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/
+  HOSTCC   /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/jsmn.o
+  DESCEND  plugins
+  HOSTCC   /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/jevents.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_hrtimer.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_jbd2.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_hrtimer-in.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_jbd2-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kmem.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kvm.o
+  HOSTLD   /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/jevents-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_mac80211.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kmem-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_sched_switch.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_mac80211-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_function.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kvm-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/jevents
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_xen.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_sched_switch-in.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_function-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_scsi.o
+  GEN      /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/pmu-events.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/pmu-events.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_xen-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_cfg80211.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_scsi-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_jbd2.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_hrtimer.so
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/pmu-events/pmu-events-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kmem.so
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_cfg80211-in.o
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_mac80211.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_kvm.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_sched_switch.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_function.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_xen.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_scsi.so
+  LINK     /home/wang/p5-rt-diagnostics-20261029/perf/plugins/plugin_cfg80211.so
+  GEN      /home/wang/p5-rt-diagnostics-20261029/perf/plugins/libtraceevent-dynamic-list
+make[3]: Nothing to be done for '/home/wang/p5-rt-diagnostics-20261029/perf/plugins/libtraceevent-dynamic-list'.
+  PERF_VERSION = 5.4.ge4cc2d02d270
+  GEN      perf-archive
+  GEN      perf-with-kcore
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-bench.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-annotate.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-config.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-diff.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-evlist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-ftrace.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-help.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-sched.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-buildid-list.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-buildid-cache.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-kallsyms.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-list.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-record.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-report.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-stat.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-timechart.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-top.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-script.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-kmem.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-lock.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-kvm.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-inject.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-mem.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-data.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-version.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-c2c.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/builtin-trace.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/bench/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/sched-messaging.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/bench/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/sched-pipe.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/mem-functions.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/futex-hash.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/tests/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/builtin-test.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/futex-wake.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/futex-wake-parallel.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/tests/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/parse-events.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/futex-requeue.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/futex-lock-pi.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/epoll-wait.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/bench/epoll-ctl.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/util/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/annotate.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/bench/perf-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/arch/common.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/header.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/sym-handling.o
+arch/arm64/util/sym-handling.c:9:10: fatal error: gelf.h: No such file or directory
+    9 | #include <gelf.h>
+      |          ^~~~~~~~
+compilation terminated.
+mv: cannot stat '/home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/.sym-handling.o.tmp': No such file or directory
+/home/wang/p5b-rt-5.4.0/src/tools/build/Makefile.build:96: recipe for target '/home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/sym-handling.o' failed
+make[6]: *** [/home/wang/p5-rt-diagnostics-20261029/perf/arch/arm64/util/sym-handling.o] Error 1
+/home/wang/p5b-rt-5.4.0/src/tools/build/Makefile.build:139: recipe for target 'util' failed
+make[5]: *** [util] Error 2
+/home/wang/p5b-rt-5.4.0/src/tools/build/Makefile.build:139: recipe for target 'arm64' failed
+make[4]: *** [arm64] Error 2
+/home/wang/p5b-rt-5.4.0/src/tools/build/Makefile.build:139: recipe for target 'arch' failed
+make[3]: *** [arch] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/dso-data.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/util/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/block-range.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/attr.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/vmlinux-kallsyms.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/build-id.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/openat-syscall.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/openat-syscall-all-cpus.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/openat-syscall-tp-fields.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/mmap-basic.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/perf-record.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/evsel-roundtrip-name.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/cacheline.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/config.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/evsel-tp-sched.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/fdarray.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/copyfile.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/pmu.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/hists_common.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/ctype.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/hists_link.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/db-export.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/hists_filter.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/env.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/hists_output.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/event.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/hists_cumulate.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/evlist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/python-use.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/bp_signal.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/bp_signal_overflow.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/evsel.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/bp_account.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/wp.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/task-exit.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/sw-clock.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/mmap-thread-lookup.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/thread-mg-share.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/evsel_fprintf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/switch-tracking.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/keep-tracking.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/perf_event_attr_fprintf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/code-reading.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/sample-parsing.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/evswitch.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/parse-no-sample-id-all.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/find_bit.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/get_current_dir_name.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/kallsyms.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/levenshtein.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/kmod-path.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/thread-map.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/llvm-utils.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/mmap.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/llvm.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/bpf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/topology.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/memswap.o
+  BISON    /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-events-bison.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/perf_regs.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/mem.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/path.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/cpumap.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/print_binary.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/stat.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/rlimit.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/argv_split.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/rbtree.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/event_update.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/event-times.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/libstring.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/bitmap.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/expr.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/backward-ring-buffer.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/hweight.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/smt.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/sdt.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/strbuf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/string.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/is_printable_array.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/bitmap.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/perf-hooks.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/clang.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/strlist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/unit_number__scnprintf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/strfilter.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/top.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/mem2node.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/map_groups.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/usage.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/dso.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/dsos.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/time-utils-test.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/symbol.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/llvm-src-base.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/llvm-src-kbuild.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/llvm-src-prologue.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/tests/llvm-src-relocation.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/symbol_fprintf.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/tests/perf-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/color.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/color_config.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/metricgroup.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/header.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/callchain.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/values.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/debug.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/machine.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/map.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/pstack.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/session.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/sample-raw.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/s390-sample-raw.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/syscalltbl.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/ordered-events.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/namespaces.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/comm.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/thread.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/thread_map.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/trace-event-parse.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-events-bison.o
+  BISON    /home/wang/p5-rt-diagnostics-20261029/perf/util/pmu-bison.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/trace-event-read.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/trace-event-info.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/trace-event-scripting.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/trace-event.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/svghelper.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/sort.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/hist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/util.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/cpumap.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/cputopo.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/cgroup.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/target.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/rblist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intlist.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/vdso.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/counts.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/stat.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/stat-shadow.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/stat-display.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/record.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/srcline.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/srccode.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/synthetic-events.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/data.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/tsc.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/cloexec.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/call-path.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/rwsem.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/thread-stack.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/auxtrace.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/intel-pt-pkt-decoder.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/
+  GEN      /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/inat-tables.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/intel-pt-log.o
+  MKDIR    /home/wang/p5-rt-diagnostics-20261029/perf/util/scripting-engines/
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/util/scripting-engines/perf-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-bts.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/intel-pt-decoder.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/arm-spe.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/arm-spe-pkt-decoder.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/s390-cpumsf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-branch-options.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/dump-insn.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-regs-options.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/term.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/help-unknown-cmd.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/mem-events.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/intel-pt-insn-decoder.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/vsprintf.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/units.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/time-utils.o
+  BISON    /home/wang/p5-rt-diagnostics-20261029/perf/util/expr-bison.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/branch.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/mem2node.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/symbol-minimal.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/demangle-java.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/demangle-rust.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/perf-hooks.o
+  FLEX     /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-events-flex.c
+  FLEX     /home/wang/p5-rt-diagnostics-20261029/perf/util/pmu-flex.c
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/pmu-bison.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/expr-bison.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/util/intel-pt-decoder/perf-in.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-events.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/parse-events-flex.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/pmu.o
+  CC       /home/wang/p5-rt-diagnostics-20261029/perf/util/pmu-flex.o
+  LD       /home/wang/p5-rt-diagnostics-20261029/perf/util/perf-in.o
+Makefile.perf:597: recipe for target '/home/wang/p5-rt-diagnostics-20261029/perf/perf-in.o' failed
+make[2]: *** [/home/wang/p5-rt-diagnostics-20261029/perf/perf-in.o] Error 2
+Makefile.perf:220: recipe for target 'sub-make' failed
+make[1]: *** [sub-make] Error 2
+Makefile:69: recipe for target 'all' failed
+make: *** [all] Error 2
+make: Leaving directory '/home/wang/p5b-rt-5.4.0/src/tools/perf'

@@ -1,0 +1,23 @@
+
+/home/wang/p5-rt-assess-tools-20261029/output/rtload:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000c90 <main+0x1a0>:
+     c90:	91000739 	add	x25, x25, #0x1
+     c94:	35000760 	cbnz	w0, d80 <main+0x290>
+     c98:	940000b0 	bl	f58 <seconds>
+     c9c:	1e693800 	fsub	d0, d0, d9
+     ca0:	1e682010 	fcmpe	d0, d8
+     ca4:	540006e5 	b.pl	d80 <main+0x290>  // b.nfrst
+     ca8:	b5fffdb7 	cbnz	x23, c5c <main+0x16c>
+     cac:	5290d400 	mov	w0, #0x86a0                	// #34464
+     cb0:	72a00020 	movk	w0, #0x1, lsl #16
+     cb4:	d503201f 	nop
+     cb8:	9b1c7e73 	mul	x19, x19, x28
+     cbc:	71000400 	subs	w0, w0, #0x1
+     cc0:	91000673 	add	x19, x19, #0x1
+     cc4:	54ffffa1 	b.ne	cb8 <main+0x1c8>  // b.any
+     cc8:	f9000753 	str	x19, [x26, #8]
+     ccc:	17fffff0 	b	c8c <main+0x19c>

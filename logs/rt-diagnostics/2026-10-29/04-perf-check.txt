@@ -1,0 +1,19 @@
+sha256sum /tmp/rt-audit-tools/perf.gz; gzip -dc /tmp/rt-audit-tools/perf.gz > /tmp/rt-audit-tools/perf; chmod 755 /tmp/rt-audit-tools/perf;  sha256sum /tmp/rt-audit-tools/perf; /tmp/rt-audit-tools/perf --version; mkdir -p /tmp/rt-perf-diag; /tmp/rt-audit-tools/perf stat -e cycles -- sleep 1 > /tmp/rt-perf-diag/cyycles-check.txt 2>&1; echo CYCLES_CHECK_RC=$?; cat /tmp/rt-perf-diag/cycles-check.txt; printf '\n__RT_STEP_DONE__\n'
+040d39e6240b1cbae833d0a7d051a2364010a22a4472191175aebe9bf81309ba  /tmp/rt-audit-tools/perf.gz
+30a2751779699d825fff83fe5ad443aefcbb67a6f425108b994300c604fec571  /tmp/rt-audit-tools/perf
+perf version 
+CYCLES_CHECK_RC=0
+
+ Performance counter stats for 'sleep 1':
+
+   <not supported>      cycles                                                      
+
+       1.001284675 seconds time elapsed
+
+       0.001359000 seconds user
+       0.000000000 seconds sys
+
+
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

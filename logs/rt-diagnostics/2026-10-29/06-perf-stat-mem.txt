@@ -1,0 +1,10 @@
+/tmp/rt-audit-tools/perf stat -x ';' -e task-clock,context-switches,cpu-migrations,page-faults -- /tmp/rt-audit-tools/rtload mem 2 10 > /tmpp/rt-perf-diag/stat-mem.txt 2>&1; echo MEM_STAT_RC=$?; cat /tmp/rt-perf-diag/stat-mem.txt; printf '\n__RT_STEP_DONE__\n'
+MEM_STAT_RC=0
+mode=mem cpu=2 policy=SCHED_OTHER seconds=10.014 iterations=311 sink=27990 stopped=0 bytes_allocated=134217728
+10225.37;msec;task-clock;10225371876;100.00;0.994;CPUs utilized
+2577;;context-switches;10225371876;100.00;0.252;K/sec
+0;;cpu-migrations;10225371876;100.00;0.000;K/sec
+32815;;page-faults;10225371876;100.00;0.003;M/sec
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:/sys/class/leds# 

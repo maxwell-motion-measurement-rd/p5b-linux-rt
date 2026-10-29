@@ -1,0 +1,1 @@
+/tmp/rt-audit-tools/perf stat -x ';' -e task-clock,context-switches,cpu-migrations,page-faults -- /tmp/rt-audit-tools/rtload mem 2 10 > /tmp/rt-perf-diag/stat-mem.txt 2>&1; echo MEM_STAT_RC=$?; cat /tmp/rt-perf-diag/stat-mem.txt

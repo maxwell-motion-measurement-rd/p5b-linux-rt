@@ -15,3 +15,5 @@ logs/board/**/*.txt -text
 
 # Preserve all risk-assessment evidence bytes for SHA-256 verification.
 logs/rt-risk/** -text
+
+logs/rt-diagnostics/** -text

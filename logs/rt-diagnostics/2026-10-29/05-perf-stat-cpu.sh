@@ -1,0 +1,1 @@
+/tmp/rt-audit-tools/perf stat -x ';' -e task-clock,context-switches,cpu-migrations,page-faults -- /tmp/rt-audit-tools/rtload cpu 2 10 > /tmp/rt-perf-diag/stat-cpu.txt 2>&1; echo CPU_STAT_RC=$?; cat /tmp/rt-perf-diag/stat-cpu.txt

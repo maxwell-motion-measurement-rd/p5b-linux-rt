@@ -1,0 +1,47 @@
+make[1]: Entering directory '/home/wang/p5-rt-diagnostics-20261029/kernel-image/build'
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/al_dec.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/al_enc.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/enc_user.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/dec_mails_factory.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/dec_user.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/enc_mails_factory.o
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/al5e.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_alloc.o
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/al5d.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/dmaproxy/dmaproxy.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_alloc_ioctl.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_buffers_pool.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_char.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_codec.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_dmabuf.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_user.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_vcu.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mail.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_codec_mails.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mailbox.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_list.o
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mailbox.c: In function 'al5_mailbox_write':
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mailbox.c:146:2: warning: ISO C90 forbids array 'header' whose size can't be evaluated [-Wvla]
+  146 |  u8 header[header_size];
+      |  ^~
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mailbox.c: In function 'al5_mailbox_read':
+/home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_mailbox.c:172:2: warning: ISO C90 forbids array 'header' whose size can't be evaluated [-Wvla]
+  172 |  u8 header[header_size];
+      |  ^~
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_queue.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/mcu_interface.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/mcu_utils.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/al_group.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/xil_l2_prefetch.o
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/allegro.o
+  Building modules, stage 2.
+  MODPOST 4 modules
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/al5d.mod.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/al5e.mod.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/allegro.mod.o
+  CC [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/dmaproxy/dmaproxy.mod.o
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5e/al5e.ko
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/al5d/al5d.ko
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/dmaproxy/dmaproxy.ko
+  LD [M]  /home/wang/p5-rt-diagnostics-20261029/kernel-image/staging/vcu-modules/common/allegro.ko
+make[1]: Leaving directory '/home/wang/p5-rt-diagnostics-20261029/kernel-image/build'

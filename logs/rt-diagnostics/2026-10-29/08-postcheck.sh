@@ -1,0 +1,1 @@
+uname -r; cat /sys/kernel/realtime /sys/devices/system/cpu/online; sha256sum /media/sd-mmcblk1p1/image.ub; ps | grep -E '[p]erf (stat|record)|[r]tload|[c]yclictest'; cat /proc/sys/kernel/perf_event_paranoid /proc/sys/kernel/kptr_restrict; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor /proc/sys/kernel/sched_rt_runtime_us; cat /proc/meminfo | head -n 3; dmesg
