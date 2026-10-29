@@ -101,3 +101,7 @@ ftrace使用独立实例、mono时钟，采集CPU0—2的唤醒、切换、IRQ�
 - [诊断上板、ftrace、PMU及原始事件](../../logs/rt-diagnostics/2026-10-29/board-trace/report.md)。
 - [源码差异审查](../../logs/rt-risk/2026-10-29/103809-tools/source-audit.md)。
 - [cyclictest测试设计](https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/test-design)、[Linux5.4 ftrace文档](https://www.kernel.org/doc/html/v5.4/trace/ftrace.html)、[Linux5.4.3稳定修复记录](https://cdn.kernel.org/pub/linux/kernel/v5.x/ChangeLog-5.4.3)。perf依据匹配源码tools/perf文档及板端实测输出。
+
+## 缓存清理与保留位置
+
+测试完成后已清理临时工具编译目录、诊断内核中间产物及Windows重复解包内容。原始数据、脚本、补丁、交付包和SD备份保留；诊断匹配符号另存到Ubuntu的`/home/wang/p5-rt-diagnostics-20261029/symbols`并校验。以后重编诊断内核需重新构建，恢复工具后再打包，详见[重建说明](../build/REPRODUCE.md)。

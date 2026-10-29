@@ -146,3 +146,11 @@ cp "$ROOT/build/.config" "$ROOT/deploy/rt/final.config"
 原 rootfs 的 1250 个未替换条目在本轮保留数据及 Unix 元数据，模块与匹配 DTB 被替换；新c脚本带校验。主机工具链、dtc 版本、构建时间、源码提交时间及环境变化可能改变二进制摘要，以上属于过程重建，不声称已在新环境实现逐字节可复现。需要复现本轮完全相同的镜像时使用 Release 的固定 ZIP。
 
 构建清单中保存本轮实测 Image、DTB、ramdisk、FIT 与配置摘要。重新生成后保留自己的配置、日志和摘要，再按根 README 先验证 baseline、后验证 RT。不能将新的构建直接冒认为已保存日志对应的原镜像。
+
+## 测试缓存清理后的重建入口
+
+2026-10-29，临时perf／rt-tests编译目录和诊断内核中间产物已清理。原RT源码／构建树、PetaLinux工程与工具链、诊断部署镜像、匹配模块、原始测试数据及交付ZIP保留。此前脚本中的临时输出路径不再保证存在，重新打包前需从归档恢复工具或重建，并核对输入摘要。
+
+诊断内核匹配符号现保存在`/home/wang/p5-rt-diagnostics-20261029/symbols`：vmlinux、System.map、Module.symvers和.config均在复制后及清理后核对SHA-256。vmlinux摘要为`426330d198cffbdc9fa1e5a78a59c84661bd18335c4866d7bcd7ce71c9c8358d`，匹配版本为`5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace`。
+
+符号可继续用于离线分析；诊断`kernel-image/build`已移除，重新编译内核或模块需重新生成构建目录。Windows解包副本已清理，可从诊断ZIP恢复；SD原始三件套备份和原RT启动ZIP保持。
