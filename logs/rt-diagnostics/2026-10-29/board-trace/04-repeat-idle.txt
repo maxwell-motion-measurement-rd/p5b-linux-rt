@@ -1,0 +1,55 @@
+sed -e 's/echo 4096/echo 16384/' -e 's@instances/rt-audit@instances/rt-audit-idle2@' -e 's@/tmp/rt-ftrace-short@/tmp/rt-ftrace-idle2@' /tmp/ftrace-capturee-mono.sh > /tmp/ftrace-idle2.sh; sha256sum /tmp/ftrace-idle2.sh; sh /tmp/ftrace-idle2.sh > /tmp/ftrace-idle2-result.txt 2>&1; echo FTRACE_REPEAT_RC=$?; cat /tmp/ftrace-idle22-result.txt; cat /tmp/rt-ftrace-idle2/trace_clock.txt /tmp/rt-ftrace-idle2/buffer-stats.txt; tail -n 10 /tmp/rt-ftrace-idle2/cyclictest.txt; wc -c /tmp/rt-ftrace-idle2/tracee.txt /tmp/rt-ftrace-idle2/trace.txt.gz; cat /sys/kernel/tracing/instances/rt-audit-idle2/tracing_on /sys/kernel/tracing/instances/rt-audit-idle2/events/enable; printf '\n__ RT_STEP_DONE__\n'
+f744f4c14193a69751c39ef1910410af996c0c62431fbb09ed34e667e0ff20eb  /tmp/ftrace-idle2.sh
+FTRACE_REPEAT_RC=0
+dafa20aef979d67169b06b4207b5ab95408232dc05645fe3826ea8e49b0d8495  /tmp/rt-ftrace-idle2/buffer-stats.txt
+7f904f5074b693fe7ee0cfb53a79982ea66aa69fea176ad2f4c44db1bf01782e  /tmp/rt-ftrace-idle2/cyclictest.txt
+cb5936d106801a36abd0758e5eeca3f20f7077547d16f555aeb630bf8e10ccf3  /tmp/rt-ftrace-idle2/trace.txt
+2f1b3acde79bf7a3edcc0420921a786d39e9b0be95ce22399a4fae9fd0864bef  /tmp/rt-ftrace-idle2/trace.txt.gz
+5639adeb74e6ff76da038dfada518d98ce93022ee9b75150ffba0130e455f4f2  /tmp/rt-ftrace-idle2/trace_clock.txt
+Initial 10s idle capture only; inspect overrun and dropped events before interpretation.
+local global counter uptime perf [mono] mono_raw boot
+CPU0
+entries: 14023
+overrun: 0
+commit overrun: 0
+bytes: 717048
+oldest event ts:   277.280861
+now ts:   290.155543
+dropped events: 0
+read events: 0
+CPU1
+entries: 204235
+overrun: 0
+commit overrun: 0
+bytes: 11725880
+oldest event ts:   277.284009
+now ts:   290.157513
+dropped events: 0
+read events: 0
+CPU2
+entries: 2157
+overrun: 0
+commit overrun: 0
+bytes: 102152
+oldest event ts:   277.281083
+now ts:   290.159392
+dropped events: 0
+read events: 0
+001998 000000
+001999 000000
+# Total: 000010000
+# Min Latencies: 00063
+# Avg Latencies: 00074
+# Max Latencies: 00086
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+ 29169930 /tmp/rt-ftrace-idle2/trace.txt
+   918978 /tmp/rt-ftrace-idle2/trace.txt.gz
+ 30088908 total
+0
+0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

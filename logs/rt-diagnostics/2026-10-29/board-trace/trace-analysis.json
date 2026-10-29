@@ -1,0 +1,252 @@
+[
+  {
+    "capture": "rt-ftrace-short",
+    "full_requested_window_available": false,
+    "event_count": 80198,
+    "buffer_stats": {
+      "0": {
+        "entries": 2643,
+        "overrun": 0,
+        "commit overrun": 0,
+        "dropped events": 0
+      },
+      "1": {
+        "entries": 73373,
+        "overrun": 139280,
+        "commit overrun": 0,
+        "dropped events": 0
+      },
+      "2": {
+        "entries": 4182,
+        "overrun": 0,
+        "commit overrun": 0,
+        "dropped events": 0
+      }
+    },
+    "event_counts": {
+      "sched_switch": 30865,
+      "irq_handler_entry": 4341,
+      "irq_handler_exit": 4341,
+      "sched_waking": 15668,
+      "sched_wakeup": 15668,
+      "softirq_entry": 4657,
+      "softirq_exit": 4658
+    },
+    "top_irq_handlers": [
+      [
+        "3:arch_timer",
+        4338
+      ],
+      [
+        "45:mmc1",
+        3
+      ]
+    ],
+    "softirq_entries": {
+      "TIMER": 332,
+      "SCHED": 326,
+      "HRTIMER": 3998,
+      "BLOCK": 1
+    },
+    "top_scheduled_tasks": [
+      [
+        "ksoftirqd/1",
+        14499
+      ],
+      [
+        "cyclictest",
+        10695
+      ],
+      [
+        "swapper/1",
+        3789
+      ],
+      [
+        "ksoftirqd/2",
+        453
+      ],
+      [
+        "swapper/2",
+        350
+      ],
+      [
+        "ksoftirqd/0",
+        229
+      ],
+      [
+        "Async Worker",
+        201
+      ],
+      [
+        "swapper/0",
+        193
+      ],
+      [
+        "kpktgend_0",
+        97
+      ],
+      [
+        "kpktgend_2",
+        97
+      ],
+      [
+        "kworker/0:2",
+        87
+      ],
+      [
+        "rcu_preempt",
+        41
+      ]
+    ],
+    "cyclictest": {
+      "samples": 10000,
+      "min_us": 62,
+      "reported_avg_us": 74,
+      "max_us": 85,
+      "histogram_overflows": 0
+    },
+    "measurement_pid_selected_by_wakeup_frequency_on_cpu1": 960,
+    "cyclictest_cpu1_wakeup_counts": {
+      "960": 10346,
+      "959": 344
+    },
+    "sched_wakeup_to_switch": {
+      "matched_pairs": 10346,
+      "min_us": 2.0,
+      "mean_us": 3.286100908563696,
+      "p99_us": 4.0,
+      "p999_us": 5.0,
+      "max_us": 5.0,
+      "worst": {
+        "delay_us": 5.0,
+        "wakeup_ns": 229982529000,
+        "switch_ns": 229982534000,
+        "cpu": 1
+      }
+    },
+    "sched_waking_to_switch_max_us": 8.0,
+    "interpretation_limit": "Event-pair delay is not full periodic wakeup latency, execution time, or a proven worst-case bound."
+  },
+  {
+    "capture": "rt-ftrace-idle2",
+    "full_requested_window_available": true,
+    "event_count": 220415,
+    "buffer_stats": {
+      "0": {
+        "entries": 14023,
+        "overrun": 0,
+        "commit overrun": 0,
+        "dropped events": 0
+      },
+      "1": {
+        "entries": 204235,
+        "overrun": 0,
+        "commit overrun": 0,
+        "dropped events": 0
+      },
+      "2": {
+        "entries": 2157,
+        "overrun": 0,
+        "commit overrun": 0,
+        "dropped events": 0
+      }
+    },
+    "event_counts": {
+      "sched_switch": 86043,
+      "irq_handler_entry": 11676,
+      "sched_waking": 43426,
+      "sched_wakeup": 43426,
+      "irq_handler_exit": 11676,
+      "softirq_entry": 12084,
+      "softirq_exit": 12084
+    },
+    "top_irq_handlers": [
+      [
+        "3:arch_timer",
+        11676
+      ]
+    ],
+    "softirq_entries": {
+      "TIMER": 437,
+      "SCHED": 418,
+      "HRTIMER": 11229
+    },
+    "top_scheduled_tasks": [
+      [
+        "ksoftirqd/1",
+        40642
+      ],
+      [
+        "cyclictest",
+        31009
+      ],
+      [
+        "swapper/1",
+        10311
+      ],
+      [
+        "ksoftirqd/0",
+        1771
+      ],
+      [
+        "swapper/0",
+        1145
+      ],
+      [
+        "Async Worker",
+        202
+      ],
+      [
+        "ksoftirqd/2",
+        184
+      ],
+      [
+        "swapper/2",
+        167
+      ],
+      [
+        "kworker/0:2",
+        99
+      ],
+      [
+        "kpktgend_1",
+        97
+      ],
+      [
+        "kpktgend_0",
+        97
+      ],
+      [
+        "kpktgend_2",
+        97
+      ]
+    ],
+    "cyclictest": {
+      "samples": 10000,
+      "min_us": 63,
+      "reported_avg_us": 74,
+      "max_us": 86,
+      "histogram_overflows": 0
+    },
+    "measurement_pid_selected_by_wakeup_frequency_on_cpu1": 988,
+    "cyclictest_cpu1_wakeup_counts": {
+      "988": 30001
+    },
+    "sched_wakeup_to_switch": {
+      "matched_pairs": 30001,
+      "min_us": 2.0,
+      "mean_us": 3.284690510316323,
+      "p99_us": 4.0,
+      "p999_us": 5.0,
+      "max_us": 5.0,
+      "worst": {
+        "delay_us": 5.0,
+        "wakeup_ns": 277443457000,
+        "switch_ns": 277443462000,
+        "cpu": 1
+      }
+    },
+    "sched_waking_to_switch_max_us": 8.0,
+    "interpretation_limit": "Event-pair delay is not full periodic wakeup latency, execution time, or a proven worst-case bound."
+  }
+]

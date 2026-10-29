@@ -1,0 +1,15 @@
+/opt/rt-diagnostics/perf stat -x ";" -e task-clock,cycles,instructions,cache-misses,branch-misses -- /opt/rt-diagnostics/rtload cpu 2 10 > /tmp/rt-pmu-staat.txt 2>&1; echo PMU_STAT_RC=$?; cat /tmp/rt-pmu-stat.txt; cat /sys/bus/event_source/devices/armv8_pmuv3/type; cat /proc/interrupts | grep -i pmu; printf '\n__RT_STEP_DONE___\n'
+PMU_STAT_RC=0
+mode=cpu cpu=2 policy=SCHED_OTHER seconds=10.000 iterations=19827 sink=17615251042959729697 stopped=0 bytes_allocated=0
+9961.98;msec;task-clock;9961984719;100.00;0.996;CPUs utilized
+11943565134;;cycles;9968338101;100.00;1.199;GHz
+7956337962;;instructions;9968338101;100.00;0.67;insn per cycle
+144742;;cache-misses;9968338101;100.00;;
+376226;;branch-misses;9968338101;100.00;;
+7
+  7:          0          0          0     GICv2 175 Level     arm-pmu
+  8:          0          0          0     GICv2 176 Level     arm-pmu
+  9:          0          0          8     GICv2 177 Level     arm-pmu
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

@@ -1,0 +1,20 @@
+          <idle>-0     [001] d..h1..   229.982467: irq_handler_entry: irq=3 name=arch_timer
+          <idle>-0     [001] d..h1..   229.982470: irq_handler_exit: irq=3 ret=handled
+          <idle>-0     [001] d...3..   229.982471: sched_waking: comm=ksoftirqd/1 pid=20 prio=120 target_cpu=001
+          <idle>-0     [001] dN..4..   229.982474: sched_wakeup: comm=ksoftirqd/1 pid=20 prio=120 target_cpu=001
+          <idle>-0     [001] d...2..   229.982479: sched_switch: prev_comm=swapper/1 prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=ksoftirqd/1 next_pid=20 next_prio=120
+     ksoftirqd/1-20    [001] .....12   229.982482: softirq_entry: vec=8 [action=HRTIMER]
+     ksoftirqd/1-20    [001] d...215   229.982485: sched_waking: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] dN..315   229.982488: sched_wakeup: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] d...215   229.982491: sched_switch: prev_comm=ksoftirqd/1 prev_pid=20 prev_prio=120 prev_state=R+ ==> next_comm=cyclictest next_pid=960 next_prio=19
+      cyclictest-960   [001] d...211   229.982499: sched_switch: prev_comm=cyclictest prev_pid=960 prev_prio=19 prev_state=D ==> next_comm=ksoftirqd/1 next_pid=20 next_prio=19
+     ksoftirqd/1-20    [001] dN..315   229.982505: sched_waking: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] dN..415   229.982508: sched_wakeup: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] d...215   229.982511: sched_switch: prev_comm=ksoftirqd/1 prev_pid=20 prev_prio=120 prev_state=R+ ==> next_comm=cyclictest next_pid=960 next_prio=19
+      cyclictest-960   [001] d...211   229.982521: sched_switch: prev_comm=cyclictest prev_pid=960 prev_prio=19 prev_state=D ==> next_comm=ksoftirqd/1 next_pid=20 next_prio=19
+     ksoftirqd/1-20    [001] dN..314   229.982527: sched_waking: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] dN..414   229.982529: sched_wakeup: comm=cyclictest pid=960 prio=19 target_cpu=001
+     ksoftirqd/1-20    [001] d...214   229.982534: sched_switch: prev_comm=ksoftirqd/1 prev_pid=20 prev_prio=120 prev_state=R+ ==> next_comm=cyclictest next_pid=960 next_prio=19
+      cyclictest-960   [001] d...2..   229.982546: sched_switch: prev_comm=cyclictest prev_pid=960 prev_prio=19 prev_state=S ==> next_comm=ksoftirqd/1 next_pid=20 next_prio=120
+     ksoftirqd/1-20    [001] .....12   229.982550: softirq_exit: vec=8 [action=HRTIMER]
+     ksoftirqd/1-20    [001] d...2..   229.982558: sched_switch: prev_comm=ksoftirqd/1 prev_pid=20 prev_prio=120 prev_state=S ==> next_comm=swapper/1 next_pid=0 next_prio=120

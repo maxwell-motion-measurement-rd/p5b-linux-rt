@@ -1,0 +1,55 @@
+sed '/buffer_size_kb/a echo mono > "$instance/trace_clock"' /opt/rt-diagnostics/ftrace-short-capture.sh > /tmp/ftrace-capture-mono.sh; sha256sum /tmp/ftraace-capture-mono.sh; sh /tmp/ftrace-capture-mono.sh > /tmp/ftrace-capture-result.txt 2>&1; echo FTRACE_SCRIPT_RC=$?; cat /tmp/ftrace-capture-result.txt; cat /tmp/rt-ftrace-shhort/trace_clock.txt /tmp/rt-ftrace-short/buffer-stats.txt; tail -n 10 /tmp/rt-ftrace-short/cyclictest.txt; wc -c /tmp/rt-ftrace-short/trace.txt /tmp/rt-ftrace-short/trace.txxt.gz; cat /sys/kernel/tracing/instances/rt-audit/tracing_on /sys/kernel/tracing/instances/rt-audit/events/enable; printf '\n__RT_STEP_DONE__\n'
+e4dff02c57ce8b93b1469f5820c999694eec2188880f967844d144f96feb6ecb  /tmp/ftrace-capture-mono.sh
+FTRACE_SCRIPT_RC=0
+e86819738b3dba71d4f05ea2f9dd4d8fe87b706b6545205685dec7e0e3a2e324  /tmp/rt-ftrace-short/buffer-stats.txt
+4cb16b64cee227b92c1507a6a92284af44ce1a45213df7569d982795d89ad676  /tmp/rt-ftrace-short/cyclictest.txt
+3ff6a7acf3e29340d0aaa6f6276bcb2306e9bac6c1593da8771d440f70ffecf1  /tmp/rt-ftrace-short/trace.txt
+0b4a1bd8f66852c503f99008f1f8a036fb6e881c5cdd8436f31551ba64ad91ec  /tmp/rt-ftrace-short/trace.txt.gz
+5639adeb74e6ff76da038dfada518d98ce93022ee9b75150ffba0130e455f4f2  /tmp/rt-ftrace-short/trace_clock.txt
+Initial 10s idle capture only; inspect overrun and dropped events before interpretation.
+local global counter uptime perf [mono] mono_raw boot
+CPU0
+entries: 2643
+overrun: 0
+commit overrun: 0
+bytes: 129276
+oldest event ts:   223.376796
+now ts:   234.498072
+dropped events: 0
+read events: 0
+CPU1
+entries: 73373
+overrun: 139280
+commit overrun: 0
+bytes: 4196936
+oldest event ts:   229.956531
+now ts:   234.499958
+dropped events: 0
+read events: 0
+CPU2
+entries: 4182
+overrun: 0
+commit overrun: 0
+bytes: 207568
+oldest event ts:   223.380031
+now ts:   234.501883
+dropped events: 0
+read events: 0
+001998 000000
+001999 000000
+# Total: 000010000
+# Min Latencies: 00062
+# Avg Latencies: 00074
+# Max Latencies: 00085
+# Histogram Overflows: 00000
+# Histogram Overflow at cycle number:
+# Thread 0:
+
+ 10570214 /tmp/rt-ftrace-short/trace.txt
+   346465 /tmp/rt-ftrace-short/trace.txt.gz
+ 10916679 total
+0
+0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

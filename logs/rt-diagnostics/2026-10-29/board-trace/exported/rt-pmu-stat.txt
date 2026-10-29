@@ -1,0 +1,6 @@
+mode=cpu cpu=2 policy=SCHED_OTHER seconds=10.000 iterations=19827 sink=17615251042959729697 stopped=0 bytes_allocated=0
+9961.98;msec;task-clock;9961984719;100.00;0.996;CPUs utilized
+11943565134;;cycles;9968338101;100.00;1.199;GHz
+7956337962;;instructions;9968338101;100.00;0.67;insn per cycle
+144742;;cache-misses;9968338101;100.00;;
+376226;;branch-misses;9968338101;100.00;;

@@ -1,0 +1,10 @@
+{
+  "method": "continuous hexadecimal serial stream",
+  "accepted_for_analysis": false,
+  "expected_bytes": 1056409,
+  "received_bytes": 1056191,
+  "expected_sha256": "ec276614e49400ebc621b2e029a79089df03d97dc84472acf26bb36f6f61dbf8",
+  "received_sha256": "40cee99def3f13174a8cc85694f28733c8fab6f14d025cb004e0a3a16d14c9dc",
+  "raw_transport_log": "07-export.txt",
+  "resolution": "retry with independently length/SHA256-verified 16KiB chunks and 1MiB serial read buffer"
+}

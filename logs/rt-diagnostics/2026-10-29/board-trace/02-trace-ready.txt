@@ -1,0 +1,26 @@
+mount -t tracefs nodev /sys/kernel/tracing; cat /sys/kernel/tracing/trace_clock /sys/kernel/tracing/current_tracer /sys/kernel/tracing/available_tracers;  ls /sys/kernel/tracing/instances; for e in sched/sched_waking sched/sched_wakeup sched/sched_switch irq/irq_handler_entry irq/irq_handler_exit irq/softirq_entry irq/softirq__exit; do ls /sys/kernel/tracing/events/$e/enable; done; dmesg | grep -i -E "pmu|perf|panic|Oops:|BUG:|Call trace:"; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_goverrnor /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq /proc/sys/kernel/sched_rt_period_us /proc/sys/kernel/sched_rt_runtime_us; printf '\n__RT_STEP_DONE__\n'
+[local] global counter uptime perf mono mono_raw boot
+nop
+function_graph wakeup_dl wakeup_rt wakeup function nop
+/sys/kernel/tracing/events/sched/sched_waking/enable
+/sys/kernel/tracing/events/sched/sched_wakeup/enable
+/sys/kernel/tracing/events/sched/sched_switch/enable
+/sys/kernel/tracing/events/irq/irq_handler_entry/enable
+/sys/kernel/tracing/events/irq/irq_handler_exit/enable
+/sys/kernel/tracing/events/irq/softirq_entry/enable
+/sys/kernel/tracing/events/irq/softirq_exit/enable
+[    4.176973] 001: hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    4.517498] 002: mtdoops: mtd device (mtddev=name/number) must be supplied
+[    4.828968] 002: ARM CCI_400_r1 PMU driver probed
+[    4.844237] 000: pktgen: Packet Generator for packet performance testing. Version: 2.75
+[   13.389737] 000: xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[   13.390267] 000: xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[   13.390777] 000: xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[   13.391233] 000: xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+userspace
+1199999
+1000000
+950000
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

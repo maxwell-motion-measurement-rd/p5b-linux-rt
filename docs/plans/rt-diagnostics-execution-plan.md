@@ -2,6 +2,8 @@
 
 日期：2026-10-29。用户已授权开展ftrace和perf测试。本阶段定位工具能力与初步观测，不替代产品或闭环控制验收。
 
+当前结果：诊断版本已上板，10秒ftrace空载复测无缓冲区覆盖／丢事件，A53硬件计数已验证；首次采集覆盖、传输重试及范围限制详见[板端报告](../../logs/rt-diagnostics/2026-10-29/board-trace/report.md)。此前原始RT负载尖峰仍需复现定位。
+
 ## 原始环境与限制
 
 板端确认5.4.0-rt1-xilinx-v2020.2-p5b、realtime=1、CPU0—2，BLE未设置。CONFIG_PERF_EVENTS=y、CONFIG_ARM_PMU未启用、CONFIG_FTRACE未启用。事件源只有software、breakpoint和CCI_400_r1。原镜像不能直接运行ftrace或使用A53硬件性能计数器。

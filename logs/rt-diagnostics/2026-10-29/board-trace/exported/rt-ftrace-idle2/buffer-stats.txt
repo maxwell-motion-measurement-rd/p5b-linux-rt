@@ -1,0 +1,27 @@
+CPU0
+entries: 14023
+overrun: 0
+commit overrun: 0
+bytes: 717048
+oldest event ts:   277.280861
+now ts:   290.155543
+dropped events: 0
+read events: 0
+CPU1
+entries: 204235
+overrun: 0
+commit overrun: 0
+bytes: 11725880
+oldest event ts:   277.284009
+now ts:   290.157513
+dropped events: 0
+read events: 0
+CPU2
+entries: 2157
+overrun: 0
+commit overrun: 0
+bytes: 102152
+oldest event ts:   277.281083
+now ts:   290.159392
+dropped events: 0
+read events: 0

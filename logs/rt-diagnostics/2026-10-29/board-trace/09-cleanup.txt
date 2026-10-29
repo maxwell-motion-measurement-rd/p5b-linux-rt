@@ -1,0 +1,13 @@
+rmdir /sys/kernel/tracing/instances/rt-audit /sys/kernel/tracing/instances/rt-audit-idle2; echo TRACE_INSTANCE_REMOVE_RC=$?; ls /sys/kernel/tracing/instannces; cat /sys/kernel/tracing/current_tracer /sys/kernel/tracing/events/enable; cat /proc/meminfo | head -n 3; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor /ssys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq /proc/sys/kernel/sched_rt_runtime_us; ps | grep -E "[c]yclictest|[r]tload|[p]erf (stat|record)"; printf '\n__RT_STEP_DDONE__\n'
+TRACE_INSTANCE_REMOVE_RC=0
+nop
+0
+MemTotal:        4022328 kB
+MemFree:         3854180 kB
+MemAvailable:    3852180 kB
+userspace
+1199999
+950000
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

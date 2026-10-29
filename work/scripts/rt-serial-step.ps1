@@ -9,6 +9,7 @@ $serial = [System.IO.Ports.SerialPort]::new($Port,115200,[System.IO.Ports.Parity
 $serial.Handshake = [System.IO.Ports.Handshake]::None
 $serial.DtrEnable = $false
 $serial.RtsEnable = $false
+$serial.ReadBufferSize = 1048576
 $output = [System.Text.StringBuilder]::new()
 $finished = $false
 try {

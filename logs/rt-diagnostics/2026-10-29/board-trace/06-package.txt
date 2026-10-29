@@ -1,0 +1,6 @@
+tar -czf /tmp/rt-trace-evidence.tar.gz -C /tmp rt-ftrace-short/buffer-stats.txt rt-ftrace-short/cyclictest.txt rt-ftrace-short/trace.txt.gz rt-ftrace-shorrt/trace_clock.txt rt-ftrace-idle2/buffer-stats.txt rt-ftrace-idle2/cyclictest.txt rt-ftrace-idle2/trace.txt.gz rt-ftrace-idle2/trace_clock.txt rt-pmu-stat.txt ftrace-capturee-mono.sh ftrace-idle2.sh; sha256sum /tmp/rt-trace-evidence.tar.gz; wc -c /tmp/rt-trace-evidence.tar.gz; printf '\n__RT_STEP_DONE__\n'
+ec276614e49400ebc621b2e029a79089df03d97dc84472acf26bb36f6f61dbf8  /tmp/rt-trace-evidence.tar.gz
+1056409 /tmp/rt-trace-evidence.tar.gz
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

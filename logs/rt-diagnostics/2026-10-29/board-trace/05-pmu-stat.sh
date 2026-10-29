@@ -1,0 +1,1 @@
+/opt/rt-diagnostics/perf stat -x ";" -e task-clock,cycles,instructions,cache-misses,branch-misses -- /opt/rt-diagnostics/rtload cpu 2 10 > /tmp/rt-pmu-stat.txt 2>&1; echo PMU_STAT_RC=$?; cat /tmp/rt-pmu-stat.txt; cat /sys/bus/event_source/devices/armv8_pmuv3/type; cat /proc/interrupts | grep -i pmu

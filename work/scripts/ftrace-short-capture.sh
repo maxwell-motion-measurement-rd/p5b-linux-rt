@@ -23,7 +23,8 @@ trap cleanup EXIT INT TERM
 echo 0 > "$instance/tracing_on"
 echo nop > "$instance/current_tracer"
 echo 7 > "$instance/tracing_cpumask"
-echo 4096 > "$instance/buffer_size_kb"
+echo 16384 > "$instance/buffer_size_kb"
+echo mono > "$instance/trace_clock"
 for event in sched/sched_waking sched/sched_wakeup sched/sched_switch irq/irq_handler_entry irq/irq_handler_exit irq/softirq_entry irq/softirq_exit; do
     test -f "$instance/events/$event/enable"
     echo 1 > "$instance/events/$event/enable"

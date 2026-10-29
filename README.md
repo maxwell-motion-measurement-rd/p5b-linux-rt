@@ -6,7 +6,7 @@
 
 **2026-10-29 当前工作入口：** [执行计划](docs/plans/rt-risk-assessment-execution-plan.md)及[状态文件](docs/plans/rt-risk-assessment-state.json)。已恢复Ubuntu构建入口，在原始RT环境完成10分钟冒烟、CPU／内存各60秒短测及CPU60秒复测。空载最大延迟364 μs，CPU／内存首测最大1255／1293 μs，CPU复测641 μs；尾部延迟原因待定位，futex／JBD2源码差异待继续审查。[最新执行报告、原始数据及校验值](logs/rt-risk/2026-10-29/103809-tools/report.md)已保存。长测、AMP与产品实时指标尚未验收。[ADR0003](docs/adr/0003-original-rt-measurement-baseline.md)记录无ble.sh的原始RT基准。 Notion成果见[P5原始RT风险评估](https://app.notion.com/p/4089c4372a95818c8d19d6b1b037445c)。
 
-2026-10-29诊断续接：已完成perf软件事件统计和986个CPU软件样本采集；A53硬件cycles在原镜像上不支持。独立ftrace／PMU诊断镜像已构建并通过主机校验，尚未上板，ftrace未执行。见[诊断报告](logs/rt-diagnostics/2026-10-29/report.md)和[诊断计划](docs/plans/rt-diagnostics-execution-plan.md)。
+2026-10-29诊断续接：已完成perf软件事件统计和986个CPU软件样本采集；A53硬件cycles在原镜像上不支持。独立ftrace／PMU诊断镜像已启动，10秒空载事件复测无覆盖／丢事件，A53硬件计数已验证，原负载尖峰仍待定位。详见[板端实测](logs/rt-diagnostics/2026-10-29/board-trace/report.md)。见[诊断报告](logs/rt-diagnostics/2026-10-29/report.md)和[诊断计划](docs/plans/rt-diagnostics-execution-plan.md)。
 
 ## 阅读顺序
 
