@@ -2,13 +2,13 @@
 
 ## 复现范围与输入
 
-若只复现已记录的上板结果，按根 README 下载 Release 启动包、先启动 baseline 再启动 RT 即可。以下说明用于从源码重建，沿用本轮原 BSP 输入，不把构建成功等同于实时性能或完整板级适配通过。
+若只部署已记录的 baseline／原始 RT 镜像，按[部署指南](../DEPLOY.md)下载 Release 启动包并核验即可。以下说明用于从源码重建，沿用本轮原 BSP 输入，不把构建成功等同于实时性能或完整板级适配通过。
 
 固定版本：
 
 | 输入 | 固定值 |
 | --- | --- |
-| PetaLinux／Vivado 工程 | 2020.2，原 ALIENTEK-MP 工程，XSA 为 xczu4ev-sfvc784-2-i |
+| PetaLinux／Vivado 工程 | 2020.2，原 ALIENTEK-MP 工程，目标器件为 xczu4ev-sfvc784-2-i |
 | 厂商源码 | Xilinx Linux 5.4.0，62ea514294a0c9a80455e51f1f4de36e66e8c546 |
 | RT 移植提交 | e4cc2d02d270570055fe2b46ca2eb17c21938504 |
 | 原 RT 输入 | meta-retis 02995952c2df1819657f2998e6e3a63c0e2aaa63 的 patch-5.4.3-rt1.patch |
@@ -17,7 +17,7 @@
 | 外部模块 | Xilinx/vcu-modules，844d4c4292e08ad8c3f22ac78e9a937395c1db4b |
 | 原根文件系统 | 原工程 rootfs.cpio.gz；保留用户空间和 Unix 元数据，只更新模块与匹配 DTB |
 
-构建主机为 Ubuntu 18.04，4 个 vCPU、约 7.8 GiB 内存，本轮使用 -j4。需要 make、主机 gcc、bc、bison、flex、cpio、gzip、dtc／fdtget、mkimage／dumpimage、Python 3、kmod（depmod／modinfo）和对应开发依赖。依赖以原工程已有且实际使用的工具为准；此说明未在另一台全新主机重新执行。
+已执行构建环境为 Ubuntu 18.04，本例使用 -j4；并行度按可用内存调整。需要 make、主机 gcc、bc、bison、flex、cpio、gzip、dtc／fdtget、mkimage／dumpimage、Python 3、kmod（depmod／modinfo）和对应开发依赖。依赖以原工程已有且实际使用的工具为准；此说明未在另一台全新主机重新执行。
 
 仓库不含完整原 BSP、XSA、工具链和原始 rootfs 的源码重建输入。应取得与本轮相同的 ALIENTEK-MP 工程与构建缓存，或准备等价输入；只克隆本仓库不足以从零生成相同 BOOT.BIN。Release 已包含本轮两套可部署文件。
 
@@ -31,12 +31,12 @@
 set -euo pipefail
 export LC_ALL=C
 REPO=/path/to/p5b-linux-rt
-PROJECT=/home/wang/petalinux/ALIENTEK-MP
+PROJECT=/path/to/ALIENTEK-MP
 KERNEL_REPO="$PROJECT/components/yocto/workspace/sources/linux-xlnx"
 RECIPE="$PROJECT/build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.4+git999-r0"
 PREFIX="$RECIPE/recipe-sysroot-native/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-"
 SYSROOT="$RECIPE/recipe-sysroot"
-ROOT=/home/wang/p5b-rt-rebuild
+ROOT=/path/to/new-rt-build
 export ROOT
 export PATH="$(dirname "$PREFIX"):/usr/sbin:/sbin:$PATH"
 test ! -e "$ROOT"
@@ -125,7 +125,11 @@ import os, pathlib
 root = pathlib.Path(os.environ['ROOT'])
 for name in ('pack-rootfs.py', 'validate-fit.py'):
     path = root / 'scripts' / name
-    path.write_text(path.read_text().replace('/home/wang/p5b-rt-5.4.0', str(root)))
+    lines = path.read_text().splitlines(keepends=True)
+    assert sum(line.startswith('root = pathlib.Path(') for line in lines) == 1
+    path.write_text(''.join(
+        'root = pathlib.Path(' + repr(str(root)) + ')\n'
+        if line.startswith('root = pathlib.Path(') else line for line in lines))
 PY
 printf '%s\n' "$release" > "$ROOT/logs/kernelrelease.txt"
 git -C "$ROOT/src" show -s --format=%ct HEAD > "$ROOT/logs/source-date-epoch.txt"
@@ -145,12 +149,34 @@ cp "$ROOT/build/.config" "$ROOT/deploy/rt/final.config"
 
 原 rootfs 的 1250 个未替换条目在本轮保留数据及 Unix 元数据，模块与匹配 DTB 被替换；新c脚本带校验。主机工具链、dtc 版本、构建时间、源码提交时间及环境变化可能改变二进制摘要，以上属于过程重建，不声称已在新环境实现逐字节可复现。需要复现本轮完全相同的镜像时使用 Release 的固定 ZIP。
 
-构建清单中保存本轮实测 Image、DTB、ramdisk、FIT 与配置摘要。重新生成后保留自己的配置、日志和摘要，再按根 README 先验证 baseline、后验证 RT。不能将新的构建直接冒认为已保存日志对应的原镜像。
+构建清单中保存本轮实测 Image、DTB、ramdisk、FIT 与配置摘要。重新生成后保留自己的配置、日志和摘要，再按[部署指南](../DEPLOY.md)核验。不能将新的构建直接冒认为已保存日志对应的原镜像。
 
-## 测试缓存清理后的重建入口
+## 诊断构建与离线分析
 
-2026-10-29，临时perf／rt-tests编译目录和诊断内核中间产物已清理。原RT源码／构建树、PetaLinux工程与工具链、诊断部署镜像、匹配模块、原始测试数据及交付ZIP保留。此前脚本中的临时输出路径不再保证存在，重新打包前需从归档恢复工具或重建，并核对输入摘要。
+上述流程重建原始 RT。诊断版另启用 FTRACE／调度事件／ARM_PMU，使用独立 release 并重建全部匹配模块，不能把其结果直接当作原始 RT 基准。参考[诊断构建脚本](../../work/scripts/build-ftrace-diagnostic.sh)及[配置差异](../../logs/rt-diagnostics/2026-10-29/diagnostic-config-diff.txt)；原脚本是阶段记录，运行前须修改输入路径、重新准备工具并核对摘要。
 
-诊断内核匹配符号现保存在`/home/wang/p5-rt-diagnostics-20261029/symbols`：vmlinux、System.map、Module.symvers和.config均在复制后及清理后核对SHA-256。vmlinux摘要为`426330d198cffbdc9fa1e5a78a59c84661bd18335c4866d7bcd7ce71c9c8358d`，匹配版本为`5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace`。
+### 从原始流程生成诊断内核
 
-符号可继续用于离线分析；诊断`kernel-image/build`已移除，重新编译内核或模块需重新生成构建目录。Windows解包副本已清理，可从诊断ZIP恢复；SD原始三件套备份和原RT启动ZIP保持。
+当前 Release 没有提供诊断镜像下载。要运行本文的 ftrace／硬件计数，应先自行构建诊断内核；下列是复用上文构建流程的修改点，不是已在全新主机执行过的一键安装器：
+
+1. 选择另一个全新 ROOT，使用同一厂商提交与 RT 补丁、工具链、rootfs、三核 DTB 和 VCU 源码。
+2. 在复制 p5b-rt.config 后、olddefconfig 前执行下列配置；将原流程的 release 预期检查改为诊断 release。
+3. 继续执行 Image、内核模块、四个外部模块、depmod、rootfs 更新及 FIT 打包全部步骤。不要复用原始 RT 的模块二进制。
+4. 对照[已测配置差异](../../logs/rt-diagnostics/2026-10-29/diagnostic-config-diff.txt)检查自动依赖项，再核对载荷、DTB 与模块 release。
+5. 工具可以单独传入板端临时目录；如需随 initramfs 部署，还要按[添加工具脚本](../../work/scripts/add-diagnostic-tools.py)更新路径、输入摘要和文件元数据后重新打包。仅编译诊断内核不会自动带上三个用户态工具。
+
+```bash
+"$ROOT/src/scripts/config" --file "$ROOT/build/.config" \
+  --set-str LOCALVERSION '-xilinx-v2020.2-p5b-diag-ftrace' \
+  --disable LOCALVERSION_AUTO --enable FTRACE --enable FUNCTION_TRACER \
+  --enable FUNCTION_GRAPH_TRACER --enable SCHED_TRACER \
+  --enable FTRACE_SYSCALLS --enable ARM_PMU
+# 然后继续上文 olddefconfig，检查 kernelrelease 为：
+# 5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace
+```
+
+测试所用诊断 image.ub 的 SHA-256 为 `c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943`。重新构建字节可能不同，应保存自己的摘要，不要直接套用已测镜像结论。启用跟踪后还须按测试文档检查 tracefs、事件和 PMU 是否真正可用。
+
+每次构建另存 vmlinux、System.map、Module.symvers、.config、镜像及模块摘要，用于符号解析与后续模块构建。只有符号文件不足以继续增量编译，清理后需重新生成构建目录。已测诊断 vmlinux SHA-256 为 `426330d198cffbdc9fa1e5a78a59c84661bd18335c4866d7bcd7ce71c9c8358d`；分析其他镜像时不要借用这份符号。
+
+[测试方法与结果](../reports/rt-assessment-summary-20261029.md)给出工具区别、测量条件、指标含义和原始证据。
