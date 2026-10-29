@@ -8,7 +8,7 @@
 
 运行配置确认FTRACE、FUNCTION_TRACER、FUNCTION_GRAPH_TRACER、SCHED_TRACER、FTRACE_SYSCALLS和ARM_PMU已启用。工具摘要与交付包一致，dmaproxy和xlnx_vcu_core已加载，启动日志确认armv8_pmuv3驱动提供7个计数器。验证范围为当前内核版本、运行配置、CPU、模块、镜像摘要和dmesg；本轮未重新捕获完整FSBL／U-Boot早期启动输出。
 
-首次打开COM3被拒绝，在用户关闭MobaXterm的串口会话后恢复；未强制关闭用户应用。所有实际测试通过COM3、115200、8N1、无流控执行。
+首次COM3访问被占用的MobaXterm会话阻塞，释放串口后恢复。所有实际测试通过COM3、115200、8N1、无流控执行。
 
 ## ftrace实际执行
 

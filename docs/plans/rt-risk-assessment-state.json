@@ -24,7 +24,7 @@
     "keep_original_image_shell_including_bash": true,
     "modify_kernel_dtb_bitstream_during_baseline_measurement": false,
     "formal_product_realtime_acceptance": false,
-    "missing_colleague_4_9_material_blocks_current_assessment": false
+    "reference_4_9_required_before_assessment": false
   },
   "baseline": {
     "archive": "work/artifacts/p5b-rt-sd-20261027.zip",
@@ -44,17 +44,6 @@
     "host_archive_identity_verified": true,
     "current_sd_and_running_image_verified": true,
     "verification_scope": "SD boot-file hashes, running embedded config, kernel version, CPU flags and Bash hash match; no fresh full boot capture or exhaustive rootfs hash"
-  },
-  "confirmations": {
-    "q1": "accepted: engineering risk assessment, not product realtime certification",
-    "q2": "4.9 does not block; non-RT comparison part superseded by q5",
-    "q3": "accepted: P5 standalone Linux, no Core3 payload or motors",
-    "q4": "accepted: blockers stop progression, latency peaks require investigation",
-    "q5": "corrected by user: PREEMPT_RT mandatory, no non-RT comparison",
-    "q6": "accepted: measure current RT configuration and available load scenarios",
-    "q7": "user requested saving the plan and later execution after connecting the board; exact durations retained as proposed defaults",
-    "shell_baseline": "user chose original RT Linux without ble.sh or added shell environment",
-    "selected_test_window": "先完成冒烟和短负载验证（推荐）"
   },
   "proposed_test_defaults": {
     "status": "planning_values_not_product_requirements",
@@ -288,5 +277,6 @@
     "ftrace": "Diagnostic kernel boot verified; 10s idle repeat complete, no buffer loss; original load spike unresolved",
     "pmu": "Diagnostic A53 cycles/instructions/cache-misses/branch-misses counts verified",
     "latest_board_report": "logs/rt-diagnostics/2026-10-29/board-trace/report.md"
-  }
+  },
+  "executed_test_window": "600s smoke and 60s individual CPU/memory cases; no formal product deadline"
 }

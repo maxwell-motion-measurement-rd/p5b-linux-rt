@@ -73,6 +73,6 @@ perf测试结束时使用的是原始RT镜像。随后已完成下述SD部署；
 
 ## SD部署结果
 
-2026-10-29 12:17，核对用户指定F:为USB接入的FAT32卷，磁盘大小31,954,305,024字节。原三件套摘要与已知RT基准一致；先备份并校验，再只替换image.ub。最终读回21,510,740字节，摘要与诊断镜像一致，BOOT.BIN和boot.scr保持原摘要。Windows安全弹出后F:不再就绪，文件不可访问。部署记录见[sd-deployment.json](sd-deployment.json)。
+2026-10-29 12:17，核对F: SD卷为USB接入的FAT32卷，磁盘大小31,954,305,024字节。原三件套摘要与已知RT基准一致；先备份并校验，再只替换image.ub。最终读回21,510,740字节，摘要与诊断镜像一致，BOOT.BIN和boot.scr保持原摘要。Windows安全弹出后F:不再就绪，文件不可访问。部署记录见[sd-deployment.json](sd-deployment.json)。
 
-备份路径：`C:\Users\13931\Documents\ChatGPT\maxwell_implementation_dual axis drive and control\work\artifacts\rt-diagnostics\sd-backup-20261029-121708`。用户需将SD卡插回断电板子，接好串口并上电；之后核对诊断版本、RT标志、三核、模块及tracefs／PMU，再运行ftrace。SD写入校验不代表启动验证通过。
+备份路径：`C:\Users\13931\Documents\ChatGPT\maxwell_implementation_dual axis drive and control\work\artifacts\rt-diagnostics\sd-backup-20261029-121708`。将SD卡插回断电板子，接好串口并上电；之后核对诊断版本、RT标志、三核、模块及tracefs／PMU，再运行ftrace。SD写入校验不代表启动验证通过。

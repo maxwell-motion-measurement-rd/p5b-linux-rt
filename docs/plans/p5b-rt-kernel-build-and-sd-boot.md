@@ -43,7 +43,7 @@ ZIP SHA-256：a1a684b678e5eb82a4d04cdbbbdf7e5279792cd257f32674c71b33f285f840a7�
 | 补丁字节数 | 822792 |
 | 补丁 SHA-256 | 684ad81ec7d25bd4b268ae5ced3c24bc53b3595aea5c528518cdeeb2e8bee26a |
 
-补丁选型与既往严格试贴结论来自[已有记录](https://app.notion.com/p/4069c4372a9581e5a8e4dbbe64a0d585)。本轮只读 SSH 核查已确认源码提交一致、已跟踪文件无修改；实际应用前仍须重新检查状态和补丁完整性。
+补丁选型及试贴依据见[基线决策](../adr/0001-preserve-vendor-kernel-baseline.md)。本轮只读 SSH 核查已确认源码提交一致、已跟踪文件无修改；实际应用前仍须重新检查状态和补丁完整性。
 
 现有 XSA 的内部元数据声明器件为 xczu4ev-sfvc784-2-i，版本 2020.2，并包含 PL 位流。实际板卡与该硬件导出的匹配关系待拿到板卡核对。
 
@@ -177,8 +177,8 @@ ROLLBACK.md 说明如何恢复原版三件套，并区分快照生成时状态�
 
 ## 参考
 
-- [项目补丁选型记录](https://app.notion.com/p/4069c4372a9581e5a8e4dbbe64a0d585)
-- [项目部署主线](https://app.notion.com/p/3fb9c4372a9581d69079c2bb8b1b54f7)
+- [基线决策](../adr/0001-preserve-vendor-kernel-baseline.md)
+- [阶段测试总结](../reports/rt-assessment-summary-20261029.md)
 - [PetaLinux 2020.2 SD 启动步骤](https://docs.amd.com/r/2020.2-English/ug1144-petalinux-tools-reference-guide/Steps-to-Boot-a-PetaLinux-Image-on-Hardware-with-SD-Card)
 - [AMD 2020.2 预编译镜像布局](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1065451521/2020.2%2BRelease)
 - [Linux initramfs 文档](https://docs.kernel.org/filesystems/ramfs-rootfs-initramfs.html)

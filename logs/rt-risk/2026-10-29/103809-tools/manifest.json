@@ -3,7 +3,6 @@
   "recorded_at": "2026-10-29T11:06:54.878354+08:00",
   "host_timezone": "Asia/Shanghai",
   "status": "short_validation_completed_with_findings",
-  "user_selected_window": "先完成冒烟和短负载验证（推荐）",
   "prior_baseline_manifest": "../102244-serial/manifest.json",
   "port": "COM3",
   "baud": 115200,
@@ -147,5 +146,6 @@
   "formal_realtime_acceptance": false,
   "latency_spike_root_cause": "unresolved",
   "source_review": "partial; futex and jbd2 semantic/dependency review pending",
-  "longer_and_combined_tests": "not started in this selected short window"
+  "longer_and_combined_tests": "not started in this selected short window",
+  "executed_test_window": "600s smoke; 60s CPU; 60s memory; 60s CPU repeat"
 }

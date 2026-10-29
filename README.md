@@ -1,12 +1,16 @@
 # P5 Linux 5.4.0 PREEMPT_RT 构建与上板验证
 
+**阶段成果（2026-10-29）：** 已完成原始RT环境核验、冒烟与短负载测试、诊断内核部署，以及perf／ftrace初测。CPU／内存负载最大唤醒延迟1255／1293µs的原因仍未定位，源码修复差异待审查，尚未作产品实时验收。先读[阶段测试总结](docs/reports/rt-assessment-summary-20261029.md)，再查看下方复现与证据入口。
+
 截至 2026-10-27，baseline 和 PREEMPT_RT 内核均已在正点原子 **P5（XCZU4EV）实板**上从 SD 卡启动。baseline 四核在线；RT 使用 A53 Core0／1／2，完整 RT 状态、基本命令、临时文件读写和已加载模块检查通过。实时延迟、长时间稳定性、完整外设功能及 Core3 裸机共存尚未验收。
 
 本次部署使用的板卡是 P5，未使用另一块 P5B 实板做对照。BSP／XSA、设备树及启动包沿用 P5B 工程名称，日志中的 P5B 来自软件配置。资料检索中未发现 P5 与 P5B 在本次 Linux 部署所涉及配置上的明显差异；正点原子[官方资料中心](https://www.openedv.com/docs/build/html/index.html)也将两者合并列为“MPSoC - P5 / P5B开发板”。这属于现有资料范围内的结论，未逐项比对两版原理图和 BOM，不能据此认定所有硬件版本完全一致。检索依据及范围见[板型说明](docs/board/p5-and-p5b-scope.md)。仓库、路径和内核版本中的 p5b 保留原名，便于追溯。
 
-**2026-10-29 当前工作入口：** [执行计划](docs/plans/rt-risk-assessment-execution-plan.md)及[状态文件](docs/plans/rt-risk-assessment-state.json)。已恢复Ubuntu构建入口，在原始RT环境完成10分钟冒烟、CPU／内存各60秒短测及CPU60秒复测。空载最大延迟364 μs，CPU／内存首测最大1255／1293 μs，CPU复测641 μs；尾部延迟原因待定位，futex／JBD2源码差异待继续审查。[最新执行报告、原始数据及校验值](logs/rt-risk/2026-10-29/103809-tools/report.md)已保存。长测、AMP与产品实时指标尚未验收。[ADR0003](docs/adr/0003-original-rt-measurement-baseline.md)记录无ble.sh的原始RT基准。 Notion成果见[P5原始RT风险评估](https://app.notion.com/p/4089c4372a95818c8d19d6b1b037445c)。
+**2026-10-29 当前工作入口：** [执行计划](docs/plans/rt-risk-assessment-execution-plan.md)及[状态文件](docs/plans/rt-risk-assessment-state.json)。已恢复Ubuntu构建入口，在原始RT环境完成10分钟冒烟、CPU／内存各60秒短测及CPU60秒复测。空载最大延迟364 μs，CPU／内存首测最大1255／1293 μs，CPU复测641 μs；尾部延迟原因待定位，futex／JBD2源码差异待继续审查。[最新执行报告、原始数据及校验值](logs/rt-risk/2026-10-29/103809-tools/report.md)已保存。长测、AMP与产品实时指标尚未验收。[ADR0003](docs/adr/0003-original-rt-measurement-baseline.md)记录无ble.sh的原始RT基准。
 
 2026-10-29诊断续接：已完成perf软件事件统计和986个CPU软件样本采集；A53硬件cycles在原镜像上不支持。独立ftrace／PMU诊断镜像已启动，10秒空载事件复测无覆盖／丢事件，A53硬件计数已验证，原负载尖峰仍待定位。详见[板端实测](logs/rt-diagnostics/2026-10-29/board-trace/report.md)。见[诊断报告](logs/rt-diagnostics/2026-10-29/report.md)和[诊断计划](docs/plans/rt-diagnostics-execution-plan.md)。
+
+**阶段总结：** [P5 PREEMPT_RT阶段测试总结](docs/reports/rt-assessment-summary-20261029.md)，先看成果、结果与问题处理，再按证据链接复核。
 
 ## 阅读顺序
 
