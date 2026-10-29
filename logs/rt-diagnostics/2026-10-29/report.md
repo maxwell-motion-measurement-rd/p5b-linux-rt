@@ -56,7 +56,7 @@
 
 ## 来源与续接
 
-- [执行计划](../../../docs/plans/rt-diagnostics-execution-plan.md)说明步骤和范围；本目录state.json记录实际完成情况。
+- [测试方法与结果](../../../docs/reports/rt-assessment-summary-20261029.md)说明步骤和范围；本目录state.json记录实际完成情况。
 - 构建脚本：[perf](../../../work/scripts/build-perf-diagnostic.sh)、[诊断内核](../../../work/scripts/build-ftrace-diagnostic.sh)。
 - [Linux5.4 ftrace官方文档](https://www.kernel.org/doc/html/v5.4/trace/ftrace.html)解释tracefs、跟踪事件与缓冲区；perf行为依据匹配源码tools/perf/Documentation/perf-stat.txt和perf-record.txt，并以本轮板端输出核实可用性。
 - 上一轮基准：[10分钟冒烟和短负载报告](../../rt-risk/2026-10-29/103809-tools/report.md)。

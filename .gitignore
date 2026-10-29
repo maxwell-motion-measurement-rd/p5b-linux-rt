@@ -7,8 +7,6 @@
 /work/inputs/*
 !/work/inputs/patch-5.4.3-rt1.patch
 /work/artifacts/*
-!/work/artifacts/P5B-DEPLOY.md
-!/work/artifacts/P5B-ROLLBACK.md
 !/work/artifacts/p5b-rt-sd-20261027.zip.sha256
 __pycache__/
 *.py[cod]
@@ -35,3 +33,16 @@ id_rsa*
 id_ed25519*
 *.pem
 *.key
+
+# Private execution notes, snapshots, and one-off document writers.
+/work/planning/
+/tmp/
+/output/
+/docs/plans/
+/GLOSSARY.md
+/work/scripts/*.md
+/work/scripts/save-*.py
+/work/scripts/finalize-rt-short-run-*.py
+/work/scripts/update-rt-tools-state.py
+# Personal peripheral-study notes stay local.
+/docs/board/peripheral-learning-guide-20261028.md
