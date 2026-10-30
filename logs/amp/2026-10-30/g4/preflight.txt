@@ -1,0 +1,125 @@
+[    8.373408] 002: [drm] Cannot find any crtc or sizes
+[   11.159635] 000: random: crng init done
+[   12.514090] 002: [drm] Initialized xlnx 1.0.0 20130509 for fd4a0000.zynqmp-display on minor 0
+[   12.514112] 002: zynqmp-display fd4a0000.zynqmp-display: ZynqMP DisplayPort Subsystem driver probed
+[   12.515290] 002: spi-nor spi0.0: unrecognized JEDEC id bytes: ef 60 19 00 00 00
+[   12.516395] 002: macb ff0b0000.ethernet: Not enabling partial store and forward
+[   12.517339] 002: libphy: MACB_mii_bus: probed
+[   12.520125] 002: Generic PHY ff0b0000.ethernet-ffffffff:04: attached PHY driver [Generic PHY] (mii_bus:phy_addr=ff0b0000.ethernet-ffffffff:04, irq=POLL)
+[   12.520133] 002: macb ff0b0000.ethernet eth0: Cadence GEM rev 0x50070106 at 0xff0b0000 irq 30 (00:0a:35:00:c0:13)
+[   12.520562] 002: macb ff0e0000.ethernet: Not enabling partial store and forward
+[   12.521520] 002: libphy: MACB_mii_bus: probed
+[   12.524110] 002: Generic PHY ff0e0000.ethernet-ffffffff:07: attached PHY driver [Generic PHY] (mii_bus:phy_addr=ff0e0000.ethernet-ffffffff:07, irq=POLL)
+[   12.524117] 002: macb ff0e0000.ethernet eth1: Cadence GEM rev 0x50070106 at 0xff0e0000 irq 31 (00:0a:35:00:8b:87)
+[   12.524737] 002: xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[   12.525277] 002: xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[   12.525684] 002: xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[   12.526097] 002: xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+[   12.527057] 002: dwc3 fe200000.dwc3: Failed to get clk 'ref': -2
+[   12.527284] 002: xilinx-psgtr fd400000.zynqmp_phy: Lane:1 type:0 protocol:3 pll_locked:yes
+[   12.529877] 002: xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[   12.529898] 002: xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[   12.530020] 002: xhci-hcd xhci-hcd.0.auto: hcc params 0x0238f625 hci version 0x100 quirks 0x0000000202010810
+[   12.530142] 002: xhci-hcd xhci-hcd.0.auto: irq 100, io mem 0xfe200000
+[   12.530496] 002: usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.04
+[   12.530503] 002: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   12.530508] 002: usb usb1: Product: xHCI Host Controller
+[   12.530512] 002: usb usb1: Manufacturer: Linux 5.4.0-rt1-xilinx-v2020.2-p5b xhci-hcd
+[   12.530517] 002: usb usb1: SerialNumber: xhci-hcd.0.auto
+[   12.530928] 002: hub 1-0:1.0: USB hub found
+[   12.530955] 002: hub 1-0:1.0: 1 port detected
+[   12.531213] 002: xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[   12.531222] 002: xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[   12.531232] 002: xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+[   12.531384] 002: usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.04
+[   12.531390] 002: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   12.531395] 002: usb usb2: Product: xHCI Host Controller
+[   12.531399] 002: usb usb2: Manufacturer: Linux 5.4.0-rt1-xilinx-v2020.2-p5b xhci-hcd
+[   12.531404] 002: usb usb2: SerialNumber: xhci-hcd.0.auto
+[   12.531770] 002: hub 2-0:1.0: USB hub found
+[   12.531795] 002: hub 2-0:1.0: 1 port detected
+[   12.532797] 002: cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 33
+[   12.560484] 002: at24 0-0050: 8192 byte 24c64 EEPROM, writable, 32 bytes/write
+[   12.560968] 002: xilinx-video amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler: graph parsing failed
+[   12.561091] 002: xilinx-video: probe of amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler failed with error -22
+[   12.561518] 002: xilinx-demosaic a00b0000.v_demosaic: Xilinx Video Demosaic Probe Successful
+[   12.561938] 002: xilinx-gamma-lut a00d0000.v_gamma_lut: Xilinx 8-bit Video Gamma Correction LUT registered
+[   12.562370] 002: cdns-wdt fd4d0000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[   12.562777] 002: cdns-wdt ff150000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[   12.597813] 002: mmc0: SDHCI controller on ff160000.mmc [ff160000.mmc] using ADMA 64-bit
+[   12.633146] 002: mmc1: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+INIT: [   12.634926] 002: PM: genpd: Not disabling unused power domains
+[   12.640321] 002: rtc_zynqmp ffa60000.rtc: setting system clock to 2026-10-24T23:43:24 UTC (1792885404)
+[   12.640331] 002: of_cfs_init
+[   12.640365] 002: of_cfs_init: OK
+[   12.640568] 002: cfg80211: Loading compiled-in X.509 certificates for regulatory database
+version 2.88 booting[   12.676636] 002: mmc1: new high speed SDHC card at address 59b4
+[   12.680127] 002: mmcblk1: mmc1:59b4       29.8 GiB 
+[   12.685242] 002: mmc0: new HS200 MMC card at address 0001
+[   12.685651] 002: mmcblk0: mmc0:0001 8GTF4R 7.28 GiB 
+[   12.685837] 002: mmcblk0boot0: mmc0:0001 8GTF4R partition 1 4.00 MiB
+[   12.685936] 002:  mmcblk1: p1
+[   12.686901] 002: mmcblk0boot1: mmc0:0001 8GTF4R partition 2 4.00 MiB
+[   12.686995] 002: mmcblk0rpmb: mmc0:0001 8GTF4R partition 3 512 KiB, chardev (244:0)
+[   12.687810] 002:  mmcblk0: p1 p2
+[   12.792868] 000: cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[   12.792885] 000: clk: Not disabling unused clocks
+[   12.793244] 000: platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+
+[   12.793252] 000: cfg80211: failed to load regulatory.db
+[   12.793293] 000: ALSA device list:
+[   12.793296] 000:   #0: DisplayPort monitor
+[   12.814762] 000: Freeing unused kernel memory: 576K
+[   12.825200] 000: Run /init as init process
+[   13.043660] 002: /dev/root: Can't open blockdev
+Starting udev
+[   13.090333] 000: udevd[348]: starting version 3.2.8
+[   13.097021] 000: udevd[349]: starting eudev-3.2.8
+[   13.275131] 002: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   13.572503] 001: FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[   13.614456] 001: EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[   14.960807] 002: dmaproxy: loading out-of-tree module taints kernel.
+Configuring packages on first boot....
+ (This may take several minutes. Please do not power off the machine.)
+Running postinst /etc/rpm-postinsts/100-sysvinit-inittab...
+update-rc.d: /etc/init.d/run-postinsts exists during rc.d purge (continuing)
+ Removing any system startup links for run-postinsts ...
+  /etc/rcS.d/S99run-postinstsINIT: Entering runlevel: 5
+Configuring network interfaces... [   15.401204] 001: pps pps0: new PPS source ptp0
+udhcpc: started, v1.31.0[   15.401221] 001: macb ff0b0000.ethernet: gem-ptp-timer ptp clock registered.
+
+udhcpc: sending discover
+[   16.053137] 000: usb 1-1: new high-speed USB device number 2 using xhci-hcd
+[   16.206790] 000: usb 1-1: New USB device found, idVendor=05e3, idProduct=0610, bcdDevice= 5.20
+[   16.206797] 000: usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   16.206803] 000: usb 1-1: Product: USB2.0 Hub
+[   16.206807] 000: usb 1-1: Manufacturer: GenesysLogic
+[   16.243619] 000: hub 1-1:1.0: USB hub found
+[   16.244181] 000: hub 1-1:1.0: 4 ports detected
+[   16.311433] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   16.329266] 000: usb 2-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
+[   16.352038] 000: usb 2-1: New USB device found, idVendor=05e3, idProduct=0620, bcdDevice= 5.20
+[   16.352045] 000: usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   16.352051] 000: usb 2-1: Product: USB3.0 Hub
+[   16.352055] 000: usb 2-1: Manufacturer: GenesysLogic
+[   16.403885] 000: hub 2-1:1.0: USB hub found
+[   16.404227] 000: hub 2-1:1.0: 4 ports detected
+[   16.406495] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+udhcpc: sending discover
+udhcpc: sending discover
+udhcpc: no lease, forking to background
+done.
+Starting haveged: haveged: listening socket at 3
+haveged: haveged starting up
+
+
+Starting Dropbear SSH server: Generating 2048 bit rsa key, this may take a while...
+Public key portion is:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCenJL9442OOcGBvKg36eE3jC5HcGsX+XN6wOYBQPMUrt/7/6wW42zvUPddVz2230vUu5qYiQyVyrqQ8ZIG8d9vQ8eXCWeUK1o/q7KrPV0BPhyBkcQvCUk8S5Bsb4zMil0gaOs9UIh64to0lUPF1CFnXagvHlJWwkPM3MCf6Sa7D/YAooz9PBo7x8E11szyIKlqLqsPrwmmT4zcFbSO7P5fe5j9kWK4vUwQ/DLEUK4hL+VQaRi/ZsT1/ssGcrCiy2YTJAJhFT/HJPkzbSZ9BUt+48ZloirLxFE0tFlRbFgakubaOOJluLXc01sNgGZHWwmGHib2AHf4TEg+ZAg0IXlr root@ALIENTEK-MP
+Fingerprint: sha1!! 90:24:41:f2:3c:56:5c:29:15:29:31:7f:c8:97:9d:ee:12:bc:93:92
+dropbear.
+Starting internet superserver: inetd.
+Starting syslogd/klogd: done
+Starting tcf-agent: OK
+
+7[r[999;999H[6nroot@ALIENTEK-MP:~# 

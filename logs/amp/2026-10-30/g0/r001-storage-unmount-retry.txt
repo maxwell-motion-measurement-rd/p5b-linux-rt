@@ -1,0 +1,9 @@
+sync; umount /media/sd-mmcblk1p1; printf "SD_UNMOUNT_RC=%s\n"" $?; umount /media/sd-mmcblk0p1; printf "EMMC_FAT_UNMOUNT_RC=%s\n" $?; umount /mmedia/sd-mmcblk0p2; printf "EMMC_EXT_UNMOUNT_RC=%s\n" $?; sync; printf "REMAININGG_MMC_MOUNTS\n"; grep mmc /proc/mounts; printf "STORAGE_CHECK_DONE\n"; printf '\nn__RT_STEP_DONE__\n'
+SD_UNMOUNT_RC=0
+EMMC_FAT_UNMOUNT_RC=0
+EMMC_EXT_UNMOUNT_RC=0
+REMAINING_MMC_MOUNTS
+STORAGE_CHECK_DONE
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

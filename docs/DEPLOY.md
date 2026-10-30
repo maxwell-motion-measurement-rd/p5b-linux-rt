@@ -1,5 +1,7 @@
 # SD 部署与启动核验
 
+本页针对 baseline／原始 RT 镜像。2026-10-30 已完成另行配置的 AMP 最小通信实验，见[阶段成果](reports/amp-stage-summary-20261030.md)和[手动加载方法](build/AMP-REPRODUCE.md)；原始 RT 发布 FIT 不包含 AMP 所需内存保留。
+
 本指南用于复现已发布的 baseline／原始 RT 启动包。下面的 Release 只提供 baseline／原始 RT，没有诊断镜像下载；ftrace／PMU 测试需按[诊断构建步骤](build/REPRODUCE.md#从原始流程生成诊断内核)自行准备独立镜像和工具。测试范围见[测试方法与结果](reports/rt-assessment-summary-20261029.md)。
 
 ## 1. 准备与校验

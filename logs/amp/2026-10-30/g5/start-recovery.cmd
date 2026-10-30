@@ -1,0 +1,1 @@
+mkdir -p /tmp/amp-g5/recovery; /tmp/amp-r004/g5_snapshot > /tmp/amp-g5/recovery/before.json; ( /tmp/amp-r004/g5_recovery run > /tmp/amp-g5/recovery/results.out 2>&1; printf "%s\n" $? > /tmp/amp-g5/recovery/exit-code; /tmp/amp-r004/g5_snapshot > /tmp/amp-g5/recovery/after.json ) < /dev/null > /dev/null 2>&1 & printf "G5_RECOVERY_PID=%s\n" $!

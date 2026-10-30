@@ -1,0 +1,7 @@
+{
+  "user_confirmed_power_cycle": true,
+  "reason": "listener expired before user power-on",
+  "missing": "FSBL and U-Boot serial log",
+  "available": "Linux startup from approximately 2.6 seconds through root prompt",
+  "source": "boot-linux-partial.txt"
+}

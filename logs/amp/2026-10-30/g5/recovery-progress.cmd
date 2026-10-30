@@ -1,0 +1,1 @@
+if test -f /tmp/amp-g5/recovery/exit-code; then printf "RECOVERY_RC="; cat /tmp/amp-g5/recovery/exit-code; fi; tail -n 4 /tmp/amp-g5/recovery/results.out; cat /sys/bus/platform/devices/core3-heartbeat/stats

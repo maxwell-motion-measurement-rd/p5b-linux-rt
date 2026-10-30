@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "cases": 250,
+  "groups": {
+    "linux_to_core3_fault": 80,
+    "core3_to_linux_fault": 80,
+    "linux_sequence_wrap": 10,
+    "core3_sequence_wrap": 10,
+    "backpressure": 10,
+    "core3_comm_pause": 10,
+    "linux_consumer_pause": 10,
+    "app_killed_before_send": 5,
+    "app_killed_waiting_reply": 5,
+    "communication_service_reset": 10,
+    "core3_heartbeat_pause": 10,
+    "linux_heartbeat_pause": 10
+  },
+  "board_stdout_sha256": "b1176a5d3ad3b49af1c53b6dd09dc6df5b0aa6507defaf2b1dd8ea4e7596445a",
+  "summary": {
+    "G4_SUMMARY": "passed",
+    "cases": 250,
+    "expected_kernel_timeouts": 150,
+    "expected_bad_rx": 70,
+    "expected_core3_rejections": 110,
+    "expected_peer_timeouts": 10,
+    "heartbeat_losses_each_direction": 10,
+    "aborted_waiting_writes": 5,
+    "service_resets": 10,
+    "max_handshake_ns": 284393,
+    "linux_tx": 3075,
+    "linux_rx": 2965,
+    "stale_dropped": 45
+  },
+  "heartbeat_detection": {
+    "core3_heartbeat_pause": {
+      "min_ns": 1080000000,
+      "max_ns": 1080000000
+    },
+    "linux_heartbeat_pause": {
+      "min_ns": 1000001170,
+      "max_ns": 1000002020
+    }
+  },
+  "regression": [
+    {
+      "mode": "forward",
+      "passed": 48,
+      "errors": 0,
+      "elapsed_ns": 480265643,
+      "missed_release": 0,
+      "session": 262066674669,
+      "epoch": 12383694810,
+      "min_us": 244,
+      "mean_us": 444,
+      "p50_us": 369,
+      "p95_us": 855,
+      "p99_us": 856,
+      "p999_us": 856,
+      "max_us": 856
+    },
+    {
+      "mode": "reverse",
+      "passed": 48,
+      "errors": 0,
+      "elapsed_ns": 480265473,
+      "missed_release": 0,
+      "session": 262550053513,
+      "epoch": 12383694810,
+      "min_us": 483,
+      "mean_us": 752,
+      "p50_us": 618,
+      "p95_us": 1348,
+      "p99_us": 1349,
+      "p999_us": 1349,
+      "max_us": 1349
+    },
+    {
+      "mode": "cross",
+      "passed": 48,
+      "errors": 0,
+      "elapsed_ns": 480309534,
+      "missed_release": 0,
+      "session": 263033346907,
+      "epoch": 12383694810,
+      "min_us": 400,
+      "mean_us": 885,
+      "p50_us": 737,
+      "p95_us": 1707,
+      "p99_us": 1709,
+      "p999_us": 1709,
+      "max_us": 1709
+    }
+  ],
+  "dmesg_unchanged": true,
+  "g5_executed": false
+}

@@ -1,0 +1,78 @@
+cat /tmp/amp-r002-coexist.txt; printf "DMESG_BEFORE_AFTER\n";; cmp /tmp/amp-r002-dmesg-before.txt /tmp/amp-r002-dmesg-after.txt; printf "DMESGG_CMP_RC=%s\n" $?; printf "CURRENT_CORE3\n"; cat /sys/bus/platform/devices/core3--heartbeat/status; cat /sys/devices/system/cpu/online; printf '\n__RT_STEP_DONE___\n'
+SAMPLE 0 191.88 564.10
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=839 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 1 221.89 654.02
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=1139 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 2 251.90 744.10
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=1439 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 3 281.90 834.09
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=1739 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 4 311.91 924.04
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=2039 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 5 341.92 1014.08
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=2339 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 6 371.92 1104.07
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=2640 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 7 401.93 1193.97
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=2940 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 8 431.94 1284.06
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=3240 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 9 461.94 1374.04
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=3540 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 10 491.95 1463.98
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=3840 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 11 521.96 1554.02
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=4140 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 12 551.96 1644.02
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=4440 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 13 581.97 1734.01
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=4740 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 14 611.98 1823.99
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=5040 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 15 641.98 1913.99
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=5340 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 16 671.99 2003.97
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=5640 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 17 702.00 2093.94
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=5940 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 18 732.00 2183.95
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=6240 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 19 762.01 2273.93
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=6540 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 20 792.02 2363.86
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=6840 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+COEXIST_600S_COMPLETE
+[1]+  Done                    ( i=0; dmesg > /tmp/amp-r002-dmesg-before.txt; while [ "$i" -le 20 ]; do
+    printf "SAMPLE %s " "$i"; cat /proc/uptime; cat /sys/bus/platform/devices/core3-heartbeat/status || exit 1; printf "CPU_ONLINE "; cat /sys/devices/system/cpu/online; i=$((i+1)); if [ "$i" -le 20 ]; then
+        sleep 30;
+    fi;
+done; dmesg > /tmp/amp-r002-dmesg-after.txt; printf "COEXIST_600S_COMPLETE\n" ) > /tmp/amp-r002-coexist.txt 2>&1
+DMESG_BEFORE_AFTER
+DMESG_CMP_RC=0
+CURRENT_CORE3
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=7048 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+0-2
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

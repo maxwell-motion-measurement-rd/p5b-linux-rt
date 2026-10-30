@@ -1,0 +1,12 @@
+tail -7 /tmp/amp-r002-coexist.txt; cat /proc/uptime; printf ''\n__RT_STEP_DONE__\n'
+CPU_ONLINE 0-2
+SAMPLE 8 431.94 1284.06
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=3240 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+SAMPLE 9 461.94 1374.04
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=3540 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+489.79 1457.56
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

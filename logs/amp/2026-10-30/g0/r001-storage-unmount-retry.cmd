@@ -1,0 +1,1 @@
+sync; umount /media/sd-mmcblk1p1; printf "SD_UNMOUNT_RC=%s\n" $?; umount /media/sd-mmcblk0p1; printf "EMMC_FAT_UNMOUNT_RC=%s\n" $?; umount /media/sd-mmcblk0p2; printf "EMMC_EXT_UNMOUNT_RC=%s\n" $?; sync; printf "REMAINING_MMC_MOUNTS\n"; grep mmc /proc/mounts; printf "STORAGE_CHECK_DONE\n"

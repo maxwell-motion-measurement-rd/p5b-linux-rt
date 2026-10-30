@@ -1,0 +1,21 @@
+poweroff
+
+Broadcast mes?:The system is going down for system halt NOW!
+INIT: SwitchINIT: Sending processes the TERM signal
+root@ALIENTEK-MP:~# Stopping haveged: 
+
+Stopping Dropbear SSH server: stopped /usr/sbin/dropbear (pid 844)
+dropbear.
+Stopping internet superserver: inetd.
+Stopping syslogd/klogd: stopped syslogd (pid 855)
+stopped klogd (pid 858)
+done
+Stopping tcf-agent: OK
+Deconfiguring network interfaces... [  112.267229] 002: macb ff0b0000.ethernet: gem-ptp-timer ptp clock unregistered.
+done.
+Sending all processes the TERM signal...
+logout
+Sending all processes the KILL signal...
+Unmounting remote filesystems...
+Deactivating swap...
+Unmounting local filesystems...

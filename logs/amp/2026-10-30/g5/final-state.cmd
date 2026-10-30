@@ -1,0 +1,1 @@
+cat /sys/devices/system/cpu/online; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; cat /sys/module/p5_core3_comm/parameters/fault_tests; ps | grep '[g]5_test\|[g]5_load\|[g]5_recovery'; printf "FINAL_STATE_CAPTURED\n"

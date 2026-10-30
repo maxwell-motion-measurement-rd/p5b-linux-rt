@@ -1,0 +1,1 @@
+sha256sum /tmp/amp-r002/p5_core3_boot.ko /tmp/amp-r002/p5-core3-heartbeat.bin; wc -c /tmp/amp-r002/p5_core3_boot.ko /tmp/amp-r002/p5-core3-heartbeat.bin

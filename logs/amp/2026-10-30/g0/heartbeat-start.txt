@@ -1,0 +1,20 @@
+printf 1 > /sys/bus/platform/devices/core3-heartbeat/start; pprintf "START_RC=%s\n" $?; cat /sys/bus/platform/devices/core3-heartbeat/status;  sleep 2; cat /sys/bus/platform/devices/core3-heartbeat/status; dmesg | tail -12;; printf '\n__RT_STEP_DONE__\n'
+START_RC=0
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version[  100.061819] 001: p5-core3-heartbeat core3-heartbeat: one-shot PMU wake result=0; inspect status; no automatic retry
+=1 core=3 el=12 freq=0 token=10984409136 heartbeat=0 state=2 esr=205000d0 elr=6892238100090860 far=34058818ae814e34
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=1 core=3 el=12 freq=0 token=10984409136 heartbeat=0 state=2 esr=205000d0 elr=6892238100090860 far=34058818ae814e34
+[   28.923591] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   28.937355] 000: usb 2-1: new SuperSpeed Gen 1 USB device number 5 using xhci-hcd
+[   28.960130] 000: usb 2-1: New USB device found, idVendor=05e3, idProduct=0620, bcdDevice= 5.20
+[   28.960138] 000: usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   28.960143] 000: usb 2-1: Product: USB3.0 Hub
+[   28.960147] 000: usb 2-1: Manufacturer: GenesysLogic
+[   29.016009] 000: hub 2-1:1.0: USB hub found
+[   29.016350] 000: hub 2-1:1.0: 4 ports detected
+[   29.018603] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   80.768262] 002: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+[   80.768833] 002: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[  100.061819] 001: p5-core3-heartbeat core3-heartbeat: one-shot PMU wake result=0; inspect status; no automatic retry
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

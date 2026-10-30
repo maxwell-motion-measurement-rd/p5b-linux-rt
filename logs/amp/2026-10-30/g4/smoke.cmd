@@ -1,0 +1,1 @@
+/tmp/amp-r004/g3_test forward 48 && /tmp/amp-r004/g3_test reverse 48 && /tmp/amp-r004/g3_test cross 48; printf "SMOKE_RC=%s\n" $?; cat /sys/bus/platform/devices/core3-heartbeat/stats; cat /sys/bus/platform/devices/core3-heartbeat/status

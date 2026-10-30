@@ -1,0 +1,70 @@
+{
+  "old_entries": 1372,
+  "preserved_entries": 1370,
+  "replaced_boot_dtbs": [
+    "boot/devicetree/system-top.dtb",
+    "boot/device-tree-AUTOINC+f725aaecff.dtb"
+  ],
+  "added_paths": [
+    "opt",
+    "opt/amp-heartbeat",
+    "opt/amp-heartbeat/p5_core3_boot.ko",
+    "lib/firmware/p5-core3-heartbeat.bin",
+    "opt/amp-heartbeat/IDENTITY"
+  ],
+  "rootfs_sha256": "b128f665edea936016be4b9ae5fbc1bef3c005554a6a43f9c1ae226f38230aa3",
+  "automatic_start": false,
+  "board_tested": false
+}
+FIT description: P5 AMP heartbeat r002 manual PMU start, NOT validated on board
+Created:         Fri Oct 30 10:05:02 2026
+ Image 0 (kernel)
+  Description:  unavailable
+  Created:      Fri Oct 30 10:05:02 2026
+  Type:         Kernel Image
+  Compression:  gzip compressed
+  Data Size:    8369434 Bytes = 8173.28 KiB = 7.98 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: 0x00080000
+  Entry Point:  0x00080000
+  Hash algo:    sha256
+  Hash value:   ef40de3bb4a906c605b2dfc83c3e5183b14c72736437bff44b0febc685343b58
+ Image 1 (fdt)
+  Description:  unavailable
+  Created:      Fri Oct 30 10:05:02 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    54485 Bytes = 53.21 KiB = 0.05 MiB
+  Architecture: AArch64
+  Hash algo:    sha256
+  Hash value:   bbecdfd7f5a620f135ecc19c85b3eae944cf8fe6c7c8ea4ed21a309ae2436831
+ Image 2 (ramdisk)
+  Description:  unavailable
+  Created:      Fri Oct 30 10:05:02 2026
+  Type:         RAMDisk Image
+  Compression:  uncompressed
+  Data Size:    11152681 Bytes = 10891.29 KiB = 10.64 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: unavailable
+  Entry Point:  unavailable
+  Hash algo:    sha256
+  Hash value:   b128f665edea936016be4b9ae5fbc1bef3c005554a6a43f9c1ae226f38230aa3
+ Default Configuration: 'amp'
+ Configuration 0 (amp)
+  Description:  unavailable
+  Kernel:       kernel
+  Init Ramdisk: ramdisk
+  FDT:          fdt
+BOOT.BIN: OK
+boot.scr: OK
+image.ub: OK
+BOOT.BIN: OK
+boot.scr: OK
+image.ub: OK
+
+BOOTARGS
+earlycon console=ttyPS0,115200 rdinit=/init rw cpuidle.off=1 clk_ignore_unused pd_ignore_unused
+
+PACKAGE_CREATED_NOT_DEPLOYED

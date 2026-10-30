@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "scope": "r001 base image plus r004 RAM minimal communication experiment",
+  "pressure_transactions": 540000,
+  "pressure_conditions_minutes": {
+    "idle": 30,
+    "cpu": 30,
+    "mem": 30
+  },
+  "normal_pressure_new_communication_errors": 0,
+  "missed_release": 0,
+  "application_restarts": 10,
+  "communication_service_resets": 10,
+  "recovered_echoes_per_case": 100,
+  "cold_boots": 5,
+  "cold_transactions": 1500,
+  "cold_communication_errors": 0,
+  "max_observed_transaction_latency_us": 4024,
+  "product_hard_realtime_accepted": false,
+  "evidence_archive_sha256": "71f57d5b98ab1f1a3f988d0c08bcf897be70880986b8b04a19207adba4dac020",
+  "boot_capture_gaps": [
+    {
+      "cycle": 5,
+      "scope": "Linux partial; FSBL/U-Boot not captured (documented listener timeout)"
+    }
+  ],
+  "final_board_state": {
+    "running": true,
+    "core3_version": 4,
+    "linux_online_cpus": "0-2",
+    "fault_tests": false,
+    "firmware_persistence": "RAM only; reload after reboot"
+  },
+  "evidence": {
+    "pressure": "pressure-results.json",
+    "cold": "cold-results.json"
+  }
+}

@@ -1,0 +1,45 @@
+cat /tmp/amp-g3-batch.out; printf "BATCH_EXIT="; cat /tmp/ampp-g3-exitcode; cat /tmp/amp-g3-forward.out /tmp/amp-g3-reverse.out /tmp/amp-g3-crross.out; cat /sys/bus/platform/devices/core3-heartbeat/stats; cat /sys/bus/platfform/devices/core3-heartbeat/status; printf "CPU_ONLINE "; cat /sys/devices/systeem/cpu/online; cmp /tmp/amp-g3-dmesg-before.txt /tmp/amp-g3-dmesg-after.txt; prinntf "DMESG_CMP_RC=%s\n" $?; printf '\n__RT_STEP_DONE__\n'
+FORWARD_RC=0
+REVERSE_RC=0
+CROSS_RC=0
+G3_BATCH_COMPLETE
+[1]+  Done                    ( /tmp/amp-r003/g3_test forward 10000 > /tmp/amp-g3-forward.out 2>&1; rc=$?; echo FORWARD_RC=$rc; if [ "$rc" -eq 0 ]; then
+    /tmp/amp-r003/g3_test reverse 10000 > /tmp/amp-g3-reverse.out 2>&1; rc=$?; echo REVERSE_RC=$rc;
+fi; if [ "$rc" -eq 0 ]; then
+    /tmp/amp-r003/g3_test cross 100 > /tmp/amp-g3-cross.out 2>&1; rc=$?; echo CROSS_RC=$rc;
+fi; printf "%s\n" "$rc" > /tmp/amp-g3-exitcode; if [ "$rc" -eq 0 ]; then
+    echo G3_BATCH_COMPLETE;
+else
+    echo G3_BATCH_FAILED;
+fi; dmesg > /tmp/amp-g3-dmesg-after.txt ) > /tmp/amp-g3-batch.out 2>&1
+BATCH_EXIT=0
+G3_PROGRESS forward 1000/10000
+G3_PROGRESS forward 2000/10000
+G3_PROGRESS forward 3000/10000
+G3_PROGRESS forward 4000/10000
+G3_PROGRESS forward 5000/10000
+G3_PROGRESS forward 6000/10000
+G3_PROGRESS forward 7000/10000
+G3_PROGRESS forward 8000/10000
+G3_PROGRESS forward 9000/10000
+G3_PROGRESS forward 10000/10000
+{"mode":"forward","passed":10000,"errors":0,"elapsed_ns":100012923705,"missed_release":0,"session":4360328613801,"epoch":15708403088,"min_us":147,"mean_us":443,"p50_us":368,"p95_us":853,"p99_us":854,"p999_us":871,"max_us":910}
+G3_PROGRESS reverse 1000/10000
+G3_PROGRESS reverse 2000/10000
+G3_PROGRESS reverse 3000/10000
+G3_PROGRESS reverse 4000/10000
+G3_PROGRESS reverse 5000/10000
+G3_PROGRESS reverse 6000/10000
+G3_PROGRESS reverse 7000/10000
+G3_PROGRESS reverse 8000/10000
+G3_PROGRESS reverse 9000/10000
+G3_PROGRESS reverse 10000/10000
+{"mode":"reverse","passed":10000,"errors":0,"elapsed_ns":100012928455,"missed_release":0,"session":3962129139149,"epoch":15708403088,"min_us":482,"mean_us":753,"p50_us":617,"p95_us":1348,"p99_us":1438,"p999_us":1440,"max_us":1453}
+{"mode":"cross","passed":100,"errors":0,"elapsed_ns":1000321905,"missed_release":0,"session":4113685112470,"epoch":15708403088,"min_us":453,"mean_us":877,"p50_us":736,"p95_us":1707,"p99_us":1905,"p999_us":1906,"max_us":1906}
+linux_tx=30446 linux_rx=30446 bad_rx=0 timeouts=0 stale=0 core3_rx=30446 core3_tx=30446 core3_bad=0
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=3 core=3 el=12 freq=99999000 token=15708403088 heartbeat=3083 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+CPU_ONLINE 0-2
+DMESG_CMP_RC=0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

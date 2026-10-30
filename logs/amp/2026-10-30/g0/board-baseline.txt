@@ -1,0 +1,107 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /proc/cmdline; cat /proc/iomem; cat /proc/meminfo | head -8; dmesg | grep -E 'Memory:|cma:|Reserved memoory|psci|SMP:|CPU[0-3]:'; printf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace
+0-2
+earlycon console=ttyPS0,115200 rdinit=/init rw
+00000000-7fefffff : System RAM
+  00080000-0123ffff : Kernel code
+  01240000-0137ffff : reserved
+  01380000-015b3fff : Kernel data
+  0ffef000-0fffdfff : reserved
+  68400000-783fffff : reserved
+  78485000-78ffffff : reserved
+  7bf00000-7fefffff : reserved
+a0030000-a003ffff : a0030000.clk_wiz
+a0040000-a004ffff : a0040000.i2c
+a0050000-a005ffff : a0050000.v_tc
+a0060000-a006ffff : a0060000.v_frmbuf_rd
+a0080000-a008ffff : a0080000.clk_wiz
+a00a0000-a00affff : a00a0000.v_frmbuf_rd
+a00b0000-a00bffff : a00b0000.v_demosaic
+a00c0000-a00cffff : a00c0000.v_frmbuf_wr
+a00d0000-a00dffff : a00d0000.v_gamma_lut
+a00f0000-a00f000f : uartlite
+a0100000-a010ffff : a0100000.v_proc_ss
+a0140000-a017ffff : a0140000.v_proc_ss
+e0000000-efffffff : pcie@fd0e0000
+  e0000000-e00fffff : 0000:00:00.0
+fd0b0000-fd0bffff : fd0b0000.perf-monitor
+fd0e0000-fd0e0fff : fd0e0000.pcie
+fd3d0000-fd3d0fff : fd400000.zynqmp_phy
+fd400000-fd43ffff : fd400000.zynqmp_phy
+fd480000-fd480fff : fd0e0000.pcie
+fd490000-fd49ffff : fd490000.perf-monitor
+fd4a0000-fd4a0fff : fd4a0000.zynqmp-display
+fd4aa000-fd4aafff : fd4a0000.zynqmp-display
+fd4ab000-fd4abfff : fd4a0000.zynqmp-display
+fd4ac000-fd4acfff : fd4a0000.zynqmp-display
+fd4c0000-fd4c0fff : fd4c0000.dma
+fd4d0000-fd4d0fff : fd4d0000.watchdog
+fd500000-fd500fff : fd500000.dma
+fd510000-fd510fff : fd510000.dma
+fd520000-fd520fff : fd520000.dma
+fd530000-fd530fff : fd530000.dma
+fd540000-fd540fff : fd540000.dma
+fd550000-fd550fff : fd550000.dma
+fd560000-fd560fff : fd560000.dma
+fd570000-fd570fff : fd570000.dma
+fd6e9000-fd6edfff : fd6e9000.pmu
+fe200000-fe207fff : dwc3@fe200000
+  fe200000-fe207fff : xhci-hcd.0.auto
+fe20c100-fe23ffff : fe200000.dwc3
+ff000000-ff000fff : xuartps
+ff010000-ff010fff : xuartps
+ff030000-ff030fff : ff030000.i2c
+ff060000-ff060fff : ff060000.can
+ff0a0000-ff0a0fff : ff0a0000.gpio
+ff0b0000-ff0b0fff : ff0b0000.ethernet
+ff0e0000-ff0e0fff : ff0e0000.ethernet
+ff0f0000-ff0f0fff : ff0f0000.spi
+ff150000-ff150fff : ff150000.watchdog
+ff160000-ff160fff : ff160000.mmc
+ff170000-ff170fff : ff170000.mmc
+ff960000-ff960fff : ff960000.memory-controller
+ff9d0000-ff9d00ff : ff9d0000.usb0
+ffa00000-ffa0ffff : ffa00000.perf-monitor
+ffa10000-ffa1ffff : ffa10000.perf-monitor
+ffa50000-ffa507ff : ffa50000.ams
+ffa60000-ffa600ff : ffa60000.rtc
+ffa80000-ffa80fff : ffa80000.dma
+ffa90000-ffa90fff : ffa90000.dma
+ffaa0000-ffaa0fff : ffaa0000.dma
+ffab0000-ffab0fff : ffab0000.dma
+ffac0000-ffac0fff : ffac0000.dma
+ffad0000-ffad0fff : ffad0000.dma
+ffae0000-ffae0fff : ffae0000.dma
+ffaf0000-ffaf0fff : ffaf0000.dma
+600000000-7ffffffff : pcie@fd0e0000
+800000000-87fffffff : System RAM
+  87aa00000-87b5fffff : reserved
+  87b7fe000-87f5fffff : reserved
+  87f70f000-87f76efff : reserved
+  87f76f000-87f76ffff : reserved
+  87f770000-87f7bdfff : reserved
+  87f7c0000-87f7c0fff : reserved
+  87f7c1000-87f7c4fff : reserved
+  87f7c5000-87fffffff : reserved
+8000000000-8000ffffff : cfg
+MemTotal:        4022328 kB
+MemFree:         3919252 kB
+MemAvailable:    3906516 kB
+Buffers:             204 kB
+Cached:            31484 kB
+SwapCached:            0 kB
+Active:            16948 kB
+Inactive:          21348 kB
+[    0.000000] 000: cma: Reserved 256 MiB at 0x0000000068400000
+[    0.000000] 000: psci: probing for conduit method from DT.
+[    0.000000] 000: psci: PSCIv1.1 detected in firmware.
+[    0.000000] 000: psci: Using standard PSCI v0.2 function IDs
+[    0.000000] 000: psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] 000: psci: SMC Calling Convention v1.1
+[    0.000000] 000: Memory: 3747152K/4193280K available (13948K kernel code, 1622K rwdata, 4168K rodata, 1280K init, 618K bss, 183984K reserved, 262144K cma-reserved)
+[    0.159413] 001: CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.211492] 002: CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.221680] 000: SMP: Total of 3 processors activated.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

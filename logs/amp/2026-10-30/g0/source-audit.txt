@@ -1,0 +1,741 @@
+
+IDENTITY
+wang-virtual-machine
+08b9f4304d1634ed632f4276d603d834940fd55a
+e6eea88b14aaf456c49f9c7e6747584224648cb9
+1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b  /home/wang/petalinux/ALIENTEK-MP/images/linux/BOOT.BIN
+6f6d739b8db1401329dd2abec4b6efe6c6a4eba3a420ab358e65b20e6e9d8231  /home/wang/petalinux/ALIENTEK-MP/project-spec/hw-description/system.xsa
+
+BIF
+the_ROM_image:
+{
+	[bootloader, destination_cpu=a53-0] /tmp/tmp.btouRBe9nS/zynqmp_fsbl.elf
+	[pmufw_image] /tmp/tmp.btouRBe9nS/pmufw.elf 
+	[destination_device=pl] /tmp/tmp.btouRBe9nS/system_wrapper.bit
+	[destination_cpu=a53-0, exception_level=el-3, trustzone] /tmp/tmp.btouRBe9nS/bl31.elf
+	[destination_cpu=a53-0, load=0x00100000] /tmp/tmp.btouRBe9nS/system.dtb
+	[destination_cpu=a53-0, exception_level=el-2] /tmp/tmp.btouRBe9nS/u-boot.elf
+}
+
+FSBL_HANDOFF
+   285				break;
+   286	
+   287			case XIH_PH_ATTRB_DEST_CPU_A53_3:
+   288	
+   289				PwrStateMask = PMU_GLOBAL_PWR_STATE_ACPU3_MASK |
+   290					PMU_GLOBAL_PWR_STATE_FP_MASK |
+   291					PMU_GLOBAL_PWR_STATE_L2_BANK0_MASK;
+   292	
+   293				Status = XFsbl_PowerUpIsland(PwrStateMask);
+   294				if (Status != XFSBL_SUCCESS) {
+   295					Status = XFSBL_ERROR_A53_3_POWER_UP;
+   296					XFsbl_Printf(DEBUG_GENERAL, "XFSBL_ERROR_A53_3_POWER_UP\r\n");
+   297					goto END;
+   298				}
+   299	
+   300	
+   301				/**
+   302				 * Set to Aarch32 if enabled
+   303				 */
+   304				if (ExecState == XIH_PH_ATTRB_A53_EXEC_ST_AA32)
+   305				{
+   306					RegValue = XFsbl_In32(APU_CONFIG_0);
+   307					RegValue &= ~(APU_CONFIG_0_AA64N32_MASK_CPU3);
+   308					XFsbl_Out32(APU_CONFIG_0, RegValue);
+   309				}
+   310	
+   311				/**
+   312				 *  Enable the clock
+   313				 */
+   314				RegValue = XFsbl_In32(CRF_APB_ACPU_CTRL);
+   315				RegValue |= (CRF_APB_ACPU_CTRL_CLKACT_FULL_MASK |
+   316				             CRF_APB_ACPU_CTRL_CLKACT_HALF_MASK);
+   317				XFsbl_Out32(CRF_APB_ACPU_CTRL, RegValue);
+   318	
+   319				/**
+   320				 * Release reset
+   321				 */
+   322				RegValue = XFsbl_In32(CRF_APB_RST_FPD_APU);
+   323				RegValue &= ~(CRF_APB_RST_FPD_APU_ACPU3_RESET_MASK |
+   324						CRF_APB_RST_FPD_APU_APU_L2_RESET_MASK |
+   325						CRF_APB_RST_FPD_APU_ACPU3_PWRON_RESET_MASK);
+   326	
+   327				XFsbl_Out32(CRF_APB_RST_FPD_APU, RegValue);
+   328	
+   329				break;
+   330	
+   550		RegVal |= XFSBL_EXEC_COMPLETED;
+   551		XFsbl_Out32(PMU_GLOBAL_GLOB_GEN_STORAGE5, RegVal);
+   552	
+   553		XFsbl_Printf(DEBUG_GENERAL,"Exit from FSBL \n\r");
+   554	
+   555		/**
+   556		 * Exit to handoff address
+   557		 * PTRSIZE is used since handoff is in same running cpu
+   558		 * and address is of PTRSIZE
+   559		 */
+   560		XFsbl_Exit((PTRSIZE) HandoffAddress, Flags);
+   561	
+   562		/**
+   563		 * should not reach here
+   564		 */
+   565		return ;
+   566	
+   567	}
+   568	
+   569	
+   570	/****************************************************************************/
+   571	/**
+   572	*
+   573	* @param
+   574	*
+   575	* @return
+   576	*
+   577	* @note
+   578	*
+   579	*
+   580	*****************************************************************************/
+   581	static void XFsbl_UpdateResetVector (u64 HandOffAddress, u32 CpuSettings,
+   582			u32 HandoffType, u32 Vector)
+   583	{
+   584		u32 HandOffAddressLow;
+   585		u32 HandOffAddressHigh;
+   586		u32 LowAddressReg;
+   587		u32 HighAddressReg;
+   588		u32 CpuId;
+   589		u32 RegVal;
+   590		u32 ExecState;
+   591	
+   592		CpuId = CpuSettings & XIH_PH_ATTRB_DEST_CPU_MASK;
+   593		ExecState = CpuSettings & XIH_PH_ATTRB_A53_EXEC_ST_MASK;
+   594	
+   595		/**
+   596		 * Put R5 or A53-32 in Lovec/Hivec
+   597		 */
+   598		if ((CpuId == XIH_PH_ATTRB_DEST_CPU_R5_0)
+   599				|| (CpuId == XIH_PH_ATTRB_DEST_CPU_R5_L)) {
+   600			RegVal = XFsbl_In32(RPU_RPU_0_CFG);
+   601			RegVal &= ~RPU_RPU_0_CFG_VINITHI_MASK;
+   602			RegVal |= (Vector << RPU_RPU_0_CFG_VINITHI_SHIFT);
+   603			XFsbl_Out32(RPU_RPU_0_CFG, RegVal);
+   604		}
+   605	
+   606		else if ((CpuId == XIH_PH_ATTRB_DEST_CPU_R5_1)
+   607				|| (CpuId == XIH_PH_ATTRB_DEST_CPU_R5_L)) {
+   608			RegVal = XFsbl_In32(RPU_RPU_1_CFG);
+   609			RegVal &= ~RPU_RPU_1_CFG_VINITHI_MASK;
+   610			RegVal |= (Vector << RPU_RPU_1_CFG_VINITHI_SHIFT);
+   611			XFsbl_Out32(RPU_RPU_1_CFG, RegVal);
+   612		}
+   613	
+   614		else if ((CpuId == XIH_PH_ATTRB_DEST_CPU_A53_0)
+   615			&& (ExecState == XIH_PH_ATTRB_A53_EXEC_ST_AA32)) {
+   616			RegVal = XFsbl_In32(APU_CONFIG_0);
+   617			RegVal &= ~APU_CONFIG_0_VINITHI_MASK_CPU0;
+   618			RegVal |= (Vector << APU_CONFIG_0_VINITHI_SHIFT_CPU0);
+   619			XFsbl_Out32(APU_CONFIG_0, RegVal);
+   620		}
+   621	
+   622		else if ((CpuId == XIH_PH_ATTRB_DEST_CPU_A53_1)
+   623			&& (ExecState == XIH_PH_ATTRB_A53_EXEC_ST_AA32)) {
+   624			RegVal = XFsbl_In32(APU_CONFIG_0);
+   625			RegVal &= ~APU_CONFIG_0_VINITHI_MASK_CPU1;
+   626			RegVal |= (Vector << APU_CONFIG_0_VINITHI_SHIFT_CPU1);
+   627			XFsbl_Out32(APU_CONFIG_0, RegVal);
+   628		}
+   629	
+   630		else if ((CpuId == XIH_PH_ATTRB_DEST_CPU_A53_2)
+   631				&& (ExecState == XIH_PH_ATTRB_A53_EXEC_ST_AA32)) {
+   632			RegVal = XFsbl_In32(APU_CONFIG_0);
+   633			RegVal &= ~APU_CONFIG_0_VINITHI_MASK_CPU2;
+   634			RegVal |= (Vector << APU_CONFIG_0_VINITHI_SHIFT_CPU2);
+   635			XFsbl_Out32(APU_CONFIG_0, RegVal);
+   636			}
+   637	
+   638		else if ((CpuId == XIH_PH_ATTRB_DEST_CPU_A53_3)
+   639			&& (ExecState == XIH_PH_ATTRB_A53_EXEC_ST_AA32)) {
+   640			RegVal = XFsbl_In32(APU_CONFIG_0);
+   641			RegVal &= ~APU_CONFIG_0_VINITHI_MASK_CPU3;
+   642			RegVal |= (Vector << APU_CONFIG_0_VINITHI_SHIFT_CPU3);
+   643			XFsbl_Out32(APU_CONFIG_0, RegVal);
+   644		}
+   645		else
+   646		{
+   647			/* for MISRA C compliance */
+   648		}
+   649	
+   650		if ((XFsbl_Is32BitCpu(CpuSettings)==FALSE)
+   651				&& (HandoffType != A53_0_32_HANDOFF_TO_A53_0_64))
+   652		{
+   653			/**
+   654			 * for A53 cpu, write 64bit handoff address
+   655			 * to the RVBARADDR in APU
+   656			 */
+   657	
+   658			HandOffAddressLow = (u32 )(HandOffAddress & 0xFFFFFFFFU);
+   659			HandOffAddressHigh = (u32 )((HandOffAddress>>32)
+   660								& 0xFFFFFFFFU);
+   661			switch (CpuId)
+   662			{
+   663				case XIH_PH_ATTRB_DEST_CPU_A53_0:
+   664					LowAddressReg = APU_RVBARADDR0L;
+   665					HighAddressReg = APU_RVBARADDR0H;
+   666					break;
+   667				case XIH_PH_ATTRB_DEST_CPU_A53_1:
+   668					LowAddressReg = APU_RVBARADDR1L;
+   669					HighAddressReg = APU_RVBARADDR1H;
+   670					break;
+   671				case XIH_PH_ATTRB_DEST_CPU_A53_2:
+   672					LowAddressReg = APU_RVBARADDR2L;
+   673					HighAddressReg = APU_RVBARADDR2H;
+   674					break;
+   675				case XIH_PH_ATTRB_DEST_CPU_A53_3:
+   676					LowAddressReg = APU_RVBARADDR3L;
+   677					HighAddressReg = APU_RVBARADDR3H;
+   678					break;
+   679				default:
+   680					/**
+   681					 * error can be triggered here
+   682					 */
+   683					LowAddressReg = 0U;
+   684					HighAddressReg = 0U;
+   685					break;
+   686			}
+   687			XFsbl_Out32(LowAddressReg, HandOffAddressLow);
+   688			XFsbl_Out32(HighAddressReg, HandOffAddressHigh);
+   689		}
+   690	
+   691		return;
+   692	}
+   693	
+   694	/*****************************************************************************/
+   695	/**
+   696	 * This function handoff the images to the respective cpu's
+   697	 *
+   698	 * @param	FsblInstancePtr is pointer to the XFsbl Instance
+   699	 *
+   700	 * @param	PartitionNum is the partition number of the image
+   701	 *
+   702	 * @param	EarlyHandoff is flag to indicate if called for early handoff or not
+   703	 *
+   704	 * @return	returns the error codes described in xfsbl_error.h on any error
+   705	 *
+   706	 * @note	This function should not return in case of success
+   707	 *
+   708	 *****************************************************************************/
+   709	
+   710	u32 XFsbl_Handoff (const XFsblPs * FsblInstancePtr, u32 PartitionNum, u32 EarlyHandoff)
+   711	{
+   712		u32 Status;
+   713		u32 CpuIndex;
+   714		u32 CpuId;
+   715		u32 ExecState;
+   716		u32 CpuSettings;
+   717		u64 HandoffAddress;
+   718		u64 RunningCpuHandoffAddress=0U;
+   719		u32 RunningCpuExecState=0U;
+   720		u32 RunningCpuHandoffAddressPresent=FALSE;
+   721		u32 CpuNeedsEarlyHandoff;
+   722		const XFsblPs_PartitionHeader * PartitionHeader;
+   723		static u32 CpuIndexEarlyHandoff = 0;
+   724	
+   725		/* Restoring the SD card detection signal */
+   726		XFsbl_Out32(IOU_SLCR_SD_CDN_CTRL, SdCdnRegVal);
+   727		PartitionHeader =
+   728				&FsblInstancePtr->ImageHeader.PartitionHeader[PartitionNum];
+   729	
+   730		if (FsblInstancePtr->ResetReason == XFSBL_PS_ONLY_RESET)
+   731			{
+   732			/**Remove PS-PL isolation to allow u-boot and linux to access PL*/
+   733				(void)psu_ps_pl_isolation_removal_data();
+   734				(void)psu_ps_pl_reset_config_data();
+   735			}
+   736	
+   737		/**
+   738		 * Flush the L1 data cache and L2 cache, Disable Data Cache
+   739		*/
+   740		Xil_DCacheDisable();
+   741	
+   742		if (XFSBL_MASTER_ONLY_RESET != FsblInstancePtr->ResetReason) {
+   743	
+   744		Status = XFsbl_PmInit();
+   745		if (Status != XFSBL_SUCCESS) {
+   746			Status = XFSBL_ERROR_PM_INIT;
+   747			XFsbl_Printf(DEBUG_GENERAL, "XFSBL_ERROR_PM_INIT\r\n");
+   748			goto END;
+   749		}
+   750	
+   751	
+   752		Status = XFsbl_ProtectionConfig();
+   753		if (Status != XFSBL_SUCCESS) {
+   754			goto END;
+   755		}
+   756	
+   757		XFsbl_Printf(DEBUG_GENERAL, "Protection configuration applied\r\n");
+   758	
+   759		}
+   760	
+   761		/**
+   762		 * if JTAG bootmode, be in while loop as of now
+   763		 * Check if Process can be parked in HALT state
+   764		 */
+   765		if (FsblInstancePtr->PrimaryBootDevice ==
+   766				XFSBL_JTAG_BOOT_MODE)
+   767		{
+   768			Status = XFsbl_PLCheckForDone();
+   769			if(Status==XFSBL_SUCCESS)
+   770			{
+   771				/**Remove PS-PL isolation as bitstream is loaded*/
+   772				(void)psu_ps_pl_isolation_removal_data();
+   773				(void)psu_ps_pl_reset_config_data();
+   774			}
+   775			/**
+   776			 * Mark Error status with Fsbl completed
+   777			 */
+   778			XFsbl_Out32(XFSBL_ERROR_STATUS_REGISTER_OFFSET,
+   779			    XFSBL_COMPLETED);
+   780	
+   781			if (XGet_Zynq_UltraMp_Platform_info() == (u32)(0X2U))
+   782			{
+   783				XFsbl_Printf(DEBUG_GENERAL,"Exit from FSBL. \n\r");
+   784	#ifdef ARMA53_64
+   785				XFsbl_Out32(0xFFFC0000U, 0x14000000U);
+   786	#else
+   787				XFsbl_Out32(0xFFFC0000U, 0xEAFFFFFEU);
+   788	#endif
+   789				XFsbl_Exit(0xFFFC0000U, XFSBL_HANDOFFEXIT);
+   790			} else {
+   791				/**
+   792				 * Exit from FSBL
+   793				 */
+   794				XFsbl_HandoffExit(0U, XFSBL_NO_HANDOFFEXIT);
+   795			}
+   796	
+   797		}
+   798	
+   799		/**
+   800		 * if XIP image present
+   801		 * Put QSPI in linear mode
+   802		 */
+   803	
+   804		/**
+   805		 * FSBL hook before Handoff
+   806		 */
+   807		Status = XFsbl_HookBeforeHandoff(EarlyHandoff);
+   808		if (Status != XFSBL_SUCCESS)
+   809		{
+   810			Status = XFSBL_ERROR_HOOK_BEFORE_HANDOFF;
+   811			XFsbl_Printf(DEBUG_GENERAL,
+   812					"XFSBL_ERROR_HOOK_BEFORE_HANDOFF\r\n");
+   813			goto END;
+   814		}
+   815	
+   816		/**
+   817		 * get cpu out of reset
+   818		 *
+   819		 */
+   820	
+   821		/**
+   822		 * If we are doing early handoff, remember the CPU index to avoid
+   823		 * traversing through for the next early handoff
+   824		 */
+   825		if (EarlyHandoff == TRUE) {
+   826			CpuIndex = CpuIndexEarlyHandoff;
+   827		}
+   828		else
+   829		{
+   830			CpuIndex = 0U;
+   831		}
+   832	
+   833		while (CpuIndex < FsblInstancePtr->HandoffCpuNo)
+   834		{
+   835			CpuSettings =
+   836					FsblInstancePtr->HandoffValues[CpuIndex].CpuSettings;
+   837	
+   838			CpuId = CpuSettings & XIH_PH_ATTRB_DEST_CPU_MASK;
+   839			ExecState = CpuSettings & XIH_PH_ATTRB_A53_EXEC_ST_MASK;
+   840	
+   841			/**
+   842			 * Run the code in this loop in the below conditions:
+   843			 * - This function called for early handoff and CPU needs early handoff
+   844			 * - This function called for regular handoff and CPU doesn't need early
+   845			 *   handoff
+   846			 * - This function called for regular handoff and CPU needs early
+   847			 *   handoff AND if handoff is to running CPU
+   848			 *
+   849			 */
+   850			CpuNeedsEarlyHandoff = XFsbl_CheckEarlyHandoffCpu(CpuId);
+   851			if (((CpuNeedsEarlyHandoff == TRUE) && (EarlyHandoff == TRUE)) ||
+   852					((EarlyHandoff != TRUE) && (CpuNeedsEarlyHandoff != TRUE)) ||
+   853					(((EarlyHandoff != TRUE) && (CpuNeedsEarlyHandoff == TRUE)) &&
+   854							(CpuId == FsblInstancePtr->ProcessorID))) {
+   855	
+   856				/**
+   857				 * Check if handoff address is present
+   858				 */
+   859				if (CpuId != FsblInstancePtr->ProcessorID)
+   860				{
+   861	
+   862					/* Check if handoff CPU is supported */
+   863					Status = XFsbl_CheckSupportedCpu(CpuId);
+   864					if (XFSBL_SUCCESS != Status)
+   865					{
+   866						XFsbl_Printf(DEBUG_GENERAL,
+   867								"XFSBL_ERROR_UNAVAILABLE_CPU\n\r");
+   868						Status = XFSBL_ERROR_UNAVAILABLE_CPU;
+   869						goto END;
+   870					}
+   871	
+   872					/**
+   873					 * Check for power status of the cpu
+   874					 * Update the IVT
+   875					 * Take cpu out of reset
+   876					 */
+   877					Status = XFsbl_SetCpuPwrSettings(
+   878							CpuSettings, XFSBL_CPU_POWER_UP);
+   879					if (XFSBL_SUCCESS != Status)
+   880					{
+   881						XFsbl_Printf(DEBUG_GENERAL,"Power Up "
+   882								"Cpu 0x%0lx failed \n\r", CpuId);
+   883	
+   884						XFsbl_Printf(DEBUG_GENERAL,
+   885								"XFSBL_ERROR_PWR_UP_CPU\n\r");
+   886						Status = XFSBL_ERROR_PWR_UP_CPU;
+   887						goto END;
+   888					}
+   889	
+   890					/**
+   891					 * Read the handoff address from structure
+   892					 */
+   893					HandoffAddress = (u64 )
+   894						FsblInstancePtr->HandoffValues[CpuIndex].HandoffAddress;
+   895	
+   896					/**
+   897					 * Update the handoff address at reset vector address
+   898					 */
+   899					XFsbl_UpdateResetVector(HandoffAddress, CpuSettings,
+   900							OTHER_CPU_HANDOFF,
+
+STANDALONE_FILES
+lib/bsp/standalone/src/arm/ARMv8/32bit/gcc/asm_vectors.S
+lib/bsp/standalone/src/arm/ARMv8/64bit/armclang/asm_vectors.S
+lib/bsp/standalone/src/arm/ARMv8/64bit/gcc/asm_vectors.S
+lib/bsp/standalone/src/arm/cortexa9/gcc/asm_vectors.S
+lib/bsp/standalone/src/arm/cortexr5/armclang/asm_vectors.S
+lib/bsp/standalone/src/arm/cortexr5/gcc/asm_vectors.S
+
+ATF_SECONDARY_BOOT
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/include/zynqmp_def.h:79:#define APU_RVBAR_L_0		(APU_BASE + 0x40)
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/include/zynqmp_def.h:80:#define APU_RVBAR_H_0		(APU_BASE + 0x44)
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:11:	.globl	plat_secondary_cold_boot_setup
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:12:	.globl	plat_is_my_cpu_primary
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:18:	 * void plat_secondary_cold_boot_setup (void);
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:21:	 * needed for a secondary cpu after a cold reset e.g
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:28:func plat_secondary_cold_boot_setup
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:44:endfunc plat_secondary_cold_boot_setup
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:46:func plat_is_my_cpu_primary
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/plat/xilinx/zynqmp/aarch64/zynqmp_helpers.S:52:endfunc plat_is_my_cpu_primary
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/bl31/aarch64/bl31_entrypoint.S:59:		_secondary_cold_boot=0				\
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/bl31/aarch64/bl31_entrypoint.S:74:		_secondary_cold_boot=!COLD_BOOT_SINGLE_CPU	\
+/home/wang/petalinux/ALIENTEK-MP/build/tmp/work/aarch64-xilinx-linux/arm-trusted-firmware/2.0-xilinx-v2020.2+gitAUTOINC+e6eea88b14-r0/git/bl31/aarch64/bl31_entrypoint.S:174:		_secondary_cold_boot=0				\
+
+UBOOT_LAYOUT
+fdt_high=10000000
+fdt_addr_r=0x40000000
+kernel_addr_r=0x18000000
+ramdisk_addr_r=0x02100000
+
+XSCT_TOOLS
+-rwxr-xr-x 1 wang wang 7939 11月  9  2020 /home/wang/tools/petalinux/2020.2/tools/xsct/bin/xsct
+-rwxr-xr-x 1 wang wang  169 10月 28  2020 /home/wang/tools/petalinux/2020.2/tools/xsct/gnu/aarch64/lin/aarch64-none/bin/aarch64-none-elf-gcc
+
+STANDALONE_BOOT
+   135		mov      x20, #0
+   136		mov      x21, #0
+   137		mov      x22, #0
+   138		mov      x23, #0
+   139		mov      x24, #0
+   140		mov      x25, #0
+   141		mov      x26, #0
+   142		mov      x27, #0
+   143		mov      x28, #0
+   144		mov      x29, #0
+   145		mov      x30, #0
+   146	#if 0 //don't put other a53 cpus in wfi
+   147	   //Which core am I
+   148	   // ----------------
+   149		mrs      x0, MPIDR_EL1
+   150		and      x0, x0, #0xFF                        //Mask off to leave Aff0
+   151		cbz      x0, OKToRun                          //If core 0, run the primary init code
+   152	EndlessLoop0:
+   153		wfi
+   154		b        EndlessLoop0
+   155	#endif
+   156	OKToRun:
+   157	
+   158		mrs	x0, currentEL
+   159		cmp	x0, #0xC
+   160		beq	InitEL3
+   161	
+   162		cmp	x0, #0x4
+   163		beq	InitEL1
+   164	
+   165		b 	error			// go to error if current exception level is neither EL3 nor EL1
+   166	InitEL3:
+   167	.if (EL3 == 1)
+   168		/*Set vector table base address*/
+   169		ldr	x1, =vector_base
+   170		msr	VBAR_EL3,x1
+   171	
+   172		/* Set reset vector address */
+   173		/* Get the cpu ID */
+   174		mrs  x0, MPIDR_EL1
+   175		and  x0, x0, #0xFF
+   176		mov  w0, w0
+   177		ldr	 w2, =rvbar_base
+   178		/* calculate the rvbar base address for particular CPU core */
+   179		mov	 w3, #0x8
+   180		mul	 w0, w0, w3
+   220		 *  Set ENDCCASCI bit in CPUACTLR_EL1 register, to execute data
+   221		 *  cache clean operations as data cache clean and invalidate
+   222		 *
+   223		 */
+   224	        orr     x0, x0, #(1 << 44)      //; Set ENDCCASCI bit
+   225	#endif
+   226		msr	S3_1_C15_C2_0, x0 	//CPUACTLR_EL1
+   227	
+   228		/* program the counter frequency */
+   229		ldr	x0,=counterfreq
+   230		msr	CNTFRQ_EL0, x0
+   231	
+   232		/*Enable hardware coherency between cores*/
+   233		mrs      x0, S3_1_c15_c2_1  	//Read EL1 CPU Extended Control Register
+   234		orr      x0, x0, #(1 << 6)  	//Set the SMPEN bit
+   235		msr      S3_1_c15_c2_1, x0  	//Write EL1 CPU Extended Control Register
+   236		isb
+   237	
+   238		tlbi 	ALLE3
+   239		ic      IALLU                  	//; Invalidate I cache to PoU
+   240		bl 	invalidate_dcaches
+   241		dsb	 sy
+   242		isb
+   243	
+   244		ldr      x1, =L0Table 		//; Get address of level 0 for TTBR0_EL3
+   245		msr      TTBR0_EL3, x1		//; Set TTBR0_EL3
+   395		b 	error			// present exception level and selected exception level mismatch
+   396	.endif
+   397	
+   398	error: 	b	error
+   399	
+   400	
+   401	invalidate_dcaches:
+   402	
+   403		dmb     ISH
+   404		mrs     x0, CLIDR_EL1          //; x0 = CLIDR
+   405		ubfx    w2, w0, #24, #3        //; w2 = CLIDR.LoC
+   406		cmp     w2, #0                 //; LoC is 0?
+   407		b.eq    invalidateCaches_end   //; No cleaning required and enable MMU
+   408		mov     w1, #0                 //; w1 = level iterator
+   409	
+   410	invalidateCaches_flush_level:
+   411		add     w3, w1, w1, lsl #1     //; w3 = w1 * 3 (right-shift for cache type)
+   412		lsr     w3, w0, w3             //; w3 = w0 >> w3
+   413		ubfx    w3, w3, #0, #3         //; w3 = cache type of this level
+   414		cmp     w3, #2                 //; No cache at this level?
+   415		b.lt    invalidateCaches_next_level
+   416	
+   417		lsl     w4, w1, #1
+   418		msr     CSSELR_EL1, x4         //; Select current cache level in CSSELR
+   419		isb                            //; ISB required to reflect new CSIDR
+   420		mrs     x4, CCSIDR_EL1         //; w4 = CSIDR
+   421	
+   422		ubfx    w3, w4, #0, #3
+   423		add    	w3, w3, #2             //; w3 = log2(line size)
+   424		ubfx    w5, w4, #13, #15
+   425		ubfx    w4, w4, #3, #10        //; w4 = Way number
+   426		clz     w6, w4                 //; w6 = 32 - log2(number of ways)
+   427	
+   428	invalidateCaches_flush_set:
+   429		mov     w8, w4                 //; w8 = Way number
+   430	invalidateCaches_flush_way:
+   431		lsl     w7, w1, #1             //; Fill level field
+   432		lsl     w9, w5, w3
+   433		orr     w7, w7, w9             //; Fill index field
+   434		lsl     w9, w8, w6
+   435		orr     w7, w7, w9             //; Fill way field
+   436		dc      CISW, x7               //; Invalidate by set/way to point of coherency
+   437		subs    w8, w8, #1             //; Decrement way
+   438		b.ge    invalidateCaches_flush_way
+   439		subs    w5, w5, #1             //; Descrement set
+   440		b.ge    invalidateCaches_flush_set
+   441	
+   442	invalidateCaches_next_level:
+   443		add     w1, w1, #1             //; Next level
+   444		cmp     w2, w1
+   445		b.gt    invalidateCaches_flush_level
+   446	
+   447	invalidateCaches_end:
+   448		ret
+   449	
+   450	.end
+   451	/**
+   452	* @} End of "addtogroup a53_64_boot_code".
+   453	*/
+
+ATF_POWER
+/*
+ * Copyright (c) 2013-2019, ARM Limited and Contributors. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include <asm_macros.S>
+#include <drivers/arm/gicv2.h>
+#include <platform_def.h>
+
+	.globl	plat_secondary_cold_boot_setup
+	.globl	plat_is_my_cpu_primary
+	.globl	zynqmp_calc_core_pos
+	.globl	plat_my_core_pos
+	.globl	platform_mem_init
+
+	/* -----------------------------------------------------
+	 * void plat_secondary_cold_boot_setup (void);
+	 *
+	 * This function performs any platform specific actions
+	 * needed for a secondary cpu after a cold reset e.g
+	 * mark the cpu's presence, mechanism to place it in a
+	 * holding pen etc.
+	 * TODO: Should we read the PSYS register to make sure
+	 * that the request has gone through.
+	 * -----------------------------------------------------
+	 */
+func plat_secondary_cold_boot_setup
+	mrs	x0, mpidr_el1
+
+	/* Deactivate the gic cpu interface */
+	ldr	x1, =BASE_GICC_BASE
+	mov	w0, #(IRQ_BYP_DIS_GRP1 | FIQ_BYP_DIS_GRP1)
+	orr	w0, w0, #(IRQ_BYP_DIS_GRP0 | FIQ_BYP_DIS_GRP0)
+	str	w0, [x1, #GICC_CTLR]
+
+	/*
+	 * There is no sane reason to come out of this wfi. This
+	 * cpu will be powered on and reset by the cpu_on pm api
+	 */
+	dsb	sy
+1:
+	no_ret	plat_panic_handler
+endfunc plat_secondary_cold_boot_setup
+
+func plat_is_my_cpu_primary
+	mov	x9, x30
+	bl	plat_my_core_pos
+	cmp	x0, #ZYNQMP_PRIMARY_CPU
+	cset	x0, eq
+	ret	x9
+endfunc plat_is_my_cpu_primary
+
+	/* -----------------------------------------------------
+	 *  unsigned int plat_my_core_pos(void)
+	 *  This function uses the zynqmp_calc_core_pos()
+	 *  definition to get the index of the calling CPU.
+	 * -----------------------------------------------------
+	 */
+func plat_my_core_pos
+	mrs	x0, mpidr_el1
+	b	zynqmp_calc_core_pos
+endfunc plat_my_core_pos
+
+	/* -----------------------------------------------------
+	 *  unsigned int zynqmp_calc_core_pos(u_register_t mpidr)
+	 *  Helper function to calculate the core position.
+	 *  With this function: CorePos = (ClusterId * 4) +
+	 *  				  CoreId
+	 * -----------------------------------------------------
+	 */
+func zynqmp_calc_core_pos
+	and	x1, x0, #MPIDR_CPU_MASK
+	and	x0, x0, #MPIDR_CLUSTER_MASK
+	add	x0, x1, x0, LSR #6
+	ret
+endfunc zynqmp_calc_core_pos
+
+	/* ---------------------------------------------------------------------
+	 * We don't need to carry out any memory initialization on ARM
+	 * platforms. The Secure RAM is accessible straight away.
+	 * ---------------------------------------------------------------------
+	 */
+func platform_mem_init
+	ret
+endfunc platform_mem_init
+72:	pm_self_suspend(proc->node_id, MAX_LATENCY, PM_STATE_CPU_IDLE, 0);
+75:static void zynqmp_pwr_domain_suspend(const psci_power_state_t *target_state)
+88:	/* Send request to PMU to suspend this core */
+89:	pm_self_suspend(proc->node_id, MAX_LATENCY, state, zynqmp_sec_entry);
+107:static void zynqmp_pwr_domain_suspend_finish(const psci_power_state_t *target_state)
+190:void zynqmp_get_sys_suspend_power_state(psci_power_state_t *req_state)
+203:	.pwr_domain_suspend		= zynqmp_pwr_domain_suspend,
+205:	.pwr_domain_suspend_finish	= zynqmp_pwr_domain_suspend_finish,
+210:	.get_sys_suspend_power_state	= zynqmp_get_sys_suspend_power_state,
+
+BOOT_SCRIPT
+Boot script
+# This is a boot script for U-Boot
+# Generate boot.scr:
+# mkimage -c none -A arm -T script -d boot.cmd.default boot.scr
+################
+for boot_target in ${boot_targets};
+	if test "${boot_target}" = "jtag" ; then
+		booti 0x00200000 0x04000000 0x00100000
+		exit;
+	if test "${boot_target}" = "mmc0" || test "${boot_target}" = "mmc1" ; then
+		if test -e ${devtype} ${devnum}:${distro_bootpart} /image.ub; then
+			fatload ${devtype} ${devnum}:${distro_bootpart} 0x10000000 image.ub;
+			bootm 0x10000000;
+			exit;
+                fi
+		if test -e ${devtype} ${devnum}:${distro_bootpart} /Image; then
+			fatload ${devtype} ${devnum}:${distro_bootpart} 0x00200000 Image;;
+		fi
+		if test -e ${devtype} ${devnum}:${distro_bootpart} /system.dtb; then
+			fatload ${devtype} ${devnum}:${distro_bootpart} 0x00100000 system.dtb;
+		fi
+		if test -e ${devtype} ${devnum}:${distro_bootpart} /rootfs.cpio.gz.u-boot; then
+			fatload ${devtype} ${devnum}:${distro_bootpart} 0x04000000 rootfs.cpio.gz.u-boot;
+			booti 0x00200000 0x04000000 0x00100000
+			exit;
+		fi
+		booti 0x00200000 - 0x00100000
+		exit;
+	if test "${boot_target}" = "xspi0" || test "${boot_target}" = "qspi" || test "${boot_target}" = "qspi0"; then
+		sf probe 0 0 0;
+		if test "image.ub" = "image.ub"; then
+			sf read 0x10000000 0xF00000 0x6400000;
+			bootm 0x10000000;
+			exit;
+		fi
+		if test "image.ub" = "Image"; then
+			sf read 0x00200000 0xF00000 0x1D00000;
+			sf read 0x04000000 0x4000000 0x4000000
+			booti 0x00200000 0x04000000 0x00100000
+			exit;
+		fi
+		exit;
+	if test "${boot_target}" = "nand" || test "${boot_target}" = "nand0"; then
+		nand info
+		if test "image.ub" = "image.ub"; then
+			nand read 0x10000000 0x4100000 0x6400000;
+			bootm 0x10000000;
+			exit;
+		fi
+		if test "image.ub" = "Image"; then
+			nand read 0x00200000 0x4100000 0x3200000;
+			nand read 0x04000000 0x7800000  0x3200000;
+			booti 0x00200000 0x04000000 0x00100000
+			exit;
+		fi
+done
+
+UBOOT_MEMORY_CONFIG
+159:CONFIG_SYS_TEXT_BASE=0x8000000

@@ -1,0 +1,21 @@
+chmod 755 /tmp/amp-r004/g5_test /tmp/amp-r004/g5_load /tmp/ammp-r004/g5_snapshot; sha256sum /tmp/amp-r004/g5_test /tmp/amp-r004/g5_load /tmp/aamp-r004/g5_snapshot /tmp/amp-r004/run-phase.sh; /tmp/amp-r004/g5_snapshot; for ccpu in 0 1 2; do /tmp/amp-r004/g5_load cpu "$cpu" 2 && /tmp/amp-r004/g5_load mem  "$cpu" 2 || break; done; printf "LOAD_SMOKE_RC=%s\n" $?; /tmp/amp-r004/g5_test fforward 48 && /tmp/amp-r004/g5_test reverse 48 && /tmp/amp-r004/g5_test cross 48;; printf "COMM_SMOKE_RC=%s\n" $?; /tmp/amp-r004/g5_snapshot; printf '\n__RT_STEP__DONE__\n'
+4e879ae7031aef10460bfd789385d50b6f2ce2e22ff94c25f46daf4ca6da6e31  /tmp/amp-r004/g5_test
+ad40dbaed115cd0886518c781f2e1d1ed6522b3cd4c373f747ea9c5f966949fe  /tmp/amp-r004/g5_load
+74fa215440a4fa33a4e57d3bfc9205ea23d49dfcb4f43a2aa9b6bee7db2c0680  /tmp/amp-r004/g5_snapshot
+7383d80d2fc585950b7596b7231b6e3442a9f7b2209d7b3ccfd6ede2faf31eb3  /tmp/amp-r004/run-phase.sh
+{"linux_tx":3318,"linux_rx":3208,"core3_rx":3318,"core3_tx":3208,"bad_rx":70,"timeouts":150,"stale":45,"aborted":5,"core3_bad":110,"peer_timeouts":10,"busy":12,"resets":10,"heartbeat":5976,"host_heartbeat":5535,"host_lost":10,"host_restored":10,"peer_lost":10,"peer_restored":10,"boot_token":12383694800,"service_epoch":12383694810,"host_lost_active":0}
+mode=cpu cpu=0 policy=SCHED_OTHER seconds=2.000 iterations=3981 sink=863670785875749857 stopped=0 bytes_allocated=0
+mode=mem cpu=0 policy=SCHED_OTHER seconds=2.034 iterations=9 sink=36 stopped=0 bytes_allocated=268435456
+mode=cpu cpu=1 policy=SCHED_OTHER seconds=2.000 iterations=3981 sink=863670785875749857 stopped=0 bytes_allocated=0
+mode=mem cpu=1 policy=SCHED_OTHER seconds=2.057 iterations=9 sink=36 stopped=0 bytes_allocated=268435456
+mode=cpu cpu=2 policy=SCHED_OTHER seconds=2.000 iterations=3983 sink=13667993046079808161 stopped=0 bytes_allocated=0
+mode=mem cpu=2 policy=SCHED_OTHER seconds=2.054 iterations=9 sink=36 stopped=0 bytes_allocated=268435456
+LOAD_SMOKE_RC=0
+{"mode":"forward","passed":48,"errors":0,"elapsed_ns":480257753,"missed_release":0,"session":737358684110,"epoch":12383694810,"min_us":241,"mean_us":444,"p50_us":369,"p95_us":855,"p99_us":855,"p999_us":855,"max_us":855}
+{"mode":"reverse","passed":48,"errors":0,"elapsed_ns":480252953,"missed_release":0,"session":737841926953,"epoch":12383694810,"min_us":484,"mean_us":752,"p50_us":618,"p95_us":1348,"p99_us":1348,"p999_us":1348,"max_us":1348}
+{"mode":"cross","passed":48,"errors":0,"elapsed_ns":480247143,"missed_release":0,"session":738325322628,"epoch":12383694810,"min_us":400,"mean_us":891,"p50_us":739,"p95_us":1709,"p99_us":1709,"p999_us":1709,"max_us":1709}
+COMM_SMOKE_RC=0
+{"linux_tx":3561,"linux_rx":3451,"core3_rx":3561,"core3_tx":3451,"bad_rx":70,"timeouts":150,"stale":45,"aborted":5,"core3_bad":110,"peer_timeouts":10,"busy":12,"resets":10,"heartbeat":6127,"host_heartbeat":5675,"host_lost":10,"host_restored":10,"peer_lost":10,"peer_restored":10,"boot_token":12383694800,"service_epoch":12383694810,"host_lost_active":0}
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

@@ -1,0 +1,1 @@
+printf "__IDLE_RESULTS_BEGIN__\n"; for mode in forward reverse cross; do cat /tmp/amp-g5/idle/$mode.json; done; cat /tmp/amp-g5/idle/snapshot-before.json /tmp/amp-g5/idle/snapshot-after-cross.json; printf "__IDLE_RESULTS_END__\n"; ( sh /tmp/amp-r004/run-phase.sh cpu > /tmp/amp-g5/cpu-runner.txt 2>&1 ) < /dev/null > /dev/null 2>&1 & printf "G5_CPU_PID=%s\n" $!

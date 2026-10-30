@@ -1,0 +1,22 @@
+ip -br addr; ip route; cat /proc/mounts | grep -E 'mmc|sd|/run/media|/mnt'; ls -l /dev/mmcblk*; ls /run/media /mnt 2>/dev/null; printf '\n__RT_STEP_DONE___\n'
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+sit0@NONE        DOWN           
+can0             DOWN           
+eth0             DOWN           
+eth1             DOWN           
+/dev/mmcblk0p1 /media/sd-mmcblk0p1 vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+/dev/mmcblk0p2 /media/sd-mmcblk0p2 ext4 rw,relatime 0 0
+/dev/mmcblk1p1 /media/sd-mmcblk1p1 vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+brw-rw----    1 root     disk      179,   8 Oct 24 18:25 /dev/mmcblk0
+brw-rw----    1 root     disk      179,  16 Oct 24 18:25 /dev/mmcblk0boot0
+brw-rw----    1 root     disk      179,  24 Oct 24 18:25 /dev/mmcblk0boot1
+brw-rw----    1 root     disk      179,   9 Oct 24 18:25 /dev/mmcblk0p1
+brw-rw----    1 root     disk      179,  10 Oct 24 18:25 /dev/mmcblk0p2
+crw-------    1 root     root      244,   0 Oct 24 18:25 /dev/mmcblk0rpmb
+brw-rw----    1 root     disk      179,   0 Oct 24 18:25 /dev/mmcblk1
+brw-rw----    1 root     disk      179,   1 Oct 24 18:25 /dev/mmcblk1p1
+/mnt:
+sd-mmcblk0p1  sd-mmcblk0p2  sd-mmcblk1p1
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

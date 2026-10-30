@@ -1,0 +1,8 @@
+uname -r; cat /sys/devices/system/cpu/online; lsmod | grep p55_core3; test ! -e /sys/bus/platform/devices/core3-heartbeat/status; printf "NO_OOLD_DRIVER_RC=%s\n" $?; cat /proc/uptime; printf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b
+0-2
+NO_OLD_DRIVER_RC=0
+47.51 132.06
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

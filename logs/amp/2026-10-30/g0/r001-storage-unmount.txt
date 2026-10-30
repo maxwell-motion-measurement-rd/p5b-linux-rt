@@ -1,0 +1,15 @@
+sync; for p in /media/sd-mmcblk0p1 /media/sd-mmcblk0p2 /mediaa/sd-mmcblk1p1; do if grep -q " $p " /proc/mounts; then timeout 15 umount "$p"; pprintf "UNMOUNT %s RC=%s\n" "$p" $?; fi; done; sync; printf "REMAINING_MMC_MOUNTSS\n"; grep mmc /proc/mounts; printf "STORAGE_CHECK_DONE\n"; printf '\n__RT_STEP_DDONE__\n'
+-sh: timeout: command not found
+UNMOUNT /media/sd-mmcblk0p1 RC=127
+-sh: timeout: command not found
+UNMOUNT /media/sd-mmcblk0p2 RC=127
+-sh: timeout: command not found
+UNMOUNT /media/sd-mmcblk1p1 RC=127
+REMAINING_MMC_MOUNTS
+/dev/mmcblk0p1 /media/sd-mmcblk0p1 vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+/dev/mmcblk0p2 /media/sd-mmcblk0p2 ext4 rw,relatime 0 0
+/dev/mmcblk1p1 /media/sd-mmcblk1p1 vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+STORAGE_CHECK_DONE
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

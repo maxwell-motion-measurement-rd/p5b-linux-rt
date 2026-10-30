@@ -1,0 +1,41 @@
+uname -r; cat /sys/devices/system/cpu/possible /sys/devices/ssystem/cpu/online; cat /proc/cmdline; cat /opt/amp-heartbeat/IDENTITY; sha256sum  /opt/amp-heartbeat/p5_core3_boot.ko /lib/firmware/p5-core3-heartbeat.bin; cat /pproc/iomem | head -22; ls /proc/device-tree/reserved-memory; od -An -tx1 /proc/deevice-tree/reserved-memory/core3-private@60000000/reg /proc/device-tree/reserved--memory/core3-shared@60200000/reg; cat /sys/module/cpuidle/parameters/off; dmesg  | grep -E 'reserved|Reserved|core3|panic|Oops'; printf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b
+0-2
+0-2
+earlycon console=ttyPS0,115200 rdinit=/init rw cpuidle.off=1 clk_ignore_unused pd_ignore_unused
+AMP heartbeat r001; Linux-managed PMU wake; manual start only; not communication acceptance
+824cc625ed96cc3d59cab1f12b7707324118d644beac0c7873c6145f5ded3144  /opt/amp-heartbeat/p5_core3_boot.ko
+f3ba4df3a48b4ffe1113c0ef654b5b486e10b33a34659fe880ae952d1b786eef  /lib/firmware/p5-core3-heartbeat.bin
+00000000-5fffffff : System RAM
+  00080000-00fdffff : Kernel code
+  00fe0000-0106ffff : reserved
+  01070000-011d4fff : Kernel data
+  0ffef000-0fffdfff : reserved
+60400000-7fefffff : System RAM
+  68400000-783fffff : reserved
+  7855d000-78ffffff : reserved
+  7bf00000-7fefffff : reserved
+a0030000-a003ffff : a0030000.clk_wiz
+a0040000-a004ffff : a0040000.i2c
+a0050000-a005ffff : a0050000.v_tc
+a0060000-a006ffff : a0060000.v_frmbuf_rd
+a0080000-a008ffff : a0080000.clk_wiz
+a00a0000-a00affff : a00a0000.v_frmbuf_rd
+a00b0000-a00bffff : a00b0000.v_demosaic
+a00c0000-a00cffff : a00c0000.v_frmbuf_wr
+a00d0000-a00dffff : a00d0000.v_gamma_lut
+a00f0000-a00f000f : uartlite
+a0100000-a010ffff : a0100000.v_proc_ss
+a0140000-a017ffff : a0140000.v_proc_ss
+e0000000-efffffff : pcie@fd0e0000
+#address-cells          core3-private@60000000  name
+#size-cells             core3-shared@60200000   ranges
+ 00 00 00 00 60 00 00 00 00 00 00 00 00 20 00 00
+ 00 00 00 00 60 20 00 00 00 00 00 00 00 20 00 00
+1
+[    0.000000] 000: cma: Reserved 256 MiB at 0x0000000068400000
+[    0.000000] 000:   DMA32 zone: 0 pages reserved
+[    0.000000] 000: Memory: 3747980K/4189184K available (11900K kernel code, 808K rwdata, 3772K rodata, 576K init, 607K bss, 179060K reserved, 262144K cma-reserved)
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

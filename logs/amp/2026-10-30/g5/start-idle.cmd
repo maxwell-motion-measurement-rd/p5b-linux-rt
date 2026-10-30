@@ -1,0 +1,1 @@
+mkdir -p /tmp/amp-g5; ( sh /tmp/amp-r004/run-phase.sh idle > /tmp/amp-g5/idle-runner.txt 2>&1 ) < /dev/null > /dev/null 2>&1 & printf "G5_IDLE_PID=%s\n" $!

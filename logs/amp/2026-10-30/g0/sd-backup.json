@@ -1,0 +1,14 @@
+{
+  "status": "backup_verified",
+  "target": "F:\\",
+  "volume_bytes": 31941722112,
+  "format": "FAT32",
+  "backup_directory": "C:\\Users\\13931\\Documents\\ChatGPT\\maxwell_implementation_dual axis drive and control\\work\\artifacts\\amp-r001\\sd-backup-20261030-095809",
+  "files_sha256": {
+    "BOOT.BIN": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+    "boot.scr": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229",
+    "image.ub": "c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943"
+  },
+  "card_written": false,
+  "time_shanghai": "2026-10-30T09:58:10.1751143+08:00"
+}

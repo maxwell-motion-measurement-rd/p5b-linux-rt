@@ -1,0 +1,1 @@
+dmesg > /tmp/amp-g5/recovery/dmesg-after.txt; cmp /tmp/amp-g5/mem/dmesg-after.txt /tmp/amp-g5/recovery/dmesg-after.txt; printf "RECOVERY_DMESG_CMP_RC=%s\n" $?; cat /sys/bus/platform/devices/core3-heartbeat/status; tar -czf /tmp/amp-g5-evidence.tar.gz -C /tmp amp-g5; printf "ARCHIVE_RC=%s\n" $?; wc -c /tmp/amp-g5-evidence.tar.gz; sha256sum /tmp/amp-g5-evidence.tar.gz

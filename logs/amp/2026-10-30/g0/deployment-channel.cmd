@@ -1,0 +1,1 @@
+ip -br addr; ip route; cat /proc/mounts | grep -E 'mmc|sd|/run/media|/mnt'; ls -l /dev/mmcblk*; ls /run/media /mnt 2>/dev/null

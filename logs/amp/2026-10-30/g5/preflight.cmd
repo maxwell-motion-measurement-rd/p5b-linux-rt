@@ -1,0 +1,1 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; cat /proc/meminfo; cat /proc/loadavg; command -v gzip; command -v base64; command -v taskset; command -v stress-ng; df -k /tmp; cat /proc/uptime

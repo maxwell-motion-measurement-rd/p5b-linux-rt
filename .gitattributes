@@ -17,3 +17,8 @@ logs/board/**/*.txt -text
 logs/rt-risk/** -text
 
 logs/rt-diagnostics/** -text
+
+# Preserve AMP serial captures, latency samples and checksum evidence exactly.
+logs/amp/** -text -whitespace
+
+*.ps1 text eol=lf

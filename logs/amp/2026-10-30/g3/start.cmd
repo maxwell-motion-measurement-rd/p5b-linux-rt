@@ -1,0 +1,1 @@
+printf 1 > /sys/bus/platform/devices/core3-heartbeat/start; printf "START_RC=%s\n" $?; sleep 2; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats

@@ -1,0 +1,16 @@
+cp /tmp/amp-r003/p5-core3-comm.bin /lib/firmware/p5-core3-commm.bin && chmod 755 /tmp/amp-r003/g3_test && insmod /tmp/amp-r003/p5_core3_comm.kko; printf "PROBE_RC=%s\n" $?; ls -l /dev/p5-core3; cat /sys/bus/platform/devicess/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; dmmesg | tail -6; printf '\n__RT_STEP_DONE__\n'
+PROBE_RC=0
+[  123.435453] 002: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+crw-------    1 root     root       10,  58 Oct 24 20:08 /dev/p5[  123.436028] 002: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+-core3
+attempted=0 result=0 pm_query=0 pm_state=0 magic=ffffffff version=4294967295 core=4294967295 el=4294967295 freq=18446744073709551615 token=18446744073709551615 heartbeat=18446744073709551615 state=4294967295 reason=4294967295 host_freq=18446744073709551615 initial_freq=18446744073709551615 configured_freq=18446744073709551615 esr=ffffffffffffffff elr=ffffffffffffffff far=ffffffffffffffff
+linux_tx=0 linux_rx=0 bad_rx=0 timeouts=0 stale=0 core3_rx=18446744073709551615 core3_tx=18446744073709551615 core3_bad=18446744073709551615
+[   20.604069] 000: usb 2-1: Manufacturer: GenesysLogic
+[   20.664432] 000: hub 2-1:1.0: USB hub found
+[   20.664770] 000: hub 2-1:1.0: 4 ports detected
+[   20.667057] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[  123.435453] 002: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+[  123.436028] 002: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

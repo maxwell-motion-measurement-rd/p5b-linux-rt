@@ -1,0 +1,1 @@
+cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; cat /sys/devices/system/cpu/online; cat /proc/uptime

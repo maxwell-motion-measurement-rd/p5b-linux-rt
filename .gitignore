@@ -46,3 +46,6 @@ id_ed25519*
 /work/scripts/update-rt-tools-state.py
 # Personal peripheral-study notes stay local.
 /docs/board/peripheral-learning-guide-20261028.md
+
+# Canonical verified AMP data is evidence, not a disposable build archive.
+!logs/amp/2026-10-30/g5/amp-g5-evidence.tar.gz

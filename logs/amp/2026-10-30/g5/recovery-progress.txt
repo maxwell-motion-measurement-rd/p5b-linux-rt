@@ -1,0 +1,11 @@
+if test -f /tmp/amp-g5/recovery/exit-code; then printf "RECOVVERY_RC="; cat /tmp/amp-g5/recovery/exit-code; fi; tail -n 4 /tmp/amp-g5/recoveryy/results.out; cat /sys/bus/platform/devices/core3-heartbeat/stats; printf '\n__RRT_STEP_DONE__\n'
+RECOVERY_RC=0
+[1]+  Done                    ( /tmp/amp-r004/g5_recovery run > /tmp/amp-g5/recovery/results.out 2>&1; printf "%s\n" $? > /tmp/amp-g5/recovery/exit-code; /tmp/amp-r004/g5_snapshot > /tmp/amp-g5/recovery/after.json ) < /dev/null > /dev/null 2>&1
+{"case":"communication_service_reset","kind":0,"iteration":7,"passed":true,"errno":110,"elapsed_ns":1300029912,"detail":12383694818,"recovered_echoes":100}
+{"case":"communication_service_reset","kind":0,"iteration":8,"passed":true,"errno":110,"elapsed_ns":1299922771,"detail":12383694819,"recovered_echoes":100}
+{"case":"communication_service_reset","kind":0,"iteration":9,"passed":true,"errno":110,"elapsed_ns":1299954032,"detail":12383694820,"recovered_echoes":100}
+{"G5_RECOVERY_SUMMARY":"passed","cases":20,"expected_kernel_timeouts":30,"expected_bad_rx":0,"expected_core3_rejections":20,"expected_peer_timeouts":0,"heartbeat_losses_each_direction":0,"aborted_waiting_writes":5,"service_resets":10,"max_handshake_ns":278293,"linux_tx":905652,"linux_rx":905512,"stale_dropped":5}
+linux_tx=905652 linux_rx=905512 bad_rx=70 timeouts=180 stale=50 core3_rx=905652 core3_tx=905512 core3_bad=130 service_epoch=12383694820 peer_timeouts=10 busy=12 resets=20 aborted=10 last_core_error=7 last_rx_error=0 fault_tests=1
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

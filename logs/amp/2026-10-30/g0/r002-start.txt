@@ -1,0 +1,16 @@
+printf 1 > /sys/bus/platform/devices/core3-heartbeat/start; pprintf "R002_START_RC=%s\n" $?; cat /sys/bus/platform/devices/core3-heartbeat/staatus; sleep 2; cat /sys/bus/platform/devices/core3-heartbeat/status; dmesg | taill -8; printf '\n__RT_STEP_DONE__\n'
+R002_START_RC=0
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version[  108.005688] 002: p5-core3-heartbeat core3-heartbeat: one-shot PMU wake result=0; inspect status; no automatic retry
+=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=0 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=2 core=3 el=12 freq=99999000 token=11778836439 heartbeat=20 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+[   16.352031] 000: usb 2-1: Product: USB3.0 Hub
+[   16.352035] 000: usb 2-1: Manufacturer: GenesysLogic
+[   16.408405] 000: hub 2-1:1.0: USB hub found
+[   16.408745] 000: hub 2-1:1.0: 4 ports detected
+[   16.410946] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   90.625869] 000: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+[   90.626433] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[  108.005688] 002: p5-core3-heartbeat core3-heartbeat: one-shot PMU wake result=0; inspect status; no automatic retry
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

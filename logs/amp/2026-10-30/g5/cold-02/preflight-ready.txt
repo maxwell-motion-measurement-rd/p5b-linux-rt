@@ -1,0 +1,8 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /proc/modulles; grep -A 5 -B 1 60200000 /proc/iomem; printf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b
+0-2
+dmaproxy 16384 0 - Live 0xffff800008c25000 (O)
+xlnx_vcu_core 16384 0 - Live 0xffff800008c20000
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

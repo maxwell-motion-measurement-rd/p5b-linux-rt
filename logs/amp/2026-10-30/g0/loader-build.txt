@@ -1,0 +1,25 @@
+make: Entering directory '/home/wang/p5b-rt-5.4.0/src'
+make[1]: Entering directory '/home/wang/p5-amp-20261030-r001/kernel-build'
+  CC [M]  /home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.o
+In file included from /home/wang/p5b-rt-5.4.0/src/include/linux/platform_device.h:13,
+                 from /home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.c:4:
+/home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.c:185:24: error: conflicting types for 'driver_init'
+  185 | module_platform_driver(driver);
+      |                        ^~~~~~
+/home/wang/p5b-rt-5.4.0/src/include/linux/device.h:1899:19: note: in definition of macro 'module_driver'
+ 1899 | static int __init __driver##_init(void) \
+      |                   ^~~~~~~~
+/home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.c:185:1: note: in expansion of macro 'module_platform_driver'
+  185 | module_platform_driver(driver);
+      | ^~~~~~~~~~~~~~~~~~~~~~
+/home/wang/p5b-rt-5.4.0/src/include/linux/device.h:1492:6: note: previous declaration of 'driver_init' was here
+ 1492 | void driver_init(void);
+      |      ^~~~~~~~~~~
+/home/wang/p5b-rt-5.4.0/src/scripts/Makefile.build:265: recipe for target '/home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.o' failed
+make[2]: *** [/home/wang/p5-amp-20261030-r001/linux/p5_core3_boot.o] Error 1
+/home/wang/p5b-rt-5.4.0/src/Makefile:1652: recipe for target '/home/wang/p5-amp-20261030-r001/linux' failed
+make[1]: Leaving directory '/home/wang/p5-amp-20261030-r001/kernel-build'
+make[1]: *** [/home/wang/p5-amp-20261030-r001/linux] Error 2
+Makefile:179: recipe for target 'sub-make' failed
+make: *** [sub-make] Error 2
+make: Leaving directory '/home/wang/p5b-rt-5.4.0/src'

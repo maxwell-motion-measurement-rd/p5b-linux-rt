@@ -1,0 +1,1 @@
+cat /tmp/amp-r002-coexist.txt; printf "DMESG_BEFORE_AFTER\n"; cmp /tmp/amp-r002-dmesg-before.txt /tmp/amp-r002-dmesg-after.txt; printf "DMESG_CMP_RC=%s\n" $?; printf "CURRENT_CORE3\n"; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/devices/system/cpu/online

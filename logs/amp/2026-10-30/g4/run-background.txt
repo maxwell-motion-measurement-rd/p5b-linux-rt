@@ -1,0 +1,6 @@
+dmesg > /tmp/amp-r004/dmesg-before-g4.txt; ( /tmp/amp-r004/g44_test run > /tmp/amp-r004/g4-results.out 2>&1; printf "%s\n" $? > /tmp/amp-r004//g4-exit-code ) < /dev/null > /dev/null 2>&1 & printf "G4_PID=%s\n" $!; printf '\\n__RT_STEP_DONE__\n'
+[1] 970
+G4_PID=970
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

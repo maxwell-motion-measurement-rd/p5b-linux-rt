@@ -1,0 +1,17 @@
+{
+  "result": "600s_heartbeat_coexistence_passed",
+  "samples": 21,
+  "elapsed_s": 600.14,
+  "linux_online": "0-2",
+  "core3_el": 3,
+  "core3_token": "11778836439",
+  "counter_frequency_hz": 99999000,
+  "heartbeat_start": 839,
+  "heartbeat_end": 6840,
+  "heartbeat_increment": 6001,
+  "observed_heartbeat_hz": 9.9993,
+  "image": "r001 FIT with verified r002 temporary RAM module/firmware",
+  "message_echo_tested": false,
+  "pressure_tested": false,
+  "dmesg_review": "before and after identical; cmp exit 0"
+}

@@ -1,0 +1,5 @@
+In file included from /home/wang/p5-amp-20261030-r004/core3/ipc.c:4:
+/home/wang/p5-amp-20261030-r004/core3/../protocol/amp_fault.h:7:10: fatal error: sys/ioctl.h: No such file or directory
+    7 | #include <sys/ioctl.h>
+      |          ^~~~~~~~~~~~~
+compilation terminated.

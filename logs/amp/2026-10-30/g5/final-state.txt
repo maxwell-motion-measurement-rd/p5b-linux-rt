@@ -1,0 +1,9 @@
+cat /sys/devices/system/cpu/online; cat /sys/bus/platform/devvices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/statss; cat /sys/module/p5_core3_comm/parameters/fault_tests; ps | grep '[g]5_test\|[gg]5_load\|[g]5_recovery'; printf "FINAL_STATE_CAPTURED\n"; printf '\n__RT_STEP_DOONE__\n'
+0-2
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=12067747844 heartbeat=959 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=503 linux_rx=503 bad_rx=0 timeouts=0 stale=0 core3_rx=503 core3_tx=503 core3_bad=0 service_epoch=12067747844 peer_timeouts=0 busy=0 resets=0 aborted=0 last_core_error=0 last_rx_error=0 fault_tests=0
+N
+FINAL_STATE_CAPTURED
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

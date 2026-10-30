@@ -1,0 +1,1 @@
+rmmod p5_core3_comm && insmod /tmp/amp-r004/p5_core3_comm.ko fault_tests=1; printf "RELOAD_RC=%s\n" $?; cat /sys/module/p5_core3_comm/parameters/fault_tests; cat /sys/bus/platform/devices/core3-heartbeat/status

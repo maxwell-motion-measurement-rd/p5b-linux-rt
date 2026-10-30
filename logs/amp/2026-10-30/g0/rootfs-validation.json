@@ -1,0 +1,18 @@
+{
+  "old_entries": 1372,
+  "preserved_entries": 1370,
+  "replaced_boot_dtbs": [
+    "boot/devicetree/system-top.dtb",
+    "boot/device-tree-AUTOINC+f725aaecff.dtb"
+  ],
+  "added_paths": [
+    "opt",
+    "opt/amp-heartbeat",
+    "opt/amp-heartbeat/p5_core3_boot.ko",
+    "lib/firmware/p5-core3-heartbeat.bin",
+    "opt/amp-heartbeat/IDENTITY"
+  ],
+  "rootfs_sha256": "9c31463bfe3340d57a501aba584df9e74b315774e0d60cff5af8b769ce5b7347",
+  "automatic_start": false,
+  "board_tested": false
+}

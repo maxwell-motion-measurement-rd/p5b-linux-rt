@@ -1,0 +1,1 @@
+if test -f /tmp/amp-r004/g4-exit-code; then printf "G4_EXIT_CODE="; cat /tmp/amp-r004/g4-exit-code; fi; tail -n 5 /tmp/amp-r004/g4-results.out; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats

@@ -1,0 +1,20 @@
+{
+  "status": "offline_checks_passed",
+  "load_segments": [
+    {
+      "start": "0x60000000",
+      "end": "0x60008540",
+      "filesz": 8008,
+      "memsz": 34112
+    }
+  ],
+  "instructions": 1503,
+  "board_tested": false,
+  "deployable": false,
+  "pending": [
+    "boot-time reservation",
+    "PMU/ATF lifecycle",
+    "memory-type and security review",
+    "board validation"
+  ]
+}

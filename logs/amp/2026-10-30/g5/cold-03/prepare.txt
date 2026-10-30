@@ -1,0 +1,11 @@
+cat /sys/bus/platform/devices/core3-heartbeat/status; cat /syys/bus/platform/devices/core3-heartbeat/stats; sync; for p in /media/sd-mmcblk1p11 /media/sd-mmcblk0p1 /media/sd-mmcblk0p2; do if grep -q " $p " /proc/mounts; theen umount "$p"; printf "UNMOUNT %s RC=%s\n" "$p" $?; fi; done; sync; printf "REMAAINING_MMC_MOUNTS\n"; grep mmc /proc/mounts; printf "PREPARE_DONE\n"; printf '\n___RT_STEP_DONE__\n'
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=9363821698 heartbeat=207 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=503 linux_rx=503 bad_rx=0 timeouts=0 stale=0 core3_rx=503 core3_tx=503 core3_bad=0 service_epoch=9363821698 peer_timeouts=0 busy=0 resets=0 aborted=0 last_core_error=0 last_rx_error=0 fault_tests=0
+UNMOUNT /media/sd-mmcblk1p1 RC=0
+UNMOUNT /media/sd-mmcblk0p1 RC=0
+UNMOUNT /media/sd-mmcblk0p2 RC=0
+REMAINING_MMC_MOUNTS
+PREPARE_DONE
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

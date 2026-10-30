@@ -1,0 +1,1 @@
+cat /tmp/amp-g3-batch.out; tail -2 /tmp/amp-g3-forward.out; if test -f /tmp/amp-g3-reverse.out; then tail -2 /tmp/amp-g3-reverse.out; fi; if test -f /tmp/amp-g3-cross.out; then tail -2 /tmp/amp-g3-cross.out; fi; cat /sys/bus/platform/devices/core3-heartbeat/stats

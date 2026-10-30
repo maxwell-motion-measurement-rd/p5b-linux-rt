@@ -1,0 +1,1 @@
+sha256sum /tmp/amp-r004/p5-core3-comm.bin /tmp/amp-r004/p5_core3_comm.ko /tmp/amp-r004/g5_test /tmp/amp-r004/g5_snapshot; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/module/p5_core3_comm/parameters/fault_tests

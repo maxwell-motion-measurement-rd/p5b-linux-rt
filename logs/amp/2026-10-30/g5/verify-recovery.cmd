@@ -1,0 +1,1 @@
+chmod 755 /tmp/amp-r004/g5_recovery; sha256sum /tmp/amp-r004/g5_recovery

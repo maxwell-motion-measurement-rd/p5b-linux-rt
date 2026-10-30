@@ -1,0 +1,3 @@
+ad40dbaed115cd0886518c781f2e1d1ed6522b3cd4c373f747ea9c5f966949fe  /home/wang/p5-amp-20261030-r004/build-g5/g5_load
+74fa215440a4fa33a4e57d3bfc9205ea23d49dfcb4f43a2aa9b6bee7db2c0680  /home/wang/p5-amp-20261030-r004/build-g5/g5_snapshot
+4e879ae7031aef10460bfd789385d50b6f2ce2e22ff94c25f46daf4ca6da6e31  /home/wang/p5-amp-20261030-r004/build-g5/g5_test

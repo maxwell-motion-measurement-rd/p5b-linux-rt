@@ -1,0 +1,11 @@
+if test -f /tmp/amp-r004/g4-exit-code; then printf "G4_EXIT_CCODE="; cat /tmp/amp-r004/g4-exit-code; fi; tail -n 5 /tmp/amp-r004/g4-results.ouut; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/ddevices/core3-heartbeat/stats; printf '\n__RT_STEP_DONE__\n'
+{"case":"backpressure","kind":0,"iteration":5,"passed":true,"errno":110,"elapsed_ns":97283513,"detail":7,"recovered_echoes":1}
+{"case":"backpressure","kind":0,"iteration":6,"passed":true,"errno":110,"elapsed_ns":97366843,"detail":9,"recovered_echoes":1}
+{"case":"backpressure","kind":0,"iteration":7,"passed":true,"errno":110,"elapsed_ns":97409244,"detail":10,"recovered_echoes":1}
+{"case":"backpressure","kind":0,"iteration":8,"passed":true,"errno":110,"elapsed_ns":97366064,"detail":11,"recovered_echoes":1}
+{"case":"backpressure","kind":0,"iteration":9,"passed":true,"errno":110,"elapsed_ns":97391644,"detail":12,"recovered_echoes":1}
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=12383694800 heartbeat=549 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=867 linux_rx=786 bad_rx=70 timeouts=101 stale=20 core3_rx=866 core3_tx=786 core3_bad=80 service_epoch=12383694800 peer_timeouts=0 busy=12 resets=0 aborted=0 last_core_error=7 last_rx_error=0 fault_tests=1
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

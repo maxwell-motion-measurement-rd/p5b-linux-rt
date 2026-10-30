@@ -1,0 +1,5 @@
+root@ALIENTEK-MP:~# chmod 755 /tmp/amp-r004/g5_recovery; sha256sum /tmp/amp-r004//g5_recovery; printf '\n__RT_STEP_DONE__\n'
+88f9921fd29901e2cf3bc9c407b3d375ed5f455b62d8c3b0feb545780dc86afa  /tmp/amp-r004/g5_recovery
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

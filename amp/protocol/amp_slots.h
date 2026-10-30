@@ -1,0 +1,10 @@
+#ifndef P5_AMP_SLOTS_H
+#define P5_AMP_SLOTS_H
+#define AMP_LINUX_TX 0x1000U
+#define AMP_CORE3_TX 0x2000U
+#define AMP_PUBLISH 0x140U
+#define AMP_ACK 0x180U
+#define AMP_C3_RX_COUNT 128U
+#define AMP_C3_TX_COUNT 136U
+#define AMP_C3_BAD_COUNT 144U
+#endif

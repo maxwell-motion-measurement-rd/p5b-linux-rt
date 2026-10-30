@@ -1,0 +1,13 @@
+if test -f /tmp/amp-r004/g4-exit-code; then printf "G4_EXIT_CCODE="; cat /tmp/amp-r004/g4-exit-code; fi; tail -n 5 /tmp/amp-r004/g4-results.ouut; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/ddevices/core3-heartbeat/stats; printf '\n__RT_STEP_DONE__\n'
+G4_EXIT_CODE=0
+[1]+  Done                    ( /tmp/amp-r004/g4_test run > /tmp/amp-r004/g4-results.out 2>&1; printf "%s\n" $? > /tmp/amp-r004/g4-exit-code ) < /dev/null > /dev/null 2>&1
+{"case":"core3_heartbeat_pause","kind":0,"iteration":8,"passed":true,"errno":67,"elapsed_ns":1080000000,"detail":9,"recovered_echoes":1}
+{"case":"linux_heartbeat_pause","kind":0,"iteration":8,"passed":true,"errno":110,"elapsed_ns":1000002020,"detail":9,"recovered_echoes":1}
+{"case":"core3_heartbeat_pause","kind":0,"iteration":9,"passed":true,"errno":67,"elapsed_ns":1080000000,"detail":10,"recovered_echoes":1}
+{"case":"linux_heartbeat_pause","kind":0,"iteration":9,"passed":true,"errno":110,"elapsed_ns":1000001410,"detail":10,"recovered_echoes":1}
+{"G4_SUMMARY":"passed","cases":250,"expected_kernel_timeouts":150,"expected_bad_rx":70,"expected_core3_rejections":110,"expected_peer_timeouts":10,"heartbeat_losses_each_direction":10,"aborted_waiting_writes":5,"service_resets":10,"max_handshake_ns":284393,"linux_tx":3075,"linux_rx":2965,"stale_dropped":45}
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=12383694800 heartbeat=1224 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=3075 linux_rx=2965 bad_rx=70 timeouts=150 stale=45 core3_rx=3075 core3_tx=2965 core3_bad=110 service_epoch=12383694810 peer_timeouts=10 busy=12 resets=10 aborted=5 last_core_error=11 last_rx_error=0 fault_tests=1
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

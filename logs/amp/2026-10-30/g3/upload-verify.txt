@@ -1,0 +1,11 @@
+sha256sum /tmp/amp-r003/p5_core3_comm.ko /tmp/amp-r003/p5-corre3-comm.bin /tmp/amp-r003/g3_test; wc -c /tmp/amp-r003/p5_core3_comm.ko /tmp/ampp-r003/p5-core3-comm.bin /tmp/amp-r003/g3_test; printf '\n__RT_STEP_DONE__\n'
+b0fecc87dd69d244a41c3cf5e7611411fa6e723f070ee40b2dd3ade439985353  /tmp/amp-r003/p5_core3_comm.ko
+1109d59c4961e9483184facfabd5aa7eac0389c306c13cc86bd44df0c64b514a  /tmp/amp-r003/p5-core3-comm.bin
+b98a869c8701ee8ea79b8997df04c766ad1db3c2f16bcc13dfac5259e0117c8a  /tmp/amp-r003/g3_test
+    19912 /tmp/amp-r003/p5_core3_comm.ko
+     6232 /tmp/amp-r003/p5-core3-comm.bin
+    14496 /tmp/amp-r003/g3_test
+    40640 total
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

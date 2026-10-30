@@ -1,0 +1,1 @@
+sha256sum /tmp/amp-r003/p5_core3_comm.ko /tmp/amp-r003/p5-core3-comm.bin /tmp/amp-r003/g3_test; wc -c /tmp/amp-r003/p5_core3_comm.ko /tmp/amp-r003/p5-core3-comm.bin /tmp/amp-r003/g3_test

@@ -1,0 +1,8 @@
+printf 1 > /sys/bus/platform/devices/core3-heartbeat/start; pprintf "START_RC=%s\n" $?; sleep 2; cat /sys/bus/platform/devices/core3-heartbeatt/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; printf '\n__RT_STEEP_DONE__\n'
+START_RC=0
+[  147.301695] 002: p5-core3-heartbeat core3-heartbeat: one-shot PMU wake result=0; inspect status; no automatic retry
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=3 core=3 el=12 freq=99999000 token=15708403088 heartbeat=20 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=0 linux_rx=0 bad_rx=0 timeouts=0 stale=0 core3_rx=0 core3_tx=0 core3_bad=0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

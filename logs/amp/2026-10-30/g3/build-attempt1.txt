@@ -1,0 +1,24 @@
+make: Entering directory '/home/wang/p5b-rt-5.4.0/src'
+make[1]: Entering directory '/home/wang/p5-amp-20261030-r001/kernel-build'
+  CC [M]  /home/wang/p5-amp-20261030-r003/linux-comm/p5_core3_comm.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC [M]  /home/wang/p5-amp-20261030-r003/linux-comm/p5_core3_comm.mod.o
+  LD [M]  /home/wang/p5-amp-20261030-r003/linux-comm/p5_core3_comm.ko
+make[1]: Leaving directory '/home/wang/p5-amp-20261030-r001/kernel-build'
+make: Leaving directory '/home/wang/p5b-rt-5.4.0/src'
+filename:       /home/wang/p5-amp-20261030-r003/build/p5_core3_comm.ko
+firmware:       p5-core3-comm.bin
+description:    P5 experimental one-shot PMU Core3 heartbeat loader
+license:        GPL
+alias:          of:N*T*Cp5,core3-heartbeat-experimentC*
+alias:          of:N*T*Cp5,core3-heartbeat-experiment
+depends:        
+name:           p5_core3_comm
+vermagic:       5.4.0-rt1-xilinx-v2020.2-p5b SMP preempt_rt mod_unload aarch64
+/home/wang/p5-amp-20261030-r003/build/p5-core3-comm.bin 6232
+/home/wang/p5-amp-20261030-r003/build/p5_core3_comm.ko 19912
+/home/wang/p5-amp-20261030-r003/build/g3_test 14496
+1109d59c4961e9483184facfabd5aa7eac0389c306c13cc86bd44df0c64b514a  /home/wang/p5-amp-20261030-r003/build/p5-core3-comm.bin
+b0fecc87dd69d244a41c3cf5e7611411fa6e723f070ee40b2dd3ade439985353  /home/wang/p5-amp-20261030-r003/build/p5_core3_comm.ko
+b98a869c8701ee8ea79b8997df04c766ad1db3c2f16bcc13dfac5259e0117c8a  /home/wang/p5-amp-20261030-r003/build/g3_test

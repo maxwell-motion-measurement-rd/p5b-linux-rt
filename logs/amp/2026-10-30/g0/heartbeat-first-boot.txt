@@ -1,0 +1,526 @@
+Xilinx Zynq MP First Stage Boot Loader 
+Release 2020.2   Oct 20 2026  -  06:42:40
+NOTICE:  ATF running on XCZU4EV/silicon v4/RTL5.1 at 0xfffea000
+NOTICE:  BL31: v2.2(release):xlnx_rebase_v2.2_2020.3
+NOTICE:  BL31: Built : 02:41:52, Oct 21 2026
+
+
+U-Boot 2020.01 (Oct 21 2026 - 02:41:39 +0000)
+
+Model: Alientek MpSoc-P5B Development Board
+Board: Xilinx ZynqMP
+DRAM:  4 GiB
+PMUFW:	v1.1
+EL Level:	EL2
+Chip ID:	zu4ev
+NAND:  0 MiB
+MMC:   mmc@ff160000: 0, mmc@ff170000: 1
+In:    serial@ff000000
+Out:   serial@ff000000
+Err:   serial@ff000000
+Bootmode: SD_MODE1
+Reset reason:	EXTERNAL 
+Net:   
+ZYNQ GEM: ff0b0000, mdio bus ff0b0000, phyaddr 4, interface gmii
+
+Warning: ethernet@ff0b0000 using MAC address from DT
+eth0: ethernet@ff0b0000
+ZYNQ GEM: ff0e0000, mdio bus ff0e0000, phyaddr 7, interface rgmii-id
+
+Warning: ethernet@ff0e0000 using MAC address from DT
+, eth1: ethernet@ff0e0000
+Hit any key to stop autoboot:  4  3  2  1  0 
+switch to partitions #0, OK
+mmc1 is current device
+Scanning mmc 1:1...
+Found U-Boot script /boot.scr
+2007 bytes read in 23 ms (85 KiB/s)
+## Executing script at 20000000
+19577612 bytes read in 1295 ms (14.4 MiB/s)
+## Loading kernel from FIT Image at 10000000 ...
+   Using 'amp' configuration
+   Trying 'kernel' kernel subimage
+     Description:  unavailable
+     Type:         Kernel Image
+     Compression:  gzip compressed
+     Data Start:   0x100000d0
+     Data Size:    8369434 Bytes = 8 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x00080000
+     Entry Point:  0x00080000
+     Hash algo:    sha256
+     Hash value:   ef40de3bb4a906c605b2dfc83c3e5183b14c72736437bff44b0febc685343b58
+   Verifying Hash Integrity ... sha256+ OK
+## Loading ramdisk from FIT Image at 10000000 ...
+   Using 'amp' configuration
+   Trying 'ramdisk' ramdisk subimage
+     Description:  unavailable
+     Type:         RAMDisk Image
+     Compression:  uncompressed
+     Data Start:   0x10808c44
+     Data Size:    11151836 Bytes = 10.6 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: unavailable
+     Entry Point:  unavailable
+     Hash algo:    sha256
+     Hash value:   9c31463bfe3340d57a501aba584df9e74b315774e0d60cff5af8b769ce5b7347
+   Verifying Hash Integrity ... sha256+ OK
+## Loading fdt from FIT Image at 10000000 ...
+   Using 'amp' configuration
+   Trying 'fdt' fdt subimage
+     Description:  unavailable
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x107fb6c4
+     Data Size:    54485 Bytes = 53.2 KiB
+     Architecture: AArch64
+     Hash algo:    sha256
+     Hash value:   bbecdfd7f5a620f135ecc19c85b3eae944cf8fe6c7c8ea4ed21a309ae2436831
+   Verifying Hash Integrity ... sha256+ OK
+   Booting using the fdt blob at 0x107fb6c4
+   Uncompressing Kernel Image
+   Loading Ramdisk to 7855d000, end 78fff9dc ... OK
+   Loading Device Tree to 000000000ffef000, end 000000000ffff4d4 ... OK
+
+Starting kernel ...
+
+[    0.000000] 000: printk: bootconsole [cdns0] enabled
+[    0.000000] 000: efi: Getting EFI parameters from FDT:
+[    0.000000] 000: efi: UEFI not found.
+[    0.000000] 000: cma: Reserved 256 MiB at 0x0000000068400000
+[    0.000000] 000: On node 0 totalpages: 1047296
+[    0.000000] 000:   DMA32 zone: 8172 pages used for memmap
+[    0.000000] 000:   DMA32 zone: 0 pages reserved
+[    0.000000] 000:   DMA32 zone: 523008 pages, LIFO batch:63
+[    0.000000] 000:   Normal zone: 8192 pages used for memmap
+[    0.000000] 000:   Normal zone: 524288 pages, LIFO batch:63
+[    0.000000] 000: psci: probing for conduit method from DT.
+[    0.000000] 000: psci: PSCIv1.1 detected in firmware.
+[    0.000000] 000: psci: Using standard PSCI v0.2 function IDs
+[    0.000000] 000: psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] 000: psci: SMC Calling Convention v1.1
+[    0.000000] 000: percpu: Embedded 18 pages/cpu s36032 r8192 d29504 u73728
+[    0.000000] 000: pcpu-alloc: s36032 r8192 d29504 u73728 alloc=18*4096
+[    0.000000] 000: 
+[    0.000000] 000: pcpu-alloc: 
+[    0.000000] 000: [0] 
+[    0.000000] 000: 0 
+[    0.000000] 000: [0] 
+[    0.000000] 000: 1 
+[    0.000000] 000: [0] 
+[    0.000000] 000: 2 
+[    0.000000] 000: 
+[    0.000000] 000: Detected VIPT I-cache on CPU0
+[    0.000000] 000: CPU features: detected: ARM erratum 845719
+[    0.000000] 000: Speculative Store Bypass Disable mitigation not required
+[    0.000000] 000: Built 1 zonelists, mobility grouping on.  Total pages: 1030932
+[    0.000000] 000: Kernel command line: earlycon console=ttyPS0,115200 rdinit=/init rw cpuidle.off=1 clk_ignore_unused pd_ignore_unused
+[    0.000000] 000: Dentry cache hash table entries: 524288 (order: 11, 8388608 bytes, linear)
+[    0.000000] 000: Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] 000: mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] 000: software IO TLB: mapped [mem 0x7bf00000-0x7ff00000] (64MB)
+[    0.000000] 000: Memory: 3747980K/4189184K available (11900K kernel code, 808K rwdata, 3772K rodata, 576K init, 607K bss, 179060K reserved, 262144K cma-reserved)
+[    0.000000] 000: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=3, Nodes=1
+[    0.000000] 000: rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] 000: rcu: 	RCU event tracing is enabled.
+[    0.000000] 000: rcu: 	RCU priority boosting: priority 1 delay 500 ms.
+[    0.000000] 000: rcu: 	RCU_SOFTIRQ processing moved to rcuc kthreads.
+[    0.000000] 000: 	No expedited grace period (rcu_normal_after_boot).
+[    0.000000] 000: 	Tasks RCU enabled.
+[    0.000000] 000: rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] 000: NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] 000: GIC: Adjusting CPU interface base to 0x00000000f902f000
+[    0.000000] 000: GIC: Using split EOI/Deactivate mode
+[    0.000000] 000: random: get_random_bytes called from start_kernel+0x2b0/0x430 with crng_init=0
+[    0.000000] 000: arch_timer: cp15 timer(s) running at 99.99MHz (phys).
+[    0.000000] 000: clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x171015c90f, max_idle_ns: 440795203080 ns
+[    0.000000] 000: sched_clock: 56 bits at 99MHz, resolution 10ns, wraps every 4398046511101ns
+[    0.008619] 000: Console: colour dummy device 80x25
+[    0.013256] 000: Calibrating delay loop (skipped), value calculated using timer frequency.. 
+[    0.021628] 000: 199.99 BogoMIPS (lpj=399996)
+[    0.025952] 000: pid_max: default: 32768 minimum: 301
+[    0.031104] 000: Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.038769] 000: Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.071054] 000: ASID allocator initialised with 32768 entries
+[    0.079042] 000: rcu: Hierarchical SRCU implementation.
+[    0.103300] 000: EFI services will not be available.
+[    0.111113] 000: smp: Bringing up secondary CPUs ...
+[    0.159278] 001: Detected VIPT I-cache on CPU1
+[    0.159346] 001: CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.211360] 002: Detected VIPT I-cache on CPU2
+[    0.211416] 002: CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.217160] 000: smp: Brought up 1 node, 3 CPUs
+[    0.221607] 000: SMP: Total of 3 processors activated.
+[    0.226706] 000: CPU features: detected: 32-bit EL0 Support
+[    0.232242] 000: CPU features: detected: CRC32 instructions
+[    0.237804] 000: CPU: All CPU(s) started at EL2
+[    0.242286] 000: alternatives: patching kernel code
+[    0.248020] 000: devtmpfs: initialized
+[    0.259953] 000: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.264492] 000: futex hash table entries: 1024 (order: 5, 131072 bytes, linear)
+[    0.277512] 000: xor: measuring software checksum speed
+[    0.315933] 001:    8regs     :  2375.000 MB/sec
+[    0.355970] 002:    32regs    :  2726.000 MB/sec
+[    0.396012] 001:    arm64_neon:  2140.000 MB/sec
+[    0.396053] 001: xor: using function: 32regs (2726.000 MB/sec)
+[    0.400873] 001: pinctrl core: initialized pinctrl subsystem
+[    0.406936] 001: DMI not present or invalid.
+[    0.410944] 001: NET: Registered protocol family 16
+[    0.417323] 001: DMA: preallocated 256 KiB pool for atomic allocations
+[    0.422005] 001: audit: initializing netlink subsys (disabled)
+[    0.427930] 000: audit: type=2000 audit(0.392:1): state=initialized audit_enabled=0 res=1
+[    0.428545] 001: hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.443238] 001: Serial: AMBA PL011 UART driver
+[    0.471143] 001: HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.472663] 001: HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.479754] 001: HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.486842] 001: HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+[    1.566417] 001: cryptd: max_cpu_qlen set to 1000
+[    1.597596] 002: DRBG: Continuing without Jitter RNG
+[    1.677513] 001: raid6: neonx8   gen()  1527 MB/s
+[    1.745562] 000: raid6: neonx8   xor()  1449 MB/s
+[    1.813681] 002: raid6: neonx4   gen()  1476 MB/s
+[    1.881741] 001: raid6: neonx4   xor()  1415 MB/s
+[    1.949814] 000: raid6: neonx2   gen()  1130 MB/s
+[    2.017914] 002: raid6: neonx2   xor()  1178 MB/s
+[    2.086054] 001: raid6: neonx1   gen()   739 MB/s
+[    2.154084] 000: raid6: neonx1   xor()   890 MB/s
+[    2.222212] 002: raid6: int64x8  gen()  1165 MB/s
+[    2.290273] 001: raid6: int64x8  xor()   763 MB/s
+[    2.358335] 000: raid6: int64x4  gen()   983 MB/s
+[    2.426425] 002: raid6: int64x4  xor()   739 MB/s
+[    2.494532] 001: raid6: int64x2  gen()   683 MB/s
+[    2.562613] 000: raid6: int64x2  xor()   601 MB/s
+[    2.630769] 002: raid6: int64x1  gen()   452 MB/s
+[    2.698747] 001: raid6: int64x1  xor()   459 MB/s
+[    2.698789] 001: raid6: using algorithm neonx8 gen() 1527 MB/s
+[    2.703616] 001: raid6: .... xor() 1449 MB/s, rmw enabled
+[    2.708977] 001: raid6: using neon recovery algorithm
+[    2.714591] 001: iommu: Default domain type: Translated 
+[    2.719545] 001: SCSI subsystem initialized
+[    2.723457] 001: libata version 3.00 loaded.
+[    2.727842] 001: usbcore: registered new interface driver usbfs
+[    2.733582] 001: usbcore: registered new interface driver hub
+[    2.739305] 001: usbcore: registered new device driver usb
+[    2.744751] 001: mc: Linux media interface: v0.10
+[    2.749399] 001: videodev: Linux video capture interface: v2.00
+[    2.755280] 001: pps_core: LinuxPPS API ver. 1 registered
+[    2.760619] 001: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    2.770147] 001: PTP clock support registered
+[    2.774478] 001: EDAC MC: Ver: 3.0.0
+[    2.778553] 001: zynqmp-ipi-mbox mailbox@ff990400: Registered ZynqMP IPI mbox with TX/RX channels.
+[    2.787275] 001: FPGA manager framework
+[    2.790968] 001: Advanced Linux Sound Architecture Driver Initialized.
+[    2.797594] 001: Bluetooth: Core ver 2.22
+[    2.801196] 001: NET: Registered protocol family 31
+[    2.806034] 001: Bluetooth: HCI device and connection manager initialized
+[    2.812787] 001: Bluetooth: HCI socket layer initialized
+[    2.818064] 001: Bluetooth: L2CAP socket layer initialized
+[    2.823521] 001: Bluetooth: SCO socket layer initialized
+[    2.829195] 001: clocksource: Switched to clocksource arch_sys_counter
+[    2.835391] 001: VFS: Disk quotas dquot_6.6.0
+[    2.839639] 001: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    2.853104] 001: NET: Registered protocol family 2
+[    2.853641] 001: tcp_listen_portaddr_hash hash table entries: 2048 (order: 5, 131072 bytes, linear)
+[    2.861378] 001: TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    2.869852] 001: TCP bind hash table entries: 32768 (order: 8, 1835008 bytes, linear)
+[    2.878386] 001: TCP: Hash tables configured (established 32768 bind 32768)
+[    2.884436] 001: UDP hash table entries: 2048 (order: 6, 262144 bytes, linear)
+[    2.891639] 001: UDP-Lite hash table entries: 2048 (order: 6, 262144 bytes, linear)
+[    2.899406] 001: NET: Registered protocol family 1
+[    2.904267] 001: RPC: Registered named UNIX socket transport module.
+[    2.910144] 001: RPC: Registered udp transport module.
+[    2.915242] 001: RPC: Registered tcp transport module.
+[    2.920345] 001: RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.927530] 001: PCI: CLS 0 bytes, default 64
+[    2.931680] 001: Trying to unpack rootfs image as initramfs...
+[    3.447757] 000: Freeing initrd memory: 10888K
+[    3.569653] 000: Initialise system trusted keyrings
+[    3.569812] 000: workingset: timestamp_bits=46 max_order=20 bucket_order=0
+[    3.588737] 000: NFS: Registering the id_resolver key type
+[    3.588797] 000: Key type id_resolver registered
+[    3.593217] 000: Key type id_legacy registered
+[    3.597600] 000: nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    3.604709] 000: jffs2: version 2.2. (NAND) (SUMMARY)  ?? 2001-2006 Red Hat, Inc.
+[    3.628068] 000: NET: Registered protocol family 38
+[    3.628116] 000: Key type asymmetric registered
+[    3.631834] 000: Asymmetric key parser 'x509' registered
+[    3.637120] 000: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 246)
+[    3.644887] 000: io scheduler mq-deadline registered
+[    3.649817] 000: io scheduler kyber registered
+[    3.658282] 000: ps_pcie_dma init()
+[    3.658747] 000: xilinx-frmbuf a0060000.v_frmbuf_rd: Probe deferred due to GPIO reset defer
+[    3.666049] 000: xilinx-frmbuf a00c0000.v_frmbuf_wr: failed to get ap_clk (-517)
+[    3.673406] 000: xilinx-frmbuf a00a0000.v_frmbuf_rd: failed to get ap_clk (-517)
+[    3.720017] 000: Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    3.722784] 000: Serial: AMBA driver
+[    3.727318] 000: xlnx,csc-bridge a0100000.v_proc_ss: failed to get aclk -517
+[    3.731961] 000: xlnx,scaler-bridge a0140000.v_proc_ss: failed to get axi lite clk -517
+[    3.739686] 000: xlnx,scaler-bridge a0140000.v_proc_ss: parse_of failed
+[    3.747325] 000: cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    3.759553] 000: brd: module loaded
+[    3.767258] 002: loop: module loaded
+[    3.768810] 002: mtdoops: mtd device (mtddev=name/number) must be supplied
+[    3.774137] 002: libphy: Fixed MDIO Bus: probed
+[    3.778110] 002: tun: Universal TUN/TAP device driver, 1.6
+[    3.782123] 002: CAN device driver interface
+[    3.787680] 002: usbcore: registered new interface driver asix
+[    3.792086] 002: usbcore: registered new interface driver ax88179_178a
+[    3.798563] 002: usbcore: registered new interface driver cdc_ether
+[    3.804784] 002: usbcore: registered new interface driver net1080
+[    3.810838] 002: usbcore: registered new interface driver cdc_subset
+[    3.817156] 002: usbcore: registered new interface driver zaurus
+[    3.823127] 002: usbcore: registered new interface driver cdc_ncm
+[    3.830761] 002: usbcore: registered new interface driver uas
+[    3.834892] 002: usbcore: registered new interface driver usb-storage
+[    3.842132] 002: rtc_zynqmp ffa60000.rtc: registered as rtc0
+[    3.846974] 002: i2c /dev entries driver
+[    3.851421] 002: xilinx-video amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler: /amba_pl@0/vcap_mipi_csi2_rx_v_proc_ss_scaler/ports/port@0 initialization failed
+[    3.864702] 002: xilinx-video amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler: DMA initialization failed
+[    3.876835] 002: xilinx-vpss-scaler a0140000.v_proc_ss: failed to get aclk_axis (-517)
+[    3.881931] 002: xilinx-vtc a0050000.v_tc: device found, version 6.020
+[    3.888330] 002: usbcore: registered new interface driver uvcvideo
+[    3.894364] 002: USB Video Class driver (1.1.1)
+[    3.899842] 002: Bluetooth: HCI UART driver ver 2.3
+[    3.903721] 001: Bluetooth: HCI UART protocol H4 registered
+[    3.909303] 001: Bluetooth: HCI UART protocol BCSP registered
+[    3.914979] 001: Bluetooth: HCI UART protocol LL registered
+[    3.920518] 001: Bluetooth: HCI UART protocol ATH3K registered
+[    3.926308] 002: Bluetooth: HCI UART protocol Three-wire (H5) registered
+[    3.933025] 002: Bluetooth: HCI UART protocol Intel registered
+[    3.938766] 002: Bluetooth: HCI UART protocol QCA registered
+[    3.944406] 002: usbcore: registered new interface driver bcm203x
+[    3.950470] 002: usbcore: registered new interface driver bpa10x
+[    3.956427] 002: usbcore: registered new interface driver bfusb
+[    3.962302] 002: usbcore: registered new interface driver btusb
+[    3.968205] 002: usbcore: registered new interface driver ath3k
+[    3.974223] 002: EDAC MC: ECC not enabled
+[    3.978274] 002: EDAC DEVICE0: Giving out device to module zynqmp-ocm-edac controller zynqmp_ocm: DEV ff960000.memory-controller (INTERRUPT)
+[    3.991502] 002: sdhci: Secure Digital Host Controller Interface driver
+[    3.997130] 002: sdhci: Copyright(c) Pierre Ossman
+[    4.001882] 002: sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.008522] 002: zynqmp_firmware_probe Platform Management API v1.1
+[    4.014169] 002: zynqmp_firmware_probe Trustzone version v1.0
+[    4.046198] 000: alg: No test for xilinx-zynqmp-aes (zynqmp-aes)
+[    4.048900] 000: zynqmp_aes zynqmp_aes: AES Successfully Registered
+
+[    4.053476] 001: alg: No test for xilinx-keccak-384 (zynqmp-keccak-384)
+[    4.062110] 001: alg: No test for xilinx-zynqmp-rsa (zynqmp-rsa)
+[    4.067968] 000: usbcore: registered new interface driver usbhid
+[    4.071591] 000: usbhid: USB HID core driver
+[    4.079485] 000: ARM CCI_400_r1 PMU driver probed
+[    4.081357] 000: fpga_manager fpga0: Xilinx ZynqMP FPGA Manager registered
+[    4.088090] 000: usbcore: registered new interface driver snd-usb-audio
+[    4.095603] 000: pktgen: Packet Generator for packet performance testing. Version: 2.75
+[    4.102685] 000: Initializing XFRM netlink socket
+[    4.107037] 000: NET: Registered protocol family 10
+[    4.112073] 000: Segment Routing with IPv6
+[    4.115578] 000: sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    4.122211] 000: NET: Registered protocol family 17
+[    4.126625] 000: NET: Registered protocol family 15
+[    4.131469] 000: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    4.144769] 000: can: controller area network core (rev 20170425 abi 9)
+[    4.151399] 000: NET: Registered protocol family 29
+[    4.156188] 000: can: raw protocol (rev 20170425)
+[    4.160855] 000: can: broadcast manager protocol (rev 20170425 t)
+[    4.166918] 000: can: netlink gateway (rev 20190810) max_hops=1
+[    4.172956] 000: Bluetooth: RFCOMM TTY layer initialized
+[    4.178070] 000: Bluetooth: RFCOMM socket layer initialized
+[    4.183609] 000: Bluetooth: RFCOMM ver 1.11
+[    4.187755] 000: Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    4.193455] 000: Bluetooth: BNEP filters: protocol multicast
+[    4.199084] 000: Bluetooth: BNEP socket layer initialized
+[    4.204441] 000: Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    4.210770] 000: Bluetooth: HIDP socket layer initialized
+[    4.216374] 000: 9pnet: Installing 9P2000 support
+[    4.220811] 000: Key type dns_resolver registered
+[    4.225882] 000: registered taskstats version 1
+[    0.029960] 000: Loating cinpiled-ihys.509 CPU 0x0cates0000 [0x410fd034]
+[    4.237399] 000: Btrfs loaded, crc32c=crc32c-generic
+[    4.261392] 000: ff000000.serial: ttyPS0 at MMIO 0xff000000 (irq = 46, base_baud = 6249999) is a xuartps
+[    4.270848] 000: printk: console [ttyPS0] enabled
+[    4.270891] 000: printk: bootconsole [cdns0] disabled
+[    4.270848] 000: printk: console [ttyPS0] enabled
+[    4.270891] 000: printk: bootconsole [cdns0] disabled
+[    4.275616] 000: ff010000.serial: ttyPS2 at MMIO 0xff010000 (irq = 47, base_baud = 6249999) is a xuartps
+[    4.276003] 000: of-fpga-region fpga-full: FPGA Region probed
+[    4.276799] 000: GPIO IRQ not connected
+[    4.276802] 000: XGpio: gpio@a0020000: registered, base is 510
+[    4.277219] 000: XGpio: gpio@a0110000: registered, base is 507
+[    4.278220] 000: XGpio: gpio@a0110000: dual channel registered, base is 475
+[    4.278577] 000: XGpio: gpio@a0120000: registered, base is 473
+[    4.278863] 000: GPIO IRQ not connected
+[    4.278865] 000: XGpio: gpio@a0090000: registered, base is 471
+[    4.279150] 000: GPIO IRQ not connected
+[    4.279152] 000: XGpio: gpio@a00e0000: registered, base is 439
+[    4.279850] 000: nwl-pcie fd0e0000.pcie: Link is DOWN
+[    4.280026] 000: nwl-pcie fd0e0000.pcie: host bridge /amba/pcie@fd0e0000 ranges:
+[    4.280057] 000: nwl-pcie fd0e0000.pcie:   MEM 0xe0000000..0xefffffff -> 0xe0000000
+[    4.280075] 000: nwl-pcie fd0e0000.pcie:   MEM 0x600000000..0x7ffffffff -> 0x600000000
+[    4.280241] 000: nwl-pcie fd0e0000.pcie: PCI host bridge to bus 0000:00
+[    4.280249] 000: pci_bus 0000:00: root bus resource [bus 00-ff]
+[    4.280255] 000: pci_bus 0000:00: root bus resource [mem 0xe0000000-0xefffffff]
+[    4.280260] 000: pci_bus 0000:00: root bus resource [mem 0x600000000-0x7ffffffff pref]
+[    4.280288] 000: pci 0000:00:00.0: [10ee:d011] type 01 class 0x060400
+[    4.280316] 000: pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x000fffff]
+[    4.280390] 000: pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot
+[    4.284373] 000: pci 0000:00:00.0: BAR 0: assigned [mem 0xe0000000-0xe00fffff]
+[    4.284383] 000: pci 0000:00:00.0: PCI bridge to [bus 01-0c]
+[    4.284576] 000: clk-wizard a0030000.clk_wiz: clk_in_name: pl0_ref
+[    4.286045] 000: clk-wizard a0080000.clk_wiz: clk_in_name: pl0_ref
+[    4.288848] 000: xilinx-dpdma fd4c0000.dma: Xilinx DPDMA engine is probed
+[    4.289293] 000: xilinx-zynqmp-dma fd500000.dma: ZynqMP DMA driver Probe success
+[    4.289627] 000: xilinx-zynqmp-dma fd510000.dma: ZynqMP DMA driver Probe success
+[    4.289971] 000: xilinx-zynqmp-dma fd520000.dma: ZynqMP DMA driver Probe success
+[    4.290314] 000: xilinx-zynqmp-dma fd530000.dma: ZynqMP DMA driver Probe success
+[    4.290657] 000: xilinx-zynqmp-dma fd540000.dma: ZynqMP DMA driver Probe success
+[    4.290996] 000: xilinx-zynqmp-dma fd550000.dma: ZynqMP DMA driver Probe success
+[    4.291330] 000: xilinx-zynqmp-dma fd560000.dma: ZynqMP DMA driver Probe success
+[    4.291679] 000: xilinx-zynqmp-dma fd570000.dma: ZynqMP DMA driver Probe success
+[    4.292084] 000: xilinx-zynqmp-dma ffa80000.dma: ZynqMP DMA driver Probe success
+[    4.292422] 000: xilinx-zynqmp-dma ffa90000.dma: ZynqMP DMA driver Probe success
+[    4.292769] 000: xilinx-zynqmp-dma ffaa0000.dma: ZynqMP DMA driver Probe success
+[    4.293109] 000: xilinx-zynqmp-dma ffab0000.dma: ZynqMP DMA driver Probe success
+[    4.293470] 000: xilinx-zynqmp-dma ffac0000.dma: ZynqMP DMA driver Probe success
+[    4.293810] 000: xilinx-zynqmp-dma ffad0000.dma: ZynqMP DMA driver Probe success
+[    4.294148] 000: xilinx-zynqmp-dma ffae0000.dma: ZynqMP DMA driver Probe success
+[    4.294486] 000: xilinx-zynqmp-dma ffaf0000.dma: ZynqMP DMA driver Probe success
+[    4.294807] 000: xilinx-frmbuf a0060000.v_frmbuf_rd: Xilinx AXI frmbuf DMA_MEM_TO_DEV
+[    4.294883] 000: xilinx-frmbuf a0060000.v_frmbuf_rd: Xilinx AXI FrameBuffer Engine Driver Probed!!
+[    4.295188] 000: xilinx-frmbuf a00c0000.v_frmbuf_wr: Xilinx AXI frmbuf DMA_DEV_TO_MEM
+[    4.295263] 000: xilinx-frmbuf a00c0000.v_frmbuf_wr: Xilinx AXI FrameBuffer Engine Driver Probed!!
+[    4.295561] 000: xilinx-frmbuf a00a0000.v_frmbuf_rd: Xilinx AXI frmbuf DMA_MEM_TO_DEV
+[    4.295632] 000: xilinx-frmbuf a00a0000.v_frmbuf_rd: Xilinx AXI FrameBuffer Engine Driver Probed!!
+[    4.295827] 000: a00f0000.serial: ttyUL1 at MMIO 0xa00f0000 (irq = 56, base_baud = 0) is a uartlite
+[    4.296351] 000: xlnx,csc-bridge a0100000.v_proc_ss: Xilinx VPSS CSC DRM experimental driver probed
+[    4.296598] 000: xlnx,scaler-bridge a0140000.v_proc_ss: Invalid height in dt
+[    4.296603] 000: xlnx,scaler-bridge a0140000.v_proc_ss: parse_of failed
+[    4.296631] 000: xlnx,scaler-bridge: probe of a0140000.v_proc_ss failed with error -22
+[    4.296930] 000: xilinx-vpss-scaler a0140000.v_proc_ss: Num Hori Taps 8
+[    4.296935] 000: xilinx-vpss-scaler a0140000.v_proc_ss: Num Vert Taps 8
+[    4.296939] 000: xilinx-vpss-scaler a0140000.v_proc_ss: VPSS Scaler Probe Successful
+[    4.297375] 000: xilinx-psgtr fd400000.zynqmp_phy: Lane:3 type:8 protocol:4 pll_locked:yes
+[    4.300517] 000: zynqmp_clk_divider_set_rate() set divider failed for pl2_ref_div1, ret = -13
+[    4.300875] 000: xilinx-dp-snd-codec fd4a0000.zynqmp-display:zynqmp_dp_snd_codec0: Xilinx DisplayPort Sound Codec probed
+[    4.301268] 000: xilinx-dp-snd-pcm zynqmp_dp_snd_pcm0: Xilinx DisplayPort Sound PCM probed
+[    4.301625] 000: xilinx-dp-snd-pcm zynqmp_dp_snd_pcm1: Xilinx DisplayPort Sound PCM probed
+[    4.302520] 000: xilinx-dp-snd-card fd4a0000.zynqmp-display:zynqmp_dp_snd_card: xilinx-dp-snd-codec-dai <-> xilinx-dp-snd-codec-dai mapping ok
+[    4.302633] 000: xilinx-dp-snd-card fd4a0000.zynqmp-display:zynqmp_dp_snd_card: xilinx-dp-snd-codec-dai <-> xilinx-dp-snd-codec-dai mapping ok
+[    4.302641] 000: xilinx-dp-snd-card fd4a0000.zynqmp-display:zynqmp_dp_snd_card: ASoC: no DMI vendor name!
+[    4.305963] 000: xilinx-dp-snd-card fd4a0000.zynqmp-display:zynqmp_dp_snd_card: Xilinx DisplayPort Sound Card probed
+[    4.306089] 000: OF: graph: no port node found in /amba/zynqmp-display@fd4a0000
+[    4.306230] 000: [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    4.306232] 000: [drm] No driver support for vblank timestamp query.
+[    4.306340] 000: xlnx-drm xlnx-drm.0: bound fd4a0000.zynqmp-display (ops 0xffff800010ceaec8)
+[    4.439249] 000: random: fast init done
+[    8.469186] 000: [drm] Cannot find any crtc or sizes
+[   11.295839] 000: random: crng init done
+[   12.635758] 000: [drm] Initialized xlnx 1.0.0 20130509 for fd4a0000.zynqmp-display on minor 0
+[   12.635780] 000: zynqmp-display fd4a0000.zynqmp-display: ZynqMP DisplayPort Subsystem driver probed
+[   12.636966] 000: spi-nor spi0.0: unrecognized JEDEC id bytes: ef 60 19 00 00 00
+[   12.638120] 000: macb ff0b0000.ethernet: Not enabling partial store and forward
+[   12.646028] 000: libphy: MACB_mii_bus: probed
+[   12.651907] 000: Generic PHY ff0b0000.ethernet-ffffffff:04: attached PHY driver [Generic PHY] (mii_bus:phy_addr=ff0b0000.ethernet-ffffffff:04, irq=POLL)
+[   12.651916] 000: macb ff0b0000.ethernet eth0: Cadence GEM rev 0x50070106 at 0xff0b0000 irq 30 (00:0a:35:00:c0:13)
+[   12.652362] 000: macb ff0e0000.ethernet: Not enabling partial store and forward
+[   12.653338] 000: libphy: MACB_mii_bus: probed
+[   12.655970] 000: Generic PHY ff0e0000.ethernet-ffffffff:07: attached PHY driver [Generic PHY] (mii_bus:phy_addr=ff0e0000.ethernet-ffffffff:07, irq=POLL)
+[   12.655978] 000: macb ff0e0000.ethernet eth1: Cadence GEM rev 0x50070106 at 0xff0e0000 irq 31 (00:0a:35:00:8b:87)
+[   12.656563] 000: xilinx-axipmon ffa00000.perf-monitor: Probed Xilinx APM
+[   12.657055] 000: xilinx-axipmon fd0b0000.perf-monitor: Probed Xilinx APM
+[   12.657520] 000: xilinx-axipmon fd490000.perf-monitor: Probed Xilinx APM
+[   12.657964] 000: xilinx-axipmon ffa10000.perf-monitor: Probed Xilinx APM
+[   12.658919] 000: dwc3 fe200000.dwc3: Failed to get clk 'ref': -2
+[   12.659147] 000: xilinx-psgtr fd400000.zynqmp_phy: Lane:1 type:0 protocol:3 pll_locked:yes
+[   12.661769] 000: xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[   12.661785] 000: xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[   12.661908] 000: xhci-hcd xhci-hcd.0.auto: hcc params 0x0238f625 hci version 0x100 quirks 0x0000000202010810
+[   12.662038] 000: xhci-hcd xhci-hcd.0.auto: irq 100, io mem 0xfe200000
+[   12.662432] 000: usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.04
+[   12.662438] 000: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   12.662444] 000: usb usb1: Product: xHCI Host Controller
+[   12.662448] 000: usb usb1: Manufacturer: Linux 5.4.0-rt1-xilinx-v2020.2-p5b xhci-hcd
+[   12.662452] 000: usb usb1: SerialNumber: xhci-hcd.0.auto
+[   12.662864] 000: hub 1-0:1.0: USB hub found
+[   12.662894] 000: hub 1-0:1.0: 1 port detected
+[   12.663171] 000: xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[   12.663180] 000: xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[   12.663190] 000: xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+[   12.663369] 000: usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.04
+[   12.663375] 000: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   12.663380] 000: usb usb2: Product: xHCI Host Controller
+[   12.663384] 000: usb usb2: Manufacturer: Linux 5.4.0-rt1-xilinx-v2020.2-p5b xhci-hcd
+[   12.663388] 000: usb usb2: SerialNumber: xhci-hcd.0.auto
+[   12.663758] 000: hub 2-0:1.0: USB hub found
+[   12.663786] 000: hub 2-0:1.0: 1 port detected
+[   12.664837] 000: cdns-i2c ff030000.i2c: 400 kHz mmio ff030000 irq 33
+[   12.695498] 000: xilinx-video amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler: graph parsing failed
+[   12.695615] 000: xilinx-video: probe of amba_pl@0:vcap_mipi_csi2_rx_v_proc_ss_scaler failed with error -22
+[   12.696010] 000: xilinx-demosaic a00b0000.v_demosaic: Xilinx Video Demosaic Probe Successful
+[   12.696422] 000: xilinx-gamma-lut a00d0000.v_gamma_lut: Xilinx 8-bit Video Gamma Correction LUT registered
+[   12.696851] 000: cdns-wdt fd4d0000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[   12.697282] 000: cdns-wdt ff150000.watchdog: Xilinx Watchdog Timer with timeout 10s
+[   12.736292] 000: mmc0: SDHCI controller on ff160000.mmc [ff160000.mmc] using ADMA 64-bit
+[   12.769479] 000: mmc1: SDHCI controller on ff170000.mmc [ff170000.mmc] using ADMA 64-bit
+[   12.770262] 000: PM: genpd: Not disabling unused power domains
+[   12.777308] 001: rtc_zynqmp ffa60000.rtc: setting system clock to 2026-10-24T19:19:16 UTC (1792869556)
+INIT: [   12.777320] 001: of_cfs_init
+[   12.777358] 001: of_cfs_init: OK
+[   12.777539] 001: cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[   12.811697] 000: mmc1: new high speed SDHC card at address 59b4
+[   12.818059] 000: mmc0: new HS200 MMC card at address 0001
+[   12.819158] 000: mmcblk1: mmc1:59b4       29.8 GiB 
+[   12.822485] 000: mmcblk0: mmc0:0001 8GTF4R 7.28 GiB 
+[   12.822672] 000: mmcblk0boot0: mmc0:0001 8GTF4R partition 1 4.00 MiB
+[   12.822868] 000: mmcblk0boot1: mmc0:0001 8GTF4R partition 2 4.00 MiB
+[   12.822974] 000: mmcblk0rpmb: mmc0:0001 8GTF4R partition 3 512 KiB, chardev (244:0)
+[   12.824183] 000:  mmcblk0: p1 p2
+[   12.827150] 000:  mmcblk1: p1
+[   12.913876] 001: cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[   12.913889] 001: clk: Not disabling unused clocks
+version 2.88 booting[   12.914150] 001: ALSA device list:
+[   12.914153] 001:   #0: DisplayPort monitor
+[   12.914257] 001: platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[   12.914265] 001: cfg80211: failed to load regulatory.db
+[   12.937124] 001: Freeing unused kernel memory: 576K
+[   12.953276] 001: Run /init as init process
+
+[   13.167861] 002: /dev/root: Can't open blockdev
+Starting udev
+[   13.215021] 000: udevd[347]: starting version 3.2.8
+[   13.222282] 001: udevd[348]: starting eudev-3.2.8
+[   13.418421] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+[   13.723440] 000: FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[   13.752561] 000: EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[   14.140614] 000: dmaproxy: loading out-of-tree module taints kernel.
+Configuring packages on first boot....
+ (This may take several minutes. Please do not power off the machine.)
+Running postinst /etc/rpm-postinsts/100-sysvinit-inittab...
+update-rc.d: /etc/init.d/run-postinsts exists during rc.d purge (continuing)
+ Removing any system startup links for run-postinsts ...
+  /etc/rcS.d/S99run-postinsts
+INIT: Entering runlevel: 5
+Configuring network interfaces... [   14.585429] 001: pps pps0: new PPS source ptp0
+udhcpc: started, v1.31.0[   14.585445] 001: macb ff0b0000.ethernet: gem-ptp-timer ptp clock registered.
+
+udhcpc: sending discover
+udhcpc: sending discover
+udhcpc: sending discover
+udhcpc: no lease, forking to background
+done.
+Starting haveged: haveged: listening socket at 3
+haveged: haveged starting up
+
+
+Starting Dropbear SSH server: Generating 2048 bit rsa key, this may take a while...
+Public key portion is:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVc4nFDj+1+RcnztF+/i1wl1YYy8suPRvIaf3w001fiE2fTzwFGw7qlBLcXWcEIz3drukOK4yyO/23F732/Y4UiFQkDDYPB4kBzD9ZRBjvGmsgP7UG4wOFRrvBO5m/YIL5G6/K74i8KCfs7BJQZ5JEwuyWNyJfWkIno1lTbE5PwRZ+oW0qaCmUi/3j/xPkICGylagJXRHMVozU1Rb/sEpkND/28bYbDH+EOCW4zsWwv7/IA+SvN59KfN0Wf/u+pqjgjC+Rn+B9CD5hPpxX+i8Xr20XfegkHQ0TmNBzRwg2rVS9i5cWX21DKbJOcFaumBy77dBNAsbA176sMspLEiE9 root@ALIENTEK-MP
+Fingerprint: sha1!! bf:ed:a0:9a:28:5e:2f:c8:12:7c:25:d9:02:7e:f9:cb:52:65:5f:65
+dropbear.
+Starting internet superserver: inetd.
+Starting syslogd/klogd: done
+Starting tcf-agent: OK
+
+7[r[999;999H[6nroot@ALIENTEK-MP:~# 

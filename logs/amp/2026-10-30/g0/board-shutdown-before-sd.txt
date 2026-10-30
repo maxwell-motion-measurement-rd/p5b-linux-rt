@@ -1,0 +1,22 @@
+sync; printf '\n__AMP_SYNC_COMPLETE__\n'; poweroff
+
+__AMP_SYNC_COMPLETE__
+
+Broadcast message fro?INIT: Sending processes the TERM signal
+root@ALIENTEK-MP:~# Stopping haveged: 
+
+Stopping Dropbear SSH server: stopped /usr/sbin/dropbear (pid 844)
+dropbear.
+Stopping internet superserver: inetd.
+Stopping syslogd/klogd: stopped syslogd (pid 855)
+stopped klogd (pid 858)
+done
+Stopping tcf-agent: OK
+Deconfiguring network interfaces... [ 2776.946882] 001: macb ff0b0000.ethernet: gem-ptp-timer ptp clock unregistered.
+done.
+Sending all processes the TERM signal...
+logout
+Sending all processes the KILL signal...
+Unmounting remote filesystems...
+Deactivating swap...
+Unmounting local filesystems...

@@ -1,0 +1,1 @@
+cp /tmp/amp-r002/p5-core3-heartbeat.bin /lib/firmware/p5-core3-heartbeat.bin && insmod /tmp/amp-r002/p5_core3_boot.ko; printf "R002_INSMOD_RC=%s\n" $?; cat /sys/bus/platform/devices/core3-heartbeat/status; sha256sum /lib/firmware/p5-core3-heartbeat.bin

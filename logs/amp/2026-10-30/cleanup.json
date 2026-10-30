@@ -1,0 +1,1699 @@
+{
+  "date": "2026-10-30",
+  "scope": "Windows project workspace only; no board, SD or VM mutation",
+  "targets": 138,
+  "removed_bytes": 74416105,
+  "items": [
+    {
+      "path": "work/artifacts/amp-r002/package",
+      "reason": "Unused full r002 FIT candidate; duplicate rollback retained in r001; validated r002 RAM firmware/module and symbols retained",
+      "bytes": 57595368,
+      "files": [
+        {
+          "sha256": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+          "path": "work\\artifacts\\amp-r002\\package\\experiment\\BOOT.BIN",
+          "bytes": 9255672
+        },
+        {
+          "sha256": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229",
+          "path": "work\\artifacts\\amp-r002\\package\\experiment\\boot.scr",
+          "bytes": 2007
+        },
+        {
+          "sha256": "a2c72f2edc680ee63c8efe3822db274ba895c88ea6eae2294ecf24993d0af499",
+          "path": "work\\artifacts\\amp-r002\\package\\experiment\\image.ub",
+          "bytes": 19578460
+        },
+        {
+          "sha256": "eb6004dbd5e05391d29cda983488795073455fc280af7bb2e71b1ad0fde45cc5",
+          "path": "work\\artifacts\\amp-r002\\package\\experiment\\SHA256SUMS",
+          "bytes": 225
+        },
+        {
+          "sha256": "1459d13f776071430d11c3d1476cd0a1bbfd1476609617a72e762602675d9b9b",
+          "path": "work\\artifacts\\amp-r002\\package\\rollback\\BOOT.BIN",
+          "bytes": 9255672
+        },
+        {
+          "sha256": "96a830a29dd3b3ba7063e6e916ead3b4df490c96c062a1854c41bd20fd4ef229",
+          "path": "work\\artifacts\\amp-r002\\package\\rollback\\boot.scr",
+          "bytes": 2007
+        },
+        {
+          "sha256": "f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484",
+          "path": "work\\artifacts\\amp-r002\\package\\rollback\\image.ub",
+          "bytes": 19501100
+        },
+        {
+          "sha256": "44dd3baeb7cef2e4d8e9832bbe5c3b1ac10dfed7b0b85f3be2e18edf8b439d29",
+          "path": "work\\artifacts\\amp-r002\\package\\rollback\\SHA256SUMS",
+          "bytes": 225
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r002/build/amp-rootfs.cpio.gz",
+      "reason": "Rebuildable intermediate for unused r002 full FIT",
+      "bytes": 11152681,
+      "files": [
+        {
+          "sha256": "b128f665edea936016be4b9ae5fbc1bef3c005554a6a43f9c1ae226f38230aa3",
+          "path": "work\\artifacts\\amp-r002\\build\\amp-rootfs.cpio.gz",
+          "bytes": 11152681
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r002/build/amp-candidate.dtb",
+      "reason": "Rebuildable DTB; source DTS and validation records retained",
+      "bytes": 54485,
+      "files": [
+        {
+          "sha256": "bbecdfd7f5a620f135ecc19c85b3eae944cf8fe6c7c8ea4ed21a309ae2436831",
+          "path": "work\\artifacts\\amp-r002\\build\\amp-candidate.dtb",
+          "bytes": 54485
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/download-raw.txt",
+      "reason": "Redundant hexadecimal transport transcript; verified archive and per-chunk/whole-file checksums retained",
+      "bytes": 5337753,
+      "files": [
+        {
+          "sha256": "82e780f2a63fb66eeec9d3b4ec8c7f849f3da0427d55818c960978ffc1122bd5",
+          "path": "logs\\amp\\2026-10-30\\g5\\download-raw.txt",
+          "bytes": 5337753
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-001.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1639,
+      "files": [
+        {
+          "sha256": "69cb2528a41239f8a48d44fcc17d8ed68a41aba1baa5f609229abe5170c6ddf7",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-001.txt",
+          "bytes": 1639
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-002.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1639,
+      "files": [
+        {
+          "sha256": "a44ddf080a40305f8727c6770dfaea25e7bae1cb79ccb87a11ff6204eb91a7dc",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-002.txt",
+          "bytes": 1639
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-003.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1643,
+      "files": [
+        {
+          "sha256": "bd196b20613a774a11b81fcec91966924a4147d7ba2bc31508f16dc12f81ab29",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-003.txt",
+          "bytes": 1643
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-004.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1643,
+      "files": [
+        {
+          "sha256": "839b82f4ad7f40f04d8403270be6b5bef3fb28c9d14b8bd981533c87530bc64f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-004.txt",
+          "bytes": 1643
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-005.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1643,
+      "files": [
+        {
+          "sha256": "d91191e9bc11e0c745f313820b4c2a07675d37809a36768c97348479fe76df4b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-005.txt",
+          "bytes": 1643
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-006.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1643,
+      "files": [
+        {
+          "sha256": "5f83c1a9e11425deb045e1752f14a63103d6bc97245846f0ebda9ef686304ef7",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-006.txt",
+          "bytes": 1643
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-007.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1643,
+      "files": [
+        {
+          "sha256": "fd2cb41b5da2a066f1ea7a60b681e54f288f8e6d704a3d9d3a0b9ba6c42b45b8",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-007.txt",
+          "bytes": 1643
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-008.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "ec64a66701fe6997bd9ff8b2aa67bb4b828ebb3ed33f95724e8c36002f4b2b8e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-008.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-009.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "719ebf88d45c5f49243df372b74fd42354349651175e47866bfdcfcbc719d555",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-009.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-010.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "e3beb608addcf47001dfd2c788c6b2e01a2d9e44f7a4f425f354af3acfa28bd3",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-010.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-011.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "4485cac162489411d77b1402965e52d2d294c9932a5577f3e86da7dec0555579",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-011.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-012.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "5942f87bd3c01d9d651fcd93f58b9b2a17285a9dac65e5643450c495c7f0fde0",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-012.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-013.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1644,
+      "files": [
+        {
+          "sha256": "98f7d56773fa63abd09d9dfe6efbba16527d7aba17ee89937b6d63cd53987fac",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-013.txt",
+          "bytes": 1644
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-014.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1905,
+      "files": [
+        {
+          "sha256": "f917b710dad8362774c7247de5547600ff6bda8a6e88f65a20eb1e80ff78dfd0",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-014.txt",
+          "bytes": 1905
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-015.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1906,
+      "files": [
+        {
+          "sha256": "8578a673e44dea3c2b548ea7cdf74b6e57bad9240427d87da8fc9ed89f220e15",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-015.txt",
+          "bytes": 1906
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-016.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1907,
+      "files": [
+        {
+          "sha256": "237b10bb0a3928b4db051178ef880db9286da3a8fba7ef669d594bbbe50abe45",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-016.txt",
+          "bytes": 1907
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-017.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1908,
+      "files": [
+        {
+          "sha256": "48a4570bede7bf94c51ba7ebc91cad82add0015ecd148884d28bf9ee56e79359",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-017.txt",
+          "bytes": 1908
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-018.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1908,
+      "files": [
+        {
+          "sha256": "f51aa2f994e9d70103797d913e7868b641a9f039c59a1ff4ba33643f14604e53",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-018.txt",
+          "bytes": 1908
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-019.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1908,
+      "files": [
+        {
+          "sha256": "0705f47e453537df76d9c1ead018c1ccaa9bbd02c229b32046b93912ce67135f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-019.txt",
+          "bytes": 1908
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-020.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1908,
+      "files": [
+        {
+          "sha256": "c093a0da49d2bbf030ba1f7c0d5de1292d294662c49edd54ef3f58a0d16ed7b1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-020.txt",
+          "bytes": 1908
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-021.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1908,
+      "files": [
+        {
+          "sha256": "3f4d13321ae62149e2147b49cb7c08bc40734fce818470de3733419476e980f7",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-021.txt",
+          "bytes": 1908
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-022.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1911,
+      "files": [
+        {
+          "sha256": "21c329590ee1756b017623ed52a85eca32f6b2ee27c60a9d01fd275e3bcfccb8",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-022.txt",
+          "bytes": 1911
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-023.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1913,
+      "files": [
+        {
+          "sha256": "2e552e2a667c4fddd366537fb951d8218b9b9b3c712c8421b37669c24ce4a5e2",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-023.txt",
+          "bytes": 1913
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-024.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1913,
+      "files": [
+        {
+          "sha256": "2865f2333ec471dfea0316f52bd4959b68b3846c285b71f9711fa15a20835f8b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-024.txt",
+          "bytes": 1913
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-025.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1913,
+      "files": [
+        {
+          "sha256": "4f4d00874f9348903927916dc2911900fa07788c4b81b27e12fa20f34dfc7a41",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-025.txt",
+          "bytes": 1913
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-026.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1913,
+      "files": [
+        {
+          "sha256": "cbaa5f15e835598b4ba15f70f4b7a0d611aa462c9d6a6f7f93aef05f29475cac",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-026.txt",
+          "bytes": 1913
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-027.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1945,
+      "files": [
+        {
+          "sha256": "0673bd10f59448c7f51662fc297262720ce6658160013b473dd43ab37291a9aa",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-027.txt",
+          "bytes": 1945
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-028.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1945,
+      "files": [
+        {
+          "sha256": "bceca0436ac8e4dd4434d51d369e3686bf9fa1905f323e1cbc4d7bade5c1725c",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-028.txt",
+          "bytes": 1945
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-029.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "3c429f862e19c90fab793da12530547b88f2f8e9a6cdcb69a5db7f4b11349316",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-029.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-030.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "415adce663aa56ec698e8d492635ed5e1b8f772df072b00ef5d14017f8d6e795",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-030.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-031.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "284bdf79615ab50887ef5aa84fcb05443c45f792e91578bb2160caa86701aaa1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-031.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-032.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "bef60b1318451ae47f4175277796522b2d1ec3b99d3d588ade33351ee9eb0c7b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-032.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-033.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "80dc0cffc9259f8991aaa6aca87d1320f9a676e49d4c5936bf709b2451b1d83b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-033.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-034.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "138db24d007a5a9a7e4497265959fdf270ee9907550b4f602adbaf040092472f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-034.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-035.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "769f1f2273770a66ab7184d2af5de07162f8d28ddc7a045c8eee54e59e0cd42b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-035.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-036.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "78378bb5dc0002600c7a3f9dc43122e6a8ef1f7bfb3ea3d6ffad205f29e9f712",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-036.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-037.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "6579a7be7103bdcb081442d5207aca4efa8033aa54e3e7c5f8451d19d2a581a0",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-037.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-038.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "4068d6c97264e89b372f719172bd25380e5664f9ca89d86f6fb3790a79f64366",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-038.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-039.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1946,
+      "files": [
+        {
+          "sha256": "064ab34e6909cf91a21afe7b5079fb3cbc5f2758a497348fde2ad76e05f64e9e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-039.txt",
+          "bytes": 1946
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-cpu-040.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1894,
+      "files": [
+        {
+          "sha256": "43aa97249b8e2f7ed9a08597dae5e010a539e454cde97e63218cc6229b836e03",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-cpu-040.txt",
+          "bytes": 1894
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-001.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 848,
+      "files": [
+        {
+          "sha256": "ca02b70ced62cdf6522db0cac1ebc1211ad5eb7de10059faf04b6768b4c7784a",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-001.txt",
+          "bytes": 848
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-002.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 849,
+      "files": [
+        {
+          "sha256": "6b7257f4df3f9975fde0038442530c65ceda25f4c30140200853479076ba4a08",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-002.txt",
+          "bytes": 849
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-003.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 849,
+      "files": [
+        {
+          "sha256": "f3bb1dc776fe8cbe550dd62349fde9476c8db5e659a77d3331d6b54bd061d930",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-003.txt",
+          "bytes": 849
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-004.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 849,
+      "files": [
+        {
+          "sha256": "059a06efb9d45577d70d4c236979d0345f237d3b20666793c2c0ba1f42674ca6",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-004.txt",
+          "bytes": 849
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-005.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "c8895b6009dc964c6d958a921d927a5043eb8432acf05d41a318e4be2540c031",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-005.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-006.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "ce879feedd9ce42d2b9eea0479d3393d360fb419eb2d35f50dc84ecd500dfe45",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-006.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-007.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "494ec36b2891f72098a3656a0c841b8c864629e50772dc9e70f71777f8a9eaab",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-007.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-008.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "6307d802a764c6fafd517926e7e4d838049a555dacd6a316f5fd07da2a082e5a",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-008.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-009.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "45add2e8b96f99d38efe19d4fa7d6bc18966ecd6eb201ea7465a81e12f2ac2b3",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-009.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-010.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "bb6d257ca238bf18d8724bd3332507643c0ace59aa52fa90000f0f2fbdc4b550",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-010.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-011.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "a18c439d44de3a9626529acf92a2f7750afb5deb8525c8e6da42d581086e6fd2",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-011.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-012.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 850,
+      "files": [
+        {
+          "sha256": "b7f6617d9f186bed0d17b966de5ca997adb47901ebaa5924663602ec3ce401db",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-012.txt",
+          "bytes": 850
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-013.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1111,
+      "files": [
+        {
+          "sha256": "5a6099080b4e5d6d86a1b4264bf0fd63c250104e60f6c9942a1a779ceaaae767",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-013.txt",
+          "bytes": 1111
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-014.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1111,
+      "files": [
+        {
+          "sha256": "62f58d8dd090d91e4edd48460b477db2132a22ef9187433981669fd7157f927a",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-014.txt",
+          "bytes": 1111
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-015.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1112,
+      "files": [
+        {
+          "sha256": "b9d2dc0915d653f0e07af3671c730a04d1a1cb57801162980c6e11e58f808aa5",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-015.txt",
+          "bytes": 1112
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-016.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1112,
+      "files": [
+        {
+          "sha256": "200ff628d3c9b7cfeb59fe2dc08fd31fca59be31dcc7fc46c67a2a0a16910afe",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-016.txt",
+          "bytes": 1112
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-017.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "b56c0b896fd531b44ecdad669571f16e0522e052d12d4f34e0c781e95bfb3e7f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-017.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-018.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "98400a4e5d129047ec23cc05e0d8c5f60a19ff46c7a5bf23d4387bdfb4a23b14",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-018.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-019.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "5e4f6a052da4a0bac8bdd474cbd40561f6f979322ee1d927e14d421a252a5707",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-019.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-020.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "9a188750581c0c7dd4ea80d4fa4112fd9fbe6abba731882f922482eed49c4753",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-020.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-021.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "4787674b593482725b3cbda5ac0cfd2e72b4c155d167d6201a7476af59467731",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-021.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-022.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "c060b694c440ad22b4c62f363a99b1dc187a5bb03ef6c57964b00545e3d39bbc",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-022.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-023.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "6ba932ec28813bdc2f5c348624edf233ed43740d6e94e26fe138f494f006f516",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-023.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-024.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "3884633b4d058e51a310556d2a54cf7525d97cd648bfba6bb36319924f3bf783",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-024.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-025.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1116,
+      "files": [
+        {
+          "sha256": "82a2a926e17799435a13d59caf11a68d80a3266b862f12185f5e5b7f1398627b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-025.txt",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-026.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1148,
+      "files": [
+        {
+          "sha256": "98fcdc85b11a0f8fe961a70413c13d714779bf08f41dde8562fde551dd3f332e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-026.txt",
+          "bytes": 1148
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-027.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1148,
+      "files": [
+        {
+          "sha256": "b9d2a9ed6d88fc86677449c05cab8f6b2a5f20a3b88f8277ca0ff211fae73fa4",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-027.txt",
+          "bytes": 1148
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-028.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "b6c341b17d551912cb14f124240377df0602660000fb3b0c90ef33cd1efd2def",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-028.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-029.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "75ccc0ab299dfa76b18b03300997980d9a7a3422effac6c51895bb8d39bc26a2",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-029.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-030.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "1ddc537b70150287620a6143d1fb43e792265ab03ac64bae3d29876e11c26055",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-030.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-031.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "bacfcbb78fd530a356fedfc60ede49491b10552f7834c12d880a8982ac8477ae",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-031.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-032.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "d1e2251537936be145b7b24a51a534bc1a411edefd0d61fc2699bac4393f2f01",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-032.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-033.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "b5849328aedf85e8ae8bf1482b5e2825e99aa4fd96a1cf292ad4af3943ff0c87",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-033.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-034.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "07f8d0691e1e863212918fd6927a7f17f383359546b379c193ff1e7622bad7d4",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-034.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-035.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "99e0b3198c3d538b0d34219ab4f19cd38e15645709923eb59a35840173dfb667",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-035.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-036.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "20f5ee6e8b9f6b0363341d0815a1b10320a23c9e618250605c7f8408e9f3ec06",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-036.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-037.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "5a9d2129cb066433ae557c3ed146817d74242ea07eb5797e2e1f06a436877b28",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-037.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-038.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1149,
+      "files": [
+        {
+          "sha256": "3e5c94db25dba5410fb3593466ddcd05ab31440fdfe986bc62d510c96732a80a",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-038.txt",
+          "bytes": 1149
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-idle-039.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 1264,
+      "files": [
+        {
+          "sha256": "6d2a74bdb89deeac2f0de850ae2b2a36655bf7312747082e4a140d5385cc538b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-idle-039.txt",
+          "bytes": 1264
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-001.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2011,
+      "files": [
+        {
+          "sha256": "2429323a23c58bde9f707ee42203735ff631ec55b7415a264e6eecece064ba3b",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-001.txt",
+          "bytes": 2011
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-002.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2012,
+      "files": [
+        {
+          "sha256": "b7b17be37aa51bc5e8a01b1e8be05efd340582975f49b8311ec5685c4c5ed048",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-002.txt",
+          "bytes": 2012
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-003.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "5246af9b83e43ed6ab0eabba13a48df993812c9ece1aea693bb7f313636a9516",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-003.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-004.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "e78a2b85a0461a4593b7dc90da3f0af5732701aebacf6598aea73058eec439ab",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-004.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-005.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "6cb2b6874d788b5be70126bb88a925b10a22636ef74d66dd9479fadab393caa4",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-005.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-006.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "bdf41450a4171c3494ea0910ff173c0dbac6a200c98fa9c7bd454e5467eac65e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-006.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-007.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "361bd08067d7d1d5a8f2e2e00388b7f631cf2873286594c79953fe373b858095",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-007.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-008.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "441c7442adf71bd0038d5a1edbe5405579edd3c88085bcefa6cd088f29d6350e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-008.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-009.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "86032da8596a9a2ee6fe1b86d66efa16c833841369c22c0bc674f73e59c1edaf",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-009.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-010.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "c476a0900d24a7fcf448fabb259072dde88aa9243c0caa3212601065051e2d40",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-010.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-011.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "f7a9e655ee634c96dbe91300b56d5f93d821ca8b5db3089b1a01f7026356ce4d",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-011.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-012.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "b5aebc894156799d6e4fc69dcf05f8e17ea53c69a599c14810d42fe2b250a6d2",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-012.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-013.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2013,
+      "files": [
+        {
+          "sha256": "91392b68afd67937f12d8633a57e31e069e494fa9e0b34906661adcabc39cb0f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-013.txt",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-014.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2277,
+      "files": [
+        {
+          "sha256": "37214491966f18da3b3bd8fc66432c2ab59d7d91a590768ccd48edd3509e5290",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-014.txt",
+          "bytes": 2277
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-015.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2277,
+      "files": [
+        {
+          "sha256": "f2d35d4bcb010dbb928f9ccc9693dac2c8c7512804490d8cdc9b9db9654270a0",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-015.txt",
+          "bytes": 2277
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-016.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2279,
+      "files": [
+        {
+          "sha256": "099d66465a48a36d8c4665dfb3446dbf7d0cec217d20106001eb1618854c88de",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-016.txt",
+          "bytes": 2279
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-017.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2279,
+      "files": [
+        {
+          "sha256": "e5ece6a78bba4f44111b3a360d614006b30fcbac55c85da69895833ec71c03ee",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-017.txt",
+          "bytes": 2279
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-018.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2279,
+      "files": [
+        {
+          "sha256": "15082a803fec5946f40f269f7997740c1ec5b24d0f866ead30af9a2252b4137f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-018.txt",
+          "bytes": 2279
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-019.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "e7300865cf71df51e41be93491fd15d0b415ce7aac268df0dd9084124580a737",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-019.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-020.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "27d69799dc47f768fb39b0c3b44f5c1a920ede0e3763914a7c2cb788efaaa1aa",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-020.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-021.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "70d1d5f003f4dda02c2384f43dd3b9a77fe6b5f8df56c144b18e31e1d863c1c1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-021.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-022.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "1e7f5e26d21260f04d20edacc61011eb34f108750e66e0034102fdef601ce89f",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-022.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-023.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "2f4ed1bb36f4af0c085da7cfec6db0269388c0b7db42e91be1aa80a9b47ce8db",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-023.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-024.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "10fe5a464c91f193fd579623df7db1404da6ff96c6c9d9aa605c3a58fadf08e1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-024.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-025.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "986f2087dab3d91288bb9622c81cd6b78d637368fc03d8a3c78a151aee4f92b0",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-025.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-026.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2280,
+      "files": [
+        {
+          "sha256": "95aa937204e7fc5f2ecfa6e64855d25ba49f8b254dc26c8d3a1334031cee27a9",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-026.txt",
+          "bytes": 2280
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-027.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2309,
+      "files": [
+        {
+          "sha256": "83fbd401088bf01dcb6b84cae0691770aa4931fc571105ec4522b33abe1adce8",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-027.txt",
+          "bytes": 2309
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-028.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2309,
+      "files": [
+        {
+          "sha256": "c8d119b21842b52254e641dbc3686250cf2de43a14781505e80eed827ad4ad1e",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-028.txt",
+          "bytes": 2309
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-029.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2310,
+      "files": [
+        {
+          "sha256": "aff5542c82951d7a1369cee950615c551c656a2f5a3b595fd5d4d839e0d309ef",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-029.txt",
+          "bytes": 2310
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-030.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2310,
+      "files": [
+        {
+          "sha256": "b4fad73fd808370f2a53eea0e150374fae43a0c698ee4bffb6bf2d129f47ac35",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-030.txt",
+          "bytes": 2310
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-031.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2310,
+      "files": [
+        {
+          "sha256": "a5e67102f52db3e7a7fb8f794fc823c6ef9ab6c229a466241e8f5a8f15ab2cee",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-031.txt",
+          "bytes": 2310
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-032.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2310,
+      "files": [
+        {
+          "sha256": "746683020f8474294a4c9ff949dc62d72147e49fd39001a8586ed9dd734232cd",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-032.txt",
+          "bytes": 2310
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-033.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2310,
+      "files": [
+        {
+          "sha256": "7c23a11b441769b9ac359afc6155741968b6ef856b507b7b2dc0a44307e174fa",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-033.txt",
+          "bytes": 2310
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-034.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "6666ccb3cac8b192b3b982ae905bf15aae8963fb6dbd5aa96fb825a6aa7c02cc",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-034.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-035.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "d3605ddd3e142664d5f4bf10e8e219794979483175149346be8a009f32a214c7",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-035.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-036.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "accc0a230f2e2cfed47f4824d7f07b3ebf16fd08ab134baf3226c26bd4d544c1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-036.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-037.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "ae5c25c537144900124e07a77425d4871beff6713be9bc7cf59ee67bf7397242",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-037.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-038.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "69494562a104d650aa5e64e2a9dfaef72f15161a2431385d58fdaecc0504d28c",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-038.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-039.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2311,
+      "files": [
+        {
+          "sha256": "a7a2c76663100ee5ccfee0c5b34913fc7d5492f8504892ccf96a896e91e4b85d",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-039.txt",
+          "bytes": 2311
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/monitor-mem-040.txt",
+      "reason": "Coarse polling snapshot; canonical ten-second telemetry and runner outputs retained in verified archive",
+      "bytes": 2260,
+      "files": [
+        {
+          "sha256": "b8a689690a692ef633cd250c3632614715e219ae2dc88da9ce8fe5659576a9b1",
+          "path": "logs\\amp\\2026-10-30\\g5\\monitor-mem-040.txt",
+          "bytes": 2260
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r001/build/start.o",
+      "reason": "Rebuildable object; ELF, map, symbols, final firmware/module retained",
+      "bytes": 10456,
+      "files": [
+        {
+          "sha256": "fce3e76f9b6452a5f92607d54d03ff94e2e7a447e7d1ad7317c876ebb38071ee",
+          "path": "work\\artifacts\\amp-r001\\build\\start.o",
+          "bytes": 10456
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r002/build/start.o",
+      "reason": "Rebuildable object; ELF, map, symbols, final firmware/module retained",
+      "bytes": 10552,
+      "files": [
+        {
+          "sha256": "50c21f12f18ae51a818459d6ffecca021e273b69074b910691bff7bf2acb75ce",
+          "path": "work\\artifacts\\amp-r002\\build\\start.o",
+          "bytes": 10552
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r003/build/amp_wire.o",
+      "reason": "Rebuildable object; ELF, map, symbols, final firmware/module retained",
+      "bytes": 1880,
+      "files": [
+        {
+          "sha256": "2a0647fcd0f46871c4f4a3a790bf529fa7af5532a671ba0675fd221fabc5f53c",
+          "path": "work\\artifacts\\amp-r003\\build\\amp_wire.o",
+          "bytes": 1880
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r003/build/ipc.o",
+      "reason": "Rebuildable object; ELF, map, symbols, final firmware/module retained",
+      "bytes": 3192,
+      "files": [
+        {
+          "sha256": "b2803040dcd3c6e3fa46852cc0972bbb7a855069a6aee532951db1a3b2cc4993",
+          "path": "work\\artifacts\\amp-r003\\build\\ipc.o",
+          "bytes": 3192
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r003/build/start-comm.o",
+      "reason": "Rebuildable object; ELF, map, symbols, final firmware/module retained",
+      "bytes": 10680,
+      "files": [
+        {
+          "sha256": "6f568e79eead1df7af7ad2a93a0986c80f4b48adc3a281534b06ce3b22674174",
+          "path": "work\\artifacts\\amp-r003\\build\\start-comm.o",
+          "bytes": 10680
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r004/build/amp_wire.o",
+      "reason": "Rebuildable object; validated r004 ELF/map/firmware/module retained",
+      "bytes": 1880,
+      "files": [
+        {
+          "sha256": "2a0647fcd0f46871c4f4a3a790bf529fa7af5532a671ba0675fd221fabc5f53c",
+          "path": "work\\artifacts\\amp-r004\\build\\amp_wire.o",
+          "bytes": 1880
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r004/build/ipc.o",
+      "reason": "Rebuildable object; validated r004 ELF/map/firmware/module retained",
+      "bytes": 5800,
+      "files": [
+        {
+          "sha256": "6161fc358f35fa7e5f183510e5b2ba6652c8acb7822ebd18e5f5bd36e89f4d28",
+          "path": "work\\artifacts\\amp-r004\\build\\ipc.o",
+          "bytes": 5800
+        }
+      ]
+    },
+    {
+      "path": "work/artifacts/amp-r004/build/start-comm.o",
+      "reason": "Rebuildable object; validated r004 ELF/map/firmware/module retained",
+      "bytes": 10744,
+      "files": [
+        {
+          "sha256": "2deb4717230943cc7dc7d5991d220319777e171d459378c3fb4803e274ce7b98",
+          "path": "work\\artifacts\\amp-r004\\build\\start-comm.o",
+          "bytes": 10744
+        }
+      ]
+    },
+    {
+      "path": "work/scripts/finalize-amp-g5.py",
+      "reason": "One-off document/progress writer; reusable evidence analyzers and final results retained",
+      "bytes": 4211,
+      "files": [
+        {
+          "sha256": "abf438a10df7a3636d80a1cf6b422f60a3f171a952b1bb973a4ba6e093131979",
+          "path": "work\\scripts\\finalize-amp-g5.py",
+          "bytes": 4211
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/progress.json",
+      "reason": "Intermediate execution state; final results.json is authoritative",
+      "bytes": 653,
+      "files": [
+        {
+          "sha256": "ac29a85f05774e457cc03671a7627b919ff2466867251ffd3bbb31dd0ecbdeb0",
+          "path": "logs\\amp\\2026-10-30\\g5\\progress.json",
+          "bytes": 653
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g4/cold-boot-base.txt",
+      "reason": "Empty timed-out capture; actual startup remains in preflight.txt",
+      "bytes": 0,
+      "files": [
+        {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "path": "logs\\amp\\2026-10-30\\g4\\cold-boot-base.txt",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/cold-05/boot.txt",
+      "reason": "Empty timed-out capture; Linux partial capture and explicit gap note retained",
+      "bytes": 0,
+      "files": [
+        {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "path": "logs\\amp\\2026-10-30\\g5\\cold-05\\boot.txt",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g4/elf-validation.json",
+      "reason": "Superseded static validation; final version retained",
+      "bytes": 405,
+      "files": [
+        {
+          "sha256": "04c47edbba513e50efb9b245a48df0af0f25ee839e442b3c1ebe3c4c6b3faa28",
+          "path": "logs\\amp\\2026-10-30\\g4\\elf-validation.json",
+          "bytes": 405
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g4/independent-analysis.txt",
+      "reason": "Duplicate of independently verified results.json",
+      "bytes": 2357,
+      "files": [
+        {
+          "sha256": "1fa95eb48008e04f3ac61a998c382ebec1dd0d1d46593dc7b81b6379f1240119",
+          "path": "logs\\amp\\2026-10-30\\g4\\independent-analysis.txt",
+          "bytes": 2357
+        }
+      ]
+    },
+    {
+      "path": "logs/amp/2026-10-30/g5/independent-analysis.txt",
+      "reason": "Duplicate of independently verified pressure-results.json",
+      "bytes": 10665,
+      "files": [
+        {
+          "sha256": "2fafcd0f20f1b17667cdb76833361927f67cead3131680c92c8de0bfcdb4a0b9",
+          "path": "logs\\amp\\2026-10-30\\g5\\independent-analysis.txt",
+          "bytes": 10665
+        }
+      ]
+    }
+  ]
+}

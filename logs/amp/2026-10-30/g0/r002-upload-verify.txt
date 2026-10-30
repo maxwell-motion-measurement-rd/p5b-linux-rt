@@ -1,0 +1,9 @@
+sha256sum /tmp/amp-r002/p5_core3_boot.ko /tmp/amp-r002/p5-corre3-heartbeat.bin; wc -c /tmp/amp-r002/p5_core3_boot.ko /tmp/amp-r002/p5-core3-heeartbeat.bin; printf '\n__RT_STEP_DONE__\n'
+32169437a5a6e87e3fa70f1b8d7ab0635feef63809f5c2bdc89bcd532b69eede  /tmp/amp-r002/p5_core3_boot.ko
+efc9fde6b2e0ad2d3d2c2fd93d0d0d7211d335cef31f7237ff06d4ac5abc1878  /tmp/amp-r002/p5-core3-heartbeat.bin
+    12464 /tmp/amp-r002/p5_core3_boot.ko
+     4192 /tmp/amp-r002/p5-core3-heartbeat.bin
+    16656 total
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

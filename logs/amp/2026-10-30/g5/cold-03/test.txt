@@ -1,0 +1,14 @@
+dmesg > /tmp/amp-g5-cold-before.txt; /tmp/amp-r004/g5_snapshoot; /tmp/amp-r004/g5_test forward 100 && /tmp/amp-r004/g5_test reverse 100 && /tmmp/amp-r004/g5_test cross 100; printf "COLD_COMM_RC=%s\n" $?; sleep 3; /tmp/amp-rr004/g5_snapshot; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys//bus/platform/devices/core3-heartbeat/stats; dmesg > /tmp/amp-g5-cold-after.txt;  cmp /tmp/amp-g5-cold-before.txt /tmp/amp-g5-cold-after.txt; printf "COLD_DMESG_CCMP_RC=%s\n" $?; cat /sys/devices/system/cpu/online; printf '\n__RT_STEP_DONE__\nn'
+{"linux_tx":0,"linux_rx":0,"core3_rx":0,"core3_tx":0,"bad_rx":0,"timeouts":0,"stale":0,"aborted":0,"core3_bad":0,"peer_timeouts":0,"busy":0,"resets":0,"heartbeat":81,"host_heartbeat":76,"host_lost":0,"host_restored":0,"peer_lost":0,"peer_restored":0,"boot_token":9600234190,"service_epoch":9600234190,"host_lost_active":0}
+{"mode":"forward","passed":100,"errors":0,"elapsed_ns":1000313304,"missed_release":0,"session":94338178612,"epoch":9600234190,"min_us":242,"mean_us":437,"p50_us":369,"p95_us":855,"p99_us":856,"p999_us":856,"max_us":856}
+{"mode":"reverse","passed":100,"errors":0,"elapsed_ns":1000309314,"missed_release":0,"session":95341526897,"epoch":9600234190,"min_us":483,"mean_us":743,"p50_us":619,"p95_us":1348,"p99_us":1349,"p999_us":1350,"max_us":1350}
+{"mode":"cross","passed":100,"errors":0,"elapsed_ns":1000302984,"missed_release":0,"session":96344786991,"epoch":9600234190,"min_us":484,"mean_us":874,"p50_us":737,"p95_us":1709,"p99_us":1710,"p999_us":1710,"max_us":1710}
+COLD_COMM_RC=0
+{"linux_tx":503,"linux_rx":503,"core3_rx":503,"core3_tx":503,"bad_rx":0,"timeouts":0,"stale":0,"aborted":0,"core3_bad":0,"peer_timeouts":0,"busy":0,"resets":0,"heartbeat":141,"host_heartbeat":131,"host_lost":0,"host_restored":0,"peer_lost":0,"peer_restored":0,"boot_token":9600234190,"service_epoch":9600234190,"host_lost_active":0}
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=9600234190 heartbeat=141 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=503 linux_rx=503 bad_rx=0 timeouts=0 stale=0 core3_rx=503 core3_tx=503 core3_bad=0 service_epoch=9600234190 peer_timeouts=0 busy=0 resets=0 aborted=0 last_core_error=0 last_rx_error=0 fault_tests=0
+COLD_DMESG_CMP_RC=0
+0-2
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

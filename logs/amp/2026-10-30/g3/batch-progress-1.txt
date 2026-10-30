@@ -1,0 +1,7 @@
+cat /tmp/amp-g3-batch.out; tail -2 /tmp/amp-g3-forward.out; iif test -f /tmp/amp-g3-reverse.out; then tail -2 /tmp/amp-g3-reverse.out; fi; if  test -f /tmp/amp-g3-cross.out; then tail -2 /tmp/amp-g3-cross.out; fi; cat /sys//bus/platform/devices/core3-heartbeat/stats; printf '\n__RT_STEP_DONE__\n'
+G3_PROGRESS forward 6000/10000
+G3_PROGRESS forward 7000/10000
+linux_tx=8107 linux_rx=8107 bad_rx=0 timeouts=0 stale=0 core3_rx=8107 core3_tx=8107 core3_bad=0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

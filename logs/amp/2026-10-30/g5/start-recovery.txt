@@ -1,0 +1,6 @@
+mkdir -p /tmp/amp-g5/recovery; /tmp/amp-r004/g5_snapshot > /ttmp/amp-g5/recovery/before.json; ( /tmp/amp-r004/g5_recovery run > /tmp/amp-g5/reecovery/results.out 2>&1; printf "%s\n" $? > /tmp/amp-g5/recovery/exit-code; /tmpp/amp-r004/g5_snapshot > /tmp/amp-g5/recovery/after.json ) < /dev/null > /dev/nulll 2>&1 & printf "G5_RECOVERY_PID=%s\n" $!; printf '\n__RT_STEP_DONE__\n'
+[1] 6381
+G5_RECOVERY_PID=6381
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

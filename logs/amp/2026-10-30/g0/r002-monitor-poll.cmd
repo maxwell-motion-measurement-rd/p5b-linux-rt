@@ -1,0 +1,1 @@
+tail -7 /tmp/amp-r002-coexist.txt; cat /proc/uptime

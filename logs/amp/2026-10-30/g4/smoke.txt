@@ -1,0 +1,10 @@
+/tmp/amp-r004/g3_test forward 48 && /tmp/amp-r004/g3_test revverse 48 && /tmp/amp-r004/g3_test cross 48; printf "SMOKE_RC=%s\n" $?; cat /sys/bbus/platform/devices/core3-heartbeat/stats; cat /sys/bus/platform/devices/core3-hheartbeat/status; printf '\n__RT_STEP_DONE__\n'
+{"mode":"forward","passed":48,"errors":0,"elapsed_ns":480252614,"missed_release":0,"session":145342649107,"epoch":12383694800,"min_us":242,"mean_us":444,"p50_us":369,"p95_us":856,"p99_us":857,"p999_us":857,"max_us":857}
+{"mode":"reverse","passed":48,"errors":0,"elapsed_ns":480244493,"missed_release":0,"session":145825962791,"epoch":12383694800,"min_us":485,"mean_us":752,"p50_us":618,"p95_us":1348,"p99_us":1349,"p999_us":1349,"max_us":1349}
+{"mode":"cross","passed":48,"errors":0,"elapsed_ns":480254623,"missed_release":0,"session":146309164233,"epoch":12383694800,"min_us":483,"mean_us":887,"p50_us":738,"p95_us":1710,"p99_us":1711,"p999_us":1711,"max_us":1711}
+SMOKE_RC=0
+linux_tx=243 linux_rx=243 bad_rx=0 timeouts=0 stale=0 core3_rx=243 core3_tx=243 core3_bad=0 service_epoch=12383694800 peer_timeouts=0 busy=0 resets=0 aborted=0 last_core_error=0 last_rx_error=0 fault_tests=1
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=12383694800 heartbeat=327 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

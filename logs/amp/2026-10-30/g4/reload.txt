@@ -1,0 +1,9 @@
+rmmod p5_core3_comm && insmod /tmp/amp-r004/p5_core3_comm.ko  fault_tests=1; printf "RELOAD_RC=%s\n" $?; cat /sys/module/p5_core3_comm/parametters/fault_tests; cat /sys/bus/platform/devices/core3-heartbeat/status; printf '\\n__RT_STEP_DONE__\n'
+[  107.376337] 001: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+RELOAD_RC=0
+[  107.376903] 001: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+Y
+attempted=0 result=0 pm_query=0 pm_state=0 magic=ffffffff version=4294967295 core=4294967295 el=4294967295 freq=18446744073709551615 token=18446744073709551615 heartbeat=18446744073709551615 state=4294967295 reason=4294967295 host_freq=18446744073709551615 initial_freq=18446744073709551615 configured_freq=18446744073709551615 esr=ffffffffffffffff elr=ffffffffffffffff far=ffffffffffffffff
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

@@ -1,0 +1,6 @@
+mkdir -p /tmp/amp-g5; ( sh /tmp/amp-r004/run-phase.sh idle >  /tmp/amp-g5/idle-runner.txt 2>&1 ) < /dev/null > /dev/null 2>&1 & printf "G5_IDLLE_PID=%s\n" $!; printf '\n__RT_STEP_DONE__\n'
+[1] 1099
+G5_IDLE_PID=1099
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

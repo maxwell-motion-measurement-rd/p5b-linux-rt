@@ -1,0 +1,33 @@
+amp_upload_saved_stty=$(stty -g); stty -echo; mkdir -p /tmp/aamp-r004; printf '\n__UPLOAD_BEGIN__\n'
+
+__UPLOAD_BEGIN__
+root@ALIENTEK-MP:~# 
+__UPLOAD_EMPTY__
+root@ALIENTEK-MP:~# 
+__UPLOAD_0__
+root@ALIENTEK-MP:~# 
+__UPLOAD_192__
+root@ALIENTEK-MP:~# 
+__UPLOAD_384__
+root@ALIENTEK-MP:~# 
+__UPLOAD_576__
+root@ALIENTEK-MP:~# 
+__UPLOAD_768__
+root@ALIENTEK-MP:~# 
+__UPLOAD_960__
+root@ALIENTEK-MP:~# 
+__UPLOAD_1152__
+root@ALIENTEK-MP:~# 
+__UPLOAD_1344__
+root@ALIENTEK-MP:~# 
+__UPLOAD_1536__
+root@ALIENTEK-MP:~# 
+__UPLOAD_1728__
+root@ALIENTEK-MP:~# 
+__UPLOAD_1920__
+root@ALIENTEK-MP:~# 7383d80d2fc585950b7596b7231b6e3442a9f7b2209d7b3ccfd6ede2faf31eb3  /tmp/amp-r004/run-phase.sh
+
+__UPLOAD_FINISH__
+root@ALIENTEK-MP:~# 
+__UPLOAD_RESTORE__
+root@ALIENTEK-MP:~# 

@@ -1,0 +1,57 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /sys/bus/pllatform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-hearttbeat/stats; cat /proc/meminfo; cat /proc/loadavg; command -v gzip; command -v baase64; command -v taskset; command -v stress-ng; df -k /tmp; cat /proc/uptime; prrintf '\n__RT_STEP_DONE__\n'
+5.4.0-rt1-xilinx-v2020.2-p5b
+0-2
+attempted=1 result=0 pm_query=0 pm_state=1 magic=504d4143 version=4 core=3 el=12 freq=99999000 token=12383694800 heartbeat=3963 state=1 reason=0 host_freq=99999000 initial_freq=0 configured_freq=99999000 esr=0 elr=0 far=0
+linux_tx=3318 linux_rx=3208 bad_rx=70 timeouts=150 stale=45 core3_rx=3318 core3_tx=3208 core3_bad=110 service_epoch=12383694810 peer_timeouts=10 busy=12 resets=10 aborted=5 last_core_error=11 last_rx_error=0 fault_tests=1
+MemTotal:        4021588 kB
+MemFree:         3932072 kB
+MemAvailable:    3913944 kB
+Buffers:             204 kB
+Cached:            29520 kB
+SwapCached:            0 kB
+Active:            17492 kB
+Inactive:          19496 kB
+Active(anon):      17288 kB
+Inactive(anon):    19492 kB
+Active(file):        204 kB
+Inactive(file):        4 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:          7224 kB
+Mapped:             6028 kB
+Shmem:             29520 kB
+KReclaimable:       9704 kB
+Slab:              35896 kB
+SReclaimable:       9704 kB
+SUnreclaim:        26192 kB
+KernelStack:        2200 kB
+PageTables:          412 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2010792 kB
+Committed_AS:      73736 kB
+VmallocTotal:   135290159040 kB
+VmallocUsed:        4532 kB
+VmallocChunk:          0 kB
+Percpu:              324 kB
+CmaTotal:         262144 kB
+CmaFree:          261696 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+1.00 0.84 0.45 1/132 1037
+/bin/gzip
+Filesystem           1K-blocks      Used Available Use% Mounted on
+tmpfs                  2010792       292   2010500   0% /var/volatile
+522.38 1550.06
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

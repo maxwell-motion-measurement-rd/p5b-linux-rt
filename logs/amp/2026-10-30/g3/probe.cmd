@@ -1,0 +1,1 @@
+cp /tmp/amp-r003/p5-core3-comm.bin /lib/firmware/p5-core3-comm.bin && chmod 755 /tmp/amp-r003/g3_test && insmod /tmp/amp-r003/p5_core3_comm.ko; printf "PROBE_RC=%s\n" $?; ls -l /dev/p5-core3; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/bus/platform/devices/core3-heartbeat/stats; dmesg | tail -6

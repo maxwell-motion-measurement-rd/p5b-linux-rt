@@ -1,0 +1,1 @@
+for mode in forward reverse cross; do cat /tmp/amp-g5/mem/$mode.json; done; for cpu in 0 1 2; do cat /tmp/amp-g5/mem/load-$cpu.txt; done; cat /tmp/amp-g5/mem/snapshot-before.json /tmp/amp-g5/mem/snapshot-after-cross.json

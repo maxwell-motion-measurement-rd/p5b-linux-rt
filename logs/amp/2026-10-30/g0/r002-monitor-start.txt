@@ -1,0 +1,6 @@
+( i=0; dmesg > /tmp/amp-r002-dmesg-before.txt; while [ "$i" --le 20 ]; do printf "SAMPLE %s " "$i"; cat /proc/uptime; cat /sys/bus/platform/deevices/core3-heartbeat/status || exit 1; printf "CPU_ONLINE "; cat /sys/devices/ssystem/cpu/online; i=$((i+1)); if [ "$i" -le 20 ]; then sleep 30; fi; done; dmesgg > /tmp/amp-r002-dmesg-after.txt; printf "COEXIST_600S_COMPLETE\n" ) > /tmp/amp--r002-coexist.txt 2>&1 & echo MONITOR_PID=$!; printf '\n__RT_STEP_DONE__\n'
+[1] 944
+MONITOR_PID=944
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

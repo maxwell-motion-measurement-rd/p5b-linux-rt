@@ -1,0 +1,1 @@
+cat /sys/devices/system/clocksource/clocksource0/current_clocksource; dmesg | grep -E "arch_timer|clocksource|MHz"; cat /sys/bus/platform/devices/core3-heartbeat/status; cat /sys/devices/system/cpu/online; cat /proc/uptime

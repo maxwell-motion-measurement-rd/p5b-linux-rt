@@ -1,0 +1,14 @@
+chmod 755 /tmp/amp-r004/g3_test /tmp/amp-r004/g4_test; sha2566sum /tmp/amp-r004/p5-core3-comm.bin /tmp/amp-r004/p5_core3_comm.ko /tmp/amp-r0044/g3_test /tmp/amp-r004/g4_test; mkdir -p /lib/firmware; cp /tmp/amp-r004/p5-coree3-comm.bin /lib/firmware/p5-core3-comm.bin; insmod /tmp/amp-r004/p5_core3_comm.kko && /tmp/amp-r004/g4_test gate; printf "GATE_RC=%s\n" $?; cat /sys/bus/platformm/devices/core3-heartbeat/status; cat /sys/module/p5_core3_comm/parameters/fault__tests; printf '\n__RT_STEP_DONE__\n'
+df3e9d5c3befa9a84a6a2710a8f6e8d88461de839dbc83748496afe89751bf88  /tmp/amp-r004/p5-core3-comm.bin
+9449887e29a0003242ce8b5a49ddb65d62dce97067e4efe218d313[   97.529731] 000: p5-core3-heartbeat core3-heartbeat: mapped reserved DDR; Core3 NOT started; explicit start required
+bb33ef7ece  /tmp/amp-r004/p5_core3_comm.ko
+1da24197e3bf57c543ebb[   97.530329] 000: xilinx-vcu-core a0240000.vcu: failed to get reset gpio for vcu.
+e3cac923068a914a465d344cd4363adfa74737639b1  /tmp/amp-r004/g3_test
+dd7799c94ef64dc2edcd1787ad57c2ad13e149075b8c5c213ac3ddbd1dab1676  /tmp/amp-r004/g4_test
+G4_DEFAULT_FAULT_GATE=passed
+GATE_RC=0
+attempted=0 result=0 pm_query=0 pm_state=0 magic=ffffffff version=4294967295 core=4294967295 el=4294967295 freq=18446744073709551615 token=18446744073709551615 heartbeat=18446744073709551615 state=4294967295 reason=4294967295 host_freq=18446744073709551615 initial_freq=18446744073709551615 configured_freq=18446744073709551615 esr=ffffffffffffffff elr=ffffffffffffffff far=ffffffffffffffff
+N
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

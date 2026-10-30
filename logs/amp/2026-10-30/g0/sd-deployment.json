@@ -1,0 +1,13 @@
+{
+  "status": "image_written_and_readback_verified",
+  "target": "F:\\image.ub",
+  "image_bytes": 19577612,
+  "image_sha256": "4723c5a96151f3b75c70a10705b5e9d5a80b14b7d2753cf8daa3d7c70cd1d2a0",
+  "actual_prior_image_sha256": "c81f2203d00dcc086fb0e42dc7e321b71f52be94bcf22f2254e37e474edbb943",
+  "backup_directory": "C:\\Users\\13931\\Documents\\ChatGPT\\maxwell_implementation_dual axis drive and control\\work\\artifacts\\amp-r001\\sd-backup-20261030-095809",
+  "boot_files_unchanged": true,
+  "file_flush_completed": true,
+  "safe_removal_completed": true,
+  "board_boot_verified": false,
+  "core3_started": false
+}

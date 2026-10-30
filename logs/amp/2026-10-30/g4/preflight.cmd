@@ -1,0 +1,1 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /proc/modules; grep -A 5 -B 1 60200000 /proc/iomem

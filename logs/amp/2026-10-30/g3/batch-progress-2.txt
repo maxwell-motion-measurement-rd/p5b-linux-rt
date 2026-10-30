@@ -1,0 +1,10 @@
+cat /tmp/amp-g3-batch.out; tail -2 /tmp/amp-g3-forward.out; iif test -f /tmp/amp-g3-reverse.out; then tail -2 /tmp/amp-g3-reverse.out; fi; if  test -f /tmp/amp-g3-cross.out; then tail -2 /tmp/amp-g3-cross.out; fi; cat /sys//bus/platform/devices/core3-heartbeat/stats; printf '\n__RT_STEP_DONE__\n'
+FORWARD_RC=0
+G3_PROGRESS forward 10000/10000
+{"mode":"forward","passed":10000,"errors":0,"elapsed_ns":100012923705,"missed_release":0,"session":4360328613801,"epoch":15708403088,"min_us":147,"mean_us":443,"p50_us":368,"p95_us":853,"p99_us":854,"p999_us":871,"max_us":910}
+G3_PROGRESS reverse 4000/10000
+G3_PROGRESS reverse 5000/10000
+linux_tx=21197 linux_rx=21197 bad_rx=0 timeouts=0 stale=0 core3_rx=21197 core3_tx=21197 core3_bad=0
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

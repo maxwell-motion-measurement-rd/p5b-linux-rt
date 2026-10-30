@@ -1,0 +1,1 @@
+uname -r; cat /sys/devices/system/cpu/online; lsmod | grep p5_core3; test ! -e /sys/bus/platform/devices/core3-heartbeat/status; printf "NO_OLD_DRIVER_RC=%s\n" $?; cat /proc/cmdline; cat /proc/uptime

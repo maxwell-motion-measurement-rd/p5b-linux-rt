@@ -1,0 +1,21 @@
+/* OFFLINE CANDIDATE: append to p5b-rt.dts, not a deployable standalone DT. */
+/ {
+    core3-heartbeat {
+        compatible = "p5,core3-heartbeat-experiment";
+        memory-region = <&core3_private &core3_shared>;
+        status = "okay";
+    };
+    reserved-memory {
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+        core3_private: core3-private@60000000 {
+            reg = <0 0x60000000 0 0x00200000>;
+            no-map;
+        };
+        core3_shared: core3-shared@60200000 {
+            reg = <0 0x60200000 0 0x00200000>;
+            no-map;
+        };
+    };
+};

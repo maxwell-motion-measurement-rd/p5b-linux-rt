@@ -1,0 +1,1 @@
+sync; for p in /media/sd-mmcblk0p1 /media/sd-mmcblk0p2 /media/sd-mmcblk1p1; do if grep -q " $p " /proc/mounts; then timeout 15 umount "$p"; printf "UNMOUNT %s RC=%s\n" "$p" $?; fi; done; sync; printf "REMAINING_MMC_MOUNTS\n"; grep mmc /proc/mounts; printf "STORAGE_CHECK_DONE\n"

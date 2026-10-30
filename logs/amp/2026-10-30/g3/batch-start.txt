@@ -1,0 +1,6 @@
+( /tmp/amp-r003/g3_test forward 10000 > /tmp/amp-g3-forward.oout 2>&1; rc=$?; echo FORWARD_RC=$rc; if [ "$rc" -eq 0 ]; then /tmp/amp-r003/g3_ttest reverse 10000 > /tmp/amp-g3-reverse.out 2>&1; rc=$?; echo REVERSE_RC=$rc; fii; if [ "$rc" -eq 0 ]; then /tmp/amp-r003/g3_test cross 100 > /tmp/amp-g3-cross.oout 2>&1; rc=$?; echo CROSS_RC=$rc; fi; printf "%s\n" "$rc" > /tmp/amp-g3-exitcodde; if [ "$rc" -eq 0 ]; then echo G3_BATCH_COMPLETE; else echo G3_BATCH_FAILED; ffi; dmesg > /tmp/amp-g3-dmesg-after.txt ) > /tmp/amp-g3-batch.out 2>&1 & echo G3__PID=$!; printf '\n__RT_STEP_DONE__\n'
+[1] 963
+G3_PID=963
+
+__RT_STEP_DONE__
+root@ALIENTEK-MP:~# 

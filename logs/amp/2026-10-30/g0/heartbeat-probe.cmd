@@ -1,0 +1,1 @@
+insmod /opt/amp-heartbeat/p5_core3_boot.ko; printf 'INSMOD_RC=%s\n' $?; ls -l /sys/bus/platform/devices/core3-heartbeat; cat /sys/bus/platform/devices/core3-heartbeat/status; dmesg | tail -15

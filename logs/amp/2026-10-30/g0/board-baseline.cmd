@@ -1,0 +1,1 @@
+uname -r; cat /sys/devices/system/cpu/online; cat /proc/cmdline; cat /proc/iomem; cat /proc/meminfo | head -8; dmesg | grep -E 'Memory:|cma:|Reserved memory|psci|SMP:|CPU[0-3]:'

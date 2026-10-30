@@ -1,0 +1,20 @@
+poweroff
+
+Broadcast me?root@ALIENTEK-MP:~# INIT: Sending processes the TERM signal
+Stopping haveged: 
+
+Stopping Dropbear SSH server: stopped /usr/sbin/dropbear (pid 845)
+dropbear.
+Stopping internet superserver: inetd.
+Stopping syslogd/klogd: stopped syslogd (pid 856)
+stopped klogd (pid 859)
+done
+Stopping tcf-agent: OK
+Deconfiguring network interfaces... [  107.468150] 000: macb ff0b0000.ethernet: gem-ptp-timer ptp clock unregistered.
+done.
+Sending all processes the TERM signal...
+logout
+Sending all processes the KILL signal...
+Unmounting remote filesystems...
+Deactivating swap...
+Unmounting local filesystems...
