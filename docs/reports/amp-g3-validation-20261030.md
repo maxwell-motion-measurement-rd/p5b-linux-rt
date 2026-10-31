@@ -10,7 +10,7 @@ Linux 为 5.4.0-rt1-xilinx-v2020.2-p5b，possible／online CPU 均为0—2。SD�
 
 Linux／Core3通过Normal-NC（Normal Non-cacheable，普通、非缓存的内存映射属性）、Inner-shareable（允许同一内部共享域内的核按共享规则访问的内存属性）的两个单槽收发，最大载荷256字节。测试使用目标100Hz节奏，Linux测试进程为普通调度，无额外CPU／内存压力；启动参数包含cpuidle.off=1、clk_ignore_unused、pd_ignore_unused，不与原始RT延迟基线混作同一实验。
 
-固件和代码摘要、消息布局、离线检查见[实现说明](../plans/linux-core3-communication/g3-r003.md)。用户态程序所需libc、librt及动态加载器已在基础rootfs中核对。
+固件和代码摘要、消息布局、离线检查见[实现说明](../build/AMP-G3-HISTORY.md)。用户态程序所需libc、librt及动态加载器已在基础rootfs中核对。
 
 ## 板端结果
 

@@ -99,6 +99,8 @@ G4 故障与 G5 恢复程序需要在启动前以 `fault_tests=1` 加载模块�
 
 ## 离线核对已有证据
 
+以下分析器会写入或更新结构化结果文件，并非全部只读。请在独立的仓库副本中执行，保留原证据与原汇总不变；将本次输出与已归档结果比较，不直接在唯一的证据目录中重跑。
+
 ```sh
 python work/scripts/analyze-amp-g3.py logs/amp/2026-10-30/g3
 python work/scripts/analyze-amp-g4.py

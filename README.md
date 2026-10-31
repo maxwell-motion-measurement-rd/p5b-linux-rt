@@ -1,45 +1,44 @@
-# P5 Linux PREEMPT_RT：构建、部署与测试
+# P5 Linux实时部署与Linux／Core3通信
 
-在正点原子 P5（XCZU4EV）上，保留 Xilinx 2020.2 / Linux 5.4.0 厂商基线，移植 5.4.3-rt1 补丁，手动编译内核并生成 SD 启动镜像。BSP、路径及内核版本沿用 `p5b` 名称；本次实测板是 P5，不据此保证所有 P5B 硬件修订均适用。
+本仓库面向首次接触项目的组内成员，保存P5（XCZU4EV）学习板上的实时内核移植、启动部署、内核测量和最小核间通信成果，以及复现方法和问题处理证据。软件目录沿用P5B名称，实测板为P5；其他硬件修订须重新核对。
 
-**截至 2026-10-30：** P5 学习板已完成 Linux CPU0—2 与 A53 Core3 裸机的 G0—G5（G 为 Gate，表示六个验证关卡） 最小双向通信验证：三种条件各 30 分钟、540000 个正常事务、10 次程序重启、10 次通信服务重置及 5 次冷启动通过。当前为 r001（本实验第1次修订的基础启动版本） SD 基础镜像＋r004（本实验第4次修订的通信驱动与裸机程序版本） RAM 载荷，重启需手动重载；持久化和自动启动按用户决定暂缓。实际控制业务、电机闭环、产品核心板与硬实时指标未验收。
+**截至2026-10-31：** RT三核启动、内核短测与诊断链路、Linux CPU0—2与Core3双向最小通信均已完成相应验证。通信正常长测540000笔、故障恢复与5次冷启动通过；原始RT的1255／1293µs唤醒尖峰仍未定位。真实控制环、电机、产品核心板与硬实时指标未验收。r004断电后仍需手动重载，自动启动暂缓。
 
-原始 RT 的 1255／1293µs 唤醒尖峰仍未定位；AMP（Asymmetric Multiprocessing，非对称多处理，不同处理器核运行不同的软件系统） 事务最大观测耗时为 4.024ms，两者测量对象不同，不能据此认定实时性问题解决。
+## 按你的目的阅读
 
-## 阅读入口
+| 你想了解什么 | 从这里开始 | 阅读后能得到什么 |
+| --- | --- | --- |
+| 只看项目目前最终做到了什么 | **[完整成果报告](docs/reports/PROJECT-REPORT.md)** | 目标、实现、完整实测结果与图表、交付物、问题和未完成范围；无需先阅读过程日志 |
+| 从零理解项目并动手复现 | **[项目理解与复现指南](docs/GETTING-STARTED.md)** | 架构与版本区别、所需材料、已验证包重放／源码重建／离线核验三种路径，以及预期结果与停止条件 |
+| 查遇到过什么问题、为什么、怎么处理 | **[问题与处理记录](docs/TROUBLESHOOTING.md)** | 症状、已确认原因、处理、验证证据与仍未解决的问题，区分推测和确认结论 |
 
-| 目的 | 文档 |
+不熟悉项目时，先读复现指南的运行结构与前置条件，再选择路线；只需要组内汇报结论，直接读完整成果报告。
+
+## 操作与证据索引
+
+| 具体任务 | 文档／产物 |
 | --- | --- |
-| 查看内核延迟、通信分布及诊断跟踪图表 | [测试结果图集](docs/reports/test-results-visualization-20261031.md) |
-| Linux／Core3 通信完成范围、关卡与性能实测 | [AMP 阶段成果](docs/reports/amp-stage-summary-20261030.md) |
-| AMP 版本构建、手动加载与证据复核 | [AMP 复现方法](docs/build/AMP-REPRODUCE.md) |
-| 下载启动包、SD 部署、核对内核与回退 | [部署指南](docs/DEPLOY.md) |
-| 固定源码与工具链，手动编译、更新模块并生成 FIT（Flattened Image Tree，把内核、设备树等载荷组织在一起的启动镜像格式） | [源码重建](docs/build/REPRODUCE.md) |
-| 理解三种工具、指标、实测结果及结论边界 | [测试方法与结果](docs/reports/rt-assessment-summary-20261029.md) |
+| 下载启动包、部署SD、核对版本及回退 | [部署指南](docs/DEPLOY.md) · [baseline／原始RT Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027) |
+| 从固定厂商源码重建RT | [源码重建](docs/build/REPRODUCE.md) · [内核提交备份](docs/build/kernel-git-backup.md) |
+| 重放通信实验或构建r004 | [通信构建与手动加载](docs/build/AMP-REPRODUCE.md) · [通信手动快照Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030) |
+| 了解内核工具、参数和结果口径 | [内核测试方法与结果](docs/reports/rt-assessment-summary-20261029.md) |
+| 查看通信实现、消息／故障／长测细节 | [通信阶段总览](docs/reports/amp-stage-summary-20261030.md) · [G3消息](docs/reports/amp-g3-validation-20261030.md) · [G4故障](docs/reports/amp-g4-validation-20261030.md) · [G5长测](docs/reports/amp-g5-validation-20261030.md) |
+| 查看全部图表与制图来源 | [测试结果图集](docs/reports/test-results-visualization-20261031.md) |
 
-建议先读测试总结判断验证范围，再按需要部署或重建。现成部署包位于 [board-boot-20261027 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027)；“Code → Download ZIP”只是仓库源码与资料，不是启动包。访问与下载需要具备本仓库权限。
+## 复现前必须知道
 
-## 当前验证范围
+原始RT包与通信基础包不能混用：原始RT的FIT（Flattened Image Tree，多载荷启动镜像）不含通信所需内存预留。最终通信组合是r001（第1次修订的基础SD版本）＋r004（第4次修订的通信模块与Core3程序）RAM载荷。仅让Linux运行三核不等于通信已实现。
 
-| 项目 | 结果 |
-| --- | --- |
-| 原始 RT | `5.4.0-rt1-xilinx-v2020.2-p5b`；PREEMPT_RT；Linux CPU0—2 |
-| 诊断内核 | 同基线追加 `-diag-ftrace`；启用跟踪与 ARM_PMU，重建匹配模块 |
-| cyclictest | 空载 600 秒最大 364µs；CPU／内存各 60 秒最大 1255／1293µs；CPU 复测 641µs |
-| ftrace | 诊断版 10 秒空载复测 220415 条事件，覆盖／丢事件为 0；同期 cyclictest 最大 86µs |
-| perf | 原始 RT 软件统计、986 个软件样本；诊断版硬件计数可用 |
-| AMP 最小通信 | Core3 r004，共享内存轮询；正常长测无新增通信错误，故障恢复及 5 次冷启动通过 |
-| 尚未覆盖 | 业务协议与控制环、长时间联合／网络／存储压力、产品核心板及产品实时验收；r004 自动启动暂缓 |
+Release提供已验证的手动部署文件，访问需要仓库权限；GitHub的“Download ZIP”是源码与资料，不是启动包。从源码重建另需匹配的原厂商工程、工具链、硬件输入与rootfs，仓库未包含全部依赖，也尚未在另一台全新主机完整重放。
 
-补丁名含 5.4.3 不代表内核已升级到 5.4.3，也不代表全部稳定修复已包含。未做非 RT 性能对照；早期 baseline 启动仅用于部署核验。诊断版与原始 RT 的负载、时长及跟踪状态不同，不能由 86µs 与 1255／1293µs 的差异认定问题解决。
+内核唤醒延迟、通信完整事务耗时和局部调度间隔是三种不同测量；不能直接排名，不能用有限实测最大值承诺产品最坏时限。
 
-## 仓库布局
+## 仓库布局与文档约定
 
-- `configs/`、`patches/`：固定配置、三核设备树（Device Tree，向 Linux 描述硬件配置和资源归属的数据）、FIT 模板及补丁。
-- `work/scripts/`：构建、打包和分析脚本；旧脚本含原环境参数，跨机器使用以重建说明为准。
-- `amp/`：各阶段最小裸机、驱动、协议与测试源码，r004 入口以 AMP 复现方法为准。
-- `logs/amp/`：G0—G5 通信实验记录、校验数据和完整 G5 证据包。
-- `logs/rt-risk/`、`logs/rt-diagnostics/`：原始输出、直方图、跟踪数据与摘要；测试文档提供对应证据入口。
-- `docs/adr/`、`docs/board/`：决策和阶段历史，不作为当前状态的第二套来源。
+- `docs/GETTING-STARTED.md`、`docs/TROUBLESHOOTING.md`、`docs/reports/PROJECT-REPORT.md`是三条主要阅读入口。
+- `configs/`、`patches/`保存固定配置、启动镜像模板和源码变更；`amp/`保存各阶段程序、协议与测试工具，最终源码位置以通信指南为准。
+- `work/scripts/`保存构建和分析方法；历史脚本含原环境路径，使用前按指南替换，不能直接当作通用安装器。
+- `logs/board/`、`logs/rt-risk/`、`logs/rt-diagnostics/`、`logs/amp/`保存原始证据、结构化结果与摘要。
+- `docs/adr/`、`docs/board/`和日期报告保留当期决策、状态与失败记录。当前总体完成范围以完整成果报告为准，历史“尚未完成”不自动成为当前待办。
 
-仓库只保留可复用指南、技术决策、构建／分析脚本和测试证据。过程草稿、内部续接状态、文档回写脚本及本机备份不纳入版本控制；不要求复用原作者的盘符、账号、SSH 或虚拟机网络配置。
+后续维护时，新的实验先保存独立证据和条件，再更新对应复现／问题文档，最后更新完整成果报告与本页日期。原因未确认就标为未定位；图表必须能追溯到原始记录。保留失败与采集缺口，不以新结果覆盖旧数据。
