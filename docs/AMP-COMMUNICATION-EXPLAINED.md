@@ -10,29 +10,37 @@
 
 Linux侧分为两层：用户态测试程序负责提出请求和判断答案；内核驱动负责访问预留内存、启动Core3、搬运消息并检查通信状态。裸机程序在Core3上处理消息。两端实际交换数据的通道，是它们都能访问的一块DDR内存。
 
-```text
-Windows电脑
-  └─ USB串口上传文件、输入命令、查看输出
-                  │
-                  ▼
-P5板
-  Linux（CPU0—2）
-    g5_test 用户态测试程序
-           │ open / write / read
-    /dev/p5-core3 设备节点
-           │
-    p5_core3_comm.ko 内核驱动
-           │ 读写专用共享DDR
-           ▼
-    [Linux→Core3消息槽]  [Core3→Linux消息槽]
-           ▲
-           │ 轮询、读写同一块DDR
-    Core3裸机程序 p5-core3-comm.bin
-```
+![Linux用户态测试程序经设备节点进入内核驱动，与独立Core3通过共享DDR的两个消息槽通信；文件位置与运行内存分开标注。](assets/amp/communication-architecture.svg)
 
 图中的USB串口负责电脑与板子之间的操作。测试开始后，Linux与Core3的消息在板内通过DDR交换，不经过USB串口。SD卡提供启动文件；它也不是两核之间的消息通道。
 
 `/dev/p5-core3`是Linux驱动提供给用户态程序的访问入口。它看起来像文件路径，但对它执行`write`会进入驱动的发送逻辑，执行`read`会取得驱动保存的应答。测试程序不直接访问物理地址。
+
+### 图里的程序和接口分别是什么
+
+先区分“文件放在哪里”和“程序在哪里运行”：`/tmp/...`是Linux文件系统路径，`0x60000000`是板上DDR物理地址，CPU0—2／Core3则是执行指令的处理器核。三者不是同一类位置。以下路径对应本次手动部署。
+
+| 名称 | 简单理解 | 文件在哪里 | 加载／运行后在哪里 |
+| --- | --- | --- | --- |
+| `g5_test` | 编译好的Linux测试可执行文件；负责造消息、调用驱动、核对应答并打印统计 | 板端`/tmp/amp-r004/g5_test`；源码在`amp/linux-g5/g5_test.c` | 运行后成为Linux用户态进程，由Linux调度到CPU0—2执行；代码和数据所在内存由Linux管理，没有本实验指定的固定DDR物理地址 |
+| `/dev/p5-core3` | 驱动注册的字符设备节点，是用户程序访问驱动的入口 | 板端Linux的`/dev/`目录 | 访问会进入Linux内核中的驱动函数；这个节点不是裸机程序，也不是存放消息的普通文件 |
+| `p5_core3_comm.ko` | 可加载的Linux内核模块，`.ko`表示内核模块文件；替测试进程访问预留DDR，并提供Core3启动和状态接口 | 板端`/tmp/amp-r004/p5_core3_comm.ko`；源码主体在`amp/linux-g4/` | `insmod`后，代码被装入Linux内核空间，在CPU0—2上的内核执行上下文中运行；模块内存由Linux管理，不是Core3私有区 |
+| `p5-core3-comm.bin` | 给独立Core3执行的裸机机器码；不作为Linux进程运行 | 先在`/tmp/amp-r004/`，再复制到`/lib/firmware/p5-core3-comm.bin`；源码在`amp/core3-g4/` | 第5步启动请求时，驱动才把字节复制到DDR物理地址`0x60000000`；Core3随后从该入口执行，使用预留的私有区 |
+
+`g5_test`中的G5来自历史验证阶段“Gate 5”的命名；它是工具名称，不能仅凭运行了这个工具就说完成了全部G5长测验收。
+
+`open`、`write`、`read`是`g5_test`调用的Linux文件／设备访问接口，调用后由系统调用机制进入内核。它们不是三个独立程序，也不是三条核间通信线路：
+
+| 接口 | 在本项目中的含义 |
+| --- | --- |
+| `open("/dev/p5-core3", O_RDWR)` | 以可读写方式打开通信设备，成功后取得文件描述符`fd`，即后续操作这个设备的整数句柄；驱动限制同一时间只有一个客户端打开 |
+| `write(fd, 请求帧, 长度)` | 把已经按协议编码的请求交给驱动；驱动发布到共享内存，并等待下一条协议响应帧到达自己的缓冲区 |
+| `read(fd, 接收缓冲区, 容量)` | 从驱动取出刚才保存的响应帧，测试程序随后检查消息关系及数据内容 |
+| `close(fd)` | 释放这个客户端的设备访问；不关闭Linux，也不停止Core3 |
+
+这里`write`的目标是设备节点，所以行为由驱动实现决定，不能按“往普通文件追加文本”理解。整个消息流程的编码、检查和多步交互已写在`g5_test`内部，操作人员不需要手动分别输入这些接口调用。
+
+程序执行时，指令和数据主要保存在板上DDR中，由相应CPU取指和处理；“在Core3上运行”指执行者是Core3，不表示整个程序文件永久存放在CPU核内部。图中的Linux区域表示软件管理范围，内核空间与用户空间的区别也不代表它们各占一个固定CPU核。
 
 ## 2. 为什么要准备两块内存、两组文件
 
@@ -158,35 +166,19 @@ heartbeat=20 state=1 reason=0 esr=0 elr=0 far=0
 
 ### 正向forward：Linux发数据，Core3原样回答
 
-```text
-Linux测试程序                         Core3
-    ── ECHO_REQ（测试数据）───────────→
-    ←─ ECHO_RESP（同样的数据）────────
-```
+![正向事务：Linux发送ECHO_REQ，Core3返回ECHO_RESP。](assets/amp/forward-sequence.svg)
 
 工具检查应答类型、关联序号、长度和每个数据字节。只收到一个“成功”标志不够，回来的数据也必须与发出去的一致。
 
 ### 反向reverse：Linux先触发，Core3生成请求，Linux回应
 
-```text
-Linux测试程序                         Core3
-    ── ARM_REVERSE（触发反向事务）────→
-    ←─ ECHO_REQ（Core3生成的数据）────
-    ── ECHO_RESP（回复该数据）────────→
-    ←─ READY（本事务完成）────────────
-```
+![反向事务：Linux触发ARM_REVERSE，Core3发送ECHO_REQ，Linux回复ECHO_RESP，Core3确认READY。](assets/amp/reverse-sequence.svg)
 
 Core3按约定模式生成数据，Linux核对后回传，Core3再检查回传内容，最后确认完成。这里验证了Core3发起数据请求、Linux作答的路径；本测试仍由Linux发送第一条触发消息，不证明Core3可以不经触发自行向任意Linux程序推送消息。
 
 ### 交叉cross：反向问答完成后，再返回原始数据
 
-```text
-Linux测试程序                         Core3
-    ── CROSSED（Linux原始数据）───────→
-    ←─ ECHO_REQ（Core3生成的数据）────
-    ── ECHO_RESP（回复Core3的数据）───→
-    ←─ ECHO_RESP（Linux原始数据）─────
-```
+![交叉事务：Linux发送CROSSED，Core3提出ECHO_REQ，Linux回复后，Core3返回Linux原始数据。](assets/amp/cross-sequence.svg)
 
 工具既检查Core3生成的请求，也检查最后返回的Linux原始数据。这样可以验证多步事务中的消息关联和数据保存。当前测试按这条顺序推进；“交叉”这个名字不表示两个独立客户端同时并发发送。
 
