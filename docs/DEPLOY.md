@@ -31,7 +31,15 @@ baseline 与原始 RT 的 BOOT.BIN、boot.scr 相同，变更集中在 image.ub�
 1. 备份 SD 中的原始三件套及摘要。正常关机后断电取卡，将 `baseline/` 的 BOOT.BIN、boot.scr、image.ub 直接复制到启动分区根目录，读回校验并安全弹出。
 2. 连接 PS UART：115200、8N1、无流控，打开日志。串口号按主机实际识别选择，任一时刻只由一个程序占用。
 3. 按对应硬件手册选择 SD 启动。P5B V1.1 文档的 SW6 第 1—4 位为 ON、OFF、ON、OFF；其他载板先核对手册与拨码方向。上电记录启动日志。
-4. baseline 应进入 Linux，`uname -r` 为 `5.4.0-xilinx-v2020.2`，CPU online 为 `0-3`。先排除基本启动故障。
+4. baseline 应进入 Linux。在开发板 Linux 的串口终端执行以下命令，先排除基本启动故障：
+
+   ```sh
+   uname -r
+   cat /sys/devices/system/cpu/online
+   ```
+
+   `uname -r` 预期输出 `5.4.0-xilinx-v2020.2`；第二条命令预期输出 `0-3`，表示 CPU 0、1、2、3 共 4 个核心处于在线状态。
+
 5. 板端执行 `sync`、`poweroff`，确认关机后断电取卡；用 `rt/` 三件套替换，读回校验、安全弹出后重新启动。
 
 手册来源：《MPSoC-P5B 之嵌入式 Linux 开发指南 V1.1》207—208 页，以及《开发板用户快速体验 V1.1》85 页；使用时应核对随板版本。
