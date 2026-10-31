@@ -52,7 +52,7 @@ r002是第2次修订的心跳程序，r003是第3次修订的消息程序；它�
 ### B. 复现Linux与Core3通信
 
 1. 下载[通信手动快照Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030)的`p5-amp-manual-r004-20261030.zip`和校验文件。解压后，先使用`sd-base-r001/`中的基础启动文件部署SD卡并启动Linux；再将同一ZIP的`ram-r004/`中的`p5-core3-comm.bin`、`p5_core3_comm.ko`、`g5_test`和`g5_snapshot`传到板端Linux的`/tmp/amp-r004/`目录，按[板端手动启动](build/AMP-REPRODUCE.md#板端手动启动)一节校验摘要、加载驱动、检查状态并单次启动Core3。文件传输完成不代表已加载或已启动Core3。不要拿原始RT的`image.ub`替换通信基础镜像。
-2. 严格按[通信构建与手动加载指南](build/AMP-REPRODUCE.md)核对预留区、Linux CPU0—2、载荷摘要与模块版本。构建r004时使用`amp/core3-g4/`和`amp/linux-g4/`，测试工具在`amp/linux-g5/`。
+2. 按[板端手动启动](build/AMP-REPRODUCE.md#板端手动启动)中的编号步骤，依次传输文件、核对摘要、只读核对启动环境，再加载驱动并检查状态；每步通过后再执行下一步。该节提供Windows PowerShell串口上传命令、板端命令、预期输出与停止条件。仅重放Release时无需源码构建；需要构建r004时使用`amp/core3-g4/`和`amp/linux-g4/`，测试工具在`amp/linux-g5/`。
 3. 冷启动后加载模块，但不自动唤醒Core3；检查`attempted=0 pm_query=0 pm_state=0`后仅请求启动一次。预期状态页版本4、`core=3 el=12 state=1 reason=0`、异常字段为0且心跳增长；`el=12`是寄存器编码，不是“EL12”。
 4. 先运行指南中的正向、反向、交叉各100次短测。预期各`passed=100 errors=0 missed_release=0`；全新启动每方向计数由0增加到503，已有计数则比较增量。
 5. 需要重放完整验收时，先读[G3消息正确性](reports/amp-g3-validation-20261030.md)、[G4故障恢复](reports/amp-g4-validation-20261030.md)和[G5长测及冷启动](reports/amp-g5-validation-20261030.md)。故障测试须在启动前启用专用参数，不能在已接入业务的实例上直接运行。
