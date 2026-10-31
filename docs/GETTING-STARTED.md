@@ -42,14 +42,14 @@ r002是第2次修订的心跳程序，r003是第3次修订的消息程序；它�
 
 ## 3. 选择一条复现路线
 
-### A. 重放原始RT部署与内核测试
+### A. 复现原始RT部署与内核测试
 
 1. 按[部署指南](DEPLOY.md)从[原始启动Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027)下载，备份原SD文件，先核对baseline，再部署RT。按指南核验版本、`realtime=1`、CPU集合`0-2`与模块目录。
 2. 如需从源码生成，先执行[源码重建说明](build/REPRODUCE.md)。固定厂商父提交和RT提交，重建匹配模块与FIT（Flattened Image Tree，多载荷启动镜像）；不要重复应用两种等价补丁入口。
 3. 按[内核测试方法](reports/rt-assessment-summary-20261029.md)选择原始RT的cyclictest短测，或单独构建诊断内核做ftrace／perf。保存当轮命令、配置、直方图、退出码和内核日志。
 4. 预期是能够重复测量与保存证据，不要求恰好再次出现1255µs或1293µs。没有复现尖峰不等于问题修复；工具退出码为0也不等于产品实时合格。
 
-### B. 重放Linux与Core3通信
+### B. 复现Linux与Core3通信
 
 1. 下载[通信手动快照Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030)的`p5-amp-manual-r004-20261030.zip`和校验文件。使用`sd-base-r001/`，配套`ram-r004/`；不要拿原始RT的`image.ub`替换通信基础镜像。
 2. 严格按[通信构建与手动加载指南](build/AMP-REPRODUCE.md)核对预留区、Linux CPU0—2、载荷摘要与模块版本。构建r004时使用`amp/core3-g4/`和`amp/linux-g4/`，测试工具在`amp/linux-g5/`。
