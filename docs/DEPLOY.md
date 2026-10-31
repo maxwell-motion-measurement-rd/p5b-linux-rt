@@ -1,12 +1,12 @@
 # SD 部署与启动核验
 
-本页针对 baseline／原始 RT 镜像。2026-10-30 已完成另行配置的 AMP（非对称多处理，不同处理器核运行不同的软件系统） 最小通信实验，见[阶段成果](reports/amp-stage-summary-20261030.md)和[手动加载方法](build/AMP-REPRODUCE.md)；原始 RT 发布 FIT（把内核、设备树和内存根文件系统等载荷放在一起的启动镜像格式） 不包含 AMP 所需内存保留。
+本页针对 baseline／原始 RT 镜像。2026-10-30 已完成另行配置的 AMP（Asymmetric Multiprocessing，非对称多处理，不同处理器核运行不同的软件系统） 最小通信实验，见[阶段成果](reports/amp-stage-summary-20261030.md)和[手动加载方法](build/AMP-REPRODUCE.md)；原始 RT 发布 FIT（Flattened Image Tree，把内核、设备树等载荷组织在一起的启动镜像格式） 不包含 AMP 所需内存保留。
 
-本指南用于复现已发布的 baseline／原始 RT 启动包。下面的 Release 只提供 baseline／原始 RT，没有诊断镜像下载；ftrace／PMU（此处为芯片电源管理单元，用于控制 Core3 唤醒） 测试需按[诊断构建步骤](build/REPRODUCE.md#从原始流程生成诊断内核)自行准备独立镜像和工具。测试范围见[测试方法与结果](reports/rt-assessment-summary-20261029.md)。
+本指南用于复现已发布的 baseline／原始 RT 启动包。下面的 Release 只提供 baseline／原始 RT，没有诊断镜像下载；ftrace／PMU（Performance Monitoring Unit，性能监测单元，用于统计 CPU 硬件事件） 测试需按[诊断构建步骤](build/REPRODUCE.md#从原始流程生成诊断内核)自行准备独立镜像和工具。测试范围见[测试方法与结果](reports/rt-assessment-summary-20261029.md)。
 
 ## 1. 准备与校验
 
-需要匹配的 P5 实板、电源、PS UART（常用于串口通信的硬件控制器）、SD 卡与读卡器；已有 FAT32 启动分区即可，本包以 initramfs 为运行根文件系统，不需要额外 EXT4 根分区。核对实际板型、载板修订与硬件设计；不能只凭软件中的 P5B 名称认板。
+需要匹配的 P5 实板、电源、PS UART、SD 卡与读卡器；已有 FAT32 启动分区即可，本包以 initramfs 为运行根文件系统，不需要额外 EXT4 根分区。核对实际板型、载板修订与硬件设计；不能只凭软件中的 P5B 名称认板。
 
 从 [Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/board-boot-20261027) 下载 `p5b-rt-sd-20261027.zip` 及其 `.sha256`。ZIP 为 45,463,094 字节，SHA-256（计算文件摘要的算法，用于核对文件内容是否一致）：
 
@@ -20,11 +20,11 @@ Linux 使用 `sha256sum`，PowerShell 使用 `Get-FileHash -Algorithm SHA256`。
 
 | 文件 | 用途 |
 | --- | --- |
-| BOOT.BIN | 早期启动组件及 U-Boot（加载并引导 Linux 的启动程序）；硬件设计变化时需重新核对 |
+| BOOT.BIN | 早期启动组件及 U-Boot（Universal Boot Loader，加载并引导 Linux 的启动程序）；硬件设计变化时需重新核对 |
 | boot.scr | U-Boot 启动脚本；本包 SD 分支加载 image.ub 后执行 bootm |
 | image.ub | FIT 镜像：内核、Linux DTB、initramfs；RT 模块位于 initramfs 中 |
 
-baseline 与原始 RT 的 BOOT.BIN、boot.scr 相同，变更集中在 image.ub。采用这套 FIT 布局时，单独替换散放的 Image 不会更新 FIT 内的内核。模块必须匹配内核 release；更换 XSA／DDR／PL 或固件（面向特定硬件、完成特定功能的底层程序）时，不能继续假定早期启动文件兼容。
+baseline 与原始 RT 的 BOOT.BIN、boot.scr 相同，变更集中在 image.ub。采用这套 FIT 布局时，单独替换散放的 Image 不会更新 FIT 内的内核。模块必须匹配内核 release；更换 XSA／DDR／PL 或固件时，不能继续假定早期启动文件兼容。
 
 ## 3. 启动 baseline，再切换 RT
 
@@ -52,7 +52,7 @@ lsmod
 dmesg
 ```
 
-原始 RT 预期 release 为 `5.4.0-rt1-xilinx-v2020.2-p5b`、realtime 为 1、三组 CPU 集合均为 0-2、PREEMPT_RT=y、NR_CPUS=3，模块目录与 release 一致。本次共构建 62 个模块，实测加载 dmaproxy、xlnx_vcu_core，未逐一验收全部模块。Core3（第4个 A53 处理器核） 尚未启动裸机（不依赖操作系统、直接在处理器上运行程序的方式）；三核枚举不等于 AMP 已实现。
+原始 RT 预期 release 为 `5.4.0-rt1-xilinx-v2020.2-p5b`、realtime 为 1、三组 CPU 集合均为 0-2、PREEMPT_RT=y、NR_CPUS=3，模块目录与 release 一致。本次共构建 62 个模块，实测加载 dmaproxy、xlnx_vcu_core，未逐一验收全部模块。Core3 尚未启动裸机；三核枚举不等于 AMP 已实现。
 
 原始 RT image.ub SHA-256 为 `f7c224640ad30359a731a5492f06769b4f081496c88fbe273022c48fd2789484`。核对镜像摘要、版本、配置与串口日志，避免只看版本字符串。
 
