@@ -4,6 +4,8 @@
 
 只关心结果，请直接阅读[完整成果报告](reports/PROJECT-REPORT.md)；遇到故障，查[问题与处理记录](TROUBLESHOOTING.md)。本指南说明先理解什么、准备什么、按什么顺序复现。
 
+首次接触项目，建议先读[Linux与Core3如何建立通信，以及我们怎样证明它能工作](AMP-COMMUNICATION-EXPLAINED.md)。该文将启动过程、共享内存消息流与本次短测输出逐项对应，解释命令背后的作用及验证范围。
+
 ## 1. 先理解运行结构
 
 一个Linux实例使用A53 CPU0—2；独立Core3运行最小通信程序。AMP（Asymmetric Multiprocessing，非对称多处理）在这里指：A53 CPU0—2共同运行一个Linux系统，由Linux统一调度；Core3不归这个Linux系统调度，而是独立运行最小通信程序，即裸机。
