@@ -22,3 +22,7 @@ logs/rt-diagnostics/** -text
 logs/amp/** -text -whitespace
 
 *.ps1 text eol=lf
+
+# Matplotlib SVG path formatting is generated; retain LF without whitespace lint.
+docs/reports/figures/**/*.svg text eol=lf -whitespace
+docs/reports/figures/**/*.csv text eol=lf

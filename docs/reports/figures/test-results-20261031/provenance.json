@@ -1,0 +1,54 @@
+{
+  "sources": {
+    "logs/rt-risk/2026-10-29/103809-tools/measurements.json": {
+      "sha256": "e92c653ec663262a7df5b1620c2968525b13f2062fefdf001ffd6fd306f76f6d",
+      "bytes": 1496
+    },
+    "logs/rt-risk/2026-10-29/103809-tools/T00-histogram.txt": {
+      "sha256": "c307081e429628569e3d17c2f45bf497d4bb52c90dfd7a9b83f6e117ff2c0268",
+      "bytes": 28236
+    },
+    "logs/rt-risk/2026-10-29/103809-tools/CPU-histogram.txt": {
+      "sha256": "c5a9f5ac887dffa5a411035e6f2d6149a8bdd328d8750034ea89fbe92ef79f28",
+      "bytes": 28236
+    },
+    "logs/rt-risk/2026-10-29/103809-tools/MEM-histogram.txt": {
+      "sha256": "6dbc7250d3873df51a32a6fba3df54448429cbbeee4cc29c227bb431bc1260c9",
+      "bytes": 28236
+    },
+    "logs/rt-risk/2026-10-29/103809-tools/CPU-repeat-histogram.txt": {
+      "sha256": "a5824e99678d42ede9d43b519430907d1003abd4d015aba6d22dbeaef8626c25",
+      "bytes": 28236
+    },
+    "logs/amp/2026-10-30/g5/pressure-results.json": {
+      "sha256": "2fafcd0f20f1b17667cdb76833361927f67cead3131680c92c8de0bfcdb4a0b9",
+      "bytes": 10665
+    },
+    "logs/amp/2026-10-30/g5/results.json": {
+      "sha256": "e961622447d09c6f41e5911aa1b23cb649a8f2ff5a2a06e7df1ba0ab231753be",
+      "bytes": 1139
+    },
+    "logs/amp/2026-10-30/g5/amp-g5-evidence.tar.gz": {
+      "sha256": "71f57d5b98ab1f1a3f988d0c08bcf897be70880986b8b04a19207adba4dac020",
+      "bytes": 2635275
+    },
+    "logs/rt-diagnostics/2026-10-29/board-trace/trace-analysis.json": {
+      "sha256": "df8f4095b3fcc80d14a52efd3d29ef1039f6b14558ff564aaa90600edfc16cdd",
+      "bytes": 5094
+    }
+  },
+  "validation": {
+    "rt_histograms": 4,
+    "amp_raw_samples": 540000,
+    "amp_statistic_groups": 9,
+    "trace_events": 220415,
+    "all_assertions_passed": true
+  },
+  "metric_rules": {
+    "rt_percentiles": "nearest rank on 1us histogram",
+    "amp_percentiles": "nearest rank on raw ns, integer division to us, matching board summary",
+    "rt_mean": "tool-reported integer mean",
+    "amp_mean": "integer mean, truncated to us"
+  },
+  "no_simulated_data": true
+}
