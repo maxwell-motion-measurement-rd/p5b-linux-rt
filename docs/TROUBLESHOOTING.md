@@ -8,7 +8,7 @@
 | --- | --- | --- | --- |
 | Core3首次启动`freq=0 heartbeat=0 state=2` | 新核的CNTFRQ_EL0频率信息寄存器未初始化，触发保护停止；并非全局系统时钟未运行 | Linux传入已初始化核的频率信息，Core3检查、写本核寄存器并读回；增加错误原因字段 | r002读回99999000Hz，600.14秒共存心跳增长6001；[修复与原始记录](../logs/amp/2026-10-30/g0/r002-progress.md)。仅r001基础包＋RAM载荷得到该次板验，不宣称完整r002 FIT已启动 |
 | rt-tests1.10在NUMA初始化失败 | 已确认在初始化阶段退出，尚未进入测量；内部不适配原因未进一步定位 | 改用rt-tests1.0，`NUMA=0`构建并先自检 | 自检与四组短测成功；[工具记录](../logs/rt-risk/2026-10-29/103809-tools/tool-build-and-run.md)。这是已验证的工具替代路径，不将初始化失败算成内核性能失败 |
-| 原始RT的ftrace不可用，perf硬件事件显示不支持 | 原配置未启用FTRACE／ARM_PMU；用户态工具无法补足内核能力 | 单独构建诊断内核与匹配模块，保留原始RT测量基线 | ftrace完整采集、A53 PMU（Performance Monitoring Unit，性能监测单元）计数可用；[诊断报告](reports/rt-assessment-summary-20261029.md)。配置不同，不据此声称性能改善 |
+| 原始RT的ftrace不可用，perf硬件事件显示不支持 | 原配置未启用FTRACE／ARM_PMU；用户态工具无法补足内核能力 | 从[诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)下载匹配镜像并按[诊断部署指南](DIAGNOSTIC-DEPLOY.md)核验，或自行构建诊断内核与匹配模块；保留原始RT测量基线 | ftrace完整采集、A53 PMU（Performance Monitoring Unit，性能监测单元）计数可用；[诊断报告](reports/rt-assessment-summary-20261029.md)。配置不同，不据此声称性能改善 |
 | 首次10秒跟踪不完整 | 每核4MiB环形缓冲不足，CPU1覆盖139280条旧事件 | 提高至16MiB／核，使用mono时钟，重采并核对各核统计 | 完整复测220415条，覆盖／丢弃为0；[分析数据](../logs/rt-diagnostics/2026-10-29/board-trace/trace-analysis.json)。首次失败记录保留，不解释为丢失139280个控制周期 |
 | 串口导出截断、摘要核对失败 | 导出的数据不完整 | 该副本不用作分析，改为分块校验并核对整包摘要 | 保存规范证据包及校验记录；[通信证据校验](../logs/amp/2026-10-30/g5/amp-g5-evidence.tar.gz.json)。不能仅凭终端显示“完成”判断数据完整 |
 | 精简perf无法完整解析函数与调用链 | 未启用libelf、DWARF与libunwind等能力 | 保留构建适配补丁与匹配二进制，离线反汇编定位 | 986个软件事件样本定位到整数乘加循环；[软件诊断记录](../logs/rt-diagnostics/2026-10-29/report.md)。支持本次热点解释，不等于真实控制任务最坏耗时 |

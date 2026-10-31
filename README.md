@@ -20,6 +20,7 @@
 | --- | --- |
 | 下载启动包、部署SD、核对版本及回退 | [部署指南](docs/DEPLOY.md) · [baseline／原始RT Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027) |
 | 从固定厂商源码重建RT | [源码重建](docs/build/REPRODUCE.md) · [内核提交备份](docs/build/kernel-git-backup.md) |
+| 下载诊断镜像、核验 ftrace／PMU 与回退 | [诊断部署指南](docs/DIAGNOSTIC-DEPLOY.md) · [诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029) |
 | 重放通信实验或构建r004 | [通信构建与手动加载](docs/build/AMP-REPRODUCE.md) · [通信手动快照Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030) |
 | 了解内核工具、参数和结果口径 | [内核测试方法与结果](docs/reports/rt-assessment-summary-20261029.md) |
 | 查看通信实现、消息／故障／长测细节 | [通信阶段总览](docs/reports/amp-stage-summary-20261030.md) · [G3消息](docs/reports/amp-g3-validation-20261030.md) · [G4故障](docs/reports/amp-g4-validation-20261030.md) · [G5长测](docs/reports/amp-g5-validation-20261030.md) |

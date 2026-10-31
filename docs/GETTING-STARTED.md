@@ -46,7 +46,7 @@ r002是第2次修订的心跳程序，r003是第3次修订的消息程序；它�
 
 1. 按[部署指南](DEPLOY.md)从[原始启动Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027)下载，备份原SD文件，先核对baseline，再部署RT。按指南核验版本、`realtime=1`、CPU集合`0-2`与模块目录。
 2. 如需从源码生成，先执行[源码重建说明](build/REPRODUCE.md)。固定厂商父提交和RT提交，重建匹配模块与FIT（Flattened Image Tree，多载荷启动镜像）；不要重复应用两种等价补丁入口。
-3. 按[内核测试方法](reports/rt-assessment-summary-20261029.md)选择原始RT的cyclictest短测，或单独构建诊断内核做ftrace／perf。保存当轮命令、配置、直方图、退出码和内核日志。
+3. 按[内核测试方法](reports/rt-assessment-summary-20261029.md)选择原始RT的cyclictest短测，或从[诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)下载已验证镜像，按[诊断部署指南](DIAGNOSTIC-DEPLOY.md)做ftrace／perf；需要修改配置时再单独构建诊断内核。保存当轮命令、配置、直方图、退出码和内核日志。
 4. 预期是能够重复测量与保存证据，不要求恰好再次出现1255µs或1293µs。没有复现尖峰不等于问题修复；工具退出码为0也不等于产品实时合格。
 
 ### B. 复现Linux与Core3通信

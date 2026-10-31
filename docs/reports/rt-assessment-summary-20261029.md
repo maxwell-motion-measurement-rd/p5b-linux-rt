@@ -27,7 +27,7 @@
 | image.ub SHA-256 前缀 | `f7c224640ad3…` | `c81f2203d00d…` |
 | 用户空间 | 原镜像 Bash，未加载交互增强插件 | 保留原用户空间，增加手动运行的诊断工具 |
 
-独立诊断内核用于增加观测能力：启用 ftrace、调度／系统调用跟踪和 ARM PMU，并重新构建匹配的模块。它的完整内核版本（`uname -r` 输出）为 `5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace`；增加后缀是为了区分版本，实际配置和二进制也有变化。当前 [Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027) 只提供 baseline 和原始 RT，没有诊断镜像下载；需要按[从原始流程生成诊断内核](../build/REPRODUCE.md#从原始流程生成诊断内核)自行构建内核、匹配模块并打包 `image.ub`，同时准备匹配的 BSP、工具链及 rootfs 输入。只克隆本仓库或改版本名称不能生成可用诊断镜像。
+独立诊断内核用于增加观测能力：启用 ftrace、调度／系统调用跟踪和 ARM PMU，并重新构建匹配的模块。它的完整内核版本（`uname -r` 输出）为 `5.4.0-rt1-xilinx-v2020.2-p5b-diag-ftrace`；增加后缀是为了区分版本，实际配置和二进制也有变化。已测镜像可从[诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)下载，按[诊断部署指南](../DIAGNOSTIC-DEPLOY.md)校验、部署和回退，无需重新编译。诊断 ZIP 不包含 BOOT.BIN／boot.scr，需配合已验证的原始 RT 启动文件；包内工具与匹配模块已打入 image.ub。需要修改配置或从源码重建时，再按[诊断构建步骤](../build/REPRODUCE.md#从原始流程生成诊断内核)准备 BSP、工具链和 rootfs 输入。包内“尚未上板”为历史状态，旧采集脚本的 4MiB 参数与完整复测的每核 16MiB、mono 时钟须区分。
 
 两版 DTB、BOOT.BIN、boot.scr 保持原字节。频率策略为 userspace，观测频率 1199999kHz；RT period/runtime 为 1000000/950000µs。未为降低延迟修改 CPU 隔离、IRQ 亲和性或 PM QoS；未做非 RT 性能对照。
 
@@ -183,7 +183,7 @@ mkdir "$OUT"
 
 上述 perf 与 cyclictest 顺序执行，不会自动产生“同一尖峰”的联合证据。CPU／内存压力的并发启动和等待退出应使用[原测量命令](../../logs/rt-risk/2026-10-29/103809-tools/)，核对负载覆盖测量窗口。
 
-ftrace 使用仓库[短采集脚本](../../work/scripts/ftrace-short-capture.sh)，先启动并核对独立诊断内核；脚本默认 16MiB/核、mono。现有诊断包内旧脚本仍可能为 4MiB，使用前核对。脚本结束后先查各核缓冲区统计，保存／校验导出，再移除独立实例；不要用截断的终端文本替代原始 trace。
+ftrace 使用仓库[短采集脚本](../../work/scripts/ftrace-short-capture.sh)，先启动并核对独立诊断内核；脚本默认 16MiB/核、mono。本次发布保留的诊断包及镜像内旧脚本采用 4MiB；请使用仓库当前脚本并核对每核 16MiB、mono 参数。脚本结束后先查各核缓冲区统计，保存／校验导出，再移除独立实例；不要用截断的终端文本替代原始 trace。
 
 在诊断版、跟踪停止后，可对相同负载运行：
 

@@ -2,7 +2,7 @@
 
 本页针对 baseline／原始 RT 镜像。2026-10-30 已完成另行配置的 AMP（Asymmetric Multiprocessing，非对称多处理，不同处理器核运行不同的软件系统） 最小通信实验，见[阶段成果](reports/amp-stage-summary-20261030.md)和[手动加载方法](build/AMP-REPRODUCE.md)；原始 RT 发布 FIT（Flattened Image Tree，把内核、设备树等载荷组织在一起的启动镜像格式） 不包含 AMP 所需内存保留。
 
-本指南用于复现已发布的 baseline／原始 RT 启动包。下面的 Release 只提供 baseline／原始 RT，没有诊断镜像下载；ftrace／PMU（Performance Monitoring Unit，性能监测单元，用于统计 CPU 硬件事件） 测试需按[诊断构建步骤](build/REPRODUCE.md#从原始流程生成诊断内核)自行准备独立镜像和工具。测试范围见[测试方法与结果](reports/rt-assessment-summary-20261029.md)。
+本指南用于复现已发布的 baseline／原始 RT 启动包。[原始启动 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027) 与[诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)分别提供对应镜像。需要 ftrace／PMU 测试时，按[诊断镜像部署指南](DIAGNOSTIC-DEPLOY.md)下载、校验和部署独立诊断镜像；如需改配置，再按[诊断构建步骤](build/REPRODUCE.md#从原始流程生成诊断内核)自行构建。测试范围见[测试方法与结果](reports/rt-assessment-summary-20261029.md)。
 
 ## 1. 准备与校验
 

@@ -157,7 +157,7 @@ cp "$ROOT/build/.config" "$ROOT/deploy/rt/final.config"
 
 ### 从原始流程生成诊断内核
 
-当前 Release 没有提供诊断镜像下载。要运行本文的 ftrace／硬件计数，应先自行构建诊断内核；下列是复用上文构建流程的修改点，不是已在全新主机执行过的一键安装器：
+已有[诊断 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)提供已测镜像；只复现该诊断环境时按[诊断部署指南](../DIAGNOSTIC-DEPLOY.md)下载核验即可，无需重新编译。需要修改配置或从源码重建时，再按下列修改点复用上文构建流程；这些步骤不是已在全新主机执行过的一键安装器：
 
 1. 选择另一个全新 ROOT，使用同一厂商提交与 RT 补丁、工具链、rootfs、三核 DTB 和 VCU 源码。
 2. 在复制 p5b-rt.config 后、olddefconfig 前执行下列配置；将原流程的 release 预期检查改为诊断 release。
