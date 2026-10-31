@@ -15,7 +15,7 @@
 
 `amp/core3/`、`amp/linux-comm/` 保存早期 r001—r003（本实验第3次修订的通信程序版本） 实现，不要将这些目录误作 r004。r004 的状态页版本为 4，消息线格式版本为 1。
 
-已验证镜像与载荷的手动加载快照见 [amp-comm-validation-20261030 Release](https://github.com/nozomiiiii/p5b-linux-rt/releases/tag/amp-comm-validation-20261030)，下载 `p5-amp-manual-r004-20261030.zip` 及校验文件。包内 `sd-base-r001/` 是原已验证基础三件套，`ram-r004/` 是临时载荷，`symbols-r004/` 保存裸机调试符号；不包含开机服务，不改变原镜像。先核对 ZIP 外部摘要，再核对包内 SHA256SUMS。
+已验证镜像与载荷的手动加载快照见 [amp-comm-validation-20261030 Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030)，下载 `p5-amp-manual-r004-20261030.zip` 及校验文件。包内 `sd-base-r001/` 是原已验证基础三件套，`ram-r004/` 是临时载荷，`symbols-r004/` 保存裸机调试符号；不包含开机服务，不改变原镜像。先核对 ZIP 外部摘要，再核对包内 SHA256SUMS。
 
 核对实际 P5 XCZU4EV 与配套硬件设计。r001 基础 FIT（Flattened Image Tree，把内核、设备树等载荷组织在一起的启动镜像格式） 的 SHA-256（计算文件摘要的算法，用于核对文件内容是否一致） 为 `4723c5a96151f3b75c70a10705b5e9d5a80b14b7d2753cf8daa3d7c70cd1d2a0`，与[原始 RT 发布包](../../docs/DEPLOY.md)的 FIT 不同。原始 RT 包没有本实验所需的内存保留，不能直接加载 AMP 驱动。
 
@@ -58,18 +58,126 @@ bash work/scripts/amp-build-g5.sh
 | g5_test | 正常双向通信测试 | 4e879ae7031aef10460bfd789385d50b6f2ce2e22ff94c25f46daf4ca6da6e31 |
 | g5_snapshot | 状态与计数快照 | 74fa215440a4fa33a4e57d3bfc9205ea23d49dfcb4f43a2aa9b6bee7db2c0680 |
 
-以下会实际启动 Core3，只能在匹配基础镜像完成冷启动、核对版本／内存预留之后操作。通过串口或可信文件传输把配套文件放到 `/tmp/amp-r004`，先检查 SHA-256。串口为 115200、8N1、无流控，同一时刻只由一个程序占用。
+### 1. 从Windows通过串口传输文件
+
+本节用于已经从`sd-base-r001/`冷启动Linux、准备重放Release的情况，无需执行上面的“构建输入”。顺序为：**传输文件 → 核对摘要 → 核对启动环境 → 加载驱动并检查状态 → 单次启动Core3 → 通信短测**。每一步通过后再执行下一步；不要一次粘贴整页命令。
+
+这里的`ram-r004/`是电脑上解压后的目录，`/tmp/amp-r004/`是板端Linux目录。以下串口上传方式曾用于原实验，本次手动复现也已完成四个文件传输并核对摘要；它通过板端shell分块写文件，不需要网络或额外串口文件传输协议。
+
+准备：
+
+1. 在Windows电脑上准备本仓库副本和已校验的Release解压目录。上传脚本位于仓库的`work/scripts/`，不在Release的`ram-r004/`内。
+2. 用串口终端连接板子（115200、8N1、无流控），确认已进入`root@ALIENTEK-MP:~#`命令行；若仍在登录提示，先登录root。
+3. 断开串口终端的连接，保持板子供电及Linux运行，让上传脚本独占串口。传输完成后再连接终端。
+4. 在**电脑的Windows PowerShell**中查询串口：
+
+```powershell
+[System.IO.Ports.SerialPort]::GetPortNames()
+Get-CimInstance Win32_SerialPort | Select-Object DeviceID, Name
+```
+
+当前[固件／驱动上传脚本](../../work/scripts/amp-serial-upload-r004.ps1)和[G5工具上传脚本](../../work/scripts/amp-serial-upload-g5.ps1)均固定使用`COM3`。确认系统实际列出COM3后再执行；若使用其他端口，先将两份脚本中`SerialPort`构造处的`'COM3'`改为实际串口号。出现“端口COM3不存在”时，先检查系统识别的端口、USB串口连接和驱动，不要继续上传；“访问被拒绝”时检查是否仍有其他程序占用串口。此前这次COM3故障的具体原因未记录，不据此断言是哪一种原因。
+
+在同一Windows PowerShell窗口执行下列完整代码块。`$repo`改为电脑上的仓库路径，`$payload`改为解压后的`ram-r004`路径；以下路径为本次复现示例。外层`& { ... }`确保上传报错后停止后续文件传输。
+
+```powershell
+& {
+    $ErrorActionPreference = 'Stop'
+    $repo = 'C:\Users\13931\Documents\ChatGPT\maxwell_implementation_dual axis drive and control'
+    $payload = 'C:\Users\13931\Desktop\linux_rt_setup\p5-amp-manual-r004-20261030\ram-r004'
+    $logs = Join-Path $env:TEMP ('amp-upload-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
+    $names = @('p5-core3-comm.bin', 'p5_core3_comm.ko', 'g5_test', 'g5_snapshot')
+    foreach ($name in $names) {
+        if (-not (Test-Path -LiteralPath (Join-Path $payload $name) -PathType Leaf)) {
+            throw "本地文件不存在：$name"
+        }
+    }
+    foreach ($script in @('amp-serial-upload-r004.ps1', 'amp-serial-upload-g5.ps1')) {
+        if (-not (Test-Path -LiteralPath "$repo\work\scripts\$script" -PathType Leaf)) {
+            throw "上传脚本不存在：$script，请检查仓库路径"
+        }
+    }
+    if ([System.IO.Ports.SerialPort]::GetPortNames() -notcontains 'COM3') {
+        throw '系统未列出COM3，请先核对串口；其他端口须同时修改两份脚本和此检查'
+    }
+    New-Item -ItemType Directory -Path $logs | Out-Null
+    Write-Output "上传日志目录：$logs"
+    foreach ($name in $names) {
+        $script = if ($name -in @('p5-core3-comm.bin', 'p5_core3_comm.ko')) {
+            'amp-serial-upload-r004.ps1'
+        } else {
+            'amp-serial-upload-g5.ps1'
+        }
+        & "$repo\work\scripts\$script" -LocalFile (Join-Path $payload $name) -RemoteName $name -LogPath (Join-Path $logs "upload-$name.txt")
+        if (-not $?) { throw "上传失败：$name，请检查日志" }
+    }
+    Write-Output '四个文件上传流程结束；重新连接串口终端，在板端核对摘要。'
+}
+```
+
+预期每个文件都有`Uploaded ...`完成提示。脚本在板端先写`.part`临时文件，再改为正式文件名并输出SHA-256到日志；仍须按下一步核对摘要。打印日志目录、命令提示符重新出现，都不代表传输成功。遇到报错立即停止，保存输出和日志；若PowerShell提示禁止运行脚本，先记录完整报错，当前操作尚未开始传输。本段整理后的批量命令已做语法检查，尚待首次使用者按新版文字完整重放；原上传脚本和四个载荷字节未修改。
+
+### 2. 在板端确认文件与摘要
+
+重新连接串口终端，在**板端Linux的root命令行**执行：
+
+```sh
+ls -l /tmp/amp-r004/
+sha256sum /tmp/amp-r004/p5-core3-comm.bin \
+          /tmp/amp-r004/p5_core3_comm.ko \
+          /tmp/amp-r004/g5_test \
+          /tmp/amp-r004/g5_snapshot
+```
+
+四个文件的摘要必须逐项与上表相同；缺文件、出现读取错误或摘要不一致时，不加载驱动，先查传输问题。文件传到板端不代表驱动已加载或Core3已启动。`g5_test`和`g5_snapshot`此时没有执行权限是正常的，通信短测前会设置权限。保留本次上传日志和摘要输出。
+
+### 3. 在板端核对启动环境（只读）
+
+保持板端root命令行，先执行这一块，核对通过后再进入第4步：
 
 ```sh
 uname -r
 cat /sys/devices/system/cpu/possible
 cat /sys/devices/system/cpu/online
-mkdir -p /lib/firmware
-cp /tmp/amp-r004/p5-core3-comm.bin /lib/firmware/p5-core3-comm.bin
-insmod /tmp/amp-r004/p5_core3_comm.ko
-cat /sys/module/p5_core3_comm/parameters/fault_tests
+cat /proc/cmdline
+ls /proc/device-tree/reserved-memory/
+od -An -v -tx1 /proc/device-tree/reserved-memory/core3-private@60000000/reg
+od -An -v -tx1 /proc/device-tree/reserved-memory/core3-shared@60200000/reg
+for node in core3-private@60000000 core3-shared@60200000; do
+    if test -e "/proc/device-tree/reserved-memory/$node/no-map"; then
+        echo "$node: no-map present"
+    else
+        echo "$node: ERROR no-map missing"
+    fi
+done
+```
+
+| 检查项 | 预期结果 |
+| --- | --- |
+| `uname -r` | `5.4.0-rt1-xilinx-v2020.2-p5b` |
+| `possible`、`online` | 两项均为`0-2` |
+| `/proc/cmdline` | 包含`cpuidle.off=1`、`clk_ignore_unused`、`pd_ignore_unused`，其他参数按实际完整记录 |
+| 私有区`reg`字节 | `00 00 00 00 60 00 00 00 00 00 00 00 00 20 00 00` |
+| 共享区`reg`字节 | `00 00 00 00 60 20 00 00 00 00 00 00 00 20 00 00` |
+| `no-map` | 两个节点均输出`no-map present` |
+
+`reg`以大端字节显示：两行分别表示起始地址`0x60000000`／`0x60200000`，大小均为`0x00200000`（2MiB）。`no-map`是空属性，检查的是属性存在，不要求有文本内容。只列出节点名称不足以证明地址和`no-map`正确。上述条件任一不符或命令报错时停止，不执行`insmod`；保存输出并核对SD启动文件与基础镜像。此处补齐了原正文要求但原代码块缺少的检查，新增命令的本次板端输出尚未收集。
+
+### 4. 复制固件、加载驱动并检查启动前状态
+
+仅在第2、3步通过、当前冷启动尚未加载通信模块时，在**板端Linux**执行。`cp`将固件放到驱动读取的位置，`insmod`加载Linux驱动；二者不会启动Core3。链式命令保证前一步失败时不继续后面的操作。
+
+```sh
+mkdir -p /lib/firmware &&
+cp /tmp/amp-r004/p5-core3-comm.bin /lib/firmware/p5-core3-comm.bin &&
+insmod /tmp/amp-r004/p5_core3_comm.ko &&
+cat /sys/module/p5_core3_comm/parameters/fault_tests &&
 cat /sys/bus/platform/devices/core3-heartbeat/status
 ```
+
+`mkdir`、`cp`和`insmod`成功通常没有额外输出，随后应看到`fault_tests`为`N`，状态包含`attempted=0 pm_query=0 pm_state=0`。这一步尚不要求Core3心跳增长。模块加载报错、状态文件缺失、模块已经加载或状态与预期不符时停止并保存输出，不重复`insmod`，不直接进入启动命令。
+
+### 5. 单次启动Core3
 
 加载驱动不会唤醒 Core3。确认 `fault_tests=N`、`attempted=0 pm_query=0 pm_state=0` 后，只执行一次：
 
@@ -81,6 +189,8 @@ cat /sys/bus/platform/devices/core3-heartbeat/stats
 ```
 
 预期版本 4、core=3、el=12、state=1、reason=0，ESR／ELR／FAR 为 0，心跳持续增长。异常时保留现场，不重试唤醒、不强制复位、不尝试卸载已启动 Core3 的模块。需要恢复时先同步并卸载存储，再正常关机及整板断电；本实验关机末段经常串口静默，不能将其写成已收到最终停机标记。
+
+### 6. 正常通信短测
 
 驱动设备 `/dev/p5-core3` 为 root 专用且独占打开。启动状态检查通过后，可在无其他通信客户端时执行正常短测：
 
