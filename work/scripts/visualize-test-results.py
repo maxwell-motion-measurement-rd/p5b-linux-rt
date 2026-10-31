@@ -31,7 +31,7 @@ def tidy(ax):ax.grid(axis='y',alpha=.18);ax.set_axisbelow(True)
 
 rtbase='logs/rt-risk/2026-10-29/103809-tools/'
 rt=obj(rtbase+'measurements.json');rt_samples={}
-names={'T00':'空载冒烟','CPU':'CPU 负载','MEM':'内存负载','CPU-repeat':'CPU 复测'}
+names={'T00':'空载冒烟测试','CPU':'CPU 负载','MEM':'内存负载','CPU-repeat':'CPU 复测'}
 for row in rt:
  b=source(rtbase+row['case']+'-histogram.txt')
  assert hashlib.sha256(b).hexdigest()==row['sha256']
@@ -42,16 +42,16 @@ for row in rt:
  for key,p in [('p99_histogram_bin_us',.99),('p999_histogram_bin_us',.999)]:
   assert a[int(np.ceil(len(a)*p))-1]==row[key]
  assert int((a>1000).sum())==row['observations_strictly_above_1000us']
-labels=[names[r['case']]+f"\n{r['duration_s']}s · N={r['samples']:,}"for r in rt]
+labels=[names[r['case']]+f"\n{r['duration_s']}秒\n样本数={r['samples']:,}"for r in rt]
 fig,axes=plt.subplots(1,2,figsize=(14,6.5));x=np.arange(4)
 for i,(key,label)in enumerate([('reported_avg_us','平均'),('p99_histogram_bin_us','P99'),('p999_histogram_bin_us','P99.9')]):
  vals=[r[key]for r in rt];bars=axes[0].bar(x+(i-1)*.24,vals,.23,label=label,color=COLORS[i]);axes[0].bar_label(bars,padding=3,fontsize=9)
-axes[0].set_ylim(0,88);axes[0].set_title('常态与分布尾部');axes[0].legend(ncol=3,frameon=False,loc='upper left');axes[0].set_ylabel('唤醒延迟 / µs')
+axes[0].set_ylim(0,88);axes[0].set_title('平均值与覆盖99%／99.9%样本的延迟');axes[0].legend(ncol=3,frameon=False,loc='upper left');axes[0].set_ylabel('唤醒延迟 / µs')
 bars=axes[1].bar(x,[r['max_us']for r in rt],color=COLORS[0],width=.55);axes[1].bar_label(bars,padding=5)
-axes[1].axhline(1000,color='#be123c',ls='--',lw=1.2,label='1000µs 探针周期');axes[1].set_ylim(0,1530);axes[1].set_title('观测最大值');axes[1].set_ylabel('唤醒延迟 / µs');axes[1].legend(frameon=False,loc='upper left')
+axes[1].axhline(1000,color='#be123c',ls='--',lw=1.2,label='1000µs：测量线程设定周期（观察参考）');axes[1].set_ylim(0,1530);axes[1].set_title('观测最大值');axes[1].set_ylabel('唤醒延迟 / µs');axes[1].legend(frameon=False,loc='upper left',fontsize=9)
 for ax in axes:ax.set_xticks(x,labels,fontsize=9);tidy(ax)
-finish(fig,'01-kernel-latency','内核测试｜常态延迟较低，仍观测到超过 1ms 的尾部',
- '2026-10-29 · 原始 RT · cyclictest 绑定 CPU1，1ms 周期，FIFO 优先级80。\n空载600秒、其余各60秒；最大值受观测时长影响。1000µs 是探针周期，非产品验收线。',
+finish(fig,'01-kernel-latency','内核测试｜多数延迟较低，仍偶尔出现超过 1ms 的唤醒延迟',
+ '2026-10-29 · 原始 RT · CPU1，FIFO80；测量线程计划每1ms唤醒一次，记录实际晚了多少。\n空载600秒，其余各60秒（短时负载测试）；样本数即测量次数。产品允许的延迟上限尚未确定。\nP99／P99.9按1µs直方图统计：至少99%／99.9%的样本不超过该值；虚线仅作观察参考。',
  'measurements.json ＋ 四份原始直方图（均已核对摘要与样本数）')
 
 fig,axes=plt.subplots(1,2,figsize=(14,6.5))
@@ -61,10 +61,10 @@ for i,row in enumerate(rt):
  tail=(len(a)-np.cumsum(c)+c)/len(a)*100
  axes[1].step(u,tail,where='pre',color=COLORS[i],label=names[row['case']],lw=1.7)
 axes[0].set_xlim(35,90);axes[0].set_ylim(0,102);axes[0].set_title('主要分布：横轴放大至35—90µs');axes[0].set_ylabel('延迟 ≤ 横轴值的样本比例 / %')
-axes[1].set_yscale('log');axes[1].set_xlim(35,1350);axes[1].set_ylim(1e-4,110);axes[1].set_title('尾部分布：纵轴为对数刻度');axes[1].set_ylabel('延迟 ≥ 横轴值的样本比例 / %');axes[1].axvline(1000,color='#be123c',ls='--',lw=1)
+axes[1].set_yscale('log');axes[1].set_xlim(35,1350);axes[1].set_ylim(1e-4,110);axes[1].set_title('少数大延迟的分布：纵轴为对数刻度');axes[1].set_ylabel('延迟 ≥ 横轴值的样本比例 / %');axes[1].axvline(1000,color='#be123c',ls='--',lw=1)
 for ax in axes:ax.set_xlabel('唤醒延迟 / µs');ax.legend(frameon=False,fontsize=9);tidy(ax)
 finish(fig,'02-kernel-distribution','内核测试｜真实直方图显示常态与稀有尖峰并存',
- '由1µs直方图直接累计，未拟合或补造样本。右图绘至各组最大值，超过最大值后的0比例不绘于对数轴。\n各组时长与样本数不同；CPU 首测／内存负载严格超过1000µs的样本分别为1／2个，空载与复测为0。',
+ '由1µs直方图（每格按1µs归类计数）直接累计。尾部指少数较大的延迟，不是测试结束时段。\n各组时长与样本数不同；CPU／内存超过1000µs的样本分别为1／2个，空载与复测为0。\n1000µs竖线为测量周期参考，产品允许的延迟上限尚未确定；右图不绘制最大值以后的0比例。',
  'T00／CPU／MEM／CPU-repeat-histogram.txt')
 
 ampbase='logs/amp/2026-10-30/g5/'
