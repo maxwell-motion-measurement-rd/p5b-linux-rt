@@ -93,6 +93,7 @@ perf软件统计可用；CPU整数循环采到986个软件事件样本，工具�
 | --- | --- |
 | 原始RT源码补丁、配置及恢复信息 | [源码重建](../build/REPRODUCE.md)、[提交备份](../build/kernel-git-backup.md)；需匹配厂商工程与工具链 |
 | baseline／原始RT启动包 | [启动Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/board-boot-20261027)、[部署指南](../DEPLOY.md) |
+| 已测诊断镜像、匹配模块及诊断工具 | [诊断Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/diagnostic-ftrace-20261029)、[诊断部署指南](../DIAGNOSTIC-DEPLOY.md)；诊断用途预发布，保留历史 ZIP，使用当前 16MiB／核、mono 采集脚本 |
 | 已验证通信手动快照与调试符号 | [通信Release](https://github.com/maxwell-motion-measurement-rd/p5b-linux-rt/releases/tag/amp-comm-validation-20261030)、[构建及手动加载](../build/AMP-REPRODUCE.md) |
 | r004源码、协议和测试工具 | `amp/core3-g4/`、`amp/linux-g4/`、`amp/protocol/`、`amp/linux-g5/` |
 | 原始测量与复核方法 | `logs/rt-risk/`、`logs/rt-diagnostics/`、`logs/amp/`，以及[图集与制图脚本](test-results-visualization-20261031.md) |
